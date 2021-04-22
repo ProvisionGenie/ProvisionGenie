@@ -12,4 +12,4 @@ The baby is an initiative by [Luise Freese](https://m365princess.com) and [Carme
 
 ## Contributions
 
-We welcome contributions, we summarized how you can contribute in the contribution guidelines. 
+We welcome contributions, we summarized how you can contribute in the [contribution guidelines](https://github.com/LuiseFreese/TheBaby/blob/main/CONTRIBUTING.md). 

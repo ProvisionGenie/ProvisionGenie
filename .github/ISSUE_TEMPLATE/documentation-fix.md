@@ -1,6 +1,6 @@
 ---
 name: 📃 Documentation fix
-about: Docs are incomplete or not accurate
+about: help us provide accurate and complete documentation
 title: ''
 labels: ''
 assignees: ''

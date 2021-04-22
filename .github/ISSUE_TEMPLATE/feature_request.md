@@ -1,3 +1,12 @@
+---
+name: "🚀 Feature Request"
+about: Cool idea on how to improve
+title: "[Function Name]: [Issue Title]"
+labels: feature
+assignees: ''
+
+---
+
 Thank you ❤ for your feauture request! 
 
 - All ideas are welcome - let's build something cool together!

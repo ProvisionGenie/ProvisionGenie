@@ -2,7 +2,7 @@
 
 **Guidance & Provisioning for Microsoft Teams**
 
-The Baby helps your users gain knowledge about Microft Teams and provisions the 'team of their dreams' for them
+The Baby helps your users gain knowledge about Microsoft Teams and provisions the 'team of their dreams' for them
 
 ## Features
 

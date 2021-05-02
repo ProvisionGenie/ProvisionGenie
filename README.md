@@ -1,5 +1,7 @@
 ## The Baby
 
+![under construction](https://github.com/LuiseFreese/TheBaby/blob/main/media/undraw_under_construction_46pa.svg)
+
 **Guidance & Provisioning for Microsoft Teams**
 
 The Baby helps your users gain knowledge about Microsoft Teams and provisions the 'team of their dreams' for them

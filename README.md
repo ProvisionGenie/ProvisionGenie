@@ -19,6 +19,8 @@ This app lets you learn how Microsoft Teams works in general and how you can mak
 
 ## Developers
 
+![Carmen and Luise](https://github.com/LuiseFreese/TheBaby/blob/main/media/Carmen_Luise.png)
+
 This app is an initiative by [Luise Freese](https://m365princess.com) and [Carmen Ysewijn](https://digipersonal.com/). 
 
 ## Contributions

@@ -31,6 +31,8 @@ We welcome contributions, we summarized how you can contribute in the [contribut
 
 💙 If you like this project, give it a ⭐ and share it with your friends!
 
+![appreciation](https://github.com/LuiseFreese/TheBaby/blob/main/media/undraw_Appreciation_re_p6rl.svg)
+
 ## Disclaimer
 
 THIS CODE IS PROVIDED AS IS WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.

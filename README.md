@@ -6,13 +6,20 @@
 
 **Guidance & Provisioning for Microsoft Teams**
 
-The Baby helps your users gain knowledge about Microsoft Teams and provisions the 'team of their dreams' for them
+This app lets you learn how Microsoft Teams works in general and how you can make it particularly work for your team. As Teams is a platform that can connect to a lot of services, we want to make your start even easier. We will skill you up and guide you through some questions regarding how your Team should look like. As a result, you can request the 'Team of your dreams', which will be provisioned automatically for you.
 
 ## Features
 
+// To Do:
+* list features
+* link to Deployment Guide
+* link to Fact Sheet for Admins
+* link to End User Quick Start Guide
+* link to License
+
 ## Developers
 
-The baby is an initiative by [Luise Freese](https://m365princess.com) and [Carmen Ysewijn](https://digipersonal.com/). 
+This app is an initiative by [Luise Freese](https://m365princess.com) and [Carmen Ysewijn](https://digipersonal.com/). 
 
 ## Contributions
 
@@ -20,7 +27,7 @@ We welcome contributions, we summarized how you can contribute in the [contribut
 
 ## Support us
 
-💙 If you like this project, give it a ⭐ and share it with friends!
+💙 If you like this project, give it a ⭐ and share it with your friends!
 
 ## Disclaimer
 

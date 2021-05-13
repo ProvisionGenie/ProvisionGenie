@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-Thank you ❤ for your feauture request! 
+Thank you ❤ for your feature request! 
 
 - All ideas are welcome - let's build something cool together!
 - This repo is maintained by volunteers, please be courteous and patient. 🙂

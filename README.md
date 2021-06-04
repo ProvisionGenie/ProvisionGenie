@@ -1,8 +1,8 @@
-## The Baby
+## ProvisionGenie
 
 🚨 Watch out - this is still under construction 🚨
 
-![under construction](https://github.com/LuiseFreese/TheBaby/blob/main/media/undraw_under_construction_46pa.svg)
+![under construction](https://github.com/LuiseFreese/ProvisionGenie/blob/main/media/undraw_under_construction_46pa.svg)
 
 **Guidance & Provisioning for Microsoft Teams**
 
@@ -19,19 +19,19 @@ This app lets you learn how Microsoft Teams works in general and how you can mak
 
 ## Developers
 
-![Carmen and Luise](https://github.com/LuiseFreese/TheBaby/blob/main/media/Carmen_Luise.png)
+![Carmen and Luise](https://github.com/LuiseFreese/ProvisionGenie/blob/main/media/Carmen_Luise.png)
 
 This app is an initiative by [Luise Freese](https://m365princess.com) and [Carmen Ysewijn](https://digipersonal.com/). 
 
 ## Contributions
 
-We welcome contributions, we summarized how you can contribute in the [contribution guidelines](https://github.com/LuiseFreese/TheBaby/blob/main/CONTRIBUTING.md). 
+We welcome contributions, we summarized how you can contribute in the [contribution guidelines](https://github.com/LuiseFreese/ProvisionGenie/blob/main/CONTRIBUTING.md). 
 
 ## Support us
 
 💙 If you like this project, give it a ⭐ and share it with your friends!
 
-![appreciation](https://github.com/LuiseFreese/TheBaby/blob/main/media/undraw_Appreciation_re_p6rl.svg)
+![appreciation](https://github.com/LuiseFreese/ProvisionGenie/blob/main/media/undraw_Appreciation_re_p6rl.svg)
 
 ## Disclaimer
 

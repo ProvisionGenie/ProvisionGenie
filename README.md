@@ -2,8 +2,6 @@
 
 🚨 Watch out - this is still under construction 🚨
 
-![under construction](https://github.com/LuiseFreese/ProvisionGenie/blob/main/media/undraw_under_construction_46pa.svg)
-
 **Guidance & Provisioning for Microsoft Teams**
 
 ProvisionGenie lets you learn how Microsoft Teams works in general and how you can make it for your team. As Teams is a platform that can connect to a lot of services, we want to make your start even easier. We will skill you up and guide you through some questions regarding how your Team should look like. As a result, you can request the 'Team of your dreams', which will be provisioned automatically for you.
@@ -126,7 +124,76 @@ If(
 8. Set **Text** of the TextLabel to `ThisItem.Title`
 9. Set **Image** of the Image to `ThisItem.Image`
 
-> keep in mind to always `Set(_selectedScreen,{Title: "your screenname", <rownumber>})` if you want to let the user navigate to another screen not using the navigation gallery. 
+> Keep in mind to always `Set(_selectedScreen,{Title: "your screenname", <rownumber>})`in addition to `Navigate(your screenname)` if you want to let the user navigate to another screen not using the navigation gallery. 
+
+##### SidePanel
+
+The SidePanel consists if 2 tabs, **Details** and **Resources** and we use 
+
+* 2 Textlabels for the tab names
+* 2 Rectangles as an underline for the tab names
+* at least 2 **HTMLText** controls to display content depending on the tab
+
+1. Set the **HTMLText** of HTML text control to 
+```
+"
+<div style='margin: 0 0 0 20px; font-size: 11pt !important; font-weight: lighter; color: #252525; padding: 0 10px; width: 100%; overflow: hidden;'>
+   
+  
+    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >*</div>
+    <div style=""float: left; width: 75%; "">
+        Step 1 <br><br>
+    </div>
+    <div style=""clear: both""></div>
+  
+    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >*</div>
+    <div style=""float: left; width: 75%; "">
+      Step 2<br><br>
+    </div>
+    <div style=""clear: both""></div>
+  
+    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >*</div>
+    <div style=""float: left; width: 75%; "">
+       Step 3<br><br>
+    </div>
+    <div style=""clear: both""></div>
+
+    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >*</div>
+    <div style=""float: left; width: 75%; "">
+       Step 4<br><br> 
+    </div>
+        <div style=""clear: both""></div>
+
+    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >*</div>
+    <div style=""float: left; width: 75%; "">
+        Step 5<br> 
+    </div>
+      <div style=""clear: both""></div>
+
+    <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >*</div>
+    <div style=""float: left; width: 75%; "">
+       Step 6<br> 
+    </div>
+
+"
+```
+2. repeat with different text in the second HTML text control
+3. Set **OnSelect** of the `Details` Textlabel to `UpdateContext({IsShowResourcesTab: false})`
+4. Set **OnSelect** of the `Resources` Textlabel to `UpdateContext({IsShowResourcesTab:true})`
+5. Set **Visible** of the `Resources` HTMLText to `IsShowResourcesTab`
+6. Set **Visible** of the `Resources` Rectangle to `IsShowResourcesTab`
+7. Set **Visible** of the `Details` HTMLText to `!IsShowResourcesTab`
+8. Set **Visible** of the `Details` Rectangle to `!IsShowResourcesTab`
+9. Set **FontWeight** of `Details` textlabel to `If(!IsShowResourcesTab,FontWeight.Bold, FontWeight.Lighter)` 
+10. Set **FontWeight** of `Resources` textlabel to `If(IsShowResourcesTab,FontWeight.Bold, FontWeight.Lighter)`
+
+This way, the content of `Resources` gets visible once the `Details` content is non-visible and vice versa. Also, user switches between the content by selecting the respecting textlabels. Font-weight will switch from `lighter` to `bold` and Rectangle (that serves as an underline) will be visible once user selects a Textlabel
+
+#### PopUp 
+
+In the app, we make use of various PopUps, either to educate users abouy how to work in Microsoft Teams, or to explain somthing that users can request (like 'Welconme Package') or to indicate a success.
+
+
 
 
 

@@ -4,11 +4,9 @@
 
 🚨 Watch out - this is still under construction 🚨
 
-**Guidance & Provisioning for Microsoft Teams**
+ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/en-ww/microsoft-teams/group-chat-software) that lets you learn how the concept of a team in Microsoft Teams works in general and how you can make it work for your team. As Teams is a platform that can connect to a lot of services, we want to make your start even easier. We will skill you up and guide you through some questions regarding how your team should look like. As a result, you can request the 'Team of your dreams', which will be provisioned automatically for you.
 
-ProvisionGenie is an app for Microsoft Teams that lets you learn how the concept of a team in Microsoft Teams works in general and how you can make it work for your team. As Teams is a platform that can connect to a lot of services, we want to make your start even easier. We will skill you up and guide you through some questions regarding how your team should look like. As a result, you can request the 'Team of your dreams', which will be provisioned automatically for you.
-
-The core components of this solution:
+## Core components of this solution:
 
 * [Power Apps Canvas App](https://github.com/LuiseFreese/ProvisionGenie/blob/main/Docs/CanvasApp.md) 
 * 5 DataVerse tables
@@ -16,7 +14,8 @@ The core components of this solution:
 * 5 Azure Logic Apps flows
 <!-- ToDo: describe what they do -->
 
-Helpful links to get you started 
+## Helpful links to get you started 
+
 * Deployment Guide
 <!-- Create -->
 * link to Fact Sheet for Admins

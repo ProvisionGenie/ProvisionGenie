@@ -36,7 +36,7 @@ We welcome contributions, we summarized how you can contribute in the [contribut
 
 ## Support us
 
-💙 If you like this project, give it a ⭐ and share it with your friends!
+💖 If you like this project, give it a ⭐ and share it with your friends!
 
 <img width="400" alt="ProvisionGenie Logo" src="https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/undraw_Appreciation_re_p6rl.svg">
 

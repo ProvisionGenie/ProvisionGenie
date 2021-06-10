@@ -8,7 +8,7 @@ ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/en-ww/m
 
 ## Core components of this solution:
 
-* [Power Apps Canvas App](https://github.com/LuiseFreese/ProvisionGenie/blob/main/Docs/CanvasApp.md) 
+* [Power Apps Canvas App](/ProvisionGenie/blob/main/Docs/CanvasApp.md) 
 * 5 DataVerse tables
 <!-- ToDo: describe relationships -->
 * 5 Azure Logic Apps flows

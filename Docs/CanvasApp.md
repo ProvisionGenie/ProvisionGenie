@@ -10,19 +10,37 @@
   * if Owner additionally wants a SharePoint list for taskmanagement and a welcome package
 * Patch 5 Dataverse tables with the information we got by user
 
-## Screens and their basic concepts:
+## How do I get the app? 
+* To use the entire solution as-is, please head over to our Deployment Guide
+* To contribute to it, please see our [Contribution Guide](https://github.com/LuiseFreese/ProvisionGenie/blob/main/CONTRIBUTING.md)
+* If you like to reverse-engineer it, please take this basic documentation as a first start. Please note, that this is not a full tutorial on how to rebuild the app, but it should explain how things work on a high level. 
+* You can also download the .msapp file from here and import this app into your environment - please note that this won't give you the full experience, as the entire process of provisioning does not run in this canvas app but in Azure Logic Apps flows which get triggered by new rows in different tables in Dataverse.
 
-#### Colors
+## What does it cost?
 
-1. Set variables **onStart** for the color you use the most - strongly recommended to follow Teams UI Toolkit here. For example:
+* ProvisionGenie is an open-source project and we won't charge you for using, extending, modifying it. For more information, please see our [license](https://github.com/LuiseFreese/ProvisionGenie/blob/main/LICENSE.md)
+* To make the app work, you will need
+  * an Azure subscription (we estimate costs per full Logic App run to be less than 0.01$)
+  * a Power Apps per app or Power Apps per user plan as we use Microsoft Dataverse to store data
+  * a Microsoft 365 license for every user who uses the app
+
+## Basic UI concepts:
+
+### Colors
+
+Set variables **onStart** for the colors you use the most - strongly recommended to follow [Teams UI Toolkit](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/design/design-teams-app-ui-templates?tabs=desktop) here. For example:
 
 `Set(color_blurple,ColorValue("#6264A7"))` and 
 `Set(color_bg,ColorValue("#F5F5F5"))`
 
 This way, you can refer to these values - or change them, if needed, more easily. 
 
-#### Navigation
-1. Create a `_selectedScreen` variable as a record containing row (number), title (text) and image (image) and create `NavigationMenu` collection .onStart, wrap both in `Concurrent()`:
+### Navigation
+1. Create a `_selectedScreen` variable as a record containing 
+* row (number)
+* title (text)
+* image (image) 
+and create a `NavigationMenu` collection .onStart, wrap both in `Concurrent()`:
 
 ``` Concurrent(
     Set(
@@ -69,6 +87,7 @@ This way, you can refer to these values - or change them, if needed, more easily
 ```
 
 (To make this work replace the name of the images with the images you uploaded 💡
+
 2. Create a gallery
 with 
 
@@ -124,9 +143,9 @@ If(
 
 > Keep in mind to always `Set(_selectedScreen,{Title: "your screenname", <rownumber>})`in addition to `Navigate(your screenname)` if you want to let the user navigate to another screen not using the navigation gallery. 
 
-#### SidePanel
+### SidePanel
 
-The SidePanel consists if 2 tabs, **Details** and **Resources** and we use 
+The SidePanel consists of 2 tabs, **Details** and **Resources** and we use 
 
 * 2 Textlabels for the tab names
 * 2 Rectangles as an underline for the tab names
@@ -246,7 +265,7 @@ To have a nice shadow around the PopUp
 * Set its **HTMLtext** to `"<div style='margin:10px;width:600px;height:480px;background-color:#;box-shadow:0 3px 6px 1px  #252525; border-radius:3px'></div>"`
 * Rearrange controls so that the shadow is underneath the button
 
-#### next button
+#### Next button
 
 * Create a button
 * Set colors as stated in Teams UI Toolkit if you like this to be design consistent to Teams, otherwise choose your own colors (preferably set them as variables)
@@ -270,7 +289,7 @@ This way, users navigate to the next screen if they are on page 1 or 2 and close
 
 > To calculate this correctly, place the button by drag'n'drop where you want it. Now check the x-value, add the width to it. This is your target value. For the other pages, you will need to deduct the width of the button from that target value so you get the x-value of the button on that page. If you have more than 1 PopUp, it's worth to think about parameterizing this as well 
 
-#### back button
+#### Back button
 
 * Create a button
 * Set colors as stated in Teams UI Toolkit if you like this to be design consistent to Teams, otherwise choose your own colors (preferably set them as variables)
@@ -288,16 +307,16 @@ If(
 ```
 This way, users navigate to the previous screen. 
 
-#### image
+#### Image
 
 * Insert an image
 * Set **Width** to `600`
 * Set **Height** to `240`
-* Set **Image** to `If(isPage=1,<image1>,If(isPage=2,<image2>,<image3>))
+* Set **Image** to `If(isPage=1,<image1>,If(isPage=2,<image2>,<image3>))`
 
 You will notice, that due to the Border radius of the background button, the edges of the image don't look like 90° corners. This is why we will insert a rectangle to cover this
 
-Rectangle
+#### Rectangle
 
 * Create a Rectangle
 * Set its **Fill** to `White**
@@ -305,13 +324,13 @@ Rectangle
 * Set **Height** to `17`
 * Place it so it overlaps with the rounded corners
 
-#### Welcome Screen
-
-#### Teams Screen
-#### Channels Screen
-#### Library Screen
-#### Lists Screen
-#### Checkout Screen
+## Screens
+### Welcome Screen
+### Teams Screen
+### Channels Screen
+### Library Screen
+### Lists Screen
+### Checkout Screen
 
 ### Variables
 

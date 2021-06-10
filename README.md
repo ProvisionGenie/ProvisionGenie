@@ -1,5 +1,7 @@
 # ProvisionGenie
 
+<img width="200" alt="ProvisionGenie Logo" src="https://github.com/LuiseFreese/ProvisionGenie/blob/main/media/ProvisionGenie_bkg.png">
+
 🚨 Watch out - this is still under construction 🚨
 
 **Guidance & Provisioning for Microsoft Teams**
@@ -10,23 +12,22 @@ The core components of this solution:
 
 * [Power Apps Canvas App](https://github.com/LuiseFreese/ProvisionGenie/blob/main/Docs/CanvasApp.md) 
 * 5 DataVerse tables
+<!-- ToDo: describe relationships -->
 * 5 Azure Logic Apps flows
+<!-- ToDo: describe what they do -->
 
-<!-- 
-## 5 DataVerse tables
-//ToDo: describe relationships -->
-
-## 5 Azure Logic Apps flows
-<!-- // ToDo: describe what they do
-
-* link to Deployment Guide
+Helpful links to get you started 
+* Deployment Guide
+<!-- Create -->
 * link to Fact Sheet for Admins
+<!-- Create -->
 * link to End User Quick Start Guide
-* link to License -->
+<!-- Create -->
+* [License](https://github.com/LuiseFreese/ProvisionGenie/blob/main/LICENSE.md)
 
 ## Developers
 
-![Carmen and Luise](https://github.com/LuiseFreese/ProvisionGenie/blob/main/media/Carmen_Luise.png)
+<img width="400" alt="ProvisionGenie Logo" src="https://github.com/LuiseFreese/ProvisionGenie/blob/main/media/Carmen_Luise.png">
 
 This solution is an initiative by [Luise Freese](https://m365princess.com) and [Carmen Ysewijn](https://digipersonal.com/). 
 
@@ -38,7 +39,7 @@ We welcome contributions, we summarized how you can contribute in the [contribut
 
 💙 If you like this project, give it a ⭐ and share it with your friends!
 
-![appreciation](https://github.com/LuiseFreese/ProvisionGenie/blob/main/media/undraw_Appreciation_re_p6rl.svg)
+<img width="400" alt="ProvisionGenie Logo" src="https://github.com/LuiseFreese/ProvisionGenie/blob/main/media/undraw_Appreciation_re_p6rl.svg">
 
 ## Disclaimer
 

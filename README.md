@@ -18,13 +18,22 @@ The core components of this solution:
 * Short upskilling nuggets in Pop Ups
 * Questionnaire to get information on 
   * Teams Name, Teams Description and logged in User to provision the Team itself
-  * Questionnaire to get channel information to provision channels
-  * Questionnaire to get information on SharePoint list columns to provision this SharePoint list
-  * Questionnaire to get information on SharePoint library columns to provision this SharePoint library
-  * Questionnaire to get information if Owner additionally wants a SharePoint list for taskmanagement and a welcome package, which pins a customizeable website to Channel general for additional learning content
+  * channels 
+  * SharePoint list columns to provision this SharePoint list
+  * SharePoint library columns to provision this SharePoint library
+  * if Owner additionally wants a SharePoint list for taskmanagement and a welcome package
 * Patch 5 Dataverse tables with the information we got by user
 
 ### Screens and their basic concepts:
+
+##### Colors
+
+1. Set variables **onStart** for the color you use the most - strongly recommended to follow Teams UI Toolkit here. For example:
+
+`Set(color_blurple,ColorValue("#6264A7"))` and 
+`Set(color_bg,ColorValue("#F5F5F5"))`
+
+This way, you can refer to these values - or change them, if needed, more easily. 
 
 ##### Navigation
 1. Create a `_selectedScreen` variable as a record containing row (number), title (text) and image (image) and create `NavigationMenu` collection .onStart, wrap both in `Concurrent()`:
@@ -73,8 +82,10 @@ The core components of this solution:
     )
 ```
 
+(To make this work replace the name of the images with the images you uploaded 💡
 2. Create a gallery
 with 
+
 * Rectangle
 * Textlabel
 * Image
@@ -204,14 +215,47 @@ Popups contain the following controls:
 
 ##### structure:
 
-Rectangle that serves as a Dimmer
-Button that serves as background for the PopUp
-Circles that serves as Stepper Dots so users can select them to navigate back and forth of the pages
-cancel icon to close the PopUp
-an HTMLtext to create a shadow around the PopUp
+* Rectangle that serves as a Dimmer
+* Button that serves as background for the PopUp
+* Circles that serves as Stepper Dots so users can select them to navigate back and forth of the pages
+* Cancel icon to close the PopUp
+* an HTMLtext to create a shadow around the PopUp
+* 2 Buttons for next/back
+* 1 Rectangle to prettify the PopUp
 
+###### Rectangle for Dimmer
 
+purpose here is do create a lightbox effect and to dim everything but the PopUp itself. Following the Teams UI Toolkit: 
 
+* Set **Fill** to `RGBA(37, 36, 35, 0.75)`
+* Set size to the entire screen
+
+###### Button that serves as background
+
+* Set **Width** to `600`
+* Set **Height** to `480`
+* Set **Color** to `White`
+* Set **Hover color** to `White`
+* Set **Pressed color** to `White`
+* Set **Border radius** to `3`
+
+###### Circles that serves as Stepper Dots 
+
+* Create 3 circles
+* Set their **Width** to 8
+* Set their **Height** to 8
+* Align them horizontally
+* Set **OnSelect** of Circle1 to `UpdateContext({isPage:1})`
+* Set **OnSelect** of Circle2 to `UpdateContext({isPage:2})`
+* Set **OnSelect** of Circle3 to `UpdateContext({isPage:3})`
+* Set **Fill** of Circle1 to `If(isPage=1,color_blurple,color_bg)`
+* Set **Fill** of Circle2 to `If(isPage=2,color_blurple,color_bg)`
+* Set **Fill** of Circle3 to `If(isPage=3,color_blurple,color_bg)`
+
+###### Cancel icon to close the PopUp
+
+* Place your Cancel icon at the upper right hand corner of the button
+* Set **OnSelect** to `UpdateContext({isShowPopUp: false})`
 ##### 
 #### on all screens: 
 

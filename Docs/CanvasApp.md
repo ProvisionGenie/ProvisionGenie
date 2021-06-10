@@ -193,7 +193,6 @@ In the app, we make use of various PopUps, either to educate users abouy how to 
 
 Popups contain the following controls: 
 
-* Image
 * Textlabel that serves as a Title for this PopUp
 * TextLabel that serces as the main content for this PopUp
 * Rectangle that serves as a Dimmer
@@ -202,6 +201,7 @@ Popups contain the following controls:
 * Cancel icon to close the PopUp
 * HTMLtext to create a shadow around the PopUp
 * 2 Buttons for next/back
+* Image
 * Rectangle to prettify the PopUp
 
 #### Rectangle for Dimmer
@@ -295,7 +295,15 @@ This way, users navigate to the previous screen.
 * Set **Height** to `240`
 * Set **Image** to `If(isPage=1,<image1>,If(isPage=2,<image2>,<image3>))
 
+You will notice, that due to the Border radius of the background button, the edges of the image don't look like 90° corners. This is why we will insert a rectangle to cover this
 
+Rectangle
+
+* Create a Rectangle
+* Set its **Fill** to `White**
+* Set **Width** to `600`
+* Set **Height** to `17`
+* Place it so it overlaps with the rounded corners
 
 #### Welcome Screen
 

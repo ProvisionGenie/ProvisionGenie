@@ -1,10 +1,20 @@
 # Power Apps Canvas App
 
+Purpose of this app is to foster teamwork by letting owners-to be of Microsoft Teams teams make smarter decisions on how a team can work in Teams. Usually, a business consultant would talk a team through assets that are available in Teams and Microsoft 365 and answer all question with 'it depends'. They would explain that people usually 
+
+* confuse chat with task assignment "could you please"
+* confuse email with status reports "per my last email"
+* confuse SharePoint with a dumpster for any file in the world "can you migrate this pile of mess to someone else's computer?"
+
+and show them what channels are made for, how a team can work with metadata on files and how stying on track works with Microsoft Lists. The Business consultant would ask them if they wanted more learning metarial pinned to their brand new team and if they wanted the team of they dreams already be created for them, so that it works from Day1. 
+
+This is, what Provisiongenie does: 
+
 ## High level overview on what the Canvas App does: 
-* Short upskilling nuggets in Pop Ups
+* Short upskilling nuggets in Pop Ups so that owner can make informed decisions on channels, metadata and tools to use
 * Questionnaire to get information on 
   * Teams Name, Teams Description and logged in User to provision the Team itself
-  * channels 
+  * Channels 
   * SharePoint list columns to provision this SharePoint list
   * SharePoint library columns to provision this SharePoint library
   * if Owner additionally wants a SharePoint list for taskmanagement and a welcome package
@@ -21,10 +31,21 @@
 * ProvisionGenie is an open-source project and we won't charge you for using, extending, modifying it. For more information, please see our [license](https://github.com/LuiseFreese/ProvisionGenie/blob/main/LICENSE.md)
 * To make the app work, you will need
   * an Azure subscription (we estimate costs per full Logic App run to be less than 0.01$)
-  * a Power Apps per app or Power Apps per user plan as we use Microsoft Dataverse to store data
+  * a [Power Apps per app](https://powerapps.microsoft.com/en-us/pricing/) or [Power Apps per user](https://powerapps.microsoft.com/en-us/pricing/) plan as we use [Microsoft Dataverse ](https://powerplatform.microsoft.com/en-us/dataverse/)to store data
   * a Microsoft 365 license for every user who uses the app
 
-## Basic UI concepts:
+## Version
+
+This is our very first Version 1.0- For more info, please head over to [Release Notes](https://github.com/LuiseFreese/ProvisionGenie/blob/main/Docs/Release-Notes.md). Please note, that this is our minimale l♥valble product - feel free to contribute and make it better. Every contribution counts and everyone's voice matters. You can help us
+
+* improve UI/UX
+* fix documentation
+* find (and fix) bugs
+* extend use cases
+
+If you want to know more how that works, we created a [Contrubution Guide](https://github.com/LuiseFreese/ProvisionGenie/blob/main/CONTRIBUTING.md) and also [Issue](https://github.com/LuiseFreese/ProvisionGenie/issues/new/choose) templates to make it easy for you. 
+
+## Basic UI concepts
 
 ### Colors
 
@@ -36,6 +57,7 @@ Set variables **onStart** for the colors you use the most - strongly recommended
 This way, you can refer to these values - or change them, if needed, more easily. 
 
 ### Navigation
+
 1. Create a `_selectedScreen` variable as a record containing 
 * row (number)
 * title (text)
@@ -137,9 +159,9 @@ If(
     )
 )
 ```
-7. Set **Visible** of the rectangle to `ThisItem.Row = _selectedScreen.Row`
-8. Set **Text** of the TextLabel to `ThisItem.Title`
-9. Set **Image** of the Image to `ThisItem.Image`
+6. Set **Visible** of the rectangle to `ThisItem.Row = _selectedScreen.Row`
+7. Set **Text** of the TextLabel to `ThisItem.Title`
+8. Set **Image** of the Image to `ThisItem.Image`
 
 > Keep in mind to always `Set(_selectedScreen,{Title: "your screenname", <rownumber>})`in addition to `Navigate(your screenname)` if you want to let the user navigate to another screen not using the navigation gallery. 
 

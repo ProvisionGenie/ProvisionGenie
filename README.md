@@ -256,7 +256,65 @@ purpose here is do create a lightbox effect and to dim everything but the PopUp 
 
 * Place your Cancel icon at the upper right hand corner of the button
 * Set **OnSelect** to `UpdateContext({isShowPopUp: false})`
-##### 
+
+###### HTMLtext to create a shadow around the PopUp
+
+To have a nice shadow around the PopUp
+
+* Create an HTMLtext control
+* Set its **HTMLtext** to `"<div style='margin:10px;width:600px;height:480px;background-color:#;box-shadow:0 3px 6px 1px  #252525; border-radius:3px'></div>"`
+* Rearrange controls so that the shadow is underneath the button
+
+
+###### next button
+
+* Create a button
+* Set colors as stated in Teams UI Toolkit if you like this to be design consistent to Teams, otherwise choose your own colors (preferably set them as variables)
+* Set **OnSelect** to 
+```
+If(
+    isPage= 1,
+    UpdateContext({isPage: 2}),
+    If(
+        isPageTrack = 2,
+        UpdateContext({isPage: 3}),
+        UpdateContext({isShowPopUp: false})
+    )
+)
+```
+This way, users navigate to the next screen if they are on page 1 or 2 and close the PoPup if they are on page 3. 
+
+* Set **Text** to `If(isPage=1,"yourtext-->2",If(isPage=2,"yourtext-->3","Close"))` This way, we display different texts depending on the page our user is currently at
+* Set **Width** to `If(isPage=1,<value1>,If(isPage=2, <value2>,<value3>)` This way, the width of the button adjusts
+* Set **X** to `If(isPage=1,<value1>,If(isPage=2, <value2>,<value3>)` to adjust horizontal position of the button. 
+
+> To calculate this correctly, place the button by drag'n'drop where you want it. Now check the x-value, add the width to it. This is your target value. For the other pages, you will need to deduct the width of the button from that target value so you get the x-value of the button on that page. If you have more than 1 PopUp, it's worth to think about parameterizing this as well 
+
+###### back button
+
+* Create a button
+* Set colors as stated in Teams UI Toolkit if you like this to be design consistent to Teams, otherwise choose your own colors (preferably set them as variables)
+* Set **OnSelect** to 
+```
+If(
+    isPage = 1,
+    UpdateContext({isPage: 3}),
+    If(
+        isPage = 3,
+        UpdateContext({isPageConversations: 2}),
+        UpdateContext({isPageConversations:1})
+    )
+)
+```
+This way, users navigate to the previous screen. 
+
+
+###### image
+
+* Insert an image
+* Set **Width** to `600`
+* Set **Height** to `240`
+* 
 #### on all screens: 
 
 ##### Navigation

@@ -16,11 +16,12 @@ The core components of this solution:
 
 ### High level overview on what the Canvas App does: 
 * Short upskilling nuggets in Pop Ups
-* Questionnaire to get information on Teams Name, Teams Description and logged in User to provision the Team itself
-* Questionnaire to get channel information to provision channels
-* Questionnaire to get information on SharePoint list columns to provision this SharePoint list
-* Questionnaire to get information on SharePoint library columns to provision this SharePoint library
-* Questionnaire to get information if Owner additionally wants a SharePoint list for taskmanagement and a welcome package, which pins a customizeable website to Channel general for additional learning content
+* Questionnaire to get information on 
+  * Teams Name, Teams Description and logged in User to provision the Team itself
+  * Questionnaire to get channel information to provision channels
+  * Questionnaire to get information on SharePoint list columns to provision this SharePoint list
+  * Questionnaire to get information on SharePoint library columns to provision this SharePoint library
+  * Questionnaire to get information if Owner additionally wants a SharePoint list for taskmanagement and a welcome package, which pins a customizeable website to Channel general for additional learning content
 * Patch 5 Dataverse tables with the information we got by user
 
 ### Screens and their basic concepts:
@@ -191,9 +192,23 @@ This way, the content of `Resources` gets visible once the `Details` content is 
 
 #### PopUp 
 
-In the app, we make use of various PopUps, either to educate users abouy how to work in Microsoft Teams, or to explain somthing that users can request (like 'Welconme Package') or to indicate a success.
+In the app, we make use of various PopUps, either to educate users abouy how to work in Microsoft Teams, or to explain somthing that users can request (like 'Welconme Package') or to indicate a success. Most PopUps contain 3 different pages, which means theat we need 3 times different content for them as well
 
+Popups contain the following controls: 
 
+##### content: 
+
+* Image
+* Textlabel that serves as a Title for this PopUp
+* TextLabel that serces as the main content for this PopUp
+
+##### structure:
+
+Rectangle that serves as a Dimmer
+Button that serves as background for the PopUp
+Circles that serves as Stepper Dots so users can select them to navigate back and forth of the pages
+cancel icon to close the PopUp
+an HTMLtext to create a shadow around the PopUp
 
 
 

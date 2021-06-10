@@ -8,20 +8,21 @@ ProvisionGenie is an app for Microsoft Teams that lets you learn how the concept
 
 The core components of this solution:
 
-* Power Apps Canvas App 
+* [Power Apps Canvas App](https://github.com/LuiseFreese/ProvisionGenie/blob/main/Docs/CanvasApp.md) 
 * 5 DataVerse tables
 * 5 Azure Logic Apps flows
 
-
+<!-- 
 ## 5 DataVerse tables
-//ToDo: describe relationships
+//ToDo: describe relationships -->
+
 ## 5 Azure Logic Apps flows
-// ToDo: describe what they do
+<!-- // ToDo: describe what they do
 
 * link to Deployment Guide
 * link to Fact Sheet for Admins
 * link to End User Quick Start Guide
-* link to License
+* link to License -->
 
 ## Developers
 

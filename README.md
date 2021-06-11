@@ -39,6 +39,8 @@ This is our very first Version 1.0- For more info, please head over to [Release 
 
 If you want to know more how that works, we created a [Contribution Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTING.md) and also [Issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose) templates to make it easy for you. 
 
+We also listed some features that we would like to add in the future- but consciously decided to not release in V1.0 as we wanted to release rather sooner than later - to get feedback. Speaking of which: Please do [submit your feedback](https://github.com/ProvisionGenie/ProvisionGenie/issues/new?assignees=&labels=&template=feedback.md&title=), or just get in touch with us for a chat! 
+
 ## Developers
 
 <img width="400" alt="ProvisionGenie Logo" src="https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Carmen_Luise.png">

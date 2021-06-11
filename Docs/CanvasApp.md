@@ -428,9 +428,90 @@ Set(
 )
 
 ```
-Which navigates to the next **Channel** screen, sets the Navigation correctly and saves the values in variables. Please note, that at this point we won't submit this form to the datasource.
+Which navigates to the next **Channels** screen, sets the Navigation correctly and saves the values in variables. Please note, that at this point we won't submit this form to the datasource.
 
 ### Channels Screen
+
+On this screen, our owner-to-be can create the channels they want to be provisioned in their new Team. We work here with: 
+
+* 1 TextInput to get a value
+* a Button to add this value into a collection
+* a Button to clear the collection
+* a gallery to display the collection
+
+#### add Button
+
+* Set its **OnSelect** to 
+
+```
+  If(txtTagToAdd.Text in colChannels.ChannelName, 
+    Notify(
+        "You already added this Channel. Please try again with a different name.",
+        NotificationType.Warning
+    ),
+    Collect(
+        colChannels,{ChannelName:
+        txtTagToAdd.Text
+        });
+        
+    UpdateContext({locClearTextInput: true});
+    UpdateContext({locClearTextInput: false})
+); 
+```
+
+This way, we use the **Notify** function to warn our user in case they add a Channel name that already exists in collection. If the channel name does not exist already in the collection, we add it.Then we update a variable that controls the **Reset** property of the TextInput, so that its always empty again afetr we added a channelname to the collection. 
+  
+#### TextInput
+
+Set **Reset** to `locClearTextInput`
+
+#### clear Button
+
+In case our user wants to start all over again, we give them a button to do so. 
+
+Set **OnSelect** to 
+
+```
+Clear(colChannels);
+UpdateContext({locClearTextInput: true});
+UpdateContext({locClearTextInput: false})
+```
+which empties the collection and updates the variables that controls the **Reset** property of TexInput again. 
+
+#### gallery
+
+* Set **Items** to `colChannels`
+* Set the **Text** of **Title** Textlabel in the gallery to `ThisItem.ChannelName`
+* Change the default **Nextarrow* icon to a **Cancel** icon and set its **OnSelect** to  `RemoveIf(colChannels,ChannelName=ThisItem.ChannelName)`
+
+This way, our user can review the list of channels and even remove some of them again.  
+
+
+This neat solution is described in more detail on [Carmen Ysewijn's blog](https://digipersonal.com/2021/04/22/canvas-app-ui-element-tag-box-list/)
+
+#### Next button
+
+With this button we want to set a variable that concatenates the Channels to a single string with, separated by `, ` , navigate to the next screen and set our navigation correctly. To achieve this, set **OnSelect** to 
+```
+Set(
+    varChannels,
+    Concat(
+        colChannels,
+        ChannelName & ", "
+    )
+);
+Navigate('Libraries Screen',Cover);
+Set(
+    _selectedScreen,
+    {
+        Title: "Libraries",
+        Row: 4
+    }
+)
+
+```
+
+
 ### Library Screen
 ### Lists Screen
 ### Checkout Screen

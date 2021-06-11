@@ -24,9 +24,9 @@ ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/en-ww/m
 
 * ProvisionGenie is an open-source project and we won't charge you for using, extending, modifying it. For more information, please see our [license](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/LICENSE.md)
 * To make the app work, you will need
-  * an Azure subscription (we estimate costs per full Logic App run to be less than 0.01$)
+  * an Azure subscription (we estimate costs per full Logic App run to be less than 0.01$ - for more detail see [Cost estimation](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CostEstimation.md))
   * a [Power Apps per app](https://powerapps.microsoft.com/en-us/pricing/) or [Power Apps per user](https://powerapps.microsoft.com/en-us/pricing/) plan as we use [Microsoft Dataverse ](https://powerplatform.microsoft.com/en-us/dataverse/)to store data
-  * a Microsoft 365 license for every user who uses the app
+  * a [Microsoft 365 license](https://www.microsoft.com/en-ww/microsoft-365/business/compare-all-microsoft-365-business-products?market=af) for every user who uses the app
 
 ## Version
 

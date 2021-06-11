@@ -1,16 +1,17 @@
 # Power Apps Canvas App
 
-Purpose of this app is to foster teamwork by letting owners-to be of Microsoft Teams teams make smarter decisions on how a team can work in Teams. Usually, a business consultant would talk a team through assets that are available in Teams and Microsoft 365 and answer all question with 'it depends'. They would explain that people usually 
+Purpose of this app is to foster teamwork by letting owners-to-be of Microsoft Teams teams make smarter decisions on how a team can work in Teams. Usually, a business consultant would talk a team through assets that are available in Teams and Microsoft 365 and answer all question with 'it depends'. They would explain that people usually 
 
 * confuse chat with task assignment "could you please"
 * confuse email with status reports "per my last email"
 * confuse SharePoint with a dumpster for any file in the world "can you migrate this pile of mess to someone else's computer?"
 
-and show them what channels are made for, how a team can work with metadata on files and how stying on track works with Microsoft Lists. The Business consultant would ask them if they wanted more learning metarial pinned to their brand new team and if they wanted the team of they dreams already be created for them, so that it works from Day1. 
+and show them what channels are made for, how a team can work with metadata on files and how stying on track works with Microsoft Lists. The Business consultant would ask them if they wanted more learning material pinned to their brand new team and if they wanted the team of they dreams already be created for them, so that it works from Day 1. 
 
 This is, what Provisiongenie does: 
 
-## High level overview on what the Canvas App does: 
+## High level overview on what the Canvas App does
+
 * Short upskilling nuggets in Pop Ups so that owner can make informed decisions on channels, metadata and tools to use
 * Questionnaire to get information on 
   * Teams Name, Teams Description and logged in User to provision the Team itself
@@ -21,21 +22,24 @@ This is, what Provisiongenie does:
 * Patch 5 Dataverse tables with the information we got by user
 
 ## How do I get the app? 
-* To use the entire solution as-is, please head over to our Deployment Guide
+
+* To get the entire solution as-is, please head over to our Deployment Guide
 * To contribute to it, please see our [Contribution Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTING.md)
-* If you like to reverse-engineer it, please take this basic documentation as a first start. Please note, that this is not a full tutorial on how to rebuild the app, but it should explain how things work on a high level. 
+* If you like to reverse-engineer it, please take this basic documentation as a first start. Please note, that this is not a full tutorial on how to rebuild the canvas app, but it should explain how things work on a high level. 
 * You can also download the .msapp file from here and import this app into your environment - please note that this won't give you the full experience, as the entire process of provisioning does not run in this canvas app but in Azure Logic Apps flows which get triggered by new rows in different tables in Dataverse.
 
 ## Basic UI concepts
 
+This app is designed to be a personal app in Microsoft Teams and we aimed to adopt the Teams look & feel by following the guidance available in the [Microsoft Teams UI Toolkit](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/design/design-teams-app-ui-templates?tabs=desktop). This means, that we will not explain all basic UI components in this document but refer to the Toolkit. 
+
 ### Colors
 
-Set variables **onStart** for the colors you use the most - strongly recommended to follow [Teams UI Toolkit](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/design/design-teams-app-ui-templates?tabs=desktop) here. For example:
+Set variables **onStart** for the colors you use the most- for example:
 
 `Set(color_blurple,ColorValue("#6264A7"))` and 
 `Set(color_bg,ColorValue("#F5F5F5"))`
 
-This way, you can refer to these values - or change them, if needed, more easily. 
+This way, you can refer to these values - or change them, if needed, more easily.  
 
 ### Navigation
 
@@ -144,7 +148,7 @@ If(
 7. Set **Text** of the TextLabel to `ThisItem.Title`
 8. Set **Image** of the Image to `ThisItem.Image`
 
-> Keep in mind to always `Set(_selectedScreen,{Title: "your screenname", <rownumber>})`in addition to `Navigate(your screenname)` if you want to let the user navigate to another screen not using the navigation gallery. 
+> Keep in mind to always `Set(_selectedScreen,{Title: "your screenname", Row: <rownumber>})`in addition to `Navigate(your screenname)` if you want to let the user navigate to another screen not using the navigation gallery. 
 
 ### SidePanel
 
@@ -153,8 +157,10 @@ The SidePanel consists of 2 tabs, **Details** and **Resources** and we use
 * 2 Textlabels for the tab names
 * 2 Rectangles as an underline for the tab names
 * at least 2 **HTMLText** controls to display content depending on the tab
+* 
+This is how it works: 
 
-1. Set the **HTMLText** of HTML text control to 
+* Set **HTMLText** of HTML text control to 
 ```
 "
 <div style='margin: 0 0 0 20px; font-size: 11pt !important; font-weight: lighter; color: #252525; padding: 0 10px; width: 100%; overflow: hidden;'>
@@ -197,26 +203,26 @@ The SidePanel consists of 2 tabs, **Details** and **Resources** and we use
 
 "
 ```
-2. repeat with different text in the second HTML text control
-3. Set **OnSelect** of the `Details` Textlabel to `UpdateContext({IsShowResourcesTab: false})`
-4. Set **OnSelect** of the `Resources` Textlabel to `UpdateContext({IsShowResourcesTab:true})`
-5. Set **Visible** of the `Resources` HTMLText to `IsShowResourcesTab`
-6. Set **Visible** of the `Resources` Rectangle to `IsShowResourcesTab`
-7. Set **Visible** of the `Details` HTMLText to `!IsShowResourcesTab`
-8. Set **Visible** of the `Details` Rectangle to `!IsShowResourcesTab`
-9. Set **FontWeight** of `Details` textlabel to `If(!IsShowResourcesTab,FontWeight.Bold, FontWeight.Lighter)` 
-10. Set **FontWeight** of `Resources` textlabel to `If(IsShowResourcesTab,FontWeight.Bold, FontWeight.Lighter)`
+* Repeat with different text in the second HTML text control
+* Set **OnSelect** of the `Details` Textlabel to `UpdateContext({IsShowResourcesTab: false})`
+* Set **OnSelect** of the `Resources` Textlabel to `UpdateContext({IsShowResourcesTab:true})`
+* Set **Visible** of the `Resources` HTMLText to `IsShowResourcesTab`
+* Set **Visible** of the `Resources` Rectangle to `IsShowResourcesTab`
+* Set **Visible** of the `Details` HTMLText to `!IsShowResourcesTab`
+* Set **Visible** of the `Details` Rectangle to `!IsShowResourcesTab`
+* Set **FontWeight** of `Details` textlabel to `If(!IsShowResourcesTab,FontWeight.Bold, FontWeight.Lighter)` 
+* Set **FontWeight** of `Resources` textlabel to `If(IsShowResourcesTab,FontWeight.Bold, FontWeight.Lighter)`
 
 This way, the content of `Resources` gets visible once the `Details` content is non-visible and vice versa. Also, user switches between the content by selecting the respecting textlabels. Font-weight will switch from `lighter` to `bold` and Rectangle (that serves as an underline) will be visible once user selects a Textlabel
 
 ### PopUp 
 
-In the app, we make use of various PopUps, either to educate users abouy how to work in Microsoft Teams, or to explain somthing that users can request (like 'Welconme Package') or to indicate a success. Most PopUps contain 3 different pages, which means theat we need 3 times different content for them as well
+In the app, we make use of various PopUps, either to educate users about how to work in Microsoft Teams, or to explain something that users can request (like 'Welconme Package') or to indicate a success. Most PopUps contain 3 different pages, which means theat we need 3 times different content for them as well
 
 Popups contain the following controls: 
 
 * Textlabel that serves as a Title for this PopUp
-* TextLabel that serces as the main content for this PopUp
+* TextLabel that serves as the main content for this PopUp
 * Rectangle that serves as a Dimmer
 * Button that serves as background for the PopUp
 * Circles that serves as Stepper Dots so users can select them to navigate back and forth of the pages
@@ -228,12 +234,14 @@ Popups contain the following controls:
 
 #### Rectangle for Dimmer
 
-purpose here is do create a lightbox effect and to dim everything but the PopUp itself. Following the Teams UI Toolkit: 
+Purpose here is do create a lightbox effect and to dim everything but the PopUp itself. Following the Teams UI Toolkit: 
 
 * Set **Fill** to `RGBA(37, 36, 35, 0.75)`
 * Set size to the entire screen
 
 #### Button that serves as background
+
+As Rectangles in Power Apps don't support rounded corners (Border radius) we will use a Button instead. 
 
 * Set **Width** to `600`
 * Set **Height** to `480`
@@ -254,6 +262,8 @@ purpose here is do create a lightbox effect and to dim everything but the PopUp 
 * Set **Fill** of Circle1 to `If(isPage=1,color_blurple,color_bg)`
 * Set **Fill** of Circle2 to `If(isPage=2,color_blurple,color_bg)`
 * Set **Fill** of Circle3 to `If(isPage=3,color_blurple,color_bg)`
+
+This way, the circle is `color_blurple` on the correct page. 
 
 #### Cancel icon to close the PopUp
 
@@ -327,8 +337,52 @@ You will notice, that due to the Border radius of the background button, the edg
 * Set **Height** to `17`
 * Place it so it overlaps with the rounded corners
 
+#### Label for the Title
+
+Each page should have a title.
+
+* Create a Textlabel
+* Set its **Text** to `If(isPage=1,<yourTitle1>,If(isPage=2,<yourTitle2>,<yourTitle3>))`
+
+#### Label for the main content
+
+* Create a Textlabel
+* Set its **Text** to `If(isPage=1,<yourContent1>,If(isPage=2,<yourContent2>,<yourContent>))`
+
+To display this PopUp you will need to do the following steps: 
+
+* group the controls
+* Set **Visible** of the group to `isShowPopUp`
+* trigger this PopUp - this could be another button, which **OnSelect** needs to be set to `UpdateContext({isShowPopUp: true})`
+
 ## Screens
+
+Navigation and Sidepanel will be shown on every screen. In addition to that, we need the folloing controls: 
+
 ### Welcome Screen
+
+We built
+
+* 1 Welcome PopUp that is triggered by AppStart and introduces users on three pages what this app is about
+* 4 different PopUps for the learning content
+* 4 respecting Cards that serve as a more beautiful trigger for these PopUps
+* 1 Button to navigate to the **Teams** screen and start the provisioning process
+  * Set **OnSelect** of this Button to 
+
+```
+Navigate(
+    'Teams Screen',
+    ScreenTransition.Cover
+);
+Set(
+    _selectedScreen,
+    {
+        Title: "Teams",
+        Row: 2
+    }
+)
+```
+
 ### Teams Screen
 ### Channels Screen
 ### Library Screen

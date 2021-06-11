@@ -43,11 +43,11 @@ This way, you can refer to these values - or change them, if needed, more easily
 
 ### Navigation
 
-1. Create a `_selectedScreen` variable as a record containing 
-* row (number)
-* title (text)
-* image (image) 
-and create a `NavigationMenu` collection .onStart, wrap both in `Concurrent()`:
+* Create a `_selectedScreen` variable as a record containing 
+  * row (number)
+  * title (text)
+  * image (image) 
+and create a `NavigationMenu` collection in **onStart**, wrap both in `Concurrent()`:
 
 ``` Concurrent(
     Set(
@@ -95,16 +95,16 @@ and create a `NavigationMenu` collection .onStart, wrap both in `Concurrent()`:
 
 (To make this work replace the name of the images with the images you uploaded 💡
 
-2. Create a gallery
+* Create a gallery
 with 
 
-* Rectangle
-* Textlabel
-* Image
+  * Rectangle
+  * Textlabel
+  * Image
 
-3. Set **Items** of the gallery to `NavigationMenu`
-4. Set **TemplateFill** to `If(ThisItem.Row = _selectedScreen.Row, RGBA(220, 220, 220, 1), RGBA(0,0,0,0))`
-5. Set **OnSelect** to 
+* Set **Items** of the gallery to `NavigationMenu`
+* Set **TemplateFill** to `If(ThisItem.Row = _selectedScreen.Row, RGBA(220, 220, 220, 1), RGBA(0,0,0,0))`
+* Set **OnSelect** to 
 
 ```
 Set(
@@ -144,9 +144,9 @@ If(
     )
 )
 ```
-6. Set **Visible** of the rectangle to `ThisItem.Row = _selectedScreen.Row`
-7. Set **Text** of the TextLabel to `ThisItem.Title`
-8. Set **Image** of the Image to `ThisItem.Image`
+* Set **Visible** of the rectangle to `ThisItem.Row = _selectedScreen.Row`
+* Set **Text** of the TextLabel to `ThisItem.Title`
+* Set **Image** of the Image to `ThisItem.Image`
 
 > Keep in mind to always `Set(_selectedScreen,{Title: "your screenname", Row: <rownumber>})`in addition to `Navigate(your screenname)` if you want to let the user navigate to another screen not using the navigation gallery. 
 
@@ -157,7 +157,7 @@ The SidePanel consists of 2 tabs, **Details** and **Resources** and we use
 * 2 Textlabels for the tab names
 * 2 Rectangles as an underline for the tab names
 * at least 2 **HTMLText** controls to display content depending on the tab
-* 
+
 This is how it works: 
 
 * Set **HTMLText** of HTML text control to 
@@ -200,9 +200,9 @@ This is how it works:
     <div style=""float: left; width: 75%; "">
        Step 6<br> 
     </div>
-
 "
 ```
+
 * Repeat with different text in the second HTML text control
 * Set **OnSelect** of the `Details` Textlabel to `UpdateContext({IsShowResourcesTab: false})`
 * Set **OnSelect** of the `Resources` Textlabel to `UpdateContext({IsShowResourcesTab:true})`
@@ -232,7 +232,7 @@ Popups contain the following controls:
 * Image
 * Rectangle to prettify the PopUp
 
-#### Rectangle for Dimmer
+#### Rectangle as Dimmer
 
 Purpose here is do create a lightbox effect and to dim everything but the PopUp itself. Following the Teams UI Toolkit: 
 
@@ -253,8 +253,8 @@ As Rectangles in Power Apps don't support rounded corners (Border radius) we wil
 #### Circles that serves as Stepper Dots 
 
 * Create 3 circles
-* Set their **Width** to 8
-* Set their **Height** to 8
+* Set their **Width** to `8`
+* Set their **Height** to `8`
 * Align them horizontally
 * Set **OnSelect** of Circle1 to `UpdateContext({isPage:1})`
 * Set **OnSelect** of Circle2 to `UpdateContext({isPage:2})`
@@ -307,6 +307,7 @@ This way, users navigate to the next screen if they are on page 1 or 2 and close
 * Create a button
 * Set colors as stated in Teams UI Toolkit if you like this to be design consistent to Teams, otherwise choose your own colors (preferably set them as variables)
 * Set **OnSelect** to 
+* 
 ```
 If(
     isPage = 1,
@@ -395,7 +396,7 @@ We get the information by a form which is connected to a DataVerse table **Teams
 
 A few notes: 
 * We modified the styling of the DataCards of the Form to match the criteria of Teams Toolkit. 
-* For the yes/no question about the SharePoint list as a taskmanagement tool, we build another PopUp o explain this. For info on why we don't provision see Known limitations
+* For the yes/no question about the SharePoint list as a taskmanagement tool, we build another PopUp to explain this. For info on why we don't provision see Known limitations
 
 The **Next** button's **OnSelect** is set to 
 ```
@@ -645,6 +646,8 @@ Set(
 The Lists screen is following the same approach as the library screen, because we need the very same information about an additional list as for an additional library. Of course we collect the values in different collections, but all controls and the entire logic stays the same. 
 
 ### Checkout Screen
+
+In the checkout screen, we want to display a PopUp in which the user may review all their responses - and return to a specific screen if they would want to correct something. 
 
 ### Variables
 

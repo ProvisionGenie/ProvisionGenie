@@ -460,7 +460,7 @@ On this screen, our owner-to-be can create the channels they want to be provisio
 ); 
 ```
 
-This way, we use the **Notify** function to warn our user in case they add a Channel name that already exists in collection. If the channel name does not exist already in the collection, we add it.Then we update a variable that controls the **Reset** property of the TextInput, so that its always empty again afetr we added a channelname to the collection. 
+This way, we use the **Notify** function to warn our user in case they add a Channel name that already exists in collection. If the channel name does not exist already in the collection, we add it.Then we update a variable that controls the **Reset** property of the TextInput, so that its always empty again afte we added a channelname to the collection. 
   
 #### TextInput
 
@@ -594,7 +594,7 @@ ResetForm('Form ColumnName-ColumnType')
 
 This means, that we will add the name of the column and the type of the column by getting the values from the respecting DataCards and use `Concat()` again to make a single string from the column choices values. Also, we show the gallery as we set a variable `isShowGalleryLibrary` and reset the the **ColumnName-ColumnValue** form. 
 
-* Set **Displaymode** of the buttonto 
+* Set **Displaymode** of the button o 
 
 ```
 If(
@@ -649,6 +649,147 @@ The Lists screen is following the same approach as the library screen, because w
 
 In the checkout screen, we want to display a PopUp in which the user may review all their responses - and return to a specific screen if they would want to correct something. 
 
-### Variables
+* Create a PopUp, this time with 7 pages - this also means 7 different images, titles, contents and stepper dots
+* Set **OnVisible** to `UpdateContext({isShowSummary: true});UpdateContext({isPageSummary: 1})` 
+* Set **Visible** of the entire PopUpGroup to `isShowSummary`
+* Set **Text** of your main content Textlabel to 
 
-### Collections
+```
+If(
+    isPageSummary = 1,
+    "please review your request before you submit it",
+    If(
+        isPageSummary = 2,
+        "Teamname: " & TeamName & Char(13) & "Description: " & TeamsDescription & Char(13) & "Owner: " & User().FullName & Char(13) & "Welcome Package: " & If(
+            isWelcomePackage = true,
+            "yes, please!",
+            "no thank you"
+        ) & Char(13) & "Microsoft List for task management:" & If(
+            isSharePointListTasks = true,
+            "yes, please",
+            "no thank you"
+        ) & Char(13),
+        If(
+            isPageSummary = 3,
+            "We will create the following channels for you: " & varChannels,
+            If(
+                isPageSummary = 4,
+                "We will create a library called " & varLibrary1Name & " for you with the following columns: " & Char(13) & Char(13) & Left(
+                    Concat(
+                        colColumnsLibrary1,
+                        Name & ", "
+                    ),
+                    Len(
+                        Concat(
+                            colColumnsLibrary1,
+                            Name & ", "
+                        )
+                    ) - 2
+                ),
+                If(
+                    isPageSummary = 5,
+                    "We will create a list called" & varListName & "for you with the following columns: " & Char(13) & Char(13) & Left(
+                        Concat(
+                            colColumnsList,
+                            Name & ", "
+                        ),
+                        Len(
+                            Concat(
+                                colColumnsList,
+                                Name & ", "
+                            )
+                        ) - 2
+                    ),
+                    If(
+                        isPageSummary = 6,
+                        "If everything looked ok to you, please hit the SUBMIT button so we get your request - we promise, this is the last step! " & Char(13) & Char(13) & "In case you need to correct something, please close this PopUp and navigate to the screen where you want to change something. You can then return to this summary by navigating to the Checkout Screen",
+                        If(
+                            isPageSummary = 7,
+                            "you can close the app now - See you next time when you like to create a Team"
+                        )
+                    )
+                )
+            )
+        )
+    )
+)
+```
+* Set **Text** of the title Textlabel to 
+
+```
+If(
+    isPageSummary = 1,
+    "Let's make your teamwork wishes come true",
+    If(
+        isPageSummary = 2,
+        "Basic info about your Team",
+        If(
+            isPageSummary = 3,
+            "Channels",
+            If(
+                isPageSummary = 4,
+                "Your Library",
+                If(
+                    isPageSummary = 5,
+                    "Your List",
+                    If(
+                        isPageSummary = 6,
+                        "Looks good?",
+                        "You made it! "
+                    )
+                )
+            )
+        )
+    )
+)
+```
+
+For **Text**, **Width** and **X** of your Next button refer to [PopUps](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasApp.md#popup)
+
+* Set **OnSelect** to 
+
+```
+If(
+    isPageSummary = 1,
+    UpdateContext({isPageSummary: 2}),
+    If(
+        isPageSummary = 2,
+        UpdateContext({isPageSummary: 3}),
+        If(
+            isPageSummary = 3,
+            UpdateContext({isPageSummary: 4}),
+            If(
+                isPageSummary = 4,
+                UpdateContext({isPageSummary: 5}),
+                If(
+                    isPageSummary = 5,
+                    UpdateContext({isPageSummary: 6})
+                ),
+                If(
+                    isPageSummary = 6,
+                    SubmitForm(Form1);
+                    SubmitForm(Form);
+                    SubmitForm('Form-LibraryName');
+                    SubmitForm('Form-ColumnName-ColumnType_3');
+                    ForAll(
+                        colChannels,
+                        Patch(
+                            'Team Channels',
+                            Defaults('Team Channels'),
+                            {'Channel Name': ChannelName}
+                        )
+                    );
+                    SubmitForm('Form-ColumnName-ColumnType_1');
+                    UpdateContext({isPageSummary: 7});
+                    If(
+                        isPageSummary = 7,
+                        Exit()
+                    )
+                )
+            )
+        )
+    )
+);
+
+```
+

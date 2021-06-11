@@ -37,7 +37,7 @@ This is our very first Version 1.0- For more info, please head over to [Release 
 * find (and fix) bugs
 * extend use cases
 
-If you want to know more how that works, we created a [Contrubution Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTING.md) and also [Issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose) templates to make it easy for you. 
+If you want to know more how that works, we created a [Contribution Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTING.md) and also [Issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose) templates to make it easy for you. 
 
 ## Developers
 

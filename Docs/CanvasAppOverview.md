@@ -18,7 +18,7 @@ This is, what Provisiongenie does:
   * Channels 
   * Name of SharePoint list & columns 
   * Name of SharePoint library & columns 
-  * if Owner additionally wants a SharePoint list for taskmanagement (see also [why we don't provision Planner in ProvisionGenie](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/KnownLimitations.md#no-planner-integration-in-provisiongenie) and a "Welcome package"
+  * if Owner additionally wants a SharePoint list for taskmanagement (see also [why we don't provision Planner in ProvisionGenie](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/KnownLimitations.md#no-planner-integration-in-provisiongenie)) or a "Welcome package"
 * Patch 5 Dataverse tables with the information we got by user
 
 ## How do I get the app? 

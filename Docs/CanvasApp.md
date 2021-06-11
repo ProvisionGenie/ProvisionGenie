@@ -780,10 +780,8 @@ If(
                         )
                     );
                     SubmitForm('Form-ColumnName-ColumnType_1');
-                    UpdateContext({isPageSummary: 7});
-                    If(
-                        isPageSummary = 7,
-                        Exit()
+                    UpdateContext({isPageSummary: 7}),
+                    Exit()
                     )
                 )
             )

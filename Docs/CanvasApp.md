@@ -26,25 +26,6 @@ This is, what Provisiongenie does:
 * If you like to reverse-engineer it, please take this basic documentation as a first start. Please note, that this is not a full tutorial on how to rebuild the app, but it should explain how things work on a high level. 
 * You can also download the .msapp file from here and import this app into your environment - please note that this won't give you the full experience, as the entire process of provisioning does not run in this canvas app but in Azure Logic Apps flows which get triggered by new rows in different tables in Dataverse.
 
-## What does it cost?
-
-* ProvisionGenie is an open-source project and we won't charge you for using, extending, modifying it. For more information, please see our [license](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/LICENSE.md)
-* To make the app work, you will need
-  * an Azure subscription (we estimate costs per full Logic App run to be less than 0.01$)
-  * a [Power Apps per app](https://powerapps.microsoft.com/en-us/pricing/) or [Power Apps per user](https://powerapps.microsoft.com/en-us/pricing/) plan as we use [Microsoft Dataverse ](https://powerplatform.microsoft.com/en-us/dataverse/)to store data
-  * a Microsoft 365 license for every user who uses the app
-
-## Version
-
-This is our very first Version 1.0- For more info, please head over to [Release Notes](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Release-Notes.md). Please note, that this is our minimale l♥valble product - feel free to contribute and make it better. Every contribution counts and everyone's voice matters. You can help us
-
-* improve UI/UX
-* fix documentation
-* find (and fix) bugs
-* extend use cases
-
-If you want to know more how that works, we created a [Contrubution Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTING.md) and also [Issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose) templates to make it easy for you. 
-
 ## Basic UI concepts
 
 ### Colors

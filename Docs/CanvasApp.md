@@ -439,7 +439,7 @@ On this screen, our owner-to-be can create the channels they want to be provisio
 * a Button to clear the collection
 * a gallery to display the collection
 
-#### add Button
+#### Add Button
 
 * Set its **OnSelect** to 
 
@@ -465,7 +465,7 @@ This way, we use the **Notify** function to warn our user in case they add a Cha
 
 Set **Reset** to `locClearTextInput`
 
-#### clear Button
+#### Clear Button
 
 In case our user wants to start all over again, we give them a button to do so. 
 
@@ -478,7 +478,7 @@ UpdateContext({locClearTextInput: false})
 ```
 which empties the collection and updates the variables that controls the **Reset** property of TexInput again. 
 
-#### gallery
+#### Gallery
 
 * Set **Items** to `colChannels`
 * Set the **Text** of **Title** Textlabel in the gallery to `ThisItem.ChannelName`
@@ -486,8 +486,7 @@ which empties the collection and updates the variables that controls the **Reset
 
 This way, our user can review the list of channels and even remove some of them again.  
 
-
-This neat solution is described in more detail on [Carmen Ysewijn's blog](https://digipersonal.com/2021/04/22/canvas-app-ui-element-tag-box-list/)
+> This neat solution is described in more detail on [Carmen Ysewijn's blog](https://digipersonal.com/2021/04/22/canvas-app-ui-element-tag-box-list/)
 
 #### Next button
 
@@ -511,9 +510,140 @@ Set(
 
 ```
 
+### Libraries Screen
 
-### Library Screen
+We want to give users a way to get an additional library - and in this screen we want to get information on 
+
+* library name
+* columns to add
+* column types for the columns to add
+* column values for choice columns
+
+Like in the channel screen, we want users to review their inputs again
+
+We will need for that 
+
+* Form for the library name
+* Form for Column Names and Column Types
+* TextInput for Column Values of Choice Columns
+* Gallery to display the Column Values for Choice Columns
+* Gallery to display Column Names and Column Types
+* Add Column Button
+
+#### Form for Library Name
+
+This Form connects to **SharePoint Libraries** table in Dataverse, please also see Solution Overview. 
+
+
+#### Form for Column Name and Column Type
+
+This Form connects to our **List Columns** table in Dataverse, please also see Solution Overview. 
+
+* Set **Items** of the **Column Type** Dropdown to `Choices('Column Type')`
+
+#### TextInput
+
+In case user wants to add a choice colunmn, we display another TextInput control, which will then use the same approach as described in the Channels screen: User adds a value and confirms it by selecting an icon and we collect the values into a collection, then we display this collection in a gallery.
+
+* Create a TexInput
+* Create an icon in that TextInput
+* Set **OnSelect** of the icon to
+
+```
+Collect(
+    ColChoicesLibrary,
+    {Choice: TxtInputLibraryChoices.Text}
+);
+Reset(TxtInputLibraryChoices)
+```
+
+#### Gallery to display the Column Values for Choice Columns
+
+* Create a gallery
+* Set **Items** to `ColChoicesLibrary`
+* Change the default **NextArrow** icon to a cancel icon
+* Set its **OnSelect** to `RemoveIf(ColChoicesLibrary,Choice=ThisItem.Choice)`
+* Set its **Visible** to `isShowGalleryLibrary`
+* Set **OnVisible** of Libraries Screen to `UpdateContext({isShowGalleryLibrary: false});`
+
+#### Add columns Button
+
+This button shall add the values (column name, column type and column values of choice columns) to a collection. 
+
+* Create a button
+* Set its **OnSelect** to 
+
+```
+Collect(
+    colColumnsLibrary,
+    {
+        Name: <DataCardValueWhichHoldsTheName>.Text,
+        Type: <DataCardValueWhichHoldsTheType>.Selected,
+        ColumnValues: Concat(
+            ColChoicesLibrary,
+            Choice & ", "
+        )
+    }
+);
+UpdateContext({isShowGalleryLibrary: true});
+);
+Clear(ColChoicesLibrary1);
+ResetForm('Form ColumnName-ColumnType')
+```
+
+This means, that we will add the name of the column and the type of the column by getting the values from the respecting DataCards and use `Concat()` again to make a single string from the column choices values. Also, we show the gallery as we set a variable `isShowGalleryLibrary` and reset the the **ColumnName-ColumnValue** form. 
+
+* Set **Displaymode** of the buttonto 
+
+```
+If(
+    IsBlank(<DataCardValueWhichHoldsTheName>) = true || IsBlank(DataCardValueWhichHoldsTheType>.Selected.Value),
+    Disabled,
+    Edit
+)
+```
+This way, our **Add** button will only be selectable if column name and column value are not empty. 
+
+#### Gallery to display Column Names and Column Types
+
+* Create a gallery
+* Select the **Title, Subtitle and Body** layout
+* Set **Items** to `colColumnsLibrary`
+* Set **Text** of the Title field to `ThisItem.Name` - it refers to the name of the column
+* Set **Text** of the subtitle field to `ThisItem.Type.Value` - it refers to the selected value of the column type
+* Set **Text** of the body field to `Left(ThisItem.ColumnValues, Len(ThisItem.ColumnValues)-2)` - it refers to the column values for choice columns but gets rid of the last `, ` at the end of the string using 
+  * `Left()` which returns a string with a certain amount of characters
+  * `Len()` which returns the number of characters of a string
+* `-2` because `, ` (comma space) is 2 characers and we want to shorten the string by these to characters
+* Change the by default **NextArrow** icon to a Cancel icon and set its **OnSelect** to `RemoveIf(colColumnsLibrary1,Name=ThisItem.Name)` so that the user can remove this item if they want to. 
+
+#### Next Button
+
+Our **Next** or **Save library** is supposed to do a few things: 
+
+* Set a variable for the library name (remember, we did not submit the form to our datasource)
+* Display a [PopUp](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasApp.md#popup) to indicate that the library was saved
+
+To achieve this, 
+
+* Create a button
+* Set its **OnSelect** to
+
+```
+Set(
+    IsShowSavedLibraries,
+    true
+);
+Set(
+    varLibraryName,
+    <DataCardValueWhichHoldsLibraryName>.Text
+)
+```
+
 ### Lists Screen
+
+The Lists screen is following the same approach as the library screen, because we need the very same information about an additional list as for an additional library. Of course we collect the values in different collections, but all controls and the entire logic stays the same. 
+
 ### Checkout Screen
 
 ### Variables

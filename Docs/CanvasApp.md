@@ -357,14 +357,14 @@ To display this PopUp you will need to do the following steps:
 
 ## Screens
 
-Navigation and Sidepanel will be shown on every screen. In addition to that, we need the folloing controls: 
+Navigation and Sidepanel will be shown on every screen, only the HTMLtext in the SidePanel changes to contextually display details (how to use this screen) and resources (learning contentabout Teams).  In addition to that, we need the folloing controls: 
 
 ### Welcome Screen
 
 We built
 
-* 1 Welcome PopUp that is triggered by AppStart and introduces users on three pages what this app is about
-* 4 different PopUps for the learning content
+* 1 Welcome [PopUps](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasApp.md#popup) that is triggered by AppStart and introduces users on three pages what this app is about
+* 4 different [PopUps](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasApp.md#popup) for the learning content
 * 4 respecting Cards that serve as a more beautiful trigger for these PopUps
 * 1 Button to navigate to the **Teams** screen and start the provisioning process
   * Set **OnSelect** of this Button to 
@@ -384,6 +384,52 @@ Set(
 ```
 
 ### Teams Screen
+
+* Purpose if this screen is to get information about 
+  * name
+  * description
+  * whether our owner (= signed-in user) wants a 'WelcomePackage' or not
+  * whether our owner wants a SharePoint list provisioned for taskmanagement
+
+We get the information by a form which is connected to a DataVerse table **Teams Requests** - see also Solution Overview
+
+A few notes: 
+* We modified the styling of the DataCards of the Form to match the criteria of Teams Toolkit. 
+* For the yes/no question about the SharePoint list as a taskmanagement tool, we build another PopUp o explain this. For info on why we don't provision see Known limitations
+
+The **Next** button's **OnSelect** is set to 
+```
+Navigate(
+    'Channel Screen',
+    ScreenTransition.Cover
+);
+Set(
+    _selectedScreen,
+    {
+        Title: "Channels",
+        Row: 3
+    }
+);
+Set(
+    TeamName,
+    DataCardValue1_1.Text
+);
+Set(
+    TeamsDescription,
+    DataCardValue3_1.Text
+);
+Set(
+    isWelcomePackage,
+    Toggle1.Value
+);
+Set(
+    isSharePointListTasks,
+    Toggle1_1.Value
+)
+
+```
+Which navigates to the next **Channel** screen, sets the Navigation correctly and saves the values in variables. Please note, that at this point we won't submit this form to the datasource.
+
 ### Channels Screen
 ### Library Screen
 ### Lists Screen

@@ -1,7 +1,7 @@
 ---
 name: "🚀 Feature Request"
 about: Cool idea on how to improve
-title: "[Function Name]: [Issue Title]"
+title: ""
 labels: feature
 assignees: ''
 

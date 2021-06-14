@@ -33,4 +33,3 @@ For more context on how this canvas app fits into our solution, please head over
 ## What if something doesn't work?
 
 Please [report bugs as issues](https://github.com/ProvisionGenie/ProvisionGenie/issues/new?assignees=&labels=&template=bug_report.md&title=), so we can work on them! You are also invited to contribute to the app - let's make ProvisionGenie together even better! 
-

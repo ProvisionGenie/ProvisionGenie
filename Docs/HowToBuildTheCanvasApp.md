@@ -633,21 +633,24 @@ If(
     "please review your request before you submit it",
     If(
         isPageSummary = 2,
-        "Teamname: " & TeamName & Char(13) & "Description: " & TeamsDescription & Char(13) & "Owner: " & User().FullName & Char(13) & "Welcome Package: " & If(
+        "Teamname: " & TeamName & Char(13) & "Description: " & TeamsDescription & Char(13) & "Owner: " & User().Email & Char(13) & "Welcome Package: " & If(
             isWelcomePackage = true,
             "yes, please!",
             "no thank you"
-        ) & Char(13) & "Microsoft List for task management:" & If(
+        ) & Char(13) & "Microsoft List for task management: " & If(
             isSharePointListTasks = true,
             "yes, please",
             "no thank you"
         ) & Char(13),
         If(
             isPageSummary = 3,
-            "We will create the following channels for you: " & varChannels,
+            "We will create the following channels for you: " & Char(13) & Char(13) & Left(
+                varChannels,
+                Len(varChannels) - 2
+            ),
             If(
                 isPageSummary = 4,
-                "We will create a library called " & varLibrary1Name & " for you with the following columns: " & Char(13) & Char(13) & Left(
+                "We will create a library called '" & varLibrary1Name & "' for you with the following columns: " & Char(13) & Char(13) & Left(
                     Concat(
                         colColumnsLibrary1,
                         Name & ", "
@@ -661,7 +664,7 @@ If(
                 ),
                 If(
                     isPageSummary = 5,
-                    "We will create a list called" & varListName & "for you with the following columns: " & Char(13) & Char(13) & Left(
+                    "We will create a list called '" & varListName & "' for you with the following columns: " & Char(13) & Char(13) & Left(
                         Concat(
                             colColumnsList,
                             Name & ", "
@@ -675,7 +678,7 @@ If(
                     ),
                     If(
                         isPageSummary = 6,
-                        "If everything looked ok to you, please hit the SUBMIT button so we get your request - we promise, this is the last step! " & Char(13) & Char(13) & "In case you need to correct something, please close this PopUp and navigate to the screen where you want to change something. You can then return to this summary by navigating to the Checkout Screen",
+                        "If everything looks ok, hit SUBMIT! " & Char(13) & Char(13) & "If you need to correct something, close this PopUp and navigate to the respecting screen. You can then return to this summary later",
                         If(
                             isPageSummary = 7,
                             "you can close the app now - See you next time when you like to create a Team"
@@ -686,6 +689,7 @@ If(
         )
     )
 )
+
 ```
 * Set **Text** of the title Textlabel to 
 
@@ -736,25 +740,62 @@ If(
                 UpdateContext({isPageSummary: 5}),
                 If(
                     isPageSummary = 5,
-                    UpdateContext({isPageSummary: 6})
-                ),
-                If(
-                    isPageSummary = 6,
-                    SubmitForm(Form1);
-                    SubmitForm(Form);
-                    SubmitForm('Form-LibraryName');
-                    SubmitForm('Form-ColumnName-ColumnType_3');
-                    ForAll(
-                        colChannels,
-                        Patch(
-                            'Team Channels',
-                            Defaults('Team Channels'),
-                            {'Channel Name': ChannelName}
-                        )
-                    );
-                    SubmitForm('Form-ColumnName-ColumnType_1');
-                    UpdateContext({isPageSummary: 7}),
-                    Exit()
+                    UpdateContext({isPageSummary: 6}),
+                    If(
+                        isPageSummary = 6,
+                    //1. Teams - name, description, welcomepackage, SPListForTasks
+                        SubmitForm(FormTeamsRequest);
+                    // 2. channels
+ForAll(
+                            colChannels,
+                            Patch(
+                                'Team Channels',
+                                Defaults('Team Channels'),
+                                {'Channel Name': ChannelName}
+                            )
+                        );
+                    //3. libraryname
+SubmitForm(FormLibraryName);
+                    //4. columnname and column types for library
+ForAll(
+                            colColumnsLibrary1,
+                            Patch(
+                                'List Columns',
+                                Defaults('List Columns'),
+                                {
+                                    'Column Name': Name,
+                                    'Column Type': Type.Value,
+                                    'Column Values': Left(
+                                        ColumnValues,
+                                        Len(ColumnValues) - 2
+                                    ),
+                                    'SharePoint Library': FormLibraryName.LastSubmit
+                                }
+                            )
+                        );
+                    //5. list name
+SubmitForm(FormListName);
+                    //6. columnname and column types for list
+ForAll(
+                            colColumnsList,
+                            Patch(
+                                'List Columns',
+                                Defaults('List Columns'),
+                                {
+                                    'Column Name': Name,
+                                    'Column Type': Type.Value,
+                                    'Column Values': Left(
+                                        ColumnValues,
+                                        Len(ColumnValues) - 2
+                                    ),
+                                    'SharePoint List': FormListName.LastSubmit
+                                }
+                            )
+                        );
+                    //7. nav to pageSummary 7
+UpdateContext({isPageSummary: 7}),
+                    //close app
+                        Exit()
                     )
                 )
             )
@@ -763,3 +804,14 @@ If(
 );
 
 ```
+A little polish: 
+We want a checkbox tyo be displayed before the very last step so that our user needs to confirm that they understood that this is the point of no return. 
+
+* Create a Checkbox on the CheckOut Screen
+* Set its **Visible** to `If(isShowSummary=true &&isPageSummary=6,true, false)` - which shows it only on the last page of the Summary PopUp
+* Set its **Text** to `"Yes I understand that I can't change my request anymore after I selected the SUBMIT button"`
+* Set **DisplayMode** of the **Next** button to `If(isPageSummary=6 && Checkbox1.Value=false, Disabled, Edit)` - this way, the button is only selectable, if user checked the checkbox. 
+ 
+
+
+

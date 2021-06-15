@@ -561,7 +561,6 @@ Collect(
     }
 );
 UpdateContext({isShowGalleryLibrary: true});
-);
 Clear(ColChoicesLibrary1);
 ResetForm('Form ColumnName-ColumnType')
 ```

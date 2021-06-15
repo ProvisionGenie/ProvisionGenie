@@ -371,6 +371,23 @@ We get the information by a form which is connected to a DataVerse table **Teams
 A few notes: 
 * We modified the styling of the DataCards of the Form to match the criteria of Teams Toolkit. 
 * For the yes/no question about the SharePoint list as a taskmanagement tool, we build another PopUp to explain this. For info on why we don't provision see Known limitations
+* We changed the default dropdown fields to toggles. To connect those again to your datasource, a little extra work is required: 
+
+#### Modify the form with toggles instead of dropdown
+
+1. in the form, delete the dropdown control
+2. insert into the datacard a toggle
+3. set **Default** of the Card to `If(Toggle1.Value,'Do you want the welcome package? (TeamsRequests)'.Yes,'Do you want the welcome package? (TeamsRequests)'.No)` 
+4. Set **Update** of the toggle to 
+```
+If(
+    ThisItem.'Do you want the welcome package?' = 'Do you want the welcome package? (TeamsRequests)'.Yes,
+    true,
+    ThisItem.'Do you want the welcome package?' =  'Do you want the welcome package? (TeamsRequests)'.No,
+    false
+)
+```
+This way, we match the toggle value with our Dataverse column. 
 
 The **Next** button's **OnSelect** is set to 
 ```
@@ -404,6 +421,8 @@ Set(
 
 ```
 Which navigates to the next **Channels** screen, sets the Navigation correctly and saves the values in variables. Please note, that at this point we won't submit this form to the datasource.
+
+
 
 ### Channels Screen
 

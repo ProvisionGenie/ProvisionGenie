@@ -824,7 +824,7 @@ UpdateContext({isPageSummary: 7}),
 
 ```
 A little polish: 
-We want a checkbox tyo be displayed before the very last step so that our user needs to confirm that they understood that this is the point of no return. 
+We want a checkbox to be displayed before the very last step so that our user needs to confirm that they understood that this is the point of no return. 
 
 * Create a Checkbox on the CheckOut Screen
 * Set its **Visible** to `If(isShowSummary=true &&isPageSummary=6,true, false)` - which shows it only on the last page of the Summary PopUp

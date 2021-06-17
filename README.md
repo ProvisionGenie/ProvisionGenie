@@ -1,9 +1,5 @@
 # ProvisionGenie
 
-<img width="200" alt="ProvisionGenie Logo" src="https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/ProvisionGenie_bkg.png">
-
-🚨 Watch out - this is still under construction 🚨
-
 ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/en-ww/microsoft-teams/group-chat-software) that lets you learn how the concept of a team in Microsoft Teams works in general and how you can make it work for your team. As Teams is a platform that can connect to a lot of services, we want to make your start even easier. We will skill you up and guide you through some questions regarding how your team should look like. As a result, you can request the 'Team of your dreams', which will be provisioned automatically for you.
 
 ![Walkthrough](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/canvasapp/walkthroughgif.gif)
@@ -52,6 +48,7 @@ This solution is an initiative by [Luise Freese](https://m365princess.com) and [
 ## Contributions
 
 We welcome contributions, we summarized how you can contribute in the [contribution guidelines](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTING.md). 
+<img width="200" alt="ProvisionGenie Logo" src="https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/ProvisionGenie_bkg.png">
 
 ## Support us
 

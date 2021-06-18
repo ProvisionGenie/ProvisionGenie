@@ -10,10 +10,10 @@ ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/en-ww/m
 * [5 DataVerse tables](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/DataverseTables.md)
 * [5 Azure Logic Apps flows](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md)
 
-## Helpful links to get you started 
+## How to get started 
 
-* [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/SolutionOverView.md)
-* [Deployment Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/DeploymentGuide.md)
+* Familiarize yourself with the [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/SolutionOverView.md)
+* Use our [Deployment Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/DeploymentGuide.md) to understand the minimal path to awesome 
 * Fact sheet for Admins
 * End User Quick Start Guide
 * [License](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/LICENSE.md)

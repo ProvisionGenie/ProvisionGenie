@@ -1,0 +1,32 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "connections_commondataservice_name": {
+            "type": "String"
+        },
+        "resourceLocation": {
+            "type": "String"
+        },
+        "subscriptionID":{
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Web/connections",
+            "apiVersion": "2016-06-01",
+            "name": "[parameters('connections_commondataservice_name')]",
+            "location": "[parameters('resourceLocation')]",
+            "kind": "V1",
+            "properties": {
+                "displayName": "[parameters('connections_commondataservice_name')]",
+                "customParameterValues": {},
+                "api": {
+                    "id": "[concat('/subscriptions/',parameters('subscriptionID'),'/providers/Microsoft.Web/locations/',parameters('resourceLocation'),'/managedApis/', parameters('connections_commondataservice_name'))]"
+                }
+            }
+        }
+    ]
+}

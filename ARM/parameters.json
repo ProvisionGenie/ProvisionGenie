@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/,
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "subscriptionId": {
+            "value": ""
+        },
+        "DataverseEnvironmentId": {
+            "value": ""
+        },
+        "ManagedIdentity-ClientId": {
+            "value": ""
+        },
+        "ManagedIdentity-ObjectId": {
+            "value": ""
+        },
+        "resourceGroupName": {
+            "value": ""
+        },
+        "WelcomePackageUrl": {
+            "value": ""
+        }
+    }
+}

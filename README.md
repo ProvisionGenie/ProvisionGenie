@@ -28,7 +28,7 @@ ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/en-ww/m
 
 ## Version
 
-This is our very first Version 1.0- For more info, please head over to [Release Notes](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Release-Notes.md). Please note, that this is our minimale l♥valble product - feel free to contribute and make it better. Every contribution counts and everyone's voice matters. You can help us
+This is our very first Version 1.0- For more info, please head over to [Release Notes](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Release-Notes.md). Please note, that this is our minimal l♥vable product - feel free to contribute and make it better. Every contribution counts and everyone's voice matters. You can help us
 
 * improve UI/UX
 * fix documentation

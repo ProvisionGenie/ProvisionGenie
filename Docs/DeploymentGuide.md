@@ -20,29 +20,65 @@ This Guide shall guide you through the minmal path to awesome. It lists all step
 
 ### 1. App registration for Dataverse
 
-* go to [portal.azure.com](https://portal.azure.com)
-* log in
-* select **Azure Active Directory**
+* Go to [portal.azure.com](https://portal.azure.com)
+
+![Azure Portal](media/AzurePortal.png)
+
+* Log in
+* Select **Azure Active Directory**
+
+![Azure Active Directory](media/AzurePortalAD.png)
+
 * Select **App registrations**
+
+![Aopp registrations](media/AzurePortalADAppregistrations.png)
+
 * select **New registration**
-* type in a name for your app like `ProvisionGenie` 
-* select **single tenant**
-* select **Register**
-* select **API permissions**
-* select **Add a permission**
-* select **Dynamics CRM**
-* select **user_impersonation**
-* select **Add permissions**
-* select **Grant admin consent for \<name of your organization>**
-* confirm by selecting **Yes**
+* Type in a name for your app like `ProvisionGenie` 
+* Select **single tenant**
+* Select **Register**
+
+![Register new App](media/AzurePortalADAppregistrationsNew.png)
+
+* Select **API permissions**
+
+![API permissions](media/AzurePortalADAppregistrationsAPI.png)
+
+* Select **Add a permission**
+
+![Add a permission](media/AzurePortalADAppregistrationsAddPermission.png)
+
+* Select **Dynamics CRM**
+
+![Request API permissions](media/AzurePortalADAppregistrationsAddPermissionDynCRM.png)
+
+* Select **user_impersonation**
+
+![User Impersonation](media/AzurePortalADAppregistrationsAddPermissionDynCRMUserImpersonation.png)
+
+* Select **Add permissions**
 * Select **Certificates & secrets**
+
+![Certificates & secrets](media/AzurePortalADAppregistrationssecret.png)
+
 * Select **New client secret**
+
+![New client secret](media/AzurePortalADAppregistrationsNewSecret.png)
+
 * Enter a description
 * Select a value when this secret expires
 * Select **Add** 
+
+![Add a client secret](media/AzurePortalADAppregistrationsNewSecretAdd.png)
+
 * Copy the secret's **Value** and save it somewhere
+
+![Copy secret's value](media/AzurePortalADAppregistrationsNewSecretCopyValue.png)
+
 * Select **Overview** and copy the **Application (client) ID** value, save it somewhere
-* copy the **Directory (tenant) ID** value, save it somewhere
+* Copy the **Directory (tenant) ID** value, save it somewhere
+
+![Copy values](media/AzurePortalADAppregistrationscopyvalues.png)
 
 ### 2. Managed identity
   * PS script

@@ -9,7 +9,7 @@ This Guide shall guide you through the minmal path to awesome. It lists all step
 
 * Azure Subscription
 * Microsoft 365 license
-* Power Apps per app or Power Apps per user plan (for using Dataverse, please also see [Considerations about where to store data](docs/Considerations-on-Dataverse.md)) 
+* Power Apps per app or Power Apps per user plan (for using Dataverse, please also see [Considerations about where to store data](Considerations-on-Dataverse.md)) 
 * Environment with Dataverse database
 
 > Please do this with your best knowledge about an environment strategy, please dont *rightclick --> publish

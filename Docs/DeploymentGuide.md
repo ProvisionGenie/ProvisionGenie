@@ -80,10 +80,13 @@ This Guide shall guide you through the minmal path to awesome. It lists all step
 
 ![Copy values](media/AzurePortalADAppregistrationscopyvalues.png)
 
+Now it's time to continue with
+
 ### 2. Managed identity
   * PS script
 
 ### 3. Deploy Logic Apps
+
 <!-- 4. import the solution: Dataverse tables & Canvas App
 5. Deploy Azure Logic Apps
   * fill in variables
@@ -91,9 +94,9 @@ This Guide shall guide you through the minmal path to awesome. It lists all step
 5. test -->
 ### 4. Import solution: Dataverse tables & Canvas App
 
-### braindump
+<!-- ### braindump
 
-<!-- 
+
 1. create a resource group either in UI or with CLI
 2. app registration
 3. deploy 

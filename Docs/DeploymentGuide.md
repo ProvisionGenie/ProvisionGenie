@@ -130,6 +130,10 @@ Please note, that `00000007-0000-0000-c000-000000000000` is Dynamics CRM and `78
 az ad app permission grant --id <your-AppID-here> --api 00000007-0000-0000-c000-000000000000
 ```
 
+tbc
+
+
+<!-- 🚨🚨🚨🚨 in
 Now it's time to continue with
 
 ### 2. Managed identity
@@ -137,14 +141,14 @@ Now it's time to continue with
 
 ### 3. Deploy Logic Apps
 
-<!-- 4. import the solution: Dataverse tables & Canvas App
+4. import the solution: Dataverse tables & Canvas App
 5. Deploy Azure Logic Apps
   * fill in variables
 4. 
-5. test -->
+5. test
 ### 4. Import solution: Dataverse tables & Canvas App
 
-<!-- ### braindump
+ ### braindump
 
 
 1. create a resource group either in UI or with CLI

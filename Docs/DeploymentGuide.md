@@ -86,7 +86,49 @@ For the alternative way in Azure CLI:
 
 #### Azure CLI
 
-bla bla bla
+The alternative for the steps above using the Azure portal is using Azure CLI. Please follow these steps: 
+
+* open [shell.azure.com](https://portal.azure.com/#cloudshell/)
+
+![Azure Cloud Shell](media/CloudShell.png)
+
+* to register the application enter:
+```
+az ad app create --display-name ProvisionGenieAppDemo --available-to-other-tenants false
+```
+
+Copy the value of the **AppId** from the output 
+
+![Add App registration](media/CloudShellAddApp.png)
+
+To create an app secret, run
+
+```
+az ad app credential reset --id <your-AppID-here> --append
+```
+
+In the output, you will get four values for **AppId**, **name** (equals **AppId**), **password** (this is your App secret) and **tenant** (this is your Tenant ID). 
+
+* Save these values somewhere
+* Create a service principal with 
+
+```
+ az ad sp create --id <your-AppID-here>
+```
+
+* Set API permissions for Dynamics CRM--> user_impersonation
+
+```
+az ad app permission add --id <your-AppID-here> --api 00000007-0000-0000-c000-000000000000 --api-permissions 78ce3f0f-a1ce-49c2-8cde-64b5c0896db4=Role
+```
+
+Please note, that `00000007-0000-0000-c000-000000000000` is Dynamics CRM and `78ce3f0f-a1ce-49c2-8cde-64b5c0896db4=Role` is **user_impersonation** which we need to act on behalf of a user. 
+
+* now  grant admin consent with running 
+
+```
+az ad app permission grant --id <your-AppID-here> --api 00000007-0000-0000-c000-000000000000
+```
 
 Now it's time to continue with
 

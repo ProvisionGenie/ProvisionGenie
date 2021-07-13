@@ -1,19 +1,19 @@
 # Deployment Guide
 
 
-still under construction
+🚨 still under construction
 ## Prerequisites
 
 * Azure Subscription
 * Microsoft 365 license
-* Power Apps per app or Power Apps per user plan (for using Dataverse. please also see [Considerations about where to store data]()) 
+* Power Apps per app or Power Apps per user plan (for using Dataverse, please also see [Considerations about where to store data]()) 
 * Environment with Dataverse database
 <!-- don't rightclick publish to production :-)  -->
 * Admin role
 
 ## Steps
 
-### App registration for Dataverse
+### 1. App registration for Dataverse
 
 * go to [portal.azure.com](https://portal.azure.com)
 * log in

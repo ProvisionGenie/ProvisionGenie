@@ -1,21 +1,44 @@
 # Deployment Guide
 
+
+still under construction
 ## Prerequisites
 
 * Azure Subscription
-* M 365 license
-* Power Apps per app or Power Apps per user plan
+* Microsoft 365 license
+* Power Apps per app or Power Apps per user plan (for using Dataverse. please also see [Considerations about where to store data]()) 
 * Environment with Dataverse database
 <!-- don't rightclick publish to production :-)  -->
 * Admin role
 
 ## Steps
 
-1. App registration for Dataverse
-2. managed identity
+### App registration for Dataverse
+
+* go to [portal.azure.com](https://portal.azure.com)
+* log in
+* select **Azure Active Directory**
+* Select **App registrations**
+* select **New registration**
+* type in a name for your app like `ProvisionGenie` 
+* select **single tenant**
+* select **Register**
+* select **API permissions**
+* select **Add a permission**
+* select **Dynamics CRM**
+* select **user_impersonation**
+* select **Add permissions**
+* select **Grant admin consent for <name of your organization>**
+
+ create secret 
+    * copy value
+    * copy app ID
+    * copy tenant ID
+
+3. Managed identity
   * PS script
-3. import the solution: Dataverse tables & Canvas App
-4. Deploy Azure Logic Apps
+4. import the solution: Dataverse tables & Canvas App
+5. Deploy Azure Logic Apps
   * fill in variables
 
 5. test

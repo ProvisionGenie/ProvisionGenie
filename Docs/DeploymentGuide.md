@@ -20,6 +20,8 @@ This Guide shall guide you through the minmal path to awesome. It lists all step
 
 ### 1. App registration for Dataverse
 
+You can register the app either in the Azure Portal or in a VLI if your choice (PowerShell, CLI for Microsoft 365, Azure CLI). This guide provides you with an option to use the Azure portal and Azure ClI. If you prefer to use Azure CLI, please select [](#### Azure CLI)
+
 * Go to [portal.azure.com](https://portal.azure.com)
 
 ![Azure Portal](media/AzurePortal.png)
@@ -79,6 +81,12 @@ This Guide shall guide you through the minmal path to awesome. It lists all step
 * Copy the **Directory (tenant) ID** value, save it somewhere
 
 ![Copy values](media/AzurePortalADAppregistrationscopyvalues.png)
+
+For the alternative way in Azure CLI: 
+
+#### Azure CLI
+
+bla bla bla
 
 Now it's time to continue with
 

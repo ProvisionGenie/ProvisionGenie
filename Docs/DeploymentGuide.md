@@ -40,35 +40,23 @@ You can register the app either in the Azure Portal or in a VLI if your choice (
 ![Register new App](media/AzurePortalADAppregistrationsNewSteps.png)
 
 * Select **API permissions**
-
-![API permissions](media/AzurePortalADAppregistrationsAPI.png)
-
 * Select **Add a permission**
-
-![Add a permission](media/AzurePortalADAppregistrationsAddPermission.png)
-
 * Select **Dynamics CRM**
 
-![Request API permissions](media/AzurePortalADAppregistrationsAddPermissionDynCRM.png)
+![Add permissions](media/AzurePortalADAppregistrationsAddPermissionSteps.png)
 
 * Select **user_impersonation**
-
-![User Impersonation](media/AzurePortalADAppregistrationsAddPermissionDynCRMUserImpersonation.png)
-
 * Select **Add permissions**
+
+![User Impersonation](media/AzurePortalADAppregistrationsAddPermissionDynCRMUserImpersonationSteps.png)
+
 * Select **Certificates & secrets**
-
-![Certificates & secrets](media/AzurePortalADAppregistrationssecret.png)
-
 * Select **New client secret** 
-
-![New client secret](media/AzurePortalADAppregistrationsNewSecret.png)
-
 * Enter a description
 * Select a value when this secret expires
 * Select **Add** 
 
-![Add a client secret](media/AzurePortalADAppregistrationsNewSecretAdd.png)
+![Certificates & secrets](media/AzurePortalADAppregistrationssecretSteps.png)
 
 * Copy the secret's **Value** and save it somewhere
 

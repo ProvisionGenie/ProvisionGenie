@@ -152,7 +152,7 @@ As an alternative to use Azure CLI to create a new resource group, you can also 
 
 ![Azure Portal Resource Groups](media/AzureResourceGroupCreateFinal.png)
 
-On success, your new resource group will show up in the overview: 
+On success, your new resource group will show up in the overview:
 
 ![Resource Group Overview](media/AzureResourceGroupOverview.png)
 

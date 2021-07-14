@@ -14,7 +14,7 @@ This is, what Provisiongenie does:
 
 * Short upskilling nuggets in Pop Ups so that owner can make informed decisions on channels, metadata and tools to use
 * Questionnaire to get information on 
-  * Teams Name, Teams Description and logged in User to provision the Team itself
+  * Teams Name, Teams Description and logged in user to provision the Team itself
   * Channels 
   * Name of SharePoint list & columns 
   * Name of SharePoint library & columns 

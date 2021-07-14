@@ -3,14 +3,14 @@
 
 This Guide shall guide you through the minmal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant. 
 
-🚨 still under construction
+🚨 still under construction 💡
 
 ## Prerequisites
 
-* Azure Subscription
-* Microsoft 365 license
-* Power Apps per app or Power Apps per user plan (for using Dataverse, please also see [Considerations about where to store data](Considerations-on-Dataverse.md)) 
-* Environment with Dataverse database
+* Azure Subscription - if you don't have one, [get it here free](https://azure.microsoft.com/en-us/free) - please also see [Cost estimation](CostEstimation.md)
+* Microsoft 365 license 
+* [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/en-us/pricing/) (for using Dataverse, please also see [Considerations about where to store data](Considerations-on-Dataverse.md)) 
+* Environment with [Dataverse database](https://docs.microsoft.com/en-us/power-platform/admin/create-database)
 
 > Please do this with your best knowledge about an environment strategy, please dont *rightclick --> publish
 
@@ -18,9 +18,11 @@ This Guide shall guide you through the minmal path to awesome. It lists all step
 
 ## Steps
 
-### 1. App registration for Dataverse
+### 1. App registration for deployment of Dataverse tables
 
-You can register the app either in the Azure Portal or in a VLI if your choice (PowerShell, CLI for Microsoft 365, Azure CLI). This guide provides you with an option to use the Azure portal and Azure ClI. If you prefer to use Azure CLI, please select [App registration with Azure CLI](DeploymentGuide.md#Azure-CLI)
+#### App registration for deployment of Dataverse tables using in Azure portal
+
+You will need to register an app in Azure AD in order to deploy the dataverse tables to your tenant. You can register the app either in the Azure Portal or in a CLI of your choice (PowerShell, CLI for Microsoft 365, Azure CLI). This guide provides you with an option to use the Azure portal and Azure ClI. If you prefer to use Azure CLI, please select [App registration with Azure CLI](DeploymentGuide.md#App-registration-for-deployment-of-Dataverse-tables-using-in-Azure-portal)
 
 * Go to [portal.azure.com](https://portal.azure.com)
 * Log in
@@ -69,7 +71,7 @@ You can register the app either in the Azure Portal or in a VLI if your choice (
 
 For the alternative way in Azure CLI: 
 
-#### Azure CLI
+#### App registration for deployment of Dataverse tables using in Azure portal
 
 The alternative for the steps above using the Azure portal is using Azure CLI. Please follow these steps: 
 
@@ -149,6 +151,10 @@ As an alternative to use Azure CLI to create a new resource group, you can also 
 * Select **Create**
 
 ![Azure Portal Resource Groups](media/AzureResourceGroupCreateFinal.png)
+
+On success, your new resource group will show up in the overview: 
+
+![Resource Group Overview](media/AzureResourceGroupOverview.png)
 
 
 <!-- 🚨🚨🚨🚨 in

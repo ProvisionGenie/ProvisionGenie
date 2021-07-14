@@ -23,11 +23,11 @@ This Guide shall guide you through the minmal path to awesome. It lists all step
 You can register the app either in the Azure Portal or in a VLI if your choice (PowerShell, CLI for Microsoft 365, Azure CLI). This guide provides you with an option to use the Azure portal and Azure ClI. If you prefer to use Azure CLI, please select [App registration with Azure CLI](DeploymentGuide.md#Azure-CLI)
 
 * Go to [portal.azure.com](https://portal.azure.com)
+* Log in
+* Select **Azure Active Directory**
 
 ![Azure Portal](media/AzurePortal.png)
 
-* Log in
-* Select **Azure Active Directory**
 * Select **App registrations**
 * Select **New registration**
 
@@ -37,7 +37,7 @@ You can register the app either in the Azure Portal or in a VLI if your choice (
 * Select **Accounts in this organizational directory only (\<your organization name> only - Single tenant)**
 * Select **Register**
 
-![Register new App](media/AzurePortalADAppregistrationsNew.png)
+![Register new App](media/AzurePortalADAppregistrationsNewSteps.png)
 
 * Select **API permissions**
 

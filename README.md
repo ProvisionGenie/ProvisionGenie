@@ -14,7 +14,7 @@ ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/en-ww/m
 
 * Familiarize yourself with the [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/SolutionOverView.md)
 * Use our [Deployment Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/DeploymentGuide.md) to understand the minimal path to awesome 
-* Fact sheet for Admins
+* [Fact sheet for Admins](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Admin-fact-sheet.md)
 * End User Quick Start Guide
 * [License](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/LICENSE.md)
 

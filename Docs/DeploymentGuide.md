@@ -130,7 +130,17 @@ Please note, that `00000007-0000-0000-c000-000000000000` is Dynamics CRM and `78
 az ad app permission grant --id <your-AppID-here> --api 00000007-0000-0000-c000-000000000000
 ```
 
-tbc
+### 2. Create a new Azure resource group
+
+The yet-to-deploy Azure Logic Apps will need a resource group to be deployed in. We recommand creating a new resource group. You can do this via the Azure portal or via Azure CLI. 
+
+#### New resource group with Azure Cli
+
+* open [shell.azure.com](https://portal.azure.com/#cloudshell/)
+* run `az group create -n <your-resourcegroupname-here> --location <your-location-here>`
+
+![Create Resource Group](media/CloudShellcreateRg.png)
+
 
 
 <!-- 🚨🚨🚨🚨 in

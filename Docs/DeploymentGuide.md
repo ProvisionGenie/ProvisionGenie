@@ -44,8 +44,7 @@ You will need to register an app in Azure AD in order to deploy the dataverse ta
 * (2) Select **Accounts in this organizational directory only (\<your organization name> only - Single tenant)**
 * (3) Select **Register**
 
-
-![Register new App](media/AzurePortalADAppregistrationsNewSteps.png)
+![Register new app](media/AzurePortalADAppregistrationsNew.png)
 
 * (1) Select **API permissions** 
 * (2) Select **Add a permission**

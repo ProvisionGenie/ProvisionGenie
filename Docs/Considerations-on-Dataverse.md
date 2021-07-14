@@ -24,7 +24,7 @@ The (non-premium) SharePoint connector pipelines to SharePoint lists and we expe
 * Too many dynamic lookup columns: especially lookup, person or calculated columns eat performance 
 * Huge lists cause extra overhead
 
-> Rule of thumbs: The more items, columns and lookup columns your lists needed to contain, the more likely your user experience will be poor
+> Rule of thumbs: The more items, columns and lookup columns your lists needs to contain, the more likely your user experience will be poor
 
 ### Security
 
@@ -32,5 +32,6 @@ A Power Apps Canvas app that writes data intoto a SharePoint list comes with som
 
 ## Dataverse vs. Dataverse for Teams
 
-* technical debt/lifecycle of Teams
+We also took Dataverse's little sister, [Dataverse for Teams](https://docs.microsoft.com/en-us/powerapps/teams/data-platform-compare) into consideration but needed to it turn down, because we don't want security roles, [lifecycle](https://docs.microsoft.com/en-us/power-platform/admin/about-teams-environment#environment-lifecycle) and governance of our solution (and its environment) to be tied to a team in which [every user needs to be a member of](https://docs.microsoft.com/en-us/powerapps/teams/data-platform-compare) to use ProvisionGenie. 
+
 

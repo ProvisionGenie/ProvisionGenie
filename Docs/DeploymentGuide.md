@@ -1,7 +1,7 @@
 # Deployment Guide
 
 
-This Guide shall guide you through the minmal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant. 
+This guide shall walk you through the minmal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant. 
 
 🚨 still under construction 💡
 
@@ -12,9 +12,9 @@ This Guide shall guide you through the minmal path to awesome. It lists all step
 * [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/en-us/pricing/) (for using Dataverse, please also see [Considerations about where to store data](Considerations-on-Dataverse.md)) 
 * Environment with [Dataverse database](https://docs.microsoft.com/en-us/power-platform/admin/create-database)
 
-> Please do this with your best knowledge about an environment strategy, please dont *rightclick --> publish
+> Please do this with your best knowledge about an environment strategy, please dont *rightclick --> publish 💡
 
-* Admin role
+<!-- * Admin role -->
 
 ## Steps
 
@@ -30,33 +30,33 @@ You will need to register an app in Azure AD in order to deploy the dataverse ta
 
 ![Azure Portal](media/AzurePortal.png)
 
-* Select **App registrations**
-* Select **New registration**
+* (1) Select **App registrations**
+* (2) Select **New registration**
 
 ![App registrations](media/AzurePortalADAppregistrationsSteps.png)
 
-* Type in a name for your app like `ProvisionGenieApp` 
-* Select **Accounts in this organizational directory only (\<your organization name> only - Single tenant)**
-* Select **Register**
+* (1) Type in a name for your app like `ProvisionGenieApp` 
+* (2) Select **Accounts in this organizational directory only (\<your organization name> only - Single tenant)**
+* (3) Select **Register**
 
 ![Register new App](media/AzurePortalADAppregistrationsNewSteps.png)
 
-* Select **API permissions**
-* Select **Add a permission**
-* Select **Dynamics CRM**
+* (1) Select **API permissions**
+* (2) Select **Add a permission**
+* (3) Select **Dynamics CRM**
 
 ![Add permissions](media/AzurePortalADAppregistrationsAddPermissionSteps.png)
 
-* Select **user_impersonation**
-* Select **Add permissions**
+* (1) Select **user_impersonation**
+* (2) Select **Add permissions**
 
 ![User Impersonation](media/AzurePortalADAppregistrationsAddPermissionDynCRMUserImpersonationSteps.png)
 
-* Select **Certificates & secrets**
-* Select **New client secret** 
-* Enter a description
-* Select a value when this secret expires
-* Select **Add** 
+* (1) Select **Certificates & secrets**
+* (2) Select **New client secret** 
+* (3) Enter a description like `PG-secret`
+* (4) Select a value when this secret expires
+* (5) Select **Add** 
 
 ![Certificates & secrets](media/AzurePortalADAppregistrationssecretSteps.png)
 
@@ -64,24 +64,25 @@ You will need to register an app in Azure AD in order to deploy the dataverse ta
 
 ![Copy secret's value](media/AzurePortalADAppregistrationsNewSecretCopyValue.png)
 
-* Select **Overview** and copy the **Application (client) ID** value, save it somewhere
-* Copy the **Directory (tenant) ID** value, save it somewhere
+* (1) Select **Overview**
+* (2) Copy the **Application (client) ID** value, save it somewhere
+* (3) Copy the **Directory (tenant) ID** value, save it somewhere
 
 ![Copy values](media/AzurePortalADAppregistrationscopyvalues.png)
 
-For the alternative way in Azure CLI: 
+That's it!
 
 #### App registration for deployment of Dataverse tables using in Azure portal
 
 The alternative for the steps above using the Azure portal is using Azure CLI. Please follow these steps: 
 
 * Open [shell.azure.com](https://portal.azure.com/#cloudshell/)
-
 * to register the application run
 
 ```
 az ad app create --display-name ProvisionGenieAppDemo --available-to-other-tenants false
 ```
+
 * Copy the value of the **AppId** from the output 
 
 ![Add App registration](media/CloudShellAddApp.png)
@@ -92,7 +93,12 @@ To create an app secret, run
 az ad app credential reset --id <your-AppID-here> --append
 ```
 
-In the output, you will get four values for **AppId**, **name** (equals **AppId**), **password** (this is your App secret) and **tenant** (this is your Tenant ID). 
+In the output, you will get four values for 
+
+* **AppId**, 
+* **name** (equals **AppId**), 
+* **password** (this is your App secret) and 
+* **tenant** (this is your Tenant ID). 
 
 * Save these values somewhere
 * Create a service principal with 
@@ -124,12 +130,15 @@ The yet-to-deploy Azure Logic Apps will need a resource group to be deployed in.
 #### New resource group with Azure Cli
 
 * open [shell.azure.com](https://portal.azure.com/#cloudshell/)
-* run `az group create -n <your-resourcegroupname-here> --location <your-location-here>`
+* run
+
+```
+az group create -n <your-resourcegroupname-here> --location <your-location-here>
+```
 
 On success, you will see this in the output: 
 
 ![Create Resource Group](media/CloudShellcreateRg.png)
-
 
 #### New resource group with Azure portal
 
@@ -137,8 +146,8 @@ As an alternative to use Azure CLI to create a new resource group, you can also 
 
 * Go to [portal.azure.com](https://portal.azure.com)
 * Log in
-* Select the Menu
-* Select **Resource groups**
+* (1) Select the Menu
+* (2) Select **Resource groups**
 
 ![Azure Portal Resource Groups](media/AzureResourceGroup.png)
 
@@ -147,6 +156,9 @@ As an alternative to use Azure CLI to create a new resource group, you can also 
 * Enter the name of the Resource Group you wish to create, like `PG-Demo`
 * Select the region
 * Select **Review & create**
+
+![Azure Portal Resource group create](media/AzureResourceGroupCreateForm.png)
+
 * Notice the banner showing that validation passed
 * Select **Create**
 
@@ -155,6 +167,8 @@ As an alternative to use Azure CLI to create a new resource group, you can also 
 On success, your new resource group will show up in the overview:
 
 ![Resource Group Overview](media/AzureResourceGroupOverview.png)
+
+That's it! 
 
 
 <!-- 🚨🚨🚨🚨 in

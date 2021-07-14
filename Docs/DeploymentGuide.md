@@ -46,7 +46,7 @@ You will need to register an app in Azure AD in order to deploy the dataverse ta
 
 ![Register new App](media/AzurePortalADAppregistrationsNewSteps.png)
 
-* (1) Select **API permissions**
+* (1) Select **API permissions** 
 * (2) Select **Add a permission**
 * (3) Select **Dynamics CRM**
 

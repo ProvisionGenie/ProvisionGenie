@@ -1,9 +1,8 @@
 # Deployment Guide
 
+🚨 still under construction 💡
 
 This guide shall walk you through the minmal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant. 
-
-🚨 still under construction 💡
 
 ## Prerequisites
 
@@ -11,10 +10,8 @@ This guide shall walk you through the minmal path to awesome. It lists all steps
 * Microsoft 365 license 
 * [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/en-us/pricing/) (for using Dataverse, please also see [Considerations about where to store data](Considerations-on-Dataverse.md)) 
 * Environment with [Dataverse database](https://docs.microsoft.com/en-us/power-platform/admin/create-database) - NOT a Dataverse for Teams environment, please also see [Considerations about where to store data](Considerations-on-Dataverse.md)
-
-> Please do this with your best knowledge about an [environment strategy](https://powerapps.microsoft.com/en-us/blog/establishing-an-environment-strategy-for-microsoft-power-platform/), please dont *rightclick --> publish 💡
-
-<!-- * Admin role -->
+* Admin role Azure: [Contributor](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#contributor)
+* Power Platform role: [Power Platform Environment Maker](https://docs.microsoft.com/en-us/power-platform/admin/database-security)
 
 ## Steps
 
@@ -141,6 +138,11 @@ The yet-to-deploy Azure Logic Apps will need a resource group to be deployed in.
 az group create -n <your-resourcegroupname-here> --location <your-location-here>
 ```
 
+
+<!-- TODO: assign role 
+https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli -->
+
+
 On success, you will see this in the output: 
 
 ![Create Resource Group](media/CloudShellcreateRg.png)
@@ -178,6 +180,7 @@ That's it!
 ### 3. Deployment of Azure Logic Apps
 
 TODO
+
 
 ### 4. Import of Power Platform solution
 

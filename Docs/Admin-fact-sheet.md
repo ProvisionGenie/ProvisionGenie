@@ -57,12 +57,13 @@ To get a better understanding of ProvisionGenie we highly recommend to familiari
 
 ## Update schedule 
 
-This is an open-source project and we welcome contributions. We will version like this:
+This is an open-source project and we welcome [contributions](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTINGt.md). 
+
+We will version like this:
 
 * We will merge PRs about fixing defects or optimizing existing code fortnightly and release a patch which you can then use
 * New features without breaking changes will be released in minor versions
 * breaking changes will be released only in major versions
 
-You can familiarize yourself with our [Roadmap](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Roadmap.md) to know what's coming when
-Find more information in the [Contributing Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTINGt.md) 
+You can familiarize yourself with our [Roadmap](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Roadmap.md) to know what's coming when. 
 

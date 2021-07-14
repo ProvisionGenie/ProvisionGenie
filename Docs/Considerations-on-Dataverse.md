@@ -26,7 +26,7 @@ The (non-premium) SharePoint connector pipelines to SharePoint lists and we expe
 
 > Rule of thumbs: The more items, columns and lookup columns your lists needs to contain, the more likely your user experience will be poor
 
-### Security
+### Security issues
 
 A Power Apps Canvas app that writes data intoto a SharePoint list comes with some extra security issues. Our main concern is, that every user who wants to use the app needs to have permissions for this list. This means, that they could manipulate data in the list bypassig the app. Of course you could try to hide the list on the respecting SharePoint site, but that would just be obscurity, not security. 
 

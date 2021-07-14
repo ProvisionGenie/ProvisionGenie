@@ -151,11 +151,11 @@ As an alternative to use Azure CLI to create a new resource group, you can also 
 
 ![Azure Portal Resource Groups](media/AzureResourceGroup.png)
 
-* Select **Create**
-* Select a subscription
-* Enter the name of the Resource Group you wish to create, like `PG-Demo`
-* Select the region
-* Select **Review & create**
+* (1) Select **Create**
+* (2) Select a subscription
+* (3) Enter the name of the Resource Group you wish to create, like `PG-Demo`
+* (4) Select the region
+* (5) Select **Review & create**
 
 ![Azure Portal Resource group create](media/AzureResourceGroupCreateForm.png)
 

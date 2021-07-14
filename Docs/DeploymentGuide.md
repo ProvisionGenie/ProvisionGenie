@@ -28,14 +28,11 @@ You can register the app either in the Azure Portal or in a VLI if your choice (
 
 * Log in
 * Select **Azure Active Directory**
-
-![Azure Active Directory](media/AzurePortalAD.png)
-
 * Select **App registrations**
+* Select **New registration**
 
-![Aopp registrations](media/AzurePortalADAppregistrations.png)
+![App registrations](media/AzurePortalADAppregistrationsSteps.png)
 
-* select **New registration**
 * Type in a name for your app like `ProvisionGenieApp` 
 * Select **Accounts in this organizational directory only (\<your organization name> only - Single tenant)**
 * Select **Register**

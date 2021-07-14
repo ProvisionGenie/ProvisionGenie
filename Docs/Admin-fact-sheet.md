@@ -16,7 +16,14 @@ For more detail, please head over to [Cost estimation](CostEstimation.md)
 
 ## end user value of ProvisionGenie
 
-## overall difficulty/complexity/skill level required to deploy and maintain ProvisionGenie
+## overall complexity to deploy and maintain ProvisionGenie
 
-## update schedule / how often / when / how controls when updates are released
+* Step by step [Deployment Guide](DeploymentGuide.md)
+* If something doesn't work: [Raise an issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose)
+
+## update schedule 
+
+* how often / when / how controls when updates are released
+* breaking changes? 
+* open source approach
 

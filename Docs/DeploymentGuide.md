@@ -20,8 +20,8 @@ This guide shall walk you through the minmal path to awesome. It lists all steps
 
 * [1. App registration for deployment of Dataverse tables](DeploymentGuide.md#1-App-registration-for-deployment-of-Dataverse-tables)
 * [2. Create a new Azure resource group](DeploymentGuide.md#2-Create-a-new-Azure-resource-group)
-* Deployment of Azure Logic Apps
-* Import of Power Platform solution
+* [3. Deployment of Azure Logic Apps](DeploymentGuide.md#3-Deployment-of-Azure-Logic-Apps)
+* [4. Import of Power Platform solution](DeploymentGuide.md#4-Import-of-Power-Platform-solution)
 
 ### 1. App registration for deployment of Dataverse tables
 
@@ -174,6 +174,14 @@ On success, your new resource group will show up in the overview:
 ![Resource Group Overview](media/AzureResourceGroupOverview.png)
 
 That's it! 
+
+### 3. Deployment of Azure Logic Apps
+
+TODO
+
+### 4. Import of Power Platform solution
+
+TODO
 
 
 <!-- 🚨🚨🚨🚨 in

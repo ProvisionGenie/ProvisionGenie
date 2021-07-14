@@ -148,9 +148,7 @@ As an alternative to use Azure CLI to create a new resource group, you can also 
 * Notice the banner showing that validation passed
 * Select **Create**
 
-![Azure Portal Resource Groups](media/AzureResourceGroupFinal.png)
-
-
+![Azure Portal Resource Groups](media/AzureResourceGroupCreateFinal.png)
 
 
 <!-- 🚨🚨🚨🚨 in

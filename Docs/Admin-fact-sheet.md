@@ -39,9 +39,9 @@ More helpful resources:
 
 ### Governance
 
-TBD
+* ProvisionGenie can be monitored like every other Power platform solution within the [Center of Excellence Starter Kit](https://docs.microsoft.com/en-us/power-platform/guidance/coe/starter-kit), which we highly recommend to use
 
-## end user value of ProvisionGenie
+## End User value of ProvisionGenie
 
 Purpose of this app is to foster teamwork by letting owners-to-be of Microsoft Teams teams make smarter decisions on how a team can work in Teams. Usually, a business consultant would talk a team through assets that are available in Teams and Microsoft 365 and answer all questions with 'it depends'. They would explain that people usually
 

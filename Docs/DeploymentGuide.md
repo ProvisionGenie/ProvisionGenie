@@ -60,7 +60,7 @@ You can register the app either in the Azure Portal or in a VLI if your choice (
 
 ![Certificates & secrets](media/AzurePortalADAppregistrationssecret.png)
 
-* Select **New client secret**
+* Select **New client secret** 
 
 ![New client secret](media/AzurePortalADAppregistrationsNewSecret.png)
 

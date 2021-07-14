@@ -73,16 +73,14 @@ For the alternative way in Azure CLI:
 
 The alternative for the steps above using the Azure portal is using Azure CLI. Please follow these steps: 
 
-* open [shell.azure.com](https://portal.azure.com/#cloudshell/)
+* Open [shell.azure.com](https://portal.azure.com/#cloudshell/)
 
-![Azure Cloud Shell](media/CloudShell.png)
+* to register the application run
 
-* to register the application enter:
 ```
 az ad app create --display-name ProvisionGenieAppDemo --available-to-other-tenants false
 ```
-
-Copy the value of the **AppId** from the output 
+* Copy the value of the **AppId** from the output 
 
 ![Add App registration](media/CloudShellAddApp.png)
 
@@ -101,7 +99,7 @@ In the output, you will get four values for **AppId**, **name** (equals **AppId*
  az ad sp create --id <your-AppID-here>
 ```
 
-* Set API permissions for Dynamics CRM--> user_impersonation
+* Set API permissions for user impersonation in Dynamics CRM
 
 ```
 az ad app permission add --id <your-AppID-here> --api 00000007-0000-0000-c000-000000000000 --api-permissions 78ce3f0f-a1ce-49c2-8cde-64b5c0896db4=Role
@@ -109,22 +107,49 @@ az ad app permission add --id <your-AppID-here> --api 00000007-0000-0000-c000-00
 
 Please note, that `00000007-0000-0000-c000-000000000000` is Dynamics CRM and `78ce3f0f-a1ce-49c2-8cde-64b5c0896db4=Role` is **user_impersonation** which we need to act on behalf of a user. 
 
-* now  grant admin consent with running 
+* now grant admin consent with running 
 
 ```
 az ad app permission grant --id <your-AppID-here> --api 00000007-0000-0000-c000-000000000000
 ```
 
+That's it! 
+
 ### 2. Create a new Azure resource group
 
-The yet-to-deploy Azure Logic Apps will need a resource group to be deployed in. We recommand creating a new resource group. You can do this via the Azure portal or via Azure CLI. 
+The yet-to-deploy Azure Logic Apps will need a resource group to be deployed in. We recommand creating a new resource group. You can do this [via the Azure portal](DeploymentGuide.md#new-resource-group-with-Azure-portal) or [via Azure CLI](DeploymentGuide.md#new-resource-group-with-Azure-cli). 
 
 #### New resource group with Azure Cli
 
 * open [shell.azure.com](https://portal.azure.com/#cloudshell/)
 * run `az group create -n <your-resourcegroupname-here> --location <your-location-here>`
 
+On success, you will see this in the output: 
+
 ![Create Resource Group](media/CloudShellcreateRg.png)
+
+
+#### New resource group with Azure portal
+
+As an alternative to use Azure CLI to create a new resource group, you can also complete the following steps in the Azure portal: 
+
+* Go to [portal.azure.com](https://portal.azure.com)
+* Log in
+* Select the Menu
+* Select **Resource groups**
+
+![Azure Portal Resource Groups](media/AzureResourceGroup.png)
+
+* Select **Create**
+* Select a subscription
+* Enter the name of the Resource Group you wish to create, like `PG-Demo`
+* Select the region
+* Select **Review & create**
+* Notice the banner showing that validation passed
+* Select **Create**
+
+![Azure Portal Resource Groups](media/AzureResourceGroupFinal.png)
+
 
 
 

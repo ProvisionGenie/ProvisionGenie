@@ -10,7 +10,7 @@ This guide shall walk you through the minmal path to awesome. It lists all steps
 * Azure Subscription - if you don't have one, [get it here free](https://azure.microsoft.com/en-us/free) - please also see [Cost estimation](CostEstimation.md)
 * Microsoft 365 license 
 * [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/en-us/pricing/) (for using Dataverse, please also see [Considerations about where to store data](Considerations-on-Dataverse.md)) 
-* Environment with [Dataverse database](https://docs.microsoft.com/en-us/power-platform/admin/create-database)
+* Environment with [Dataverse database](https://docs.microsoft.com/en-us/power-platform/admin/create-database) 
 
 > Please do this with your best knowledge about an environment strategy, please dont *rightclick --> publish 💡
 

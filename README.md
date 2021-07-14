@@ -22,7 +22,7 @@ ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/en-ww/m
 
 * ProvisionGenie is an open-source project and we won't charge you for using, extending, modifying it. For more information, please see our [license](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/LICENSE.md)
 * To make the app work, you will need
-  * an [Azure subscription](https://azure.microsoft.com/en-us/free/search/?&ef_id=CjwKCAjwn6GGBhADEiwAruUcKv8OknWyePp8b76twRJhgfZFjR75DxduzrWCWZuXE5W1Xthps-3eGRoCkmoQAvD_BwE:G:s&OCID=AID2100049_SEM_CjwKCAjwn6GGBhADEiwAruUcKv8OknWyePp8b76twRJhgfZFjR75DxduzrWCWZuXE5W1Xthps-3eGRoCkmoQAvD_BwE:G:s&gclid=CjwKCAjwn6GGBhADEiwAruUcKv8OknWyePp8b76twRJhgfZFjR75DxduzrWCWZuXE5W1Xthps-3eGRoCkmoQAvD_BwE) for more detail see [Cost estimation](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CostEstimation.md) 
+  * an [Azure subscription](https://azure.microsoft.com/en-us/free/search/?&ef_id=CjwKCAjwn6GGBhADEiwAruUcKv8OknWyePp8b76twRJhgfZFjR75DxduzrWCWZuXE5W1Xthps-3eGRoCkmoQAvD_BwE:G:s&OCID=AID2100049_SEM_CjwKCAjwn6GGBhADEiwAruUcKv8OknWyePp8b76twRJhgfZFjR75DxduzrWCWZuXE5W1Xthps-3eGRoCkmoQAvD_BwE:G:s&gclid=CjwKCAjwn6GGBhADEiwAruUcKv8OknWyePp8b76twRJhgfZFjR75DxduzrWCWZuXE5W1Xthps-3eGRoCkmoQAvD_BwE) -for more detail see [Cost estimation](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CostEstimation.md) 
   * a [Power Apps per app](https://powerapps.microsoft.com/en-us/pricing/) or [Power Apps per user](https://powerapps.microsoft.com/en-us/pricing/) plan as we use [Microsoft Dataverse ](https://powerplatform.microsoft.com/en-us/dataverse/) to store data
   * a [Microsoft 365 license](https://www.microsoft.com/en-ww/microsoft-365/business/compare-all-microsoft-365-business-products) for every user who uses the app
 
@@ -50,7 +50,6 @@ This solution is an initiative by [Luise Freese](https://m365princess.com) and [
 ## Contributions
 
 We welcome contributions, we summarized how you can contribute in the [contribution guidelines](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTING.md).
-
 
 <img width="200" alt="ProvisionGenie Logo" src="https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/ProvisionGenie.png">
 

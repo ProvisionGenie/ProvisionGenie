@@ -16,17 +16,28 @@ For more detail, please head over to [Cost estimation](CostEstimation.md)
 
 We take security, privacy, and governance very serious and want you to make an informed decision, that you can consider ProvisionGenie to be a good fit for your organization: 
 
-### security
+### Security
 
-tbd
+* You can't unintentionally overexpose data just by allowing Power Apps in your organization as Power Apps does not provide users with access to any data assets that they don't already have access to
+* Power Platform leverages Azure Active Directory to control user authentication & access to data
+* In the Dataverse environment, access is controlled at three levels: 
+  * Environment roles
+  * Resource permissions for Power Apps
+  * Dataverse security roles
+* Conditional Access Policy via Azure AD Premium can be applied for Power Apps as well
+* Data loss prevention policies can prevent data leakage  
+  
+### Privacy
 
-### privacy
+More helpful resources:
+* [trust.microsoft.com](https://www.microsoft.com/trust-center)
+* [Microsoft Privacy statement](https://privacy.microsoft.com/en-us/privacystatement?culture=en-us&country=US)
+* [In detail report on Dynamics 365 and Power Platform:Availability, data location, language, and localization - PDF download](https://aka.ms/dynamics_365_international_availability_deck)
+* [Detailed information on geographical availability - Power BI report](https://dynamics.microsoft.com/Report/GetGeoReport/)
 
-tbd
+### Governance
 
-### governance
-
-tbd
+TBD
 
 ## end user value of ProvisionGenie
 

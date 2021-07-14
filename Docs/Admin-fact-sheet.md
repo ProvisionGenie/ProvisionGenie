@@ -2,7 +2,9 @@
 
 🚨 still under construction
 
-## cost to run ProvisionGenie
+This Fact sheet shall give administrator an overview about the added value for users, implications on costs, security, privacy and governance and what it takes to deploy & maintain the solution. 
+
+## Cost to run ProvisionGenie
 
 ProvisionGenie itself is free, but you will need 
 
@@ -12,7 +14,7 @@ ProvisionGenie itself is free, but you will need
 
 For more detail, please head over to [Cost estimation](CostEstimation.md)
 
-## security/privacy/governance concerns
+## Security/Privacy/Governance concerns
 
 We take security, privacy, and governance very serious and want you to make an informed decision, that you can consider ProvisionGenie to be a good fit for your organization: 
 
@@ -47,12 +49,12 @@ Purpose of this app is to foster teamwork by letting owners-to-be of Microsoft T
 * confuse email with status reports "per my last email"
 * confuse SharePoint with a dumpster for any file in the world --> "can you migrate this pile of mess to someone else's computer?"
 
-The consultant would then show them what channels are made for, how a team can work with metadata on files and how stying on track works with Microsoft Lists. The consultant would ask them also if they wanted more learning material pinned to their brand new team and if they wanted the team of they dreams already be created for them, so that it works from Day 1. This is, what Provisiongenie does. Users get a blended experience of 
+The consultant would then show them what channels are made for, how a team can work with metadata on files and how stying on track works with Microsoft Lists. The consultant would ask them also if they wanted more learning material pinned to their brand new team and if they wanted the team of they dreams already be created for them, so that it works from Day 1. 
 
-- learning about modern collaboration and assets that can be used in Teams and 
-- reflecting on how they want to work in Teams. 
+This is, what Provisiongenie does. ProvisionGenie is now that consultant and provides users with a blended experience of 
 
-For more information head over to [Canvas App Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasAppOverview.md#high-level-overview-on-what-the-canvas-app-does)
+* learning about modern collaboration and assets that can be used in Teams and 
+* reflecting on how they want to work in Teams. 
 
 Benefits: 
 
@@ -61,6 +63,8 @@ Benefits:
 * Mitigates Teams sprawl by preventing abandoned Teams
 * Prevents "stockpiled" channels (and their SharePoint folder equivalents)
 * Enables better adoption of the correct usage of SharePoint lists & libraries
+
+For more information head over to [Canvas App Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasAppOverview.md#high-level-overview-on-what-the-canvas-app-does)
 
 ## Overall complexity to deploy and maintain ProvisionGenie
 

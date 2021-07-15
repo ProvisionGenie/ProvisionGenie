@@ -24,7 +24,7 @@ This guide shall walk you through the minmal path to awesome. It lists all steps
 
 #### App registration for deployment of Dataverse tables using in Azure portal
 
-You will need to register an app in Azure AD in order to deploy the dataverse tables to your tenant. You can register the app either in the Azure Portal or in a CLI of your choice (PowerShell, CLI for Microsoft 365, Azure CLI). This guide provides you with an option to use the Azure portal and Azure ClI. If you prefer to use Azure CLI, please select [App registration with Azure CLI](DeploymentGuide.md#App-registration-for-deployment-of-Dataverse-tables-using-in-Azure-portal)
+You will need to register an app in Azure AD in order to deploy the dataverse tables to your tenant. You can register the app either in the Azure Portal or in a CLI of your choice (PowerShell, CLI for Microsoft 365, Azure CLI). This guide provides you with an option to use the Azure portal and Azure ClI. If you prefer to use Azure CLI, please select [App registration with Azure CLI](DeploymentGuide.md#App-registration-for-deployment-of-Dataverse-tables-using-Azure-CLI)
 
 * Go to [portal.azure.com](https://portal.azure.com)
 * Log in
@@ -74,7 +74,7 @@ You will need to register an app in Azure AD in order to deploy the dataverse ta
 
 That's it!
 
-#### App registration for deployment of Dataverse tables using in Azure portal
+#### App registration for deployment of Dataverse tables using Azure CLI
 
 The alternative for the steps above using the Azure portal is using Azure CLI. Please follow these steps: 
 

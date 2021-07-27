@@ -1,24 +1,18 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/,
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "subscriptionId": {
-            "value": ""
+            "value": "e18fe84d-4c8b-4d7f-9adb-3dcad5804cb9"
         },
         "DataverseEnvironmentId": {
-            "value": ""
-        },
-        "ManagedIdentity-ClientId": {
-            "value": ""
-        },
-        "ManagedIdentity-ObjectId": {
-            "value": ""
+            "value": "e6d558fac5d14df88a14d2d93083b567.crm4"
         },
         "resourceGroupName": {
-            "value": ""
+            "value": "ProvisionGenieDeploy2"
         },
         "WelcomePackageUrl": {
-            "value": ""
+            "value": "https://google.com"
         }
     }
 }

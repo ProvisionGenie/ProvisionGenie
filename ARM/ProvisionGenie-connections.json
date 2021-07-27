@@ -3,13 +3,13 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "connections_commondataservice_name": {
-            "type": "String"
+            "type": "string"
         },
         "resourceLocation": {
-            "type": "String"
+            "type": "string"
         },
         "subscriptionID":{
-            "type": "String"
+            "type": "string"
         }
     },
     "variables": {},

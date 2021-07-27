@@ -4,35 +4,35 @@
     "parameters": {
         "workflows_ProvisionGenie_Main_name": {
             "defaultValue": "ProvisionGenie-Main",
-            "type": "String"
+            "type": "string"
         },
         "workflows_ProvisionGenie_Welcome_name": {
             "defaultValue": "ProvisionGenie-Welcome",
-            "type": "String"
+            "type": "string"
         },
         "connections_commondataservice_name": {
             "defaultValue": "commondataservice",
-            "type": "String"
+            "type": "string"
         },
         "workflows_ProvisionGenie_CreateList_name": {
             "defaultValue": "ProvisionGenie-CreateList",
-            "type": "String"
+            "type": "string"
         },
         "workflows_ProvisionGenie_CreateTeam_name": {
             "defaultValue": "ProvisionGenie-CreateTeam",
-            "type": "String"
+            "type": "string"
         },
         "workflows_ProvisionGenie_CreateLibrary_name": {
             "defaultValue": "ProvisionGenie-CreateLibrary",
-            "type": "String"
+            "type": "string"
         },
         "workflows_ProvisionGenie_CreateTaskList_name": {
             "defaultValue": "ProvisionGenie-CreateTaskList",
-            "type": "String"
+            "type": "string"
         },
         "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
             "defaultValue": "ProvisionGenie-ManagedIdentity",
-            "type": "String"
+            "type": "string"
         },
         "resourceLocation": {
             "defaultValue": "[resourceGroup().location]",
@@ -42,14 +42,8 @@
             "type": "string"
         },
         "resourceGroupName": {
-            "defaultValue": "ProvisionGenie",
+            "defaultValue": "ProvisionGenieDeploy2",
             "type": "string"
-        },
-        "ManagedIdentity-ObjectId": {
-            "type": "securestring"
-        },
-        "ManagedIdentity-ClientId": {
-            "type": "securestring"
         },
         "WelcomePackageUrl": {
             "type": "string"
@@ -102,6 +96,7 @@
             "name": "createLibraryDeployment",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-10-01",
+            "dependsOn": ["managedIdentityDeployment"],
             "properties" : {
                 "mode": "Incremental",
                 "templateLink": {
@@ -117,12 +112,6 @@
                     "workflows_ProvisionGenie_CreateLibrary_name": {
                         "value": "[parameters('workflows_ProvisionGenie_CreateLibrary_name')]"
                     },
-                    "ManagedIdentity-ClientId": {
-                        "value": "[parameters('ManagedIdentity-ClientId')]"
-                    },
-                    "ManagedIdentity-ObjectId": {
-                        "value": "[parameters('ManagedIdentity-ObjectId')]"
-                    },
                     "resourceGroupName": {
                         "value": "[parameters('resourceGroupName')]"
                     },
@@ -136,6 +125,7 @@
             "name": "createListDeployment",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-10-01",
+            "dependsOn": ["managedIdentityDeployment"],
             "properties" : {
                 "mode": "Incremental",
                 "templateLink": {
@@ -151,12 +141,6 @@
                     "workflows_ProvisionGenie_CreateList_name": {
                         "value": "[parameters('workflows_ProvisionGenie_CreateList_name')]"
                     },
-                    "ManagedIdentity-ClientId": {
-                        "value": "[parameters('ManagedIdentity-ClientId')]"
-                    },
-                    "ManagedIdentity-ObjectId": {
-                        "value": "[parameters('ManagedIdentity-ObjectId')]"
-                    },
                     "resourceGroupName": {
                         "value": "[parameters('resourceGroupName')]"
                     },
@@ -170,6 +154,7 @@
             "name": "createTaskListDeployment",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-10-01",
+            "dependsOn": ["managedIdentityDeployment","createListDeployment"],
             "properties" : {
                 "mode": "Incremental",
                 "templateLink": {
@@ -184,12 +169,6 @@
                     },
                     "workflows_ProvisionGenie_CreateList_name": {
                         "value": "[parameters('workflows_ProvisionGenie_CreateList_name')]"
-                    },
-                    "ManagedIdentity-ClientId": {
-                        "value": "[parameters('ManagedIdentity-ClientId')]"
-                    },
-                    "ManagedIdentity-ObjectId": {
-                        "value": "[parameters('ManagedIdentity-ObjectId')]"
                     },
                     "resourceGroupName": {
                         "value": "[parameters('resourceGroupName')]"
@@ -207,6 +186,7 @@
             "name": "createTeamDeployment",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-10-01",
+            "dependsOn": ["managedIdentityDeployment"],
             "properties" : {
                 "mode": "Incremental",
                 "templateLink": {
@@ -218,12 +198,6 @@
                     },
                     "subscriptionID": {
                         "value": "[parameters('subscriptionId')]"
-                    },
-                    "ManagedIdentity-ClientId": {
-                        "value": "[parameters('ManagedIdentity-ClientId')]"
-                    },
-                    "ManagedIdentity-ObjectId": {
-                        "value": "[parameters('ManagedIdentity-ObjectId')]"
                     },
                     "resourceGroupName": {
                         "value": "[parameters('resourceGroupName')]"
@@ -241,6 +215,7 @@
             "name": "welcomePackageDeployment",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-10-01",
+            "dependsOn": ["managedIdentityDeployment"],
             "properties" : {
                 "mode": "Incremental",
                 "templateLink": {
@@ -252,12 +227,6 @@
                     },
                     "subscriptionID": {
                         "value": "[parameters('subscriptionId')]"
-                    },
-                    "ManagedIdentity-ClientId": {
-                        "value": "[parameters('ManagedIdentity-ClientId')]"
-                    },
-                    "ManagedIdentity-ObjectId": {
-                        "value": "[parameters('ManagedIdentity-ObjectId')]"
                     },
                     "resourceGroupName": {
                         "value": "[parameters('resourceGroupName')]"
@@ -278,6 +247,7 @@
             "name": "MainDeployment",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-10-01",
+            "dependsOn": ["managedIdentityDeployment","createListDeployment","createTaskListDeployment","createTeamDeployment","createLibraryDeployment","welcomePackageDeployment"],
             "properties" : {
                 "mode": "Incremental",
                 "templateLink": {
@@ -289,12 +259,6 @@
                     },
                     "subscriptionID": {
                         "value": "[parameters('subscriptionId')]"
-                    },
-                    "ManagedIdentity-ClientId": {
-                        "value": "[parameters('ManagedIdentity-ClientId')]"
-                    },
-                    "ManagedIdentity-ObjectId": {
-                        "value": "[parameters('ManagedIdentity-ObjectId')]"
                     },
                     "resourceGroupName": {
                         "value": "[parameters('resourceGroupName')]"

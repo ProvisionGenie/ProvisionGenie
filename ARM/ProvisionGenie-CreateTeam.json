@@ -12,16 +12,10 @@
             "type": "string"
         },
         "subscriptionId": {
-            "type": "securestring"
+            "type": "string"
         },
         "resourceGroupName": {
             "type": "string"
-        },
-        "ManagedIdentity-ObjectId": {
-            "type": "securestring"
-        },
-        "ManagedIdentity-ClientId": {
-            "type": "securestring"
         }
     },
     "functions": [],
@@ -32,16 +26,10 @@
             "apiVersion": "2017-07-01",
             "name": "[parameters('workflows_ProvisionGenie_CreateTeam_name')]",
             "location": "[parameters('resourceLocation')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]"
-            ],
             "identity": {
                 "type": "UserAssigned",
                 "userAssignedIdentities": {
-                    "[concat('/subscriptions/',parameters('subscriptionId'),'/resourcegroups/',parameters('resourceGroupName'),'/providers/microsoft.managedidentity/userassignedidentities/',parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]": {
-                        "principalId": "[parameters('ManagedIdentity-ObjectId')]",
-                        "clientId": "[parameters('ManagedIdentity-ClientId')]"
-                    }
+                    "[concat('/subscriptions/',parameters('subscriptionId'),'/resourcegroups/',parameters('resourceGroupName'),'/providers/Microsoft.ManagedIdentity/userAssignedIdentities/',parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]": {}
                 }
             },
             "properties": {

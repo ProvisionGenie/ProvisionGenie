@@ -211,4 +211,12 @@ Now it's time to continue with
     * commondataservice hard coded/displayname
     * authenticate
     * https://vincentlauzon.com/2018/09/25/service-principal-for-logic-app-connector/ service principal
+
+
+still to do: 
+
+1. authenticate the dataverse connection with the service principal
+2. running a script for managed identity permissions (Team.create
+
+
  -->

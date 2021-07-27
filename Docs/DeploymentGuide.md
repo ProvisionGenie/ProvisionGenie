@@ -216,7 +216,7 @@ Now it's time to continue with
 still to do: 
 
 1. authenticate the dataverse connection with the service principal
-2. running a script for managed identity permissions (Team.create
+2. running a script for managed identity permissions (Team.Create, Group.ReadWrite.All, Directory.ReadWrite.All, Group.Create, Sites.Manage.All, Sites.ReadWrite.All)
 
 
  -->

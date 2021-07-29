@@ -42,13 +42,22 @@
             "type": "string"
         },
         "resourceGroupName": {
-            "defaultValue": "ProvisionGenieDeploy2",
+            "defaultValue": "ProvisionGenie",
             "type": "string"
         },
         "WelcomePackageUrl": {
             "type": "string"
         },
         "DataverseEnvironmentId":{
+            "type": "string"
+        },
+        "servicePrincipal_AppId":{
+            "type": "string"
+        },
+        "servicePrincipal_ClientSecret":{
+            "type": "securestring"
+        },
+        "servicePrincipal_TenantId":{
             "type": "string"
         }
     },
@@ -88,6 +97,15 @@
                     },
                     "subscriptionID": {
                         "value": "[parameters('subscriptionId')]"
+                    },
+                    "servicePrincipal_AppId": {
+                        "value": "[parameters('servicePrincipal_AppId')"
+                    },
+                    "servicePrincipal_ClientSecret":{
+                        "value": "[parameters('servicePrincipal_ClientSecret')]"
+                    },
+                    "servicePrincipal_TenantId":{
+                        "value": "[parameters('servicePrincipal_TenantId')]"
                     }
                 }
             }

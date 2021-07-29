@@ -10,6 +10,15 @@
         },
         "subscriptionID":{
             "type": "string"
+        },
+        "servicePrincipal_AppId":{
+            "type": "string"
+        },
+        "servicePrincipal_ClientSecret":{
+            "type": "securestring"
+        },
+        "servicePrincipal_TenantId":{
+            "type": "string"
         }
     },
     "variables": {},
@@ -22,7 +31,13 @@
             "kind": "V1",
             "properties": {
                 "displayName": "[parameters('connections_commondataservice_name')]",
-                "customParameterValues": {},
+                "parameterValues": {
+                    "token:clientId":"[parameters('servicePrincipal_AppId')]",
+                    "token:clientSecret": "[parameters('servicePrincipal_ClientSecret')]",
+                    "token:TenantId": "[parameters('servicePrincipal_TenantId')]",
+                    "token:resourceUri": "https://management.core.windows.net/",
+                    "token:grantType": "client_credentials"
+                },
                 "api": {
                     "id": "[concat('/subscriptions/',parameters('subscriptionID'),'/providers/Microsoft.Web/locations/',parameters('resourceLocation'),'/managedApis/', parameters('connections_commondataservice_name'))]"
                 }

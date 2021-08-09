@@ -10,6 +10,7 @@
 
 ### 1. Main flow
 The main flow takes care of the logic of the flows: executing the different steps in the right order and providing the right input. An overview of the logic app is added below.
+
 ![Screenshot of the main flow](media/LogicApps-Main.png)
 
 1. The main flow triggers when a new row is added into the _Teams Requests_ table in Dataverse. 
@@ -30,6 +31,7 @@ The main flow takes care of the logic of the flows: executing the different step
    5. We wait until we get confirmation that the SharePoint site for the team has been created
    6. We wait until we get confirmation that the default files library for the team has been created
    7. The folder path for the default files library is composed based on the output of the previous actions
+
 ![Scope Create Team](media/LogicApps-Main-ScopeCreateTeam.png)
 
 7. The lists and libraries defined in the request are created in the Create Lists and Libraries scope.
@@ -72,7 +74,9 @@ In the Create team flow, the requested team is actually created with the specifi
    2. The status code is saved in the TeamCreationStatus variable
    3. If team creation has not been accepted, there is a delay of 10 seconds
    4. The loop will stop when the HTTP request to teamify the group has been accepted
+
 ![Teamify loop](media/LogicApps-CreateTeam-LoopTeamify.png)
+
 9. The headers of the team creation request are parsed to extract the information for use later in the logic app
 10. The following actions are done in a loop because teamification of the group can take some time
     1.  A HTTP request is sent to determine the creation status of the team for the group
@@ -80,15 +84,19 @@ In the Create team flow, the requested team is actually created with the specifi
     3.  TeamsCreationStatus is updated with the status of the HTTP request
     4.  If team creation has not succeeded, a 10 second delay is added
     5.  The loop will stop when team creation has succeeded
+
 ![Teamify completed loop](media/LogicApps-CreateTeam-LoopTeamifyCompleted.png)
+
 11. The channels that have been created in the team are listed
 12. Channel information is parsed so it can be used in the following actions
 13. For each channel
     1.  The wiki tab is identified based on its name
     2.  The wiki tab info is parsed
     3.  The wiki tab is deleted from the channel
+
 ![Wiki deletion actions](media/LogicApps-CreateTeam-ForEachChannel.png)
-14. A response is provided to the caller of the logic app with the team id.
+
+1.  A response is provided to the caller of the logic app with the team id.
 
 ### 3. Create List/Library
 The Create List and Create Library logic apps are nearly identical, except for the template type that is provided in the creation request. Therefore, they are discussed as one.
@@ -107,6 +115,7 @@ The Create List and Create Library logic apps are nearly identical, except for t
 
 ### 4. Create Task List
 The Create Task list logic app uses the Create List logic app to create a task list using a fixed definition of columns.
+
 ![Create Task List overview](media/LogicApps-CreateTaskList.png)
 
 1. The logic app is triggered from a HTTP request, for example as a child logic app
@@ -117,6 +126,7 @@ The Create Task list logic app uses the Create List logic app to create a task l
 
 ### 5. Welcome Package
 The welcome package adds a url with training material to the General channel of the new team.
+
 ![Welcome Package Overview](media/LogicApps-WelcomePackage.png)
 
 1. The logic app is triggered from a HTTP request, for example as a child logic app

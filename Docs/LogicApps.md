@@ -6,6 +6,12 @@
 * --> monitoring
 * --> DevX
 
+## Solution Overview
+
+Based on user input in the canvas app, ProvisionGenie logs team requests. Each new row in the **Teams Request** table will trigger the **Main flow** in Azure Logic Apps, which will then handle all other child flows: 
+ 
+![solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/PG-solution-overview.png), 
+
 ## DataModel
 
 To understand the Logic Apps, it's a good idea to understand the data model:
@@ -150,5 +156,5 @@ The welcome package adds a url with training material to the General channel of 
 4. A HTTP request lists the channels in the team
 5. The channel info is parsed
 6. The General channel is always the first channel returned when the channels are listed, this is extracted from the channel info
-7. A HTTP request is sent to add the training material url as a website tab in the new team's general channel
+7. An HTTP request is sent to add the training material url as a website tab in the new team's general channel
 8. Respond to the request caller

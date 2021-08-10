@@ -10,7 +10,7 @@
 
 To understand the Logic Apps, it's a good idea to understand the data model:
 
-![Dataverse-datamodel]()
+![Dataverse-datamodel](media/dataverse-datamodel.png)
 
 
 ## Flows

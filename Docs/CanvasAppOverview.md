@@ -21,7 +21,7 @@ This is, what Provisiongenie does:
   * if Owner additionally wants a SharePoint list for task management (see also [why we don't provision Planner in ProvisionGenie](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/KnownLimitations.md#no-planner-integration-in-provisiongenie)) or a "Welcome package"
 * Patch 5 Dataverse tables with the information we got by user
 
-For more context on how this canvas app fits into our solution, please head over to [Solution Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/SolutionOverview.md) 
+For more context on how this canvas app fits into our solution, please head over to [Solution Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview) 
 
 ## How do I get the app? 
 

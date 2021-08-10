@@ -366,7 +366,7 @@ Set(
   * whether our owner (= signed-in user) wants a 'WelcomePackage' or not
   * whether our owner wants a SharePoint list provisioned for taskmanagement
 
-We get the information by a form which is connected to a DataVerse table **Teams Requests** - see also Solution Overview
+We get the information by a form which is connected to a DataVerse table **Teams Requests** - see also [Solution Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview)
 
 A few notes: 
 * We modified the styling of the DataCards of the Form to match the criteria of Teams Toolkit. 

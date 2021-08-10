@@ -17,7 +17,7 @@ To understand the Logic Apps, it's a good idea to understand the data model:
 
 * [1. Main flow](LogicApps.md#1-main-flow)
 * [2. Create team](LogicApps.md#2-create-team)
-* [3. Create List/Library](LogicApps.md#3-create-list/library)
+* [3. Create List/Library](LogicApps.md#3-create-list-library)
 * [4. Create Task List](LogicApps.md#4-create-task-list)
 * [5. Welcome Package](LogicApps.md#5-welcome-package)
 

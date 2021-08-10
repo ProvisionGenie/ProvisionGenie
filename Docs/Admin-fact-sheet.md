@@ -68,7 +68,7 @@ For more information head over to [Canvas App Overview](https://github.com/Provi
 
 ## Overall complexity to deploy and maintain ProvisionGenie
 
-To get a better understanding of ProvisionGenie we highly recommend to familiarize yourself first with our [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/SolutionOverview.md). Additionally we provide you with a pictured step by step [Deployment Guide](DeploymentGuide.md) that walks you through the entire deployment. If something doesn't work you can always [raise an issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose) and we will help. We don't believe that you will experience major difficulties, as we of course tested the deployment before. 
+To get a better understanding of ProvisionGenie we highly recommend to familiarize yourself first with our [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview). Additionally we provide you with a pictured step by step [Deployment Guide](DeploymentGuide.md) that walks you through the entire deployment. If something doesn't work you can always [raise an issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose) and we will help. We don't believe that you will experience major difficulties, as we of course tested the deployment before. 
 
 ## Update schedule 
 

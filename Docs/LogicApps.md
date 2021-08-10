@@ -6,6 +6,13 @@
 --> monitoring
 --> DevX
 
+## DataModel
+
+To understand the Logic Apps, it's a good idea to understand the data model:
+
+![Dataverse-datamodel]()
+
+
 ## Flows
 
 ### 1. Main flow

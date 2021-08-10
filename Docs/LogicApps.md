@@ -15,11 +15,11 @@ To understand the Logic Apps, it's a good idea to understand the data model:
 
 ## Flows
 
-* [1. Main flow](LogicApps.md#main-flow)
-* [2. Create team](LogicApps.md#create-team)
-* [3. Create List/Library](LogicApps.md#create-list/library)
-* [4. Create Task List](LogicApps.md#create-task-list)
-* [5. Welcome Package](LogicApps.md#welcome-package)
+* [1. Main flow](LogicApps.md#1-main-flow)
+* [2. Create team](LogicApps.md#2-create-team)
+* [3. Create List/Library](LogicApps.md#3-create-list/library)
+* [4. Create Task List](LogicApps.md#4-create-task-list)
+* [5. Welcome Package](LogicApps.md#5-welcome-package)
 
 ### 1. Main flow
 The main flow takes care of the logic of the flows: executing the different steps in the right order and providing the right input. An overview of the logic app is added below.

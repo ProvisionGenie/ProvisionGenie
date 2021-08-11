@@ -56,7 +56,7 @@ We welcome contributions, we summarized how you can contribute in the [contribut
 <img width="200" alt="ProvisionGenie Logo" src="https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/ProvisionGenie.png">
 
 <a class="twitter-share-button"
-  href="https://twitter.com/intent/tweet?text=Hello%20world%20%20#MicrosoftTeams%20#Azure%20#Microsoft365%20#ProvisionGenie%20https://github.com/ProvisionGenie/ProvisionGenie"
+  href="https://twitter.com/intent/tweet?text=Hello%20world%20%20hashtags #MicrosoftTeams,#Azure,#Microsoft365,#ProvisionGeniehttps://github.com/ProvisionGenie/ProvisionGenie"
   data-size="large">
 Tell twitter about ProvisionGenie 🧞</a>
 

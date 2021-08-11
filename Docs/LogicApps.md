@@ -1,5 +1,7 @@
 # Azure Logic Apps
 
+![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
+
 ## why Logic Apps vs Power Automate
 
 * --> context

@@ -1,5 +1,7 @@
 # How to build the canvas app
 
+![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
+
 Although we give you both `msapp` and source code files of the canvas app, you can also follow these instructions if you want to rebuild it:
 
 ## Basic UI concepts

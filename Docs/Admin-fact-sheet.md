@@ -1,6 +1,7 @@
 # Admin Fact Sheet
 
 🚨 still under construction
+![Genie Header](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
 
 This Fact sheet shall give administrator an overview about the added value for users, implications on costs, security, privacy and governance and what it takes to deploy & maintain the solution. 
 

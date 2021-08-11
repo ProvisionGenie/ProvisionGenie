@@ -1,6 +1,9 @@
 # Considerations on where to store data - or why we do it in Dataverse
 
 🚨 still under construction 🚨
+
+![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
+
 ProvisionGenie uses Dataverse to store all data about the provisioned teams in 5 different tables (for more information on this, see [Solution Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview)). As this is the only reason why we need a Power Apps per app plan or a Power Apps per user Plan, here are some thoughts on why we chose Dataverse over
 
 * SharePoint

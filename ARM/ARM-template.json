@@ -99,7 +99,7 @@
                         "value": "[parameters('subscriptionId')]"
                     },
                     "servicePrincipal_AppId": {
-                        "value": "[parameters('servicePrincipal_AppId')"
+                        "value": "[parameters('servicePrincipal_AppId')]"
                     },
                     "servicePrincipal_ClientSecret":{
                         "value": "[parameters('servicePrincipal_ClientSecret')]"

@@ -55,6 +55,11 @@ We welcome contributions, we summarized how you can contribute in the [contribut
 
 <img width="200" alt="ProvisionGenie Logo" src="https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/ProvisionGenie.png">
 
+<a class="twitter-share-button"
+  href="https://twitter.com/intent/tweet?text=Hello%20world"
+  data-size="large">
+Tweet</a>
+
 ## Support us
 
 💖 If you like this project, give it a ⭐ and share it with your friends!

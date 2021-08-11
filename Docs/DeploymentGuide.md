@@ -2,6 +2,8 @@
 
 🚨 still under construction 💡
 
+![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
+
 This guide shall walk you through the minmal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant. 
 
 ## Prerequisites

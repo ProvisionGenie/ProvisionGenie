@@ -1,6 +1,6 @@
 # Known Limitations
 
-Additionally to features to add (see [Issues](https://github.com/ProvisionGenie/ProvisionGenie/issues)), there are some limitations to this solution, which aren't bugs. 
+Additionally to features to add (see [Issues](https://github.com/ProvisionGenie/ProvisionGenie/issues)), there are some limitations to this solution, which aren't bugs 🐞. 
 
 ## No Planner integration in ProvisionGenie
 

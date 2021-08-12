@@ -87,14 +87,20 @@ The alternative for the steps above using the Azure portal is using Azure CLI. P
 az ad app create --display-name ProvisionGenieAppDemo --available-to-other-tenants false
 ```
 
-* Copy the value of the **AppId** from the output 
+<!-- * Copy the value of the **AppId** from the output 
 
-![Add App registration](media/CloudShellAddApp.png)
+![Add App registration](media/CloudShellAddApp.png) -->
+
+save the appId
+
+```
+$adappid =(az ad app list --display-name ProvisionGenieAppDemo --query [0].appId --out tsv --all)
+```
 
 To create an app secret, run
 
 ```
-az ad app credential reset --id <your-AppID-here> --append
+az ad app credential reset --id $appId --append
 ```
 
 In the output, you will get four values for 

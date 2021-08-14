@@ -45,7 +45,7 @@ You can have a look into our [Roadmap](https://github.com/ProvisionGenie/Provisi
 
 ## Developers
 
-<img width="400" alt="ProvisionGenie Logo" src="https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Carmen_Luise.png">
+<img width="400" alt="ProvisionGenie Logo" src="https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Communications/Carmen_Luise.png">
 
 This solution is an initiative by [Luise Freese](https://m365princess.com) and [Carmen Ysewijn](https://digipersonal.com/).
 

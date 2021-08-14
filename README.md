@@ -1,6 +1,6 @@
 # ProvisionGenie
 
-![Genie Header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
+![Genie Header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Communication/Genie_Header.png)
 
 ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/microsoft-teams/group-chat-software) that lets you learn how the concept of a team in Microsoft Teams works in general and how you can make it work for your team. As Teams is a platform that can connect to a lot of services, we want to make your start even easier. We will skill you up and guide you through some questions regarding how your team should look like. As a result, you can request the 'Team of your dreams', which will be provisioned automatically for you.
 
@@ -45,7 +45,7 @@ You can have a look into our [Roadmap](https://github.com/ProvisionGenie/Provisi
 
 ## Developers
 
-<img width="400" alt="ProvisionGenie Logo" src="https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Communications/Carmen_Luise.png">
+<img width="400" alt="Carmen and Luise" src="https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Communication/Carmen_Luise.png">
 
 This solution is an initiative by [Luise Freese](https://m365princess.com) and [Carmen Ysewijn](https://digipersonal.com/).
 

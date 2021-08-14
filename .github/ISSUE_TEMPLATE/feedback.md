@@ -7,9 +7,7 @@ assignees: ''
 
 ---
 
-All feedback is welcome! 
+All feedback is welcome!
 
 **What do you want to tell us?**
-Describe your experiences.
-
-
+Describe your experiences

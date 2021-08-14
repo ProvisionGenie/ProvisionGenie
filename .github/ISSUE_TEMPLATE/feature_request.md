@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-Thank you ❤ for your feature request! 
+Thank you ❤ for your feature request!
 
 - All ideas are welcome - let's build something cool together!
 - This repo is maintained by volunteers, please be courteous and patient. 🙂
@@ -19,7 +19,7 @@ Thank you ❤ for your feature request!
 > _(DELETE THIS PARAGRAPH AFTER READING)_
 
 
-## Suggestion 
+## Suggestion
 
 > The more details, the better
 >

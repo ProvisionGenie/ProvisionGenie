@@ -85,22 +85,9 @@ The alternative for the steps above using the Azure portal is using Azure CLI. P
 
 ``` Azure CLI
 az ad app create --display-name ProvisionGenieAppDemo --available-to-other-tenants false
-```
-
-<!-- * Copy the value of the **AppId** from the output 
-
-![Add App registration](media/CloudShellAddApp.png) -->
-
-save the appId
-
-``` Azure CLI
-
+#save the appId
 $adappid =(az ad app list --display-name ProvisionGenieAppDemo --query [0].appId --out tsv --all)
-```
-
-To create an app secret, run
-
-```  Azure CLI
+# create an app secret, run
 az ad app credential reset --id $appId --append
 ```
 
@@ -111,26 +98,22 @@ In the output, you will get four values for
 * **password** (this is your App secret) and
 * **tenant** (this is your Tenant ID).
 
-* Save these values somewhere
-* Create a service principal with
+Save these values somewhere
 
-``` Azure CLI
- az ad sp create --id <your-AppID-here>
+``` azurecli
 
-```
-
-* Set API permissions for user impersonation in Dynamics CRM
-
-``` Azure CLI
-az ad app permission add --id <your-AppID-here> --api 00000007-0000-0000-c000-000000000000 --api-permissions 78ce3f0f-a1ce-49c2-8cde-64b5c0896db4=Role
+#Create a service principal with
+az ad sp create --id $adappid
+#Set API permissions for user impersonation in Dynamics CRM
+az ad app permission add --id $adappid --api 00000007-0000-0000-c000-000000000000 --api-permissions 78ce3f0f-a1ce-49c2-8cde-64b5c0896db4=Role
 ```
 
 Please note, that `00000007-0000-0000-c000-000000000000` is Dynamics CRM and `78ce3f0f-a1ce-49c2-8cde-64b5c0896db4=Role` is **user_impersonation** which we need to act on behalf of a user.
 
 * now grant admin consent with running
 
-``` Azure CLI
-az ad app permission grant --id <your-AppID-here> --api 00000007-0000-0000-c000-000000000000
+```azurecli
+az ad app permission grant --id $adappid --api 00000007-0000-0000-c000-000000000000
 ```
 
 That's it!

@@ -791,17 +791,22 @@ If(
                         isPageSummary = 6,
                     //1. Teams - name, description, welcomepackage, SPListForTasks
                         SubmitForm(FormTeamsRequest);
+                        Set(varTeam,FormTeamsRequest.LastSubmit);
                     // 2. channels
 ForAll(
                             colChannels,
                             Patch(
                                 'Team Channels',
                                 Defaults('Team Channels'),
-                                {'Channel Name': ChannelName}
+                                {'Channel Name': ChannelName,
+                                TeamsRequest: varTeam}
                             )
                         );
                     //3. libraryname
 SubmitForm(FormLibraryName);
+UpdateContext({locLibrary:FormLibraryName.LastSubmit});
+Patch('SharePoint Libraries',LookUp('SharePoint Libraries','SharePoint Library'=locLibrary.'SharePoint Library'),{TeamsRequest:varTeam});
+//Patch('SharePoint Libraries',LookUp('SharePoint Libraries','SharePoint Library'=);
                     //4. columnname and column types for library
 ForAll(
                             colColumnsLibrary1,
@@ -821,6 +826,8 @@ ForAll(
                         );
                     //5. list name
 SubmitForm(FormListName);
+UpdateContext({locList:FormListName.LastSubmit});
+Patch('SharePoint Lists',LookUp('SharePoint Lists','SharePoint List'=locList.'SharePoint List'),{TeamsRequest:varTeam});
                     //6. columnname and column types for list
 ForAll(
                             colColumnsList,

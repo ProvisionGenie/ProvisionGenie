@@ -3,27 +3,35 @@
 🚨 still under construction
 ![Genie Header](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
 
-This Fact sheet shall give administrator an overview about the added value for users, implications on costs, security, privacy and governance and what it takes to deploy & maintain the solution. 
+This Fact sheet shall give an administrator an overview about
+
+* added value for users
+* implications on
+  * costs
+  * security
+  * privacy
+  * governance and
+  * what it takes to deploy & maintain the solution.
 
 ## Cost to run ProvisionGenie
 
-ProvisionGenie itself is free, but you will need 
+ProvisionGenie itself is free, but you will need
 
-* an Azure subscription  to run the Logic Apps. Logic Apps are part of the free tier for up to 4000 actions. 
-* a Microsoft 365 license for every user who uses the app
-* a Power Apps per app or Power Apps per user plan for every user who uses the app
+* an Azure subscription to run the Logic Apps. Logic Apps are part of the free tier for up to 4000 actions.
+* a Microsoft 365 license for every person who uses the app
+* a Power Apps per app or Power Apps per user plan for every person who uses ProvisionGenie
 
-For more detail, please head over to [Cost estimation](CostEstimation.md)
+For more detail, head over to [Cost estimation](LogicApps.m#CostEstimation.md)
 
 ## Security/Privacy/Governance concerns
 
-We take security, privacy, and governance very serious and want you to make an informed decision, that you can consider ProvisionGenie to be a good fit for your organization: 
+We take security, privacy, and governance very seriously and want you to make the informed decision, that you can consider ProvisionGenie to be a good fit for your organization:
 
 ### Security
 
-* You can't unintentionally overexpose data just by allowing Power Apps in your organization as Power Apps does not provide users with access to any data assets that they don't already have access to
+* You can't unintentionally overexpose data only by allowing Power Apps in your organization, as Power Apps does not provide users with access to any data assets that they don't already have access to
 * Power Platform leverages Azure Active Directory to control user authentication & access to data
-* In the Dataverse environment, access is controlled at three levels: 
+* In the Dataverse environment, access is controlled at three levels:
   * Environment roles
   * Resource permissions for Power Apps
   * Dataverse security roles
@@ -44,20 +52,20 @@ More helpful resources:
 
 ## End User value of ProvisionGenie
 
-Purpose of this app is to foster teamwork by letting owners-to-be of Microsoft Teams teams make smarter decisions on how a team can work in Teams. Usually, a business consultant would talk a team through assets that are available in Teams and Microsoft 365 and answer all questions with 'it depends'. They would explain that people usually
+The purpose of this app is to foster teamwork by letting owners-to-be of Microsoft Teams teams make smarter decisions on how a team can work in Teams. Usually, a business consultant would talk a team through assets that are available in Teams and Microsoft 365 and answer all questions with 'it depends'. They would explain that people usually
 
 * confuse chat with task assignments "could you please"
 * confuse email with status reports "per my last email"
 * confuse SharePoint with a dumpster for any file in the world --> "can you migrate this pile of mess to someone else's computer?"
 
-The consultant would then show them what channels are made for, how a team can work with metadata on files and how stying on track works with Microsoft Lists. The consultant would ask them also if they wanted more learning material pinned to their brand new team and if they wanted the team of they dreams already be created for them, so that it works from Day 1. 
+The consultant would then show them what channels are made for, how a team can work with metadata on files and how stying on track works with Microsoft Lists. The consultant would ask them also if they wanted more learning material pinned to their brand new team and if they wanted the team of they dreams already be created for them, so that it works from Day 1.
 
 This is, what Provisiongenie does. ProvisionGenie is now that consultant and provides users with a blended experience of 
 
-* learning about modern collaboration and assets that can be used in Teams and 
-* reflecting on how they want to work in Teams. 
+* learning about modern collaboration and assets that can be used in Teams and
+* reflecting on how they want to work in Teams.
 
-Benefits: 
+Benefits:
 
 * allows better understanding of how Teams works in general
 * Tailor-fitted teams have higher adoption rates
@@ -69,11 +77,11 @@ For more information head over to [Canvas App Overview](https://github.com/Provi
 
 ## Overall complexity to deploy and maintain ProvisionGenie
 
-To get a better understanding of ProvisionGenie we highly recommend to familiarize yourself first with our [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview). Additionally we provide you with a pictured step by step [Deployment Guide](DeploymentGuide.md) that walks you through the entire deployment. If something doesn't work you can always [raise an issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose) and we will help. We don't believe that you will experience major difficulties, as we of course tested the deployment before. 
+To get a better understanding of ProvisionGenie we highly recommend to familiarize yourself first with our [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview). Additionally we provide you with a pictured step by step [Deployment Guide](DeploymentGuide.md) that walks you through the entire deployment. If something doesn't work you can always [raise an issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose) and we will help. We don't believe that you will experience major difficulties, as we of course tested the deployment before.
 
-## Update schedule 
+## Update schedule
 
-This is an open-source project and we welcome [contributions](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTINGt.md). 
+This is an open-source project and we welcome [contributions](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTINGt.md).
 
 We will version like this:
 
@@ -81,5 +89,4 @@ We will version like this:
 * New features without breaking changes will be released in minor versions
 * breaking changes will be released only in major versions
 
-You can familiarize yourself with our [Roadmap](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Roadmap.md) to know what's coming when. 
-
+You can familiarize yourself with our [Roadmap](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Roadmap.md) to know what's coming when.

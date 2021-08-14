@@ -12,14 +12,14 @@ This app is designed to be a personal app in Microsoft Teams and we aimed to ado
 
 Set variables **onStart** for the colors you use the most- for example:
 
-`Set(color_blurple,ColorValue("#6264A7"))` and 
+`Set(color_blurple,ColorValue("#6264A7"))` and
 `Set(color_bg,ColorValue("#F5F5F5"))`
 
 This way, you can refer to these values - or change them, if needed, more easily.  
 
 ### Navigation
 
-* Create a `_selectedScreen` variable as a record containing 
+* Create a `_selectedScreen` variable as a record containing
   * row (number)
   * title (text)
   * image (image) 

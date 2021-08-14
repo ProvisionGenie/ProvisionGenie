@@ -18,7 +18,6 @@ Thank you ❤ for your feature request!
 
 > _(DELETE THIS PARAGRAPH AFTER READING)_
 
-
 ## Suggestion
 
 > The more details, the better

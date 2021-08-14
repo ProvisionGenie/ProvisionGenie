@@ -4,16 +4,16 @@
 
 ![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
 
-This guide shall walk you through the minmal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant. 
+This guide shall walk you through the minimal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant.
 
 ## Prerequisites
 
-* Azure Subscription - if you don't have one, [get it here free](https://azure.microsoft.com/en-us/free) - please also see [Cost estimation](CostEstimation.md)
-* Microsoft 365 license 
-* [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/en-us/pricing/) (for using Dataverse, please also see [Considerations about where to store data](Considerations-on-Dataverse.md)) 
-* Environment with [Dataverse database](https://docs.microsoft.com/en-us/power-platform/admin/create-database) - NOT a Dataverse for Teams environment, please also see [Considerations about where to store data](Considerations-on-Dataverse.md)
-* Admin role Azure: [Contributor](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#contributor)
-* Power Platform role: [Power Platform Environment Maker](https://docs.microsoft.com/en-us/power-platform/admin/database-security)
+* Azure Subscription - if you don't have one, [get it here free](https://azure.microsoft.com//free) - please also see [Cost estimation](CostEstimation.md)
+* Microsoft 365 license
+* [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, please also see [Considerations about where to store data](Considerations-on-Dataverse.md))
+* Environment with [Dataverse database](https://docs.microsoft.com/power-platform/admin/create-database) - NOT a Dataverse for Teams environment, please also see [Considerations about where to store data](Considerations-on-Dataverse.md)
+* Admin role Azure: [Contributor](https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#contributor)
+* Power Platform role: [Power Platform Environment Maker](https://docs.microsoft.com/power-platform/admin/database-security)
 
 ## Steps
 
@@ -39,13 +39,13 @@ You will need to register an app in Azure AD in order to deploy the dataverse ta
 
 ![App registrations](media/AzurePortalADAppregistrationsSteps.png)
 
-* (1) Type in a name for your app like `ProvisionGenieApp` 
+* (1) Type in a name for your app like `ProvisionGenieApp`
 * (2) Select **Accounts in this organizational directory only (\<your organization name> only - Single tenant)**
 * (3) Select **Register**
 
 ![Register new app](media/AzurePortalADAppregistrationsNew.png)
 
-* (1) Select **API permissions** 
+* (1) Select **API permissions**
 * (2) Select **Add a permission**
 * (3) Select **Dynamics CRM**
 
@@ -57,10 +57,10 @@ You will need to register an app in Azure AD in order to deploy the dataverse ta
 ![User Impersonation](media/AzurePortalADAppregistrationsAddPermissionDynCRMUserImpersonationSteps.png)
 
 * (1) Select **Certificates & secrets**
-* (2) Select **New client secret** 
+* (2) Select **New client secret**
 * (3) Enter a description like `PG-secret`
 * (4) Select a value when this secret expires
-* (5) Select **Add** 
+* (5) Select **Add**
 
 ![Certificates & secrets](media/AzurePortalADAppregistrationssecretSteps.png)
 
@@ -78,12 +78,12 @@ That's it!
 
 #### App registration for deployment of Dataverse tables using Azure CLI
 
-The alternative for the steps above using the Azure portal is using Azure CLI. Please follow these steps: 
+The alternative for the steps above using the Azure portal is using Azure CLI. Please follow these steps:
 
 * Open [shell.azure.com](https://portal.azure.com/#cloudshell/)
 * to register the application run
 
-```
+``` Azure CLI
 az ad app create --display-name ProvisionGenieAppDemo --available-to-other-tenants false
 ```
 
@@ -93,71 +93,71 @@ az ad app create --display-name ProvisionGenieAppDemo --available-to-other-tenan
 
 save the appId
 
-```
+``` Azure CLI
+
 $adappid =(az ad app list --display-name ProvisionGenieAppDemo --query [0].appId --out tsv --all)
 ```
 
 To create an app secret, run
 
-```
+```  Azure CLI
 az ad app credential reset --id $appId --append
 ```
 
-In the output, you will get four values for 
+In the output, you will get four values for
 
-* **AppId**, 
-* **name** (equals **AppId**), 
-* **password** (this is your App secret) and 
-* **tenant** (this is your Tenant ID). 
+* **AppId**,
+* **name** (equals **AppId**),
+* **password** (this is your App secret) and
+* **tenant** (this is your Tenant ID).
 
 * Save these values somewhere
-* Create a service principal with 
+* Create a service principal with
 
-```
+``` Azure CLI
  az ad sp create --id <your-AppID-here>
+
 ```
 
 * Set API permissions for user impersonation in Dynamics CRM
 
-```
+``` Azure CLI
 az ad app permission add --id <your-AppID-here> --api 00000007-0000-0000-c000-000000000000 --api-permissions 78ce3f0f-a1ce-49c2-8cde-64b5c0896db4=Role
 ```
 
-Please note, that `00000007-0000-0000-c000-000000000000` is Dynamics CRM and `78ce3f0f-a1ce-49c2-8cde-64b5c0896db4=Role` is **user_impersonation** which we need to act on behalf of a user. 
+Please note, that `00000007-0000-0000-c000-000000000000` is Dynamics CRM and `78ce3f0f-a1ce-49c2-8cde-64b5c0896db4=Role` is **user_impersonation** which we need to act on behalf of a user.
 
-* now grant admin consent with running 
+* now grant admin consent with running
 
-```
+``` Azure CLI
 az ad app permission grant --id <your-AppID-here> --api 00000007-0000-0000-c000-000000000000
 ```
 
-That's it! 
+That's it!
 
 ### 2. Create a new Azure resource group
 
-The yet-to-deploy Azure Logic Apps will need a resource group to be deployed in. We recommand creating a new resource group. You can do this [via the Azure portal](DeploymentGuide.md#new-resource-group-with-Azure-portal) or [via Azure CLI](DeploymentGuide.md#new-resource-group-with-Azure-cli). 
+The yet-to-deploy Azure Logic Apps will need a resource group to be deployed in. We recommend creating a new resource group. You can do this [via the Azure portal](DeploymentGuide.md#new-resource-group-with-Azure-portal) or [via Azure CLI](DeploymentGuide.md#new-resource-group-with-Azure-cli).
 
 #### New resource group with Azure Cli
 
 * open [shell.azure.com](https://portal.azure.com/#cloudshell/)
 * run
 
-```
+``` Azure CLI
 az group create -n <your-resourcegroupname-here> --location <your-location-here>
 ```
-
 
 <!-- TODO: assign role 
 https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli -->
 
-
-On success, you will see this in the output: 
+On success, you will see this in the output:
 
 ![Create Resource Group](media/CloudShellcreateRg.png)
 
 #### New resource group with Azure portal
 
-As an alternative to use Azure CLI to create a new resource group, you can also complete the following steps in the Azure portal: 
+As an alternative to use Azure CLI to create a new resource group, you can also complete the following steps in the Azure portal:
 
 * Go to [portal.azure.com](https://portal.azure.com)
 * Log in
@@ -183,18 +183,17 @@ On success, your new resource group will show up in the overview:
 
 ![Resource Group Overview](media/AzureResourceGroupOverview.png)
 
-That's it! 
+That's it!
 
 ### 3. Deployment of Azure Logic Apps
 
 TODO
 
-
 ### 4. Import of Power Platform solution
 
 TODO
 
-```
+``` Azure CLI
 $principalId = 'HERE GOES YOUR MANAGED IDENTITY OBJECT ID'
 $graphResourceId = $(az ad sp list --display-name "Microsoft Graph" --query [0].objectId --out tsv)
 #Get appRoleIds for Team.Create, Group.ReadWrite.All, Directory.ReadWrite.All, Group.Create, Sites.Manage.All, Sites.ReadWrite.All
@@ -203,9 +202,6 @@ $appRoleIds = $(az ad sp show --id $graphId --query "appRoles[?value=='Team.Crea
 #Loop over all appRoleIds
 foreach ($appRoleId in $appRoleIds) { $body = "{'principalId':'$principalId','resourceId':'$graphResourceId','appRoleId':'$appRoleId'}"; az rest --method post --uri https://graph.microsoft.com/v1.0/servicePrincipals/$principalId/appRoleAssignments --body $body --headers Content-Type=application/json }
 ```
-
-
-
 
 <!-- 🚨🚨🚨🚨 in
 Now it's time to continue with
@@ -224,7 +220,6 @@ Now it's time to continue with
 
  ### braindump
 
-
 1. create a resource group either in UI or with CLI
 2. app registration
 3. deploy 
@@ -232,13 +227,9 @@ Now it's time to continue with
     * authenticate
     * https://vincentlauzon.com/2018/09/25/service-principal-for-logic-app-connector/ service principal
 
-
 still to do: 
 
 1. authenticate the dataverse connection with the service principal
 2. running a script for managed identity permissions (Team.Create, Group.ReadWrite.All, Directory.ReadWrite.All, Group.Create, Sites.Manage.All, Sites.ReadWrite.All)
 
-
  -->
- 
- 

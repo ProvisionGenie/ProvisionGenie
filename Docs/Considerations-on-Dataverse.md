@@ -24,17 +24,15 @@ As much as we love SharePoint for content & collaboration within Microsoft 365, 
 The (non-premium) SharePoint connector pipelines to SharePoint lists and we experience the following issues:
 
 * A SharePoint list that contains many columns leads to slowness
-* Too many dynamic lookup columns: especially lookup, person or calculated columns eat performance 
+* Too many dynamic lookup columns: especially lookup, person or calculated columns eat performance
 * Huge lists cause extra overhead
 
 > Rule of thumbs: The more items, columns and lookup columns your lists needs to contain, the more likely your user experience will be poor
 
 ### Security issues
 
-A Power Apps Canvas app that writes data intoto a SharePoint list comes with some extra security issues. Our main concern is, that every user who wants to use the app needs to have permissions for this list. This means, that they could manipulate data in the list bypassig the app. Of course you could try to hide the list on the respecting SharePoint site, but that would just be obscurity, not security. 
+A Power Apps Canvas app that writes data into a SharePoint list comes with some extra security issues. Our main concern is, that every user who wants to use the app needs to have permissions for this list. This means, that they could manipulate data in the list bypassing the app. Of course you could try to hide the list on the respecting SharePoint site, but that would just be obscurity, not security.
 
 ## Dataverse vs. Dataverse for Teams
 
-We also took Dataverse's little sister, [Dataverse for Teams](https://docs.microsoft.com/en-us/powerapps/teams/data-platform-compare) into consideration but needed to it turn down, because we don't want security roles, [lifecycle](https://docs.microsoft.com/en-us/power-platform/admin/about-teams-environment#environment-lifecycle) and governance of our solution (and its environment) to be tied to a team in which [every user needs to be a member of](https://docs.microsoft.com/en-us/powerapps/teams/data-platform-compare) to use ProvisionGenie. 
-
-
+We also took Dataverse's little sister, [Dataverse for Teams](https://docs.microsoft.com/powerapps/teams/data-platform-compare) into consideration but needed to it turn down, because we don't want security roles, [lifecycle](https://docs.microsoft.com/power-platform/admin/about-teams-environment#environment-lifecycle) and governance of our solution (and its environment) to be tied to a team in which [every user needs to be a member of](https://docs.microsoft.com/powerapps/teams/data-platform-compare) to use ProvisionGenie.

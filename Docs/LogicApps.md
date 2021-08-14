@@ -10,16 +10,15 @@
 
 ## Solution Overview
 
-Based on user input in the canvas app, ProvisionGenie logs team requests. Each new row in the **Teams Request** table will trigger the **Main flow** in Azure Logic Apps, which will then handle all other child flows: 
- 
-![solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/PG-solution-overview.png), 
+Based on user input in the canvas app, ProvisionGenie logs team requests. Each new row in the **Teams Request** table will trigger the **Main flow** in Azure Logic Apps, which will then handle all other child flows:
+
+![solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/PG-solution-overview.png),
 
 ## DataModel
 
 To understand the Logic Apps, it's a good idea to understand the data model:
 
 ![Dataverse-datamodel](media/dataverse-datamodel.png)
-
 
 ## Flows
 
@@ -30,11 +29,12 @@ To understand the Logic Apps, it's a good idea to understand the data model:
 * [5. Welcome Package](LogicApps.md#5-welcome-package)
 
 ### 1. Main flow
+
 The main flow takes care of the logic of the flows: executing the different steps in the right order and providing the right input. An overview of the logic app is added below.
 
 ![Screenshot of the main flow](media/LogicApps-Main.png)
 
-1. The main flow triggers when a new row is added into the _Teams Requests_ table in Dataverse. 
+1. The main flow triggers when a new row is added into the _Teams Requests_ table in Dataverse.
 2. The internal name of the to be created team is generated using the name provided by the team owner and a generated guid. This ensures that all team names are unique.
 3. The technical name is updated in the Teams Request row so that admins can easily find out which requests are linked to which Microsoft Teams teams.
 4. 5 variables are initialized that are used later on in the flow
@@ -73,6 +73,7 @@ The main flow takes care of the logic of the flows: executing the different step
 9. The welcome package is added to the team if the owner has indicated they want this in their team
 
 ### 2. Create team
+
 In the Create team flow, the requested team is created with the specified channels. Additionally, the wiki is removed from each of the channels. An overview of the flow is added below.
 
 ![Create Team logic app overview](media/LogicApps-CreateTeam.png)
@@ -120,6 +121,7 @@ In the Create team flow, the requested team is created with the specified channe
 1.  A response is provided to the caller of the logic app with the team id.
 
 ### 3. Create List/Library
+
 The Create List and Create Library logic apps are nearly identical, except for the template type that is provided in the creation request. Therefore, they are discussed as one.
 
 ⚠ In the future, these logic apps could be consolidated into one to simplify the solution.
@@ -133,8 +135,8 @@ The Create List and Create Library logic apps are nearly identical, except for t
 4. Create the list/library using a request. **This is where there is a difference between the Create List/Create Library Logic Apps flows.**
 5. Respond to the request caller
 
-
 ### 4. Create Task List
+
 The Create Task list logic app uses the Create List logic app to create a task list using a fixed definition of columns.
 
 ![Create Task List overview](media/LogicApps-CreateTaskList.png)
@@ -144,8 +146,8 @@ The Create Task list logic app uses the Create List logic app to create a task l
 3. The Create List Logic Apps flow is called with the task list fixed column definition to create the task list
 4. Respond to the request caller
 
-
 ### 5. Welcome Package
+
 The welcome package adds a url with training material to the General channel of the new team.
 
 ![Welcome Package Overview](media/LogicApps-WelcomePackage.png)

@@ -148,7 +148,7 @@ The Create Task list logic app uses the Create List logic app to create a task l
 
 ### 5. Welcome Package
 
-The welcome package adds a url with training material to the General channel of the new team.
+The welcome package adds a url with training material to the General channel of the new team
 
 ![Welcome Package Overview](media/LogicApps-WelcomePackage.png)
 

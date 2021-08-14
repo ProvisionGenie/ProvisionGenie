@@ -41,14 +41,15 @@ We take security, privacy, and governance very seriously and want you to make th
 ### Privacy
 
 More helpful resources:
+
 * [trust.microsoft.com](https://www.microsoft.com/trust-center)
-* [Microsoft Privacy statement](https://privacy.microsoft.com/en-us/privacystatement?culture=en-us&country=US)
+* [Microsoft Privacy statement](https://privacy.microsoft.com/privacystatement)
 * [In detail report on Dynamics 365 and Power Platform:Availability, data location, language, and localization - PDF download](https://aka.ms/dynamics_365_international_availability_deck)
 * [Detailed information on geographical availability - Power BI report](https://dynamics.microsoft.com/Report/GetGeoReport/)
 
 ### Governance
 
-* ProvisionGenie can be monitored like every other Power platform solution within the [Center of Excellence Starter Kit](https://docs.microsoft.com/en-us/power-platform/guidance/coe/starter-kit), which we highly recommend to use
+* ProvisionGenie can be monitored like every other Power platform solution within the [Center of Excellence Starter Kit](https://docs.microsoft.com/power-platform/guidance/coe/starter-kit), which we highly recommend to use
 
 ## End User value of ProvisionGenie
 
@@ -56,11 +57,11 @@ The purpose of this app is to foster teamwork by letting owners-to-be of Microso
 
 * confuse chat with task assignments "could you please"
 * confuse email with status reports "per my last email"
-* confuse SharePoint with a dumpster for any file in the world --> "can you migrate this pile of mess to someone else's computer?"
+* confuse SharePoint with a dumpster for any file in the world --> "can you migrate this pile of mess to someone elses computer?"
 
-The consultant would then show them what channels are made for, how a team can work with metadata on files and how stying on track works with Microsoft Lists. The consultant would ask them also if they wanted more learning material pinned to their brand new team and if they wanted the team of they dreams already be created for them, so that it works from Day 1.
+The consultant would then show them what channels are made for, how a team can work with metadata on files and how staying on track works with Microsoft Lists. The consultant would ask them also if they wanted more learning material pinned to their brand new team and if they wanted the team of they dreams already be created for them, so that it works from Day 1.
 
-This is, what Provisiongenie does. ProvisionGenie is now that consultant and provides users with a blended experience of 
+This is, what ProvisionGenie does. ProvisionGenie is now that consultant and provides users with a blended experience of
 
 * learning about modern collaboration and assets that can be used in Teams and
 * reflecting on how they want to work in Teams.

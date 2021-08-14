@@ -2,11 +2,11 @@
 
 ![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
 
-Although we give you both `msapp` and source code files of the canvas app, you can also follow these instructions if you want to rebuild it:
+Although we give you both `.msapp` and source code files of the canvas app, you can also follow these instructions if you want to rebuild it:
 
 ## Basic UI concepts
 
-This app is designed to be a personal app in Microsoft Teams and we aimed to adopt the Teams look & feel by following the guidance available in the [Microsoft Teams UI Toolkit](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/design/design-teams-app-ui-templates?tabs=desktop). This means, that we will not explain all basic UI components in this document but refer to the Toolkit. 
+This app is designed to be a personal app in Microsoft Teams and we aimed to adopt the Teams look & feel by following the guidance available in the [Microsoft Teams UI Toolkit](https://docs.microsoft.com/microsoftteams/platform/concepts/design/design-teams-app-ui-templates?tabs=desktop). This means, that we will not explain all basic UI components in this document but refer to the Toolkit.
 
 ### Colors
 
@@ -22,7 +22,7 @@ This way, you can refer to these values - or change them, if needed, more easily
 * Create a `_selectedScreen` variable as a record containing
   * row (number)
   * title (text)
-  * image (image) 
+  * image (image)
 and create a `NavigationMenu` collection in **onStart**, wrap both in `Concurrent()`:
 
 ``` Concurrent(
@@ -72,17 +72,17 @@ and create a `NavigationMenu` collection in **onStart**, wrap both in `Concurren
 (To make this work replace the name of the images with the images you uploaded 💡
 
 * Create a gallery
-with 
+with
 
   * Rectangle
-  * Textlabel
+  * Text label
   * Image
 
 * Set **Items** of the gallery to `NavigationMenu`
 * Set **TemplateFill** to `If(ThisItem.Row = _selectedScreen.Row, RGBA(220, 220, 220, 1), RGBA(0,0,0,0))`
-* Set **OnSelect** to 
+* Set **OnSelect** to
 
-```
+```PowerApps
 Set(
     _selectedScreen,
     ThisItem
@@ -120,24 +120,27 @@ If(
     )
 )
 ```
+
 * Set **Visible** of the rectangle to `ThisItem.Row = _selectedScreen.Row`
 * Set **Text** of the TextLabel to `ThisItem.Title`
 * Set **Image** of the Image to `ThisItem.Image`
 
-> Keep in mind to always `Set(_selectedScreen,{Title: "your screenname", Row: <rownumber>})`in addition to `Navigate(your screenname)` if you want to let the user navigate to another screen not using the navigation gallery. 
+> Keep in mind to always `Set(_selectedScreen,{Title: "your screenname", Row: <rownumber>})`in addition to `Navigate(your screenname)` if you want to let the user navigate to another screen not using the navigation gallery.
 
 ### SidePanel
 
-The SidePanel consists of 2 tabs, **Details** and **Resources** and we use 
+The SidePanel consists of 2 tabs, **Details** and **Resources** and we use
 
 * 2 Textlabels for the tab names
 * 2 Rectangles as an underline for the tab names
 * at least 2 **HTMLText** controls to display content depending on the tab
 
-This is how it works: 
+This is how it works:
 
-* Set **HTMLText** of HTML text control to 
-```
+* Set **HTMLText** of HTML text control to
+
+``` Power Apps
+
 "
 <div style='margin: 0 0 0 20px; font-size: 11pt !important; font-weight: lighter; color: #252525; padding: 0 10px; width: 100%; overflow: hidden;'>
    
@@ -186,16 +189,16 @@ This is how it works:
 * Set **Visible** of the `Resources` Rectangle to `IsShowResourcesTab`
 * Set **Visible** of the `Details` HTMLText to `!IsShowResourcesTab`
 * Set **Visible** of the `Details` Rectangle to `!IsShowResourcesTab`
-* Set **FontWeight** of `Details` textlabel to `If(!IsShowResourcesTab,FontWeight.Bold, FontWeight.Lighter)` 
+* Set **FontWeight** of `Details` textlabel to `If(!IsShowResourcesTab,FontWeight.Bold, FontWeight.Lighter)`
 * Set **FontWeight** of `Resources` textlabel to `If(IsShowResourcesTab,FontWeight.Bold, FontWeight.Lighter)`
 
-This way, the content of `Resources` gets visible once the `Details` content is non-visible and vice versa. Also, user switches between the content by selecting the respecting textlabels. Font-weight will switch from `lighter` to `bold` and Rectangle (that serves as an underline) will be visible once user selects a Textlabel
+This way, the content of `Resources` gets visible once the `Details` content is non-visible and vice versa. Also, user switches between the content by selecting the respecting text labels. Font-weight will switch from `lighter` to `bold` and Rectangle (that serves as an underline) will be visible once user selects a Textlabel
 
-### PopUp 
+### PopUp
 
-In the app, we make use of various PopUps, either to educate users about how to work in Microsoft Teams, or to explain something that users can request (like 'Welconme Package') or to indicate a success. Most PopUps contain 3 different pages, which means theat we need 3 times different content for them as well
+In the app, we make use of various PopUps, either to educate users about how to work in Microsoft Teams, or to explain something that users can request (like 'Welcome Package') or to indicate a success. Most PopUps contain 3 different pages, which means that we need 3 times different content for them as well
 
-Popups contain the following controls: 
+Popups contain the following controls:
 
 * Textlabel that serves as a Title for this PopUp
 * TextLabel that serves as the main content for this PopUp
@@ -210,14 +213,14 @@ Popups contain the following controls:
 
 #### Rectangle as Dimmer
 
-Purpose here is do create a lightbox effect and to dim everything but the PopUp itself. Following the Teams UI Toolkit: 
+Purpose here is do create a lightbox effect and to dim everything but the PopUp itself. Following the Teams UI Toolkit:
 
 * Set **Fill** to `RGBA(37, 36, 35, 0.75)`
 * Set size to the entire screen
 
 #### Button that serves as background
 
-As Rectangles in Power Apps don't support rounded corners (Border radius) we will use a Button instead. 
+As Rectangles in Power Apps don't support rounded corners (Border radius) we will use a Button instead.
 
 * Set **Width** to `600`
 * Set **Height** to `480`
@@ -226,7 +229,7 @@ As Rectangles in Power Apps don't support rounded corners (Border radius) we wil
 * Set **Pressed color** to `White`
 * Set **Border radius** to `3`
 
-#### Circles that serves as Stepper Dots 
+#### Circles that serves as Stepper Dots
 
 * Create 3 circles
 * Set their **Width** to `8`
@@ -239,7 +242,7 @@ As Rectangles in Power Apps don't support rounded corners (Border radius) we wil
 * Set **Fill** of Circle2 to `If(isPage=2,color_blurple,color_bg)`
 * Set **Fill** of Circle3 to `If(isPage=3,color_blurple,color_bg)`
 
-This way, the circle is `color_blurple` on the correct page. 
+This way, the circle is `color_blurple` on the correct page.
 
 #### Cancel icon to close the PopUp
 
@@ -258,8 +261,10 @@ To have a nice shadow around the PopUp
 
 * Create a button
 * Set colors as stated in Teams UI Toolkit if you like this to be design consistent to Teams, otherwise choose your own colors (preferably set them as variables)
-* Set **OnSelect** to 
-```
+* Set **OnSelect** to
+
+``` Power Apps
+
 If(
     isPage= 1,
     UpdateContext({isPage: 2}),
@@ -270,21 +275,23 @@ If(
     )
 )
 ```
-This way, users navigate to the next screen if they are on page 1 or 2 and close the PoPup if they are on page 3. 
+
+This way, users navigate to the next screen if they are on page 1 or 2 and close the PoPup if they are on page 3.
 
 * Set **Text** to `If(isPage=1,"yourtext-->2",If(isPage=2,"yourtext-->3","Close"))` This way, we display different texts depending on the page our user is currently at
 * Set **Width** to `If(isPage=1,<value1>,If(isPage=2, <value2>,<value3>)` This way, the width of the button adjusts
-* Set **X** to `If(isPage=1,<value1>,If(isPage=2, <value2>,<value3>)` to adjust horizontal position of the button. 
+* Set **X** to `If(isPage=1,<value1>,If(isPage=2, <value2>,<value3>)` to adjust horizontal position of the button.
 
-> To calculate this correctly, place the button by drag'n'drop where you want it. Now check the x-value, add the width to it. This is your target value. For the other pages, you will need to deduct the width of the button from that target value so you get the x-value of the button on that page. If you have more than 1 PopUp, it's worth to think about parameterizing this as well 
+> To calculate this correctly, place the button by drag'n'drop where you want it. Now check the x-value, add the width to it. This is your target value. For the other pages, you will need to deduct the width of the button from that target value so you get the x-value of the button on that page. If you have more than 1 PopUp, it's worth to think about parameterizing this as well
 
 #### Back button
 
 * Create a button
 * Set colors as stated in Teams UI Toolkit if you like this to be design consistent to Teams, otherwise choose your own colors (preferably set them as variables)
-* Set **OnSelect** to 
-* 
-```
+* Set **OnSelect** to
+
+``` Power Apps
+
 If(
     isPage = 1,
     UpdateContext({isPage: 3}),
@@ -295,7 +302,8 @@ If(
     )
 )
 ```
-This way, users navigate to the previous screen. 
+
+This way, users navigate to the previous screen.
 
 #### Image
 
@@ -326,7 +334,7 @@ Each page should have a title.
 * Create a Textlabel
 * Set its **Text** to `If(isPage=1,<yourContent1>,If(isPage=2,<yourContent2>,<yourContent>))`
 
-To display this PopUp you will need to do the following steps: 
+To display this PopUp you will need to do the following steps:
 
 * group the controls
 * Set **Visible** of the group to `isShowPopUp`
@@ -334,7 +342,7 @@ To display this PopUp you will need to do the following steps:
 
 ## Screens
 
-Navigation and Sidepanel will be shown on every screen, only the HTMLtext in the SidePanel changes to contextually display details (how to use this screen) and resources (learning contentabout Teams).  In addition to that, we need the folloing controls: 
+Navigation and side panel will be shown on every screen, only the HTMLtext in the SidePanel changes to contextually display details (how to use this screen) and resources (learning content about Teams).  In addition to that, we need the following controls:
 
 ### Welcome Screen
 
@@ -344,9 +352,10 @@ We built
 * 4 different [PopUps](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasApp.md#popup) for the learning content
 * 4 respecting Cards that serve as a more beautiful trigger for these PopUps
 * 1 Button to navigate to the **Teams** screen and start the provisioning process
-  * Set **OnSelect** of this Button to 
+  * Set **OnSelect** of this Button to
 
-```
+``` Power Apps
+
 Navigate(
     'Teams Screen',
     ScreenTransition.Cover
@@ -362,26 +371,28 @@ Set(
 
 ### Teams Screen
 
-* Purpose if this screen is to get information about 
+* Purpose if this screen is to get information about
   * name
   * description
   * whether our owner (= signed-in user) wants a 'WelcomePackage' or not
-  * whether our owner wants a SharePoint list provisioned for taskmanagement
+  * whether our owner wants a SharePoint list provisioned for task management
 
 We get the information by a form which is connected to a DataVerse table **Teams Requests** - see also [Solution Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview)
 
-A few notes: 
-* We modified the styling of the DataCards of the Form to match the criteria of Teams Toolkit. 
-* For the yes/no question about the SharePoint list as a taskmanagement tool, we build another PopUp to explain this. For info on why we don't provision see Known limitations
-* We changed the default dropdown fields to toggles. To connect those again to your datasource, a little extra work is required: 
+A few notes:
+
+* We modified the styling of the DataCards of the Form to match the criteria of Teams Toolkit.
+* For the yes/no question about the SharePoint list as a task management tool, we build another PopUp to explain this. For info on why we don't provision see Known limitations
+* We changed the default dropdown fields to toggles. To connect those again to your data source, a little extra work is required:
 
 #### Modify the form with toggles instead of dropdown
 
 1. in the form, delete the dropdown control
 2. insert into the datacard a toggle
-3. set **Default** of the Card to `If(Toggle1.Value,'Do you want the welcome package? (TeamsRequests)'.Yes,'Do you want the welcome package? (TeamsRequests)'.No)` 
-4. Set **Update** of the toggle to 
-```
+3. set **Default** of the Card to `If(Toggle1.Value,'Do you want the welcome package? (TeamsRequests)'.Yes,'Do you want the welcome package? (TeamsRequests)'.No)`
+4. Set **Update** of the toggle to
+
+``` Power Apps
 If(
     ThisItem.'Do you want the welcome package?' = 'Do you want the welcome package? (TeamsRequests)'.Yes,
     true,
@@ -389,10 +400,12 @@ If(
     false
 )
 ```
-This way, we match the toggle value with our Dataverse column. 
 
-The **Next** button's **OnSelect** is set to 
-```
+This way, we match the toggle value with our Dataverse column.
+
+The **Next** button's **OnSelect** is set to
+
+``` Power Apps
 Navigate(
     'Channel Screen',
     ScreenTransition.Cover
@@ -422,13 +435,12 @@ Set(
 )
 
 ```
-Which navigates to the next **Channels** screen, sets the Navigation correctly and saves the values in variables. Please note, that at this point we won't submit this form to the datasource.
 
-
+Which navigates to the next **Channels** screen, sets the Navigation correctly and saves the values in variables. Please note, that at this point we won't submit this form to the data source.
 
 ### Channels Screen
 
-On this screen, our owner-to-be can create the channels they want to be provisioned in their new Team. We work here with: 
+On this screen, our owner-to-be can create the channels they want to be provisioned in their new Team. We work here with:
 
 * 1 TextInput to get a value
 * a Button to add this value into a collection
@@ -437,9 +449,10 @@ On this screen, our owner-to-be can create the channels they want to be provisio
 
 #### Add Button
 
-* Set its **OnSelect** to 
+* Set its **OnSelect** to
 
-```
+``` Power Apps
+
   If(txtTagToAdd.Text in colChannels.ChannelName, 
     Notify(
         "You already added this Channel. Please try again with a different name.",
@@ -455,7 +468,7 @@ On this screen, our owner-to-be can create the channels they want to be provisio
 ); 
 ```
 
-This way, we use the **Notify** function to warn our user in case they add a Channel name that already exists in collection. If the channel name does not exist already in the collection, we add it.Then we update a variable that controls the **Reset** property of the TextInput, so that its always empty again afte we added a channelname to the collection. 
+This way, we use the **Notify** function to warn our user in case they add a Channel name that already exists in collection. If the channel name does not exist already in the collection, we add it.Then we update a variable that controls the **Reset** property of the TextInput, so that its always empty again after we added a channel name to the collection.
   
 #### TextInput
 
@@ -463,31 +476,34 @@ Set **Reset** to `locClearTextInput`
 
 #### Clear Button
 
-In case our user wants to start all over again, we give them a button to do so. 
+In case our user wants to start all over again, we give them a button to do so.
 
-Set **OnSelect** to 
+Set **OnSelect** to
 
-```
+``` Power Apps
+
 Clear(colChannels);
 UpdateContext({locClearTextInput: true});
 UpdateContext({locClearTextInput: false})
 ```
-which empties the collection and updates the variables that controls the **Reset** property of TexInput again. 
+
+which empties the collection and updates the variables that controls the **Reset** property of TexInput again.
 
 #### Gallery
 
 * Set **Items** to `colChannels`
 * Set the **Text** of **Title** Textlabel in the gallery to `ThisItem.ChannelName`
-* Change the default **Nextarrow* icon to a **Cancel** icon and set its **OnSelect** to  `RemoveIf(colChannels,ChannelName=ThisItem.ChannelName)`
+* Change the default **Nextarrow* icon to a **Cancel** icon and set its **OnSelect** to `RemoveIf(colChannels,ChannelName=ThisItem.ChannelName)`
 
 This way, our user can review the list of channels and even remove some of them again.  
 
 > This neat solution is described in more detail on [Carmen Ysewijn's blog](https://digipersonal.com/2021/04/22/canvas-app-ui-element-tag-box-list/)
 
-#### Next button
+#### The Next button
 
-With this button we want to set a variable that concatenates the Channels to a single string with, separated by `, ` , navigate to the next screen and set our navigation correctly. To achieve this, set **OnSelect** to 
-```
+With this button we want to set a variable that concatenates the Channels to a single string with, separated by `, ` , navigate to the next screen and set our navigation correctly. To achieve this, set **OnSelect** to
+
+``` Power Apps
 Set(
     varChannels,
     Concat(
@@ -508,7 +524,7 @@ Set(
 
 ### Libraries Screen
 
-We want to give users a way to get an additional library - and in this screen we want to get information on 
+We want to give users a way to get an additional library - and in this screen we want to get information on
 
 * library name
 * columns to add
@@ -517,7 +533,7 @@ We want to give users a way to get an additional library - and in this screen we
 
 Like in the channel screen, we want users to review their inputs again
 
-We will need for that 
+We will need for that
 
 * Form for the library name
 * Form for Column Names and Column Types
@@ -528,24 +544,24 @@ We will need for that
 
 #### Form for Library Name
 
-This Form connects to **SharePoint Libraries** table in Dataverse, please also see Solution Overview. 
-
+This Form connects to **SharePoint Libraries** table in Dataverse, please also see Solution Overview.
 
 #### Form for Column Name and Column Type
 
-This Form connects to our **List Columns** table in Dataverse, please also see Solution Overview. 
+This Form connects to our **List Columns** table in Dataverse, please also see Solution Overview.
 
 * Set **Items** of the **Column Type** Dropdown to `Choices('Column Type')`
 
-#### TextInput
+#### The TextInput
 
-In case user wants to add a choice colunmn, we display another TextInput control, which will then use the same approach as described in the Channels screen: User adds a value and confirms it by selecting an icon and we collect the values into a collection, then we display this collection in a gallery.
+In case user wants to add a choice column, we display another TextInput control, which will then use the same approach as described in the Channels screen: User adds a value and confirms it by selecting an icon and we collect the values into a collection, then we display this collection in a gallery.
 
 * Create a TexInput
 * Create an icon in that TextInput
 * Set **OnSelect** of the icon to
 
-```
+``` Power Apps
+
 Collect(
     ColChoicesLibrary,
     {Choice: TxtInputLibraryChoices.Text}
@@ -564,12 +580,13 @@ Reset(TxtInputLibraryChoices)
 
 #### Add columns Button
 
-This button shall add the values (column name, column type and column values of choice columns) to a collection. 
+This button shall add the values (column name, column type and column values of choice columns) to a collection.
 
 * Create a button
-* Set its **OnSelect** to 
+* Set its **OnSelect** to
 
-```
+``` Power Apps
+
 Collect(
     colColumnsLibrary,
     {
@@ -586,18 +603,20 @@ Clear(ColChoicesLibrary1);
 ResetForm('Form ColumnName-ColumnType')
 ```
 
-This means, that we will add the name of the column and the type of the column by getting the values from the respecting DataCards and use `Concat()` again to make a single string from the column choices values. Also, we show the gallery as we set a variable `isShowGalleryLibrary` and reset the the **ColumnName-ColumnValue** form. 
+This means, that we will add the name of the column and the type of the column by getting the values from the respecting DataCards and use `Concat()` again to make a single string from the column choices values. Also, we show the gallery as we set a variable `isShowGalleryLibrary` and reset the the **ColumnName-ColumnValue** form.
 
-* Set **Displaymode** of the button o 
+* Set **Displaymode** of the button to
 
-```
+``` Power Apps
+
 If(
     IsBlank(<DataCardValueWhichHoldsTheName>) = true || IsBlank(DataCardValueWhichHoldsTheType>.Selected.Value),
     Disabled,
     Edit
 )
 ```
-This way, our **Add** button will only be selectable if column name and column value are not empty. 
+
+This way, our **Add** button will only be selectable if column name and column value are not empty.
 
 #### Gallery to display Column Names and Column Types
 
@@ -606,25 +625,26 @@ This way, our **Add** button will only be selectable if column name and column v
 * Set **Items** to `colColumnsLibrary`
 * Set **Text** of the Title field to `ThisItem.Name` - it refers to the name of the column
 * Set **Text** of the subtitle field to `ThisItem.Type.Value` - it refers to the selected value of the column type
-* Set **Text** of the body field to `Left(ThisItem.ColumnValues, Len(ThisItem.ColumnValues)-2)` - it refers to the column values for choice columns but gets rid of the last `, ` at the end of the string using 
+* Set **Text** of the body field to `Left(ThisItem.ColumnValues, Len(ThisItem.ColumnValues)-2)` - it refers to the column values for choice columns but gets rid of the last `, ` at the end of the string using
   * `Left()` which returns a string with a certain amount of characters
   * `Len()` which returns the number of characters of a string
-* `-2` because `, ` (comma space) is 2 characers and we want to shorten the string by these to characters
-* Change the by default **NextArrow** icon to a Cancel icon and set its **OnSelect** to `RemoveIf(colColumnsLibrary1,Name=ThisItem.Name)` so that the user can remove this item if they want to. 
+* `-2` because `, ` (comma space) is 2 characters and we want to shorten the string by these to characters
+* Change the by default **NextArrow** icon to a Cancel icon and set its **OnSelect** to `RemoveIf(colColumnsLibrary1,Name=ThisItem.Name)` so that the user can remove this item if they want to.
 
 #### Next Button
 
-Our **Next** or **Save library** is supposed to do a few things: 
+Our **Next** or **Save library** is supposed to do a few things:
 
-* Set a variable for the library name (remember, we did not submit the form to our datasource)
+* Set a variable for the library name (remember, we did not submit the form to our data source)
 * Display a [PopUp](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasApp.md#popup) to indicate that the library was saved
 
-To achieve this, 
+To achieve this,
 
 * Create a button
 * Set its **OnSelect** to
 
-```
+```  Power Apps
+
 Set(
     IsShowSavedLibraries,
     true
@@ -637,18 +657,19 @@ Set(
 
 ### Lists Screen
 
-The Lists screen is following the same approach as the library screen, because we need the very same information about an additional list as for an additional library. Of course we collect the values in different collections, but all controls and the entire logic stays the same. 
+The Lists screen is following the same approach as the library screen, because we need the very same information about an additional list as for an additional library. Of course we collect the values in different collections, but all controls and the entire logic stays the same.
 
 ### Checkout Screen
 
-In the checkout screen, we want to display a PopUp in which the user may review all their responses - and return to a specific screen if they would want to correct something. 
+In the checkout screen, we want to display a PopUp in which the user may review all their responses - and return to a specific screen if they would want to correct something.
 
 * Create a PopUp, this time with 7 pages - this also means 7 different images, titles, contents and stepper dots
-* Set **OnVisible** to `UpdateContext({isShowSummary: true});UpdateContext({isPageSummary: 1})` 
+* Set **OnVisible** to `UpdateContext({isShowSummary: true});UpdateContext({isPageSummary: 1})`
 * Set **Visible** of the entire PopUpGroup to `isShowSummary`
-* Set **Text** of your main content Textlabel to 
+* Set **Text** of your main content Textlabel to
 
-```
+``` Power Apps
+
 If(
     isPageSummary = 1,
     "please review your request before you submit it",
@@ -711,10 +732,12 @@ If(
     )
 )
 
-```
-* Set **Text** of the title Textlabel to 
+``` Power Apps
+
+* Set **Text** of the title Textlabel to
 
 ```
+
 If(
     isPageSummary = 1,
     "Let's make your teamwork wishes come true",
@@ -740,13 +763,15 @@ If(
         )
     )
 )
-```
+
+```  Power Apps
 
 For **Text**, **Width** and **X** of your Next button refer to [PopUps](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasApp.md#popup)
 
 * Set **OnSelect** to 
 
-```
+```  Power Apps
+
 If(
     isPageSummary = 1,
     UpdateContext({isPageSummary: 2}),
@@ -825,14 +850,11 @@ UpdateContext({isPageSummary: 7}),
 );
 
 ```
-A little polish: 
-We want a checkbox to be displayed before the very last step so that our user needs to confirm that they understood that this is the point of no return. 
+
+A little polish:
+We want a checkbox to be displayed before the very last step so that our user needs to confirm that they understood that this is the point of no return.
 
 * Create a Checkbox on the CheckOut Screen
 * Set its **Visible** to `If(isShowSummary=true &&isPageSummary=6,true, false)` - which shows it only on the last page of the Summary PopUp
 * Set its **Text** to `"Yes I understand that I can't change my request anymore after I selected the SUBMIT button"`
-* Set **DisplayMode** of the **Next** button to `If(isPageSummary=6 && Checkbox1.Value=false, Disabled, Edit)` - this way, the button is only selectable, if user checked the checkbox. 
- 
-
-
-
+* Set **DisplayMode** of the **Next** button to `If(isPageSummary=6 && Checkbox1.Value=false, Disabled, Edit)` - this way, the button is only selectable, if user checked the checkbox.

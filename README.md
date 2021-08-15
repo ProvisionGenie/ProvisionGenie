@@ -2,7 +2,7 @@
 
 ![Genie Header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Communication/Genie_Header.png)
 
-ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/microsoft-teams/group-chat-software) that lets you learn how the concept of a team in Microsoft Teams works in general and how you can make it work for your team. As Teams is a platform that can connect to a lot of services, we want to make your start even easier. We will skill you up and guide you through some questions regarding how your team should look like. As a result, you can request the 'Team of your dreams', which will be provisioned automatically 🦄 for you.
+ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/microsoft-teams/group-chat-software) that lets you learn how your team works best in Microsoft Teams. As Teams is a platform that can connect to a lot of services, we want to make your start even easier. We will skill you up and guide you through some questions regarding how your team should look like. As a result, you can request the 'Team of your dreams', which will be provisioned automatically 🦄 for you.
 
 ![Walkthrough](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/canvasapp/walkthroughgif.gif)
 

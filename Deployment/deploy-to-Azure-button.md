@@ -1,6 +1,5 @@
 # Deploy to Azure
 
-// this is the button
 ![Deploy to Azure](https://aka.ms/deploytoazurebutton)
 
 ## how to

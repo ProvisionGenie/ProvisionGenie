@@ -61,7 +61,7 @@ We welcome contributions, we summarized how you can contribute in the [Contribut
 
 💖 If you like this project, give it a ⭐ and share it with your friends!
 
-Also, buy us coffee - ProvisionGenie wouldn't be possible without it!
+Also, buy us coffee ☕ - ProvisionGenie wouldn't be possible without it!
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/mG3ghJC)
 

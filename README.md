@@ -13,17 +13,16 @@ ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/microso
 
 ## Core components of this solution
 
-* [Power Apps Canvas App](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasAppOverview.md)
-* [5 DataVerse tables](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview)
-* [5 Azure Logic Apps flows](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md)
+* [Power Apps Canvas App](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasAppOverview.md) which serves as our UI
+* [5 DataVerse tables](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview) where we log all Teams requests
+* [5 Azure Logic Apps flows](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md) which we use to provision the requested Teams
 
 ## How to get started
 
+* Read our to understand the impact of ProvisionGenie [Fact sheet for Admins](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Admin-fact-sheet.md)
 * Familiarize yourself with the [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview)
-* Use our [Deployment Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/DeploymentGuide.md) to understand the minimal path to awesome
-* [Fact sheet for Admins](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Admin-fact-sheet.md)
-* End User Quick Start Guide
-* [License](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/LICENSE.md)
+* Use our [Deployment Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/DeploymentGuide.md) to deploy ProvisionGenie
+* Understand the [License](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/LICENSE.md)
 
 ## What does it cost?
 

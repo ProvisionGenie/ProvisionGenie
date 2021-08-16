@@ -55,7 +55,7 @@ This solution is an initiative by [Luise Freese](https://m365princess.com) and [
 
 ## Contributions
 
-We welcome contributions, we summarized how you can contribute in the [contribution guidelines](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTING.md).
+We welcome contributions, we summarized how you can contribute in the [Contribution guidelines](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTING.md).
 
 ## Support us
 

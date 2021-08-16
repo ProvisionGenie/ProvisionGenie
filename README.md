@@ -26,7 +26,7 @@ ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/microso
 
 ## What does it cost?
 
-* ProvisionGenie is an open-source project and we won't charge you for using, extending, or modifying it. For more information, see our [license](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/LICENSE.md)
+* ProvisionGenie is an open-source project and we won't charge you for using, extending, or modifying it. For more information, please see our [license](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/LICENSE.md)
 * To make the app work, you will need
   * an [Azure subscription](https://azure.microsoft.com/) -for more detail see [Cost estimation](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CostEstimation.md)
   * a [Power Apps per app](https://powerapps.microsoft.com/pricing/) or [Power Apps per user](https://powerapps.microsoft.com/pricing/) plan as we use [Microsoft Dataverse](https://powerplatform.microsoft.com/dataverse/) to store data

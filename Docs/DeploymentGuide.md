@@ -247,7 +247,7 @@ in your new Storage account,
 * type in `templates` in the form as a Name
 * Select **Create**
 
-![create container](Docs/media/AzurePortalCreateContainer.png)
+![create container](/Docs/media/AzurePortalCreateContainer.png)
 
 Run this script in PowerShell
 

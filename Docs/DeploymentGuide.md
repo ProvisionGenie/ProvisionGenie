@@ -13,7 +13,8 @@ This guide shall walk you through the minimal path to awesome. It lists all step
 * [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, please also see [Considerations about where to store data](Considerations-on-Dataverse.md))
 * Environment with [Dataverse database](https://docs.microsoft.com/power-platform/admin/create-database) - NOT a Dataverse for Teams environment, please also see [Considerations about where to store data](Considerations-on-Dataverse.md)
 * Admin role Azure: [Contributor](https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#contributor)
-* Power Platform role: [Power Platform Environment Maker](https://docs.microsoft.com/power-platform/admin/database-security)
+* Power Platform role: [Power Platform Environment Maker](https://docs.microsoft.com/power-platform/admin/database-security) TODO check
+* Power Platform role: [System Administrator](https://docs.microsoft.com/power-platform/admin/database-security)
 
 ## Steps
 
@@ -118,7 +119,13 @@ az ad app permission grant --id $adappid --api 00000007-0000-0000-c000-000000000
 
 That's it!
 
-### 2. Create a new Azure resource group
+### 2. Dataverse solution
+
+* make environment
+* import our solution with tables and canvasapp
+* create app user https://docs.microsoft.com/en-us/power-platform/admin/manage-application-users#create-an-application-user
+
+### 3. Create a new Azure resource group
 
 The yet-to-deploy Azure Logic Apps will need a resource group to be deployed in. We recommend creating a new resource group. You can do this [via the Azure portal](DeploymentGuide.md#new-resource-group-with-Azure-portal) or [via Azure CLI](DeploymentGuide.md#new-resource-group-with-Azure-cli).
 

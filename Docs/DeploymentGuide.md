@@ -121,15 +121,29 @@ That's it!
 
 ### 2. Dataverse solution
 
-* make environment
-* import our solution with tables and canvasapp
-* create app user https://docs.microsoft.com/en-us/power-platform/admin/manage-application-users#create-an-application-user
+// TODO: explain ProvisionGenie User security role
+screenshots by Carmen
 
-### 3. Create a new Azure resource group
+making sure, that users can't bypass ProvisionGenie and access data that they should not have access to.
+link to security role docs
+https://docs.microsoft.com/en-us/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database
 
-The yet-to-deploy Azure Logic Apps will need a resource group to be deployed in. We recommend creating a new resource group. You can do this [via the Azure portal](DeploymentGuide.md#new-resource-group-with-Azure-portal) or [via Azure CLI](DeploymentGuide.md#new-resource-group-with-Azure-cli).
+* in case you don't have already an environment that you want to use for ProvisionGenie, follow these steps to [create a new environment with a database](https://docs.microsoft.com/en-us/power-platform/admin/create-environment#create-an-environment-with-a-database)
+TODO: explain dataverse for teams environment is not enough
+TODO: explain don't deploy the demo apps
+* import our solution with tables and canvasapp and securityrole "Provision Genie user"
+like this: https://docs.microsoft.com/en-us/powerapps/maker/data-platform/import-update-export-solutions
+* create app user and assign security role "Provision Genie user" as part of the creation process https://docs.microsoft.com/en-us/power-platform/admin/manage-application-users#create-an-application-user
 
-#### New resource group with Azure Cli
+### 3. Create new Azure resource groups
+
+The yet-to-deploy Azure Logic Apps will need a resource group to be deployed in. We recommend creating a new resource group. additionally, you will need a second resource group in which you temporarily store the template files in. After successful deployment, you may delete this second resource group.
+
+You can do create resource groups [via the Azure portal](DeploymentGuide.md#new-resource-group-with-Azure-portal) or [via Azure CLI](DeploymentGuide.md#new-resource-group-with-Azure-cli).
+
+#### New resource group with Azure CLI
+
+**Please repeat the following steps for both resource groups**
 
 * open [shell.azure.com](https://portal.azure.com/#cloudshell/)
 * run
@@ -146,6 +160,8 @@ On success, you will see this in the output:
 ![Create Resource Group](media/CloudShellcreateRg.png)
 
 #### New resource group with Azure portal
+
+**Please repeat the following steps for both resource groups**
 
 As an alternative to use Azure CLI to create a new resource group, you can also complete the following steps in the Azure portal:
 
@@ -175,13 +191,24 @@ On success, your new resource group will show up in the overview:
 
 That's it!
 
-### 3. Deployment of Azure Logic Apps
+### 4. Deployment of Azure Logic Apps
 
-TODO
+For the ProvisionGenie-Deployment-templates resource group, create a new storage account to store the template files in
 
-### 4. Import of Power Platform solution
+```azurecli
+#create storage account
+az storage account create `
+    -n $storage `
+    -l $location `
+    -g $resourceGroup `
+    --sku Standard_LRS
+```
 
-TODO
+Inside of storage account, create a new container named `templates` and upload template files that you can find [here](https://github.com/ProvisionGenie/ProvisionGenie/tree/main/Deployment/ARM).
+
+Run this script in Azure CLI:
+
+
 
 ``` Azure CLI
 $principalId = 'HERE GOES YOUR MANAGED IDENTITY OBJECT ID'

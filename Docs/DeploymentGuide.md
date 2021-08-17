@@ -153,7 +153,7 @@ You can create both resource groups [via the Azure portal](DeploymentGuide.md#ne
 
 #### New resource group with Azure CLI
 
-**Please repeat the following steps for both resource groups**
+⚡ Please repeat the following steps for both resource groups
 
 * open [shell.azure.com](https://portal.azure.com/#cloudshell/)
 * run
@@ -171,7 +171,7 @@ On success, you will see this in the output:
 
 #### New resource group with Azure portal
 
-**Please repeat the following steps for both resource groups**
+⚡ Please repeat the following steps for both resource groups
 
 As an alternative to use Azure CLI to create a new resource group, you can also complete the following steps in the Azure portal:
 
@@ -217,8 +217,6 @@ az storage account create `
 ```
 
 Inside of storage account, create a new container named `templates` and upload template files that you can find [here](https://github.com/ProvisionGenie/ProvisionGenie/tree/main/Deployment/ARM).
-
-
 
 #### Create Storage account in Azure portal
 

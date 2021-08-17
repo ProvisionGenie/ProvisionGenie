@@ -121,25 +121,35 @@ That's it!
 
 ### 2. Dataverse solution
 
-// TODO: explain ProvisionGenie User security role
-screenshots by Carmen
+We built ProvisionGenie using Dataverse mostly for security reasons. We do not want to give users a way to bypass the canvas app and access data they shouldn't have access to. This concern was one of our main reasons to not use SharePoint lists to log requests as you would need to share the list with every user which means that they could create new items, manipulate and even delete data. For more information, please head over to [Considerations-on-Dataverse](Docs\Considerations-on-Dataverse.md)
 
-making sure, that users can't bypass ProvisionGenie and access data that they should not have access to.
-link to security role docs
-https://docs.microsoft.com/en-us/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database
+In Dataverse, we can setup [security roles](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database) to prevent this and we made a security role "ProvisionGenie user" part of the solution that you will import in the next steps.
 
-* in case you don't have already an environment that you want to use for ProvisionGenie, follow these steps to [create a new environment with a database](https://docs.microsoft.com/en-us/power-platform/admin/create-environment#create-an-environment-with-a-database)
-TODO: explain dataverse for teams environment is not enough
-TODO: explain don't deploy the demo apps
-* import our solution with tables and canvas app and security role "Provision Genie user" TODO insert github link to .zip file
-like this: https://docs.microsoft.com/en-us/powerapps/maker/data-platform/import-update-export-solutions
-* create app user and assign security role "Provision Genie user" as part of the creation process https://docs.microsoft.com/en-us/power-platform/admin/manage-application-users#create-an-application-user
+You will need to create an application user and assign the security role to it.
+
+// TODO: screenshots by Carmen
+
+1. in case you don't have already an environment that you want to use for ProvisionGenie, follow these steps to [create a new environment with a database](https://docs.microsoft.com/power-platform/admin/create-environment#create-an-environment-with-a-database)
+
+    Please note: a Dataverse for teams environment is not enough
+    TODO: explain don't deploy the demo apps
+2. Import our solution with
+    * Dataverse tables to log the requests
+    * ProvisionGenie canvas app as the UI
+    * Security role "Provision Genie user"
+
+    from here: TODO insert github link to .zip file
+
+    In case this is the first time you import a solution, please follow the steps described here: [Import a Power Platform solution](https://docs.microsoft.com/powerapps/maker/data-platform/import-update-export-solutions)
+3. create an application user and the assign security role "Provision Genie user" as part of the creation process as described here: [Create an application user](https://docs.microsoft.com/power-platform/admin/manage-application-users#create-an-application-user)
 
 ### 3. Create new Azure resource groups
 
-The yet-to-deploy Azure Logic Apps will need a resource group to be deployed in. We recommend creating a new resource group. additionally, you will need a second resource group in which you temporarily store the template files in. After successful deployment, you may delete this second resource group.
+The yet-to-deploy Azure Logic Apps will need a resource group to be deployed in. We recommend creating a new resource group `ProvisionGenie-resourcegroup`.
 
-You can do create resource groups [via the Azure portal](DeploymentGuide.md#new-resource-group-with-Azure-portal) or [via Azure CLI](DeploymentGuide.md#new-resource-group-with-Azure-cli).
+ Additionally, you will need a second resource group `ProvisionGenie-Deployment-resourcegroup` in which you temporarily store the template files in. After successful deployment, you may delete this second resource group.
+
+You can create both resource groups [via the Azure portal](DeploymentGuide.md#new-resource-group-with-Azure-portal) or [via Azure CLI](DeploymentGuide.md#new-resource-group-with-Azure-cli).
 
 #### New resource group with Azure CLI
 
@@ -193,7 +203,9 @@ That's it!
 
 ### 4. Deployment of Azure Logic Apps
 
-For the ProvisionGenie-Deployment-templates resource group, create a new storage account to store the template files in
+In the `ProvisionGenie-Deployment-resourcegroup`, create a new storage account to store the template files in. You can either create this storage account suing [Azure CLI](#create-storage-account-in-azure-cli) or via Azure portal:
+
+#### Create Storage account in Azure CLI
 
 ```azurecli
 #create storage account
@@ -206,11 +218,43 @@ az storage account create `
 
 Inside of storage account, create a new container named `templates` and upload template files that you can find [here](https://github.com/ProvisionGenie/ProvisionGenie/tree/main/Deployment/ARM).
 
+
+
+#### Create Storage account in Azure portal
+
+* Open [portal.azure.com](https://portal.azure.com)
+* Select **Resource groups**
+* Select the `ProvisionGenie-Deployment-resourcegroup`
+* Select **Create**
+* Search for `storage account`
+* Select **Storage account**
+* Select **Create**
+* Fil out the form as shown:
+
+![Create storage account](Docs\media\AzurePortalCreateStorage.png)
+
+* Select **Review + Create**
+* Review if everything looks ok - please note that you see a **Validation passed** banner
+![validation passed](Docs\media\AzurePortalValidationpassed.png)
+
+* Select **Create**
+
+This will take a moment or two, the Azure portal will notify you once this step is completed.
+
+in your new Storage account,
+
+* Select **Containers**
+* Select **+ Container**
+* type in `templates` in the form as a Name
+* Select **Create**
+
+![create container](Docs\media\AzurePortalCreateContainer.png)
+
 Run this script in PowerShell
 
 ```powershell
 
-#set values
+#Set values
 $originResourceGroupName="<your resource group name here>"
 $storageAccountName="<your storage account name here>"
 $containerName = "templates"
@@ -229,8 +273,6 @@ New-AzResourceGroupDeployment `
   -verbose
 
 ```
-
-
 
 ``` Azure CLI
 $principalId = 'HERE GOES YOUR MANAGED IDENTITY OBJECT ID'

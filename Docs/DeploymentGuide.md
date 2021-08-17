@@ -233,7 +233,8 @@ Inside of storage account, create a new container named `templates` and upload t
 
 * Select **Review + Create**
 * Review if everything looks ok - please note that you see a **Validation passed** banner
-![validation passed](Docs/media/AzurePortalValidationpassed.png)
+
+![validation passed](/Docs/media/AzurePortalValidationpassed.png)
 
 * Select **Create**
 
@@ -246,7 +247,7 @@ in your new Storage account,
 * type in `templates` in the form as a Name
 * Select **Create**
 
-![create container](Docs\media\AzurePortalCreateContainer.png)
+![create container](Docs/media/AzurePortalCreateContainer.png)
 
 Run this script in PowerShell
 

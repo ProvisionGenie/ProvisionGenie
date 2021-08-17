@@ -4,19 +4,20 @@
 
 ![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
 
-This guide shall walk you through the minimal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant.
+This guide shall walk you through the minimal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant. If you haven't done this by now, please familiarize yourself with our [solution overview](/Docs/LogicApps.md#solution-overview)
 
 ## Prerequisites
 
 * Azure Subscription - if you don't have one, [get it here free](https://azure.microsoft.com//free) - please also see [Cost estimation](CostEstimation.md)
 * Microsoft 365 license
 * [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, please also see [Considerations about where to store data](Considerations-on-Dataverse.md))
-* Environment with [Dataverse database](https://docs.microsoft.com/power-platform/admin/create-database) - NOT a Dataverse for Teams environment, please also see [Considerations about where to store data](Considerations-on-Dataverse.md)
+* Environment with [Dataverse database](https://docs.microsoft.com/power-platform/admin/create-database) 
 * Admin role Azure: [Contributor](https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#contributor)
-* Power Platform role: [Power Platform Environment Maker](https://docs.microsoft.com/power-platform/admin/database-security) TODO check
 * Power Platform role: [System Administrator](https://docs.microsoft.com/power-platform/admin/database-security)
 
 ## Steps
+
+In order to successfully deploy ProvisionGenie, you will need to perform the following steps
 
 * [1. App registration for deployment of Dataverse tables](DeploymentGuide.md#1-App-registration-for-deployment-of-Dataverse-tables)
 * [2. Dataverse solution](DeploymentGuide.md#2-dataverse-solution)
@@ -25,9 +26,9 @@ This guide shall walk you through the minimal path to awesome. It lists all step
 
 ### 1. App registration for deployment of Dataverse tables
 
-#### App registration for deployment of Dataverse tables using in Azure portal
+You will need to register an app in Azure AD in order to deploy the dataverse tables to your tenant. You can register the app either using the [Azure portal](#app-registration-for-deployment-of-dataverse-tables-using-azure-portal) or using [Azure CLI](#app-registration-for-deployment-of-dataverse-tables-using-azure-cli)
 
-You will need to register an app in Azure AD in order to deploy the dataverse tables to your tenant. You can register the app either in the Azure Portal or in a CLI of your choice (PowerShell, CLI for Microsoft 365, Azure CLI). This guide provides you with an option to use the Azure portal and Azure ClI. If you prefer to use Azure CLI, please select [App registration with Azure CLI](DeploymentGuide.md#App-registration-for-deployment-of-Dataverse-tables-using-Azure-CLI)
+#### App registration for deployment of Dataverse tables using in Azure portal
 
 * Go to [portal.azure.com](https://portal.azure.com)
 * Log in
@@ -41,7 +42,7 @@ You will need to register an app in Azure AD in order to deploy the dataverse ta
 ![App registrations](media/AzurePortalADAppregistrationsSteps.png)
 
 * (1) Type in a name for your app like `ProvisionGenieApp`
-* (2) Select **Accounts in this organizational directory only (\<your organization name> only - Single tenant)**
+* (2) Select **Accounts in this organizational directory only (<your organization name> only - Single tenant)**
 * (3) Select **Register**
 
 ![Register new app](media/AzurePortalADAppregistrationsNew.png)

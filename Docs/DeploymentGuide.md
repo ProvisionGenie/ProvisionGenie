@@ -166,10 +166,6 @@ az group create -n <your-resourcegroupname-here> --location <your-location-here>
 <!-- TODO: assign role 
 https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli -->
 
-On success, you will see this in the output:
-
-![Create Resource Group](media/CloudShellcreateRg.png)
-
 #### New resource group with Azure portal
 
 ⚡ Please repeat the following steps for both resource groups

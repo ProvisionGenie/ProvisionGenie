@@ -56,7 +56,7 @@ You will need to register an app in Azure AD in order to deploy the dataverse ta
 * (1) Select **user_impersonation**
 * (2) Select **Add permissions**
 
-![User Impersonation](media/AzurePortalADAppregistrationsAddPermissionDynCRMUserImpersonationSteps.png)
+![User Impersonation](media/AzurePortalADAppregistrationsAddPermissionDynCRMUserImpersonationSteps-cut.png)
 
 * (1) Select **Certificates & secrets**
 * (2) Select **New client secret**

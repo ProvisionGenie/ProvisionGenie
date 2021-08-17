@@ -207,6 +207,25 @@ az storage account create `
 Inside of storage account, create a new container named `templates` and upload template files that you can find [here](https://github.com/ProvisionGenie/ProvisionGenie/tree/main/Deployment/ARM).
 
 Run this script in Azure CLI:
+```
+$originResourceGroupName="PG-deploy-templatestorage"
+$storageAccountName="pgdeploystorage"
+$containerName = "templates"
+
+$key = (Get-AzStorageAccountKey -ResourceGroupName $originResourceGroupName -Name $storageAccountName).Value[0]
+$context = New-AzStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $key
+
+$mainTemplateUri = $context.BlobEndPoint + "$containerName/ARM-template.json"
+$targetResourceGroupName="ProvisionGenie"
+
+New-AzResourceGroupDeployment `
+  -Name DeployLinkedTemplate `
+  -ResourceGroupName $targetResourceGroupName `
+  -TemplateUri $mainTemplateUri `
+  -QueryString  "sp=r&st=2021-07-29T15:26:23Z&se=2021-07-29T23:26:23Z&spr=https&sv=2020-08-04&sr=c&sig=JAZT2fA%2BMCxHBEcja%2FKEQpGjxuMGZFJ1JQIqTK%2BfMlk%3D" `
+  -verbose
+
+```
 
 
 

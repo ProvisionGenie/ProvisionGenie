@@ -229,11 +229,11 @@ Inside of storage account, create a new container named `templates` and upload t
 * Select **Create**
 * Fil out the form as shown:
 
-![Create storage account](/docs/media/AzurePortalCreateStorage.png)
+![Create storage account](/Docs/media/AzurePortalCreateStorage.png)
 
 * Select **Review + Create**
 * Review if everything looks ok - please note that you see a **Validation passed** banner
-![validation passed](docs/media/AzurePortalValidationpassed.png)
+![validation passed](Docs/media/AzurePortalValidationpassed.png)
 
 * Select **Create**
 

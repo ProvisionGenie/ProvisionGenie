@@ -19,9 +19,9 @@ This guide shall walk you through the minimal path to awesome. It lists all step
 ## Steps
 
 * [1. App registration for deployment of Dataverse tables](DeploymentGuide.md#1-App-registration-for-deployment-of-Dataverse-tables)
-* [2. Create a new Azure resource group](DeploymentGuide.md#2-Create-a-new-Azure-resource-group)
-* [3. Deployment of Azure Logic Apps](DeploymentGuide.md#3-Deployment-of-Azure-Logic-Apps)
-* [4. Import of Power Platform solution](DeploymentGuide.md#4-Import-of-Power-Platform-solution)
+* [2. Dataverse solution](DeploymentGuide.md#2-dataverse-solution)
+* [3. Create new Azure resource groups](DeploymentGuide.md#3-create-new-azure-resource-groups)
+* [4. Deployment of Azure Logic Apps](DeploymentGuide.md#4-deployment-of-azure-logic-apps)
 
 ### 1. App registration for deployment of Dataverse tables
 
@@ -131,7 +131,7 @@ https://docs.microsoft.com/en-us/power-platform/admin/database-security#assign-s
 * in case you don't have already an environment that you want to use for ProvisionGenie, follow these steps to [create a new environment with a database](https://docs.microsoft.com/en-us/power-platform/admin/create-environment#create-an-environment-with-a-database)
 TODO: explain dataverse for teams environment is not enough
 TODO: explain don't deploy the demo apps
-* import our solution with tables and canvasapp and securityrole "Provision Genie user"
+* import our solution with tables and canvas app and security role "Provision Genie user" TODO insert github link to .zip file
 like this: https://docs.microsoft.com/en-us/powerapps/maker/data-platform/import-update-export-solutions
 * create app user and assign security role "Provision Genie user" as part of the creation process https://docs.microsoft.com/en-us/power-platform/admin/manage-application-users#create-an-application-user
 

@@ -206,12 +206,15 @@ az storage account create `
 
 Inside of storage account, create a new container named `templates` and upload template files that you can find [here](https://github.com/ProvisionGenie/ProvisionGenie/tree/main/Deployment/ARM).
 
-Run this script in Azure CLI:
-```
-$originResourceGroupName="PG-deploy-templatestorage"
-$storageAccountName="pgdeploystorage"
-$containerName = "templates"
+Run this script in PowerShell
 
+```powershell
+
+#set values
+$originResourceGroupName="<your resource group name here>"
+$storageAccountName="<your storage account name here>"
+$containerName = "templates"
+# Create a key
 $key = (Get-AzStorageAccountKey -ResourceGroupName $originResourceGroupName -Name $storageAccountName).Value[0]
 $context = New-AzStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $key
 

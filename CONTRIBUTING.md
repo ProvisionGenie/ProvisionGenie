@@ -15,8 +15,6 @@ If you have general questions about Power Apps, Azure Logic Apps, Microsoft iden
 
 * [Microsoft 365 PnP Community](https://techcommunity.microsoft.com/t5/microsoft-365-pnp-blog/bg-p/Microsoft365PnPBlog) at [techcommunity.microsoft.com](https://techcommunity.microsoft.com)
 
-You can find more information on [how to create a good issue](https://github.com/ProvisionGenie/ProvisionGenie/wiki/How-to-create-a-good-issue) in our [Wiki](https://github.com/ProvisionGenie/ProvisionGenie/wiki).
-
 ## Typos, Issues, Bugs and contributions
 
 Please follow these recommendations.

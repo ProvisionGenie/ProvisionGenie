@@ -10,7 +10,7 @@ This guide shall walk you through the minimal path to awesome. It lists all step
 
 * Azure Subscription - if you don't have one, [get it here free](https://azure.microsoft.com//free) - please also see [Cost estimation](CostEstimation.md)
 * Microsoft 365 license
-* [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, please also see [Considerations about where to store data](Considerations-on-Dataverse.md))
+* [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, please also see [Considerations about where to store data](Docs/Considerations-on-Dataverse.md))
 * Environment with [Dataverse database](https://docs.microsoft.com/power-platform/admin/create-database) 
 * Admin role Azure: [Contributor](https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#contributor)
 * Power Platform role: [System Administrator](https://docs.microsoft.com/power-platform/admin/database-security)
@@ -166,10 +166,6 @@ az group create -n <your-resourcegroupname-here> --location <your-location-here>
 <!-- TODO: assign role 
 https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli -->
 
-On success, you will see this in the output:
-
-![Create Resource Group](media/CloudShellcreateRg.png)
-
 #### New resource group with Azure portal
 
 ⚡ Please repeat the following steps for both resource groups
@@ -216,6 +212,30 @@ az storage account create `
     -g $resourceGroup `
     --sku Standard_LRS
 ```
+     
+Run this script in PowerShell
+
+```powershell
+
+#Set values
+$originResourceGroupName="<your resource group name here>"
+$storageAccountName="<your storage account name here>"
+$containerName = "templates"
+# Create a key
+$key = (Get-AzStorageAccountKey -ResourceGroupName $originResourceGroupName -Name $storageAccountName).Value[0]
+$context = New-AzStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $key
+
+$mainTemplateUri = $context.BlobEndPoint + "$containerName/ARM-template.json"
+$targetResourceGroupName="ProvisionGenie"
+
+New-AzResourceGroupDeployment `
+  -Name DeployLinkedTemplate `
+  -ResourceGroupName $targetResourceGroupName `
+  -TemplateUri $mainTemplateUri `
+  -QueryString  "sp=r&st=2021-07-29T15:26:23Z&se=2021-07-29T23:26:23Z&spr=https&sv=2020-08-04&sr=c&sig=JAZT2fA%2BMCxHBEcja%2FKEQpGjxuMGZFJ1JQIqTK%2BfMlk%3D" `
+  -verbose
+
+```
 
 Inside of storage account, create a new container named `templates` and upload template files that you can find [here](https://github.com/ProvisionGenie/ProvisionGenie/tree/main/Deployment/ARM).
 
@@ -250,29 +270,7 @@ in your new Storage account,
 
 ![create container](/Docs/media/AzurePortalCreateContainer.png)
 
-Run this script in PowerShell
 
-```powershell
-
-#Set values
-$originResourceGroupName="<your resource group name here>"
-$storageAccountName="<your storage account name here>"
-$containerName = "templates"
-# Create a key
-$key = (Get-AzStorageAccountKey -ResourceGroupName $originResourceGroupName -Name $storageAccountName).Value[0]
-$context = New-AzStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $key
-
-$mainTemplateUri = $context.BlobEndPoint + "$containerName/ARM-template.json"
-$targetResourceGroupName="ProvisionGenie"
-
-New-AzResourceGroupDeployment `
-  -Name DeployLinkedTemplate `
-  -ResourceGroupName $targetResourceGroupName `
-  -TemplateUri $mainTemplateUri `
-  -QueryString  "sp=r&st=2021-07-29T15:26:23Z&se=2021-07-29T23:26:23Z&spr=https&sv=2020-08-04&sr=c&sig=JAZT2fA%2BMCxHBEcja%2FKEQpGjxuMGZFJ1JQIqTK%2BfMlk%3D" `
-  -verbose
-
-```
 
 ``` Azure CLI
 $principalId = 'HERE GOES YOUR MANAGED IDENTITY OBJECT ID'

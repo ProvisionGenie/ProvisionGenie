@@ -34,7 +34,7 @@ We take security, privacy, and governance very seriously and want you to make th
 * In the Dataverse environment, access is controlled at three levels:
   * Environment roles
   * Resource permissions for Power Apps
-  * Dataverse security roles
+  * Dataverse security roles - Part of our solution is a special security role, so that that noone can bypass the canvas app. This way, data can't be over exposed. 
 * Conditional Access Policy via Azure AD Premium can be applied for Power Apps as well
 * Data loss prevention policies can prevent data leakage  
   

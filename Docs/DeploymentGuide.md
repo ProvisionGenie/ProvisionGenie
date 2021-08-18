@@ -270,7 +270,6 @@ in your new Storage account,
 
 ![create container](/Docs/media/AzurePortalCreateContainer.png)
 
-
 ``` Azure CLI
 $principalId = 'HERE GOES YOUR MANAGED IDENTITY OBJECT ID'
 $graphResourceId = $(az ad sp list --display-name "Microsoft Graph" --query [0].objectId --out tsv)

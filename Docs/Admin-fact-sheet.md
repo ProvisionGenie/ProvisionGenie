@@ -47,11 +47,9 @@ ProvisionGenie itself is free, but you will need
 
 For more detail, head over to [Cost estimation](LogicApps.m#CostEstimation.md)
 
-## Security/Privacy/Governance concerns
+## Security
 
-We take security, privacy, and governance very seriously and want you to make the informed decision, that you can consider ProvisionGenie to be a good fit for your organization:
-
-### Security
+We take security very serious and want you to make the informed decision, that ProvisionGenie is a good fit for your organization:
 
 * You can't unintentionally overexpose data only by allowing Power Apps in your organization, as Power Apps does not provide users with access to any data assets that they don't already have access to
 * Power Platform leverages Azure Active Directory to control user authentication & access to data
@@ -60,9 +58,10 @@ We take security, privacy, and governance very seriously and want you to make th
   * Resource permissions for Power Apps
   * Dataverse security roles - Part of our solution is a special security role, so that that no one can bypass the canvas app. This way, data can't be over exposed.
 * Conditional Access Policy via Azure AD Premium can be applied for Power Apps as well
-* Data loss prevention policies can prevent data leakage  
   
-### Privacy
+## Privacy
+
+We do not collect any data about you or your users. We built ProvisionGenie for Microsoft Teams and all data stays in your tenant.
 
 More helpful resources:
 
@@ -71,22 +70,31 @@ More helpful resources:
 * [In detail report on Dynamics 365 and Power Platform:Availability, data location, language, and localization - PDF download](https://aka.ms/dynamics_365_international_availability_deck)
 * [Detailed information on geographical availability - Power BI report](https://dynamics.microsoft.com/Report/GetGeoReport/)
 
-### Governance
+## Governance
+
+We designed and built ProvisionGenie to be an enterprise-grade solution.
 
 * ProvisionGenie can be monitored like every other Power platform solution within the [Center of Excellence Starter Kit](https://docs.microsoft.com/power-platform/guidance/coe/starter-kit), which we highly recommend to use.
+* Additionally, you can [monitor the Logic Apps in the Azure portal](https://docs.microsoft.com/azure/logic-apps/monitor-logic-apps).
 
 ## Deploy and maintain ProvisionGenie
 
-To get a better understanding of ProvisionGenie we highly recommend to familiarize yourself first with our [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview). Additionally we provide you with a pictured step by step [Deployment Guide](DeploymentGuide.md) that walks you through the entire deployment. If something doesn't work you can always [raise an issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose) and we will help. We don't believe that you will experience major difficulties, as we of course tested the deployment before.
+* To get a better understanding of the architecture of ProvisionGenie we recommend to familiarize yourself first with our [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview).
+* Additionally we provide you with a pictured step by step [Deployment Guide](DeploymentGuide.md) that walks you through the entire deployment.
+* If something doesn't work you can always [raise an issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose) and we will help. We don't believe that you will experience major difficulties, as we of course tested the deployment before.
 
 ## Update schedule
 
 This is an open-source project and we welcome [contributions](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTINGt.md).
 
-We will version like this:
+We will use [semantic versioning](https://semver.org/):
 
 * We will merge PRs about fixing defects or optimizing existing code fortnightly and release a patch which you can then use
 * New features without breaking changes will be released in minor versions
 * breaking changes will be released only in major versions
 
 You can familiarize yourself with our [Roadmap](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Roadmap.md) to know what's coming when.
+
+## Any other questions?
+
+Please let us know, we love to help!

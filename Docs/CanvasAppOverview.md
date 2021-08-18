@@ -23,6 +23,36 @@ This is, what ProvisionGenie does:
   * if Owner additionally wants a SharePoint list for task management (see also [why we don't provision Planner in ProvisionGenie](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/KnownLimitations.md#no-planner-integration-in-provisiongenie)) or a "Welcome package"
 * Patch 5 Dataverse tables with the information we got by user
 
+As a result of the provisioning process, we have 
+
+* 1 Teams team (with a corresponding SharePoint team site that includes the default document library but without the Teams Wiki. 
+* as many channels as requested
+* 1 additional library with as many as requested columns of type 
+  * single line of text
+  * multiple lines of text
+  * number
+  * date
+  * date and time
+  * person
+  * choice (with as many choices as requested)
+ * 1 SharePoint list with as many as requested columns of type
+  * single line of text
+  * multiple lines of text
+  * number
+  * date
+  * date and time
+  * person
+  * choice (with as many choices as requested)
+ * optional: Welcome package
+   * contains a link to additional learning resources pinned to channel `General`
+ * optional: additional SharePoint list for task management containing columns
+   * Title (single line of text)
+   * Description (multiple lines of text)
+   * start date (date)
+   * due date (date)
+   * assigned person (person)
+   * priority (choice [urgent, high, medium, low]) 
+ 
 For more context on how this canvas app fits into our solution, please head over to [Solution Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview)
 
 ## How do I get the app?

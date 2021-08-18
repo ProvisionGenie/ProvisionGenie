@@ -5,13 +5,13 @@
 
 This Fact sheet shall give an administrator an overview about
 
-* added value for users
+* [added value for users](/#end-user-value-of-provisiongenie)
 * implications on
-  * costs
-  * security
-  * privacy
-  * governance and
-  * what it takes to deploy & maintain the solution.
+  * [costs](/#cost-to-run-provisiongenie)
+  * [security](#security)
+  * [privacy](#privacy)
+  * [governance](#governance) and
+  * what it takes to [deploy & maintain](#deploy-and-maintain-provisiongenie) the solution.
 
 ## Cost to run ProvisionGenie
 
@@ -34,7 +34,7 @@ We take security, privacy, and governance very seriously and want you to make th
 * In the Dataverse environment, access is controlled at three levels:
   * Environment roles
   * Resource permissions for Power Apps
-  * Dataverse security roles - Part of our solution is a special security role, so that that noone can bypass the canvas app. This way, data can't be over exposed. 
+  * Dataverse security roles - Part of our solution is a special security role, so that that no one can bypass the canvas app. This way, data can't be over exposed.
 * Conditional Access Policy via Azure AD Premium can be applied for Power Apps as well
 * Data loss prevention policies can prevent data leakage  
   
@@ -76,7 +76,7 @@ Benefits:
 
 For more information head over to [Canvas App Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasAppOverview.md#high-level-overview-on-what-the-canvas-app-does)
 
-## Overall complexity to deploy and maintain ProvisionGenie
+## Deploy and maintain ProvisionGenie
 
 To get a better understanding of ProvisionGenie we highly recommend to familiarize yourself first with our [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview). Additionally we provide you with a pictured step by step [Deployment Guide](DeploymentGuide.md) that walks you through the entire deployment. If something doesn't work you can always [raise an issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose) and we will help. We don't believe that you will experience major difficulties, as we of course tested the deployment before.
 

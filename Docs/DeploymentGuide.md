@@ -11,7 +11,7 @@ This guide shall walk you through the minimal path to awesome. It lists all step
 * Azure Subscription - if you don't have one, [get it here free](https://azure.microsoft.com//free) - please also see [Cost estimation](CostEstimation.md)
 * Microsoft 365 license
 * [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, please also see [Considerations about where to store data](Docs/Considerations-on-Dataverse.md))
-* Environment with [Dataverse database](https://docs.microsoft.com/power-platform/admin/create-database) 
+* Environment with [Dataverse database](https://docs.microsoft.com/power-platform/admin/create-database)
 * Admin role Azure: [Contributor](https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#contributor)
 * Power Platform role: [System Administrator](https://docs.microsoft.com/power-platform/admin/database-security)
 
@@ -212,7 +212,7 @@ az storage account create `
     -g $resourceGroup `
     --sku Standard_LRS
 ```
-     
+
 Run this script in PowerShell
 
 ```powershell
@@ -269,7 +269,6 @@ in your new Storage account,
 * Select **Create**
 
 ![create container](/Docs/media/AzurePortalCreateContainer.png)
-
 
 
 ``` Azure CLI

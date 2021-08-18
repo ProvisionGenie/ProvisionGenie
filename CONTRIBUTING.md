@@ -1,6 +1,6 @@
 # Contributing Guidance
 
-If you'd like to contribute to this repository, please read the following guidelines. We want to make sure that everyone gets the most out of their efforts.
+If you'd like to contribute to ProvisionGenie, please read the following guidelines. We want to make sure that everyone gets the most out of their efforts.
 
 ## Code of Conduct
 

@@ -38,6 +38,7 @@
         "adappid",
         "appregistrations",
         "apps",
+        "azurecli",
         "commondataservice",
         "displayname",
         "listlibrary",
@@ -51,5 +52,7 @@
     ],
     "terminal.integrated.commandsToSkipShell": [
         "\"git.enableCommitSigning\": true"
-    ]
+    ],
+    "eliostruyf.writingstyleguide.terms.isDisabled": true,
+    "eliostruyf.writingstyleguide.biasFree.isDisabled": true
 }

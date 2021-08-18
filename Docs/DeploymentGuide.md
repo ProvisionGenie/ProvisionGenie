@@ -4,13 +4,13 @@
 
 ![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
 
-This guide shall walk you through the minimal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant. If you haven't done this by now, please familiarize yourself with our [solution overview](/Docs/LogicApps.md#solution-overview)
+This guide shall walk you through the minimal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant. If you haven't done this by now, familiarize yourself with our [solution overview](/Docs/LogicApps.md#solution-overview)
 
 ## Prerequisites
 
-* Azure Subscription - if you don't have one, [get it here free](https://azure.microsoft.com//free) - please also see [Cost estimation](CostEstimation.md)
+* Azure Subscription - if you don't have one, [get it here free](https://azure.microsoft.com//free) - also see [Cost estimation](CostEstimation.md)
 * Microsoft 365 license
-* [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, please also see [Considerations about where to store data](Docs/Considerations-on-Dataverse.md))
+* [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, also see [Considerations about where to store data](Docs/Considerations-on-Dataverse.md))
 * Environment with [Dataverse database](https://docs.microsoft.com/power-platform/admin/create-database)
 * Admin role Azure: [Contributor](https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#contributor)
 * Power Platform role: [System Administrator](https://docs.microsoft.com/power-platform/admin/database-security)
@@ -26,7 +26,7 @@ In order to successfully deploy ProvisionGenie, you will need to perform the fol
 
 ### 1. App registration for deployment of Dataverse tables
 
-You will need to register an app in Azure AD in order to deploy the dataverse tables to your tenant. You can register the app either using the [Azure portal](#app-registration-for-deployment-of-dataverse-tables-using-azure-portal) or using [Azure CLI](#app-registration-for-deployment-of-dataverse-tables-using-azure-cli)
+You will need to register an app in Azure AD in order to deploy the dataverse tables to your tenant. You can register the app either using the [Azure portal](#app-registration-for-deployment-of-dataverse-tables-using-azure-portal) or by using [Azure CLI](#app-registration-for-deployment-of-dataverse-tables-using-azure-cli)
 
 #### App registration for deployment of Dataverse tables using in Azure portal
 
@@ -100,7 +100,7 @@ In the output, you will get four values for
 * **password** (this is your App secret) and
 * **tenant** (this is your Tenant ID).
 
-Save these values somewhere
+Save these values somewhere.
 
 ``` azurecli
 
@@ -110,9 +110,9 @@ az ad sp create --id $adappid
 az ad app permission add --id $adappid --api 00000007-0000-0000-c000-000000000000 --api-permissions 78ce3f0f-a1ce-49c2-8cde-64b5c0896db4=Role
 ```
 
-Please note, that `00000007-0000-0000-c000-000000000000` is Dynamics CRM and `78ce3f0f-a1ce-49c2-8cde-64b5c0896db4=Role` is **user_impersonation** which we need to act on behalf of a user.
+Note, that `00000007-0000-0000-c000-000000000000` is Dynamics CRM and `78ce3f0f-a1ce-49c2-8cde-64b5c0896db4=Role` is **user_impersonation** which we need to act on behalf of a user.
 
-* now grant admin consent with running
+* now grant admin consent by running
 
 ```azurecli
 az ad app permission grant --id $adappid --api 00000007-0000-0000-c000-000000000000
@@ -122,7 +122,7 @@ That's it!
 
 ### 2. Dataverse solution
 
-We built ProvisionGenie using Dataverse mostly for security reasons. We do not want to give users a way to bypass the canvas app and access data they shouldn't have access to. This concern was one of our main reasons to not use SharePoint lists to log requests as you would need to share the list with every user which means that they could create new items, manipulate and even delete data. For more information, please head over to [Considerations-on-Dataverse](Docs\Considerations-on-Dataverse.md)
+We built ProvisionGenie by using Dataverse mostly for security reasons. We do not want to give users a way to bypass the canvas app and access data they shouldn't have access to. This concern was one of our main reasons to not use SharePoint lists to log requests as you would need to share the list with every user. That means that they could create new items, manipulate and even delete data. For more information, head over to [Considerations-on-Dataverse](Docs\Considerations-on-Dataverse.md).
 
 In Dataverse, we can setup [security roles](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database) to prevent this and we made a security role "ProvisionGenie user" part of the solution that you will import in the next steps.
 
@@ -168,7 +168,7 @@ https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignment
 
 #### New resource group with Azure portal
 
-⚡ Please repeat the following steps for both resource groups
+⚡ Repeat the following steps for both resource groups
 
 As an alternative to use Azure CLI to create a new resource group, you can also complete the following steps in the Azure portal:
 
@@ -280,20 +280,7 @@ $appRoleIds = $(az ad sp show --id $graphId --query "appRoles[?value=='Team.Crea
 foreach ($appRoleId in $appRoleIds) { $body = "{'principalId':'$principalId','resourceId':'$graphResourceId','appRoleId':'$appRoleId'}"; az rest --method post --uri https://graph.microsoft.com/v1.0/servicePrincipals/$principalId/appRoleAssignments --body $body --headers Content-Type=application/json }
 ```
 
-<!-- 🚨🚨🚨🚨 in
-Now it's time to continue with
-
-### 2. Managed identity
-  * PS script
-
-### 3. Deploy Logic Apps
-
-4. import the solution: Dataverse tables & Canvas App
-5. Deploy Azure Logic Apps
-  * fill in variables
-4. 
-5. test
-### 4. Import solution: Dataverse tables & Canvas App
+<!-- 
 
  ### braindump
 
@@ -302,7 +289,6 @@ Now it's time to continue with
 3. deploy 
     * commondataservice hard coded/displayname
     * authenticate
-    * https://vincentlauzon.com/2018/09/25/service-principal-for-logic-app-connector/ service principal
 
 still to do: 
 

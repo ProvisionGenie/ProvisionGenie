@@ -15,7 +15,7 @@ We use [Microsoft Graph API](https://docs.microsoft.com/graph/overview) to provi
 
 This is why we chose to ask our user if they wanted to have a SharePoint list with columns that mimics Planner behavior provisioned for them. We introduce users as well to gallery view in lists so that they get a similar experience as in Planner. As we can create SharePoint lists and their columns with application permissions, this felt as a secure alternative.
 
-![task list in SharePoint](Docs/media/tasklist.png)
+![task list in SharePoint](/Docs/media/tasklist.png)
 
 ## No Wiki
 

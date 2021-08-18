@@ -5,13 +5,37 @@
 
 This Fact sheet shall give an administrator an overview about
 
-* [added value for users](/#end-user-value-of-provisiongenie)
-* implications on
-  * [costs](/#cost-to-run-provisiongenie)
-  * [security](#security)
-  * [privacy](#privacy)
-  * [governance](#governance) and
-  * what it takes to [deploy & maintain](#deploy-and-maintain-provisiongenie) the solution.
+* [added value for users](#end-user-value-of-provisiongenie)
+* [costs](#cost-to-run-provisiongenie)
+* [security](#security)
+* [privacy](#privacy)
+* [governance](#governance) and
+* what it takes to [deploy & maintain](#deploy-and-maintain-provisiongenie) the solution.
+
+## End User value of ProvisionGenie
+
+The purpose of this app is to foster teamwork by letting owners-to-be of Microsoft Teams teams make smarter decisions on how a team can work in Teams. Usually, a business consultant would talk a team through assets that are available in Teams and Microsoft 365 and answer all questions with 'it depends'. They would explain that people usually
+
+* confuse chat with task assignments "could you please"
+* confuse email with status reports "per my last email"
+* confuse SharePoint with a dumpster for any file in the world --> "can you migrate this pile of mess to someone elses computer?"
+
+The consultant would then show them what channels are made for, how a team can work with metadata on files and how staying on track works with Microsoft Lists. The consultant would ask them also if they wanted more learning material pinned to their brand new team and if they wanted the team of they dreams already be created for them, so that it works from Day 1.
+
+This is, what ProvisionGenie does. ProvisionGenie is now that consultant and provides users with a blended experience of
+
+* learning about modern collaboration and assets that can be used in Teams and
+* reflecting on how they want to work in Teams.
+
+Benefits:
+
+* allows better understanding of how Teams works in general
+* Tailor-fitted teams have higher adoption rates
+* Mitigates Teams sprawl by preventing abandoned Teams
+* Prevents "stockpiled" channels (and their SharePoint folder equivalents)
+* Enables better adoption of the correct usage of SharePoint lists & libraries
+
+For more information head over to [Canvas App Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasAppOverview.md#high-level-overview-on-what-the-canvas-app-does)
 
 ## Cost to run ProvisionGenie
 
@@ -49,32 +73,7 @@ More helpful resources:
 
 ### Governance
 
-* ProvisionGenie can be monitored like every other Power platform solution within the [Center of Excellence Starter Kit](https://docs.microsoft.com/power-platform/guidance/coe/starter-kit), which we highly recommend to use
-
-## End User value of ProvisionGenie
-
-The purpose of this app is to foster teamwork by letting owners-to-be of Microsoft Teams teams make smarter decisions on how a team can work in Teams. Usually, a business consultant would talk a team through assets that are available in Teams and Microsoft 365 and answer all questions with 'it depends'. They would explain that people usually
-
-* confuse chat with task assignments "could you please"
-* confuse email with status reports "per my last email"
-* confuse SharePoint with a dumpster for any file in the world --> "can you migrate this pile of mess to someone elses computer?"
-
-The consultant would then show them what channels are made for, how a team can work with metadata on files and how staying on track works with Microsoft Lists. The consultant would ask them also if they wanted more learning material pinned to their brand new team and if they wanted the team of they dreams already be created for them, so that it works from Day 1.
-
-This is, what ProvisionGenie does. ProvisionGenie is now that consultant and provides users with a blended experience of
-
-* learning about modern collaboration and assets that can be used in Teams and
-* reflecting on how they want to work in Teams.
-
-Benefits:
-
-* allows better understanding of how Teams works in general
-* Tailor-fitted teams have higher adoption rates
-* Mitigates Teams sprawl by preventing abandoned Teams
-* Prevents "stockpiled" channels (and their SharePoint folder equivalents)
-* Enables better adoption of the correct usage of SharePoint lists & libraries
-
-For more information head over to [Canvas App Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasAppOverview.md#high-level-overview-on-what-the-canvas-app-does)
+* ProvisionGenie can be monitored like every other Power platform solution within the [Center of Excellence Starter Kit](https://docs.microsoft.com/power-platform/guidance/coe/starter-kit), which we highly recommend to use.
 
 ## Deploy and maintain ProvisionGenie
 

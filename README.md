@@ -6,8 +6,7 @@ ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/microso
 
 * skill you up and
 * guide you through some questions regarding how your team should look like.
-
-🧞 As a result, you can request the 'Team of your dreams', which will be provisioned automatically for you.
+* let you request the 'Team of your dreams' as a result of that process, which will be provisioned automatically for you.
 
 ![Walkthrough](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/canvasapp/walkthroughgif.gif)
 

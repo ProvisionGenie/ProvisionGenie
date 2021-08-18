@@ -21,11 +21,10 @@ This is why we chose to ask our user if they wanted to have a SharePoint list wi
 
 As part of our provisioning process, we delete the Teams Wiki from all created channels. We believe, that the Wiki is not a good place to store any kind of knowledge in.
 
-The Wiki is a (hidden) SharePoint library called `Teams Wiki Data` in the team site that backs the Team. You can find it here: `https://<your-tenant-here>.sharepoint.com/sites/<your-team-site-here>/Teams%20Wiki%20Data`. When a user removes Wiki tab from a channel, all content in that hidden library gets hard-deleted without any chance to be restored. There are even more reasons to not like the Wiki: 
+The Wiki is a (hidden) SharePoint library called `Teams Wiki Data` in the team site that backs the Team. You can find it here: `https://<your-tenant-here>.sharepoint.com/sites/<your-team-site-here>/Teams%20Wiki%20Data`. When a user removes Wiki tab from a channel, all content in that hidden library gets hard-deleted without any chance to be restored. There are even more reasons to not like the Wiki:
 
 * Wiki is not searchable
 * Wiki doesn't allow co-authoring
 * Wikis can't be moved
 
 Of course our decision to delete the Wikis from all initial channels does not prevent users from adding a Wiki tab to an existing or manually created channel, but at least it is not the default behavior in a new Team. In the future, we want to automatically add a OneNote notebook.
-

@@ -34,7 +34,8 @@ Here's a high level process for submitting new samples or updates to existing on
 3. Commit your changes using descriptive commit message - These are used to track changes on the repositories for bi-weekly communications, please don't be this person:
 
 ![XKCD GIT COMMIT](https://imgs.xkcd.com/comics/git_commit.png)
-imgage by xkcd, can be found at [https://xkcd.com/1296/](https://xkcd.com/1296/)
+
+(imgage by xkcd, can be found at [https://xkcd.com/1296/](https://xkcd.com/1296/))
 
 4. Create a pull request in your own fork and target 'main' branch
 5. Fill up the provided PR template with the requested details

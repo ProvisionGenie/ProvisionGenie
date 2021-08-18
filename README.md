@@ -50,7 +50,7 @@ You can have a look into our [Roadmap](https://github.com/ProvisionGenie/Provisi
 
 <img width="400" alt="Carmen and Luise" src="https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Communication/Carmen_Luise.png">
 
-This solution is an initiative by [Luise Freese](https://m365princess.com) and [Carmen Ysewijn](https://digipersonal.com/).
+ProvisionGenie is a project by [Luise Freese](https://m365princess.com) and [Carmen Ysewijn](https://digipersonal.com/).
 
 ## Contributions
 

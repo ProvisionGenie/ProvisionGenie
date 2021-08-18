@@ -18,10 +18,9 @@ ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/microso
 
 ## How to get started
 
-* Read our to understand the impact of ProvisionGenie [Fact sheet for Admins](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Admin-fact-sheet.md)
+* Read our [Fact sheet for Admins](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Admin-fact-sheet.md) to understand the impact of ProvisionGenie 
 * Familiarize yourself with the [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview)
 * Use our [Deployment Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/DeploymentGuide.md) to deploy ProvisionGenie
-* Understand the [License](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/LICENSE.md)
 
 ## What does it cost?
 
@@ -62,7 +61,7 @@ We welcome contributions, we summarized how you can contribute in the [Contribut
 
 Also, buy us coffee ☕☕☕ - ProvisionGenie wouldn't be possible without it!
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/mG3ghJC)
+[!["Buy Us A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/mG3ghJC)
 
 ## Trademarks
 

@@ -4,5 +4,5 @@
 incomplete:
   # Post a comment
   comment: >
-    Thank you for your submission, but there isn't enough detail in the issue for us to review & move forward. The new issue template includes sections for you to fill out. Please resubmit your issue and complete the provided sections in the new item template so we can move forward on it.
+    Thank you for your submission, but there isn't enough detail in the issue for us to review & move forward. Please resubmit your issue. In case you need any help, reach out to us. 
   close: true

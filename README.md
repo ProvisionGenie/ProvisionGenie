@@ -7,7 +7,7 @@ ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/microso
 * skill you up and
 * guide you through some questions regarding how your team should look like.
 
-👉As a result, you can request the 'Team of your dreams', which will be provisioned automatically 🦄 for you.
+🧞 As a result, you can request the 'Team of your dreams', which will be provisioned automatically for you.
 
 ![Walkthrough](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/canvasapp/walkthroughgif.gif)
 
@@ -26,7 +26,7 @@ ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/microso
 
 ## What does it cost?
 
-* ProvisionGenie is an open-source project and we won't charge you for using, extending, or modifying it. For more information, please see our [license](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/LICENSE.md)
+* ProvisionGenie is an open-source project and we won't charge you for using, extending, or modifying it. For more information, please see our [license](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/LICENSE.md)+
 * To make the app work, you will need all of the following
   * an [Azure subscription](https://azure.microsoft.com/) -for more detail see [Cost estimation](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CostEstimation.md)
   * a [Power Apps per app](https://powerapps.microsoft.com/pricing/) or a [Power Apps per user](https://powerapps.microsoft.com/pricing/) plan as we use [Microsoft Dataverse](https://powerplatform.microsoft.com/dataverse/) to store data
@@ -61,7 +61,7 @@ We welcome contributions, we summarized how you can contribute in the [Contribut
 
 💖 If you like this project, give it a ⭐ and share it with your friends 🙏!
 
-Also, buy us coffee ☕ - ProvisionGenie wouldn't be possible without it!
+Also, buy us coffee ☕☕☕ - ProvisionGenie wouldn't be possible without it!
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/mG3ghJC)
 

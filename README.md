@@ -30,20 +30,22 @@ ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/microso
   * a [Power Apps per app](https://powerapps.microsoft.com/pricing/) or a [Power Apps per user](https://powerapps.microsoft.com/pricing/) plan as we use [Microsoft Dataverse](https://powerplatform.microsoft.com/dataverse/) to store data
   * a [Microsoft 365 license](https://www.microsoft.com/microsoft-365/business/compare-all-microsoft-365-business-products) for every user who uses the app
 
-## Version/Roadmap
+## Roadmap
 
-This is our very first Version 1.0.0. For more info, please head over to [Release Notes](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Release-Notes.md). Please note, that this is our minimal l♥vable product - feel free to contribute and make it better. Every contribution counts and everyone's voice matters. You can help us
+This is our very first Version 1.0.0. - it is our minimal l♥vable product and we are excited about this first release! Feel free to contribute to ProvisionGenie and make it even better. Every contribution counts and everyone's voice matters. You can help us
 
 * improve UI/UX
 * fix documentation
 * find (and fix) bugs
 * extend use cases
 
-If you want to know more how that works, we created a [Contribution Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTING.md) and also [Issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose) templates to make it easy for you.
+If you want to know more how that works, we created a [Contribution Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTING.md) and also [Issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose) templates to make it easy for you. 
 
-We also listed [some features that we would like to add in the future](https://github.com/ProvisionGenie/ProvisionGenie/issues)- but consciously decided to not release in V1.0 as we wanted to release rather sooner than later - to get feedback. Speaking of which: Please do [submit your feedback](https://github.com/ProvisionGenie/ProvisionGenie/issues/new?assignees=&labels=&template=feedback.md&title=), or just get in touch with us for a chat!
+We also listed [some features that we would like to add in the future](https://github.com/ProvisionGenie/ProvisionGenie/issues)- but consciously decided to not release in our first release, as we wanted to release rather sooner than later - to get your valuable feedback. Speaking of which: Please do [submit your feedback](https://github.com/ProvisionGenie/ProvisionGenie/issues/new?assignees=&labels=&template=feedback.md&title=), or just get in touch with us for a chat!
 
-You can have a look into our [Roadmap](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/Roadmap.md) to see what's coming in the future.
+For more info in Versioning, please head over to [Release Notes](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Release-Notes.md).
+
+You can also have a look into our [Roadmap](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/Roadmap.md) to see what's coming in the future.
 
 ## Developers
 

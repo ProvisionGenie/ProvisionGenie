@@ -32,7 +32,15 @@ ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/microso
 
 ## Roadmap
 
-This is our very first Version 1.0.0. - it is our minimal l♥vable product and we are excited about this first release! Feel free to contribute to ProvisionGenie and make it even better. Every contribution counts and everyone's voice matters. You can help us
+This is our very first Version 1.0.0. - it is our minimal l♥vable product and we are excited about this first release! For more info in Versioning, please head over to [Release Notes](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Release-Notes.md).
+
+You can also have a look into our [Roadmap](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/Roadmap.md) to see what's coming in the future.
+
+## Contributions
+
+We welcome contributions, we summarized how you can contribute in the [Contribution guidelines](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTING.md).
+
+Feel free to contribute to ProvisionGenie and make it even better. Every contribution counts and everyone's voice matters. You can help us
 
 * improve UI/UX
 * fix documentation
@@ -43,19 +51,11 @@ If you want to know more how that works, we created a [Contribution Guide](https
 
 We also listed [some features that we would like to add in the future](https://github.com/ProvisionGenie/ProvisionGenie/issues)- but consciously decided to not release in our first release, as we wanted to release rather sooner than later - to get your valuable feedback. Speaking of which: Please do [submit your feedback](https://github.com/ProvisionGenie/ProvisionGenie/issues/new?assignees=&labels=&template=feedback.md&title=), or just get in touch with us for a chat!
 
-For more info in Versioning, please head over to [Release Notes](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Release-Notes.md).
-
-You can also have a look into our [Roadmap](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/Roadmap.md) to see what's coming in the future.
-
 ## Developers
 
 <img width="400" alt="Carmen and Luise" src="https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Communication/Carmen_Luise.png">
 
 ProvisionGenie is a project by [Luise Freese](https://m365princess.com) and [Carmen Ysewijn](https://digipersonal.com/).
-
-## Contributions
-
-We welcome contributions, we summarized how you can contribute in the [Contribution guidelines](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTING.md).
 
 ## Support us
 

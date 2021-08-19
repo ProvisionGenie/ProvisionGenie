@@ -11,7 +11,7 @@ This guide shall walk you through the minimal path to awesome. It lists all step
 * Azure Subscription - if you don't have one, [get it here free](https://azure.microsoft.com//free) - also see [Cost estimation](CostEstimation.md)
 * Microsoft 365 license
 * [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, also see [Considerations about where to store data](Docs/Considerations-on-Dataverse.md))
-* Environment with [Dataverse database](https://docs.microsoft.com/power-platform/admin/create-database)
+* Environment with [Dataverse database](https://docs.microsoft.com/power-platform/admin/create-database) - you can create one during the deployment process
 * Admin role Azure: [Contributor](https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#contributor)
 * Power Platform role: [System Administrator](https://docs.microsoft.com/power-platform/admin/database-security)
 
@@ -28,7 +28,7 @@ In order to successfully deploy ProvisionGenie, you will need to perform the fol
 
 You will need to register an app in Azure AD in order to deploy the dataverse tables to your tenant. You can register the app either using the [Azure portal](#app-registration-for-deployment-of-dataverse-tables-using-azure-portal) or by using [Azure CLI](#app-registration-for-deployment-of-dataverse-tables-using-azure-cli)
 
-#### App registration for deployment of Dataverse tables using in Azure portal
+#### App registration for deployment of Dataverse tables using Azure portal
 
 * Go to [portal.azure.com](https://portal.azure.com)
 * Log in
@@ -80,17 +80,17 @@ That's it!
 
 #### App registration for deployment of Dataverse tables using Azure CLI
 
-The alternative for the steps above using the Azure portal is using Azure CLI. Please follow these steps:
+The alternative for the steps above using the Azure portal is using Azure CLI. Follow these steps:
 
 * Open [shell.azure.com](https://portal.azure.com/#cloudshell/)
 * to register the application run
 
 ``` Azure CLI
-az ad app create --display-name ProvisionGenieAppDemo --available-to-other-tenants false
+az ad app create --display-name ProvisionGenieApp --available-to-other-tenants false
 #save the appId
-$adappid =(az ad app list --display-name ProvisionGenieAppDemo --query [0].appId --out tsv --all)
+$adappid =(az ad app list --display-name ProvisionGenieApp --query [0].appId --out tsv --all)
 # create an app secret, run
-az ad app credential reset --id $appId --append
+az ad app credential reset --id $adappId --append
 ```
 
 In the output, you will get four values for

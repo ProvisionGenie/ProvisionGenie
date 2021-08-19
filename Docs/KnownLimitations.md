@@ -23,6 +23,6 @@ The Wiki is a (hidden) SharePoint library called `Teams Wiki Data` in the team s
 
 * Wiki is not searchable
 * Wiki doesn't allow co-authoring
-* Wikis can't be moved
+* Wiki can't be moved
 
 Of course our decision to delete the Wikis from all initial channels does not prevent users from adding a Wiki tab to an existing or manually created channel, but at least it is not the default behavior in a new Team. In the future, we want to automatically add a OneNote notebook.

@@ -132,17 +132,20 @@ You will need to create an application user and assign the security role to it.
 
 1. in case you don't have already an environment that you want to use for ProvisionGenie, follow these steps to [create a new environment with a database](https://docs.microsoft.com/power-platform/admin/create-environment#create-an-environment-with-a-database)
 
-    Please note: a Dataverse for teams environment is not enough
-    TODO: explain don't deploy the demo apps
+Important to know: a Dataverse for Teams environment is not enough - for reference read our [Considerations on dataverse](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Considerations-on-Dataverse.md)
+
+// TODO: explain don't deploy the demo apps
 2. Import our solution with
     * Dataverse tables to log the requests
     * ProvisionGenie canvas app as the UI
     * Security role "Provision Genie user"
 
-    from here: TODO insert github link to .zip file
+    from here:
+    
+// TODO insert github link to .zip file
 
-    In case this is the first time you import a solution, please follow the steps described here: [Import a Power Platform solution](https://docs.microsoft.com/powerapps/maker/data-platform/import-update-export-solutions)
-3. create an application user and the assign security role "Provision Genie user" as part of the creation process as described here: [Create an application user](https://docs.microsoft.com/power-platform/admin/manage-application-users#create-an-application-user)
+In case this is the first time you import a solution, follow the steps described here: [Import a Power Platform solution](https://docs.microsoft.com/powerapps/maker/data-platform/import-update-export-solutions)
+3. Create an application user and the assign security role "Provision Genie user" as part of the creation process as described here: [Create an application user](https://docs.microsoft.com/power-platform/admin/manage-application-users#create-an-application-user)
 
 ### 3. Create new Azure resource groups
 
@@ -154,7 +157,7 @@ You can create both resource groups [via the Azure portal](DeploymentGuide.md#ne
 
 #### New resource group with Azure CLI
 
-⚡ Please repeat the following steps for both resource groups
+⚡ Repeat the following steps for both resource groups
 
 * open [shell.azure.com](https://portal.azure.com/#cloudshell/)
 * run
@@ -253,7 +256,7 @@ Inside of storage account, create a new container named `templates` and upload t
 ![Create storage account](/Docs/media/AzurePortalCreateStorage.png)
 
 * Select **Review + Create**
-* Review if everything looks ok - please note that you see a **Validation passed** banner
+* Review if everything looks ok - note that you see a **Validation passed** banner
 
 ![validation passed](/Docs/media/AzurePortalValidationpassed.png)
 

@@ -2,11 +2,18 @@
 
 ![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
 
-## why Logic Apps vs Power Automate
+ProvisionGenie 💜 Microsoft Graph!
 
-* --> context
-* --> monitoring
-* --> DevX
+Our entire provision process leverages the power of Microsoft Graph API and we plan to continue with this in future versions.
+
+## Why we chose Azure Logic Apps over Power Automate
+
+In our first proof of concept, we still used Power Automate to provision a custom Teams team, but Power Automate is intended to be used to improve personal productivity and to serve non mission-critical scenarios. The more a solution scales, the less likely it is a good fit for Power Automate:
+
+* Power Automate flows run in the context of a user, while Azure Logic Apps flow run in the context of an application
+* Power Automate has only limited options for monitoring
+* our developer experience in Azure Logic Apps was better, as we could easily manipulate the code and have a visual experience side-by-side
+* Power Automate would have required a Premium license as we need HTTP actions
 
 ## Solution Overview
 
@@ -14,13 +21,40 @@ Based on user input in the canvas app, ProvisionGenie logs team requests. Each n
 
 ![solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/PG-solution-overview.png),
 
-## DataModel
+## Dataverse datamodel
 
 To understand the Logic Apps, it's a good idea to understand the data model:
 
 ![Dataverse-datamodel](media/dataverse-datamodel.png)
 
+1. We log all requests in the **Teams Request** table, these are the most important columns:
+
+* TeamName
+* TeamDescription
+* TeamOwner
+* includeTaskList
+* includeWelcomePackage
+
+2. Each Team can have multiple channels, which we log in the **TeamsChannel** table,  these are the most important columns:
+
+* Channelname
+* ChannelDescription
+* Teamsrequest (to link to the correct Team)
+
+3. Each Team can also have a list and a library, we log  them in the **SharePointLibrary** and **SharePointLIst** tables, these are the most important columns:
+
+* LibraryName / ListName
+* Teamsrequest (to link to the correct Team)
+
+4. Each List/Library can contain columns, we log them in the **ListColumns** table, these are the most important columns:
+
+* ColumnName
+* ColumnType
+* ColumnValues (for ColumnType `Choice`)
+
 ## Flows
+
+Our flows pick up the values logged in the Dataverse tables to provision what the user requested:
 
 * [1. Main flow](LogicApps.md#1-main-flow)
 * [2. Create team](LogicApps.md#2-create-team)

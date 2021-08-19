@@ -2,27 +2,27 @@
 
 🚨 still under construction 💡
 
-![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
+![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/Genie_Header.png)
 
 This guide shall walk you through the minimal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant. If you haven't done this by now, familiarize yourself with our [solution overview](/Docs/LogicApps.md#solution-overview)
 
 ## Prerequisites
 
-* Azure Subscription - if you don't have one, [get it here free](https://azure.microsoft.com//free) - also see [Cost estimation](CostEstimation.md)
-* Microsoft 365 license
-* [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, also see [Considerations about where to store data](Docs/Considerations-on-Dataverse.md))
-* Environment with [Dataverse database](https://docs.microsoft.com/power-platform/admin/create-database) - you can create one during the deployment process
-* Admin role Azure: [Contributor](https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#contributor)
-* Power Platform role: [System Administrator](https://docs.microsoft.com/power-platform/admin/database-security)
+- Azure Subscription - if you don't have one, [get it here free](https://azure.microsoft.com//free) - also see [Cost estimation](CostEstimation.md)
+- Microsoft 365 license
+- [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, also see [Considerations about where to store data](Docs/Considerations-on-Dataverse.md))
+- Environment with [Dataverse database](https://docs.microsoft.com/power-platform/admin/create-database) - you can create one during the deployment process
+- Admin role Azure: [Contributor](https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#contributor)
+- Power Platform role: [System Administrator](https://docs.microsoft.com/power-platform/admin/database-security)
 
 ## Steps
 
 In order to successfully deploy ProvisionGenie, you will need to perform the following steps
 
-* [1. App registration for deployment of Dataverse tables](DeploymentGuide.md#1-App-registration-for-deployment-of-Dataverse-tables)
-* [2. Dataverse solution](DeploymentGuide.md#2-dataverse-solution)
-* [3. Create new Azure resource groups](DeploymentGuide.md#3-create-new-azure-resource-groups)
-* [4. Deployment of Azure Logic Apps](DeploymentGuide.md#4-deployment-of-azure-logic-apps)
+- [1. App registration for deployment of Dataverse tables](DeploymentGuide.md#1-App-registration-for-deployment-of-Dataverse-tables)
+- [2. Dataverse solution](DeploymentGuide.md#2-dataverse-solution)
+- [3. Create new Azure resource groups](DeploymentGuide.md#3-create-new-azure-resource-groups)
+- [4. Deployment of Azure Logic Apps](DeploymentGuide.md#4-deployment-of-azure-logic-apps)
 
 ### 1. App registration for deployment of Dataverse tables
 
@@ -30,49 +30,49 @@ You will need to register an app in Azure AD in order to deploy the dataverse ta
 
 #### App registration for deployment of Dataverse tables using Azure portal
 
-* Go to [portal.azure.com](https://portal.azure.com)
-* Log in
-* Select **Azure Active Directory**
+- Go to [portal.azure.com](https://portal.azure.com)
+- Log in
+- Select **Azure Active Directory**
 
 ![Azure Portal](media/AzurePortal.png)
 
-* (1) Select **App registrations**
-* (2) Select **New registration**
+- (1) Select **App registrations**
+- (2) Select **New registration**
 
 ![App registrations](media/AzurePortalADAppregistrationsSteps.png)
 
-* (1) Type in a name for your app like `ProvisionGenieApp`
-* (2) Select **Accounts in this organizational directory only (<your organization name> only - Single tenant)**
-* (3) Select **Register**
+- (1) Type in a name for your app like `ProvisionGenieApp`
+- (2) Select **Accounts in this organizational directory only (<your organization name> only - Single tenant)**
+- (3) Select **Register**
 
 ![Register new app](media/AzurePortalADAppregistrationsNew.png)
 
-* (1) Select **API permissions**
-* (2) Select **Add a permission**
-* (3) Select **Dynamics CRM**
+- (1) Select **API permissions**
+- (2) Select **Add a permission**
+- (3) Select **Dynamics CRM**
 
 ![Add permissions](media/AzurePortalADAppregistrationsAddPermissionSteps.png)
 
-* (1) Select **user_impersonation**
-* (2) Select **Add permissions**
+- (1) Select **user_impersonation**
+- (2) Select **Add permissions**
 
 ![User Impersonation](media/AzurePortalADAppregistrationsAddPermissionDynCRMUserImpersonationSteps-cut.png)
 
-* (1) Select **Certificates & secrets**
-* (2) Select **New client secret**
-* (3) Enter a description like `PG-secret`
-* (4) Select a value when this secret expires
-* (5) Select **Add**
+- (1) Select **Certificates & secrets**
+- (2) Select **New client secret**
+- (3) Enter a description like `PG-secret`
+- (4) Select a value when this secret expires
+- (5) Select **Add**
 
 ![Certificates & secrets](media/AzurePortalADAppregistrationssecretSteps.png)
 
-* Copy the secret's **Value** and save it somewhere
+- Copy the secret's **Value** and save it somewhere
 
 ![Copy secret's value](media/AzurePortalADAppregistrationsNewSecretCopyValue.png)
 
-* (1) Select **Overview**
-* (2) Copy the **Application (client) ID** value, save it somewhere
-* (3) Copy the **Directory (tenant) ID** value, save it somewhere
+- (1) Select **Overview**
+- (2) Copy the **Application (client) ID** value, save it somewhere
+- (3) Copy the **Directory (tenant) ID** value, save it somewhere
 
 ![Copy values](media/AzurePortalADAppregistrationscopyvalues.png)
 
@@ -82,10 +82,10 @@ That's it!
 
 The alternative for the steps above using the Azure portal is using Azure CLI. Follow these steps:
 
-* Open [shell.azure.com](https://portal.azure.com/#cloudshell/)
-* to register the application run
+- Open [shell.azure.com](https://portal.azure.com/#cloudshell/)
+- to register the application run
 
-``` Azure CLI
+```Azure CLI
 az ad app create --display-name ProvisionGenieApp --available-to-other-tenants false
 #save the appId
 $adappid =(az ad app list --display-name ProvisionGenieApp --query [0].appId --out tsv --all)
@@ -95,14 +95,14 @@ az ad app credential reset --id $adappId --append
 
 In the output, you will get four values for
 
-* **AppId**,
-* **name** (equals **AppId**),
-* **password** (this is your App secret) and
-* **tenant** (this is your Tenant ID).
+- **AppId**,
+- **name** (equals **AppId**),
+- **password** (this is your App secret) and
+- **tenant** (this is your Tenant ID).
 
 Save these values somewhere.
 
-``` azurecli
+```azurecli
 
 #Create a service principal with
 az ad sp create --id $adappid
@@ -112,7 +112,7 @@ az ad app permission add --id $adappid --api 00000007-0000-0000-c000-00000000000
 
 Note, that `00000007-0000-0000-c000-000000000000` is Dynamics CRM and `78ce3f0f-a1ce-49c2-8cde-64b5c0896db4=Role` is **user_impersonation** which we need to act on behalf of a user.
 
-* now grant admin consent by running
+- now grant admin consent by running
 
 ```azurecli
 az ad app permission grant --id $adappid --api 00000007-0000-0000-c000-000000000000
@@ -134,24 +134,21 @@ You will need to create an application user and assign the security role to it.
 
 Important to know: a Dataverse for Teams environment is not enough - for reference read our [Considerations on dataverse](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Considerations-on-Dataverse.md)
 
-// TODO: explain don't deploy the demo apps
-2. Import our solution with
-    * Dataverse tables to log the requests
-    * ProvisionGenie canvas app as the UI
-    * Security role "Provision Genie user"
+// TODO: explain don't deploy the demo apps 2. Import our solution with
+_ Dataverse tables to log the requests
+_ ProvisionGenie canvas app as the UI \* Security role "Provision Genie user"
 
     from here:
-    
+
 // TODO insert github link to .zip file
 
-In case this is the first time you import a solution, follow the steps described here: [Import a Power Platform solution](https://docs.microsoft.com/powerapps/maker/data-platform/import-update-export-solutions)
-3. Create an application user and the assign security role "Provision Genie user" as part of the creation process as described here: [Create an application user](https://docs.microsoft.com/power-platform/admin/manage-application-users#create-an-application-user)
+In case this is the first time you import a solution, follow the steps described here: [Import a Power Platform solution](https://docs.microsoft.com/powerapps/maker/data-platform/import-update-export-solutions) 3. Create an application user and the assign security role "Provision Genie user" as part of the creation process as described here: [Create an application user](https://docs.microsoft.com/power-platform/admin/manage-application-users#create-an-application-user)
 
 ### 3. Create new Azure resource groups
 
 The yet-to-deploy Azure Logic Apps will need a resource group to be deployed in. We recommend creating a new resource group `ProvisionGenie-resourcegroup`.
 
- Additionally, you will need a second resource group `ProvisionGenie-Deployment-resourcegroup` in which you temporarily store the template files in. After successful deployment, you may delete this second resource group.
+Additionally, you will need a second resource group `ProvisionGenie-Deployment-resourcegroup` in which you temporarily store the template files in. After successful deployment, you may delete this second resource group.
 
 You can create both resource groups [via the Azure portal](DeploymentGuide.md#new-resource-group-with-Azure-portal) or [via Azure CLI](DeploymentGuide.md#new-resource-group-with-Azure-cli).
 
@@ -159,14 +156,14 @@ You can create both resource groups [via the Azure portal](DeploymentGuide.md#ne
 
 ⚡ Repeat the following steps for both resource groups
 
-* open [shell.azure.com](https://portal.azure.com/#cloudshell/)
-* run
+- open [shell.azure.com](https://portal.azure.com/#cloudshell/)
+- run
 
-``` Azure CLI
+```Azure CLI
 az group create -n <your-resourcegroupname-here> --location <your-location-here>
 ```
 
-<!-- TODO: assign role 
+<!-- TODO: assign role
 https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli -->
 
 #### New resource group with Azure portal
@@ -175,23 +172,23 @@ https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignment
 
 As an alternative to use Azure CLI to create a new resource group, you can also complete the following steps in the Azure portal:
 
-* Go to [portal.azure.com](https://portal.azure.com)
-* Log in
-* (1) Select the Menu
-* (2) Select **Resource groups**
+- Go to [portal.azure.com](https://portal.azure.com)
+- Log in
+- (1) Select the Menu
+- (2) Select **Resource groups**
 
 ![Azure Portal Resource Groups](media/AzureResourceGroup.png)
 
-* (1) Select **Create**
-* (2) Select a subscription
-* (3) Enter the name of the Resource Group you wish to create, like `PG-Demo`
-* (4) Select the region
-* (5) Select **Review & create**
+- (1) Select **Create**
+- (2) Select a subscription
+- (3) Enter the name of the Resource Group you wish to create, like `PG-Demo`
+- (4) Select the region
+- (5) Select **Review & create**
 
 ![Azure Portal Resource group create](media/AzureResourceGroupCreateForm.png)
 
-* Notice the banner showing that validation passed
-* Select **Create**
+- Notice the banner showing that validation passed
+- Select **Create**
 
 ![Azure Portal Resource Groups](media/AzureResourceGroupCreateFinal.png)
 
@@ -244,36 +241,36 @@ Inside of storage account, create a new container named `templates` and upload t
 
 #### Create Storage account in Azure portal
 
-* Open [portal.azure.com](https://portal.azure.com)
-* Select **Resource groups**
-* Select the `ProvisionGenie-Deployment-resourcegroup`
-* Select **Create**
-* Search for `storage account`
-* Select **Storage account**
-* Select **Create**
-* Fil out the form as shown:
+- Open [portal.azure.com](https://portal.azure.com)
+- Select **Resource groups**
+- Select the `ProvisionGenie-Deployment-resourcegroup`
+- Select **Create**
+- Search for `storage account`
+- Select **Storage account**
+- Select **Create**
+- Fil out the form as shown:
 
 ![Create storage account](/Docs/media/AzurePortalCreateStorage.png)
 
-* Select **Review + Create**
-* Review if everything looks ok - note that you see a **Validation passed** banner
+- Select **Review + Create**
+- Review if everything looks ok - note that you see a **Validation passed** banner
 
 ![validation passed](/Docs/media/AzurePortalValidationpassed.png)
 
-* Select **Create**
+- Select **Create**
 
 This will take a moment or two, the Azure portal will notify you once this step is completed.
 
 in your new Storage account,
 
-* Select **Containers**
-* Select **+ Container**
-* type in `templates` in the form as a Name
-* Select **Create**
+- Select **Containers**
+- Select **+ Container**
+- type in `templates` in the form as a Name
+- Select **Create**
 
 ![create container](/Docs/media/AzurePortalCreateContainer.png)
 
-``` Azure CLI
+```Azure CLI
 $principalId = 'HERE GOES YOUR MANAGED IDENTITY OBJECT ID'
 $graphResourceId = $(az ad sp list --display-name "Microsoft Graph" --query [0].objectId --out tsv)
 #Get appRoleIds for Team.Create, Group.ReadWrite.All, Directory.ReadWrite.All, Group.Create, Sites.Manage.All, Sites.ReadWrite.All
@@ -283,17 +280,17 @@ $appRoleIds = $(az ad sp show --id $graphId --query "appRoles[?value=='Team.Crea
 foreach ($appRoleId in $appRoleIds) { $body = "{'principalId':'$principalId','resourceId':'$graphResourceId','appRoleId':'$appRoleId'}"; az rest --method post --uri https://graph.microsoft.com/v1.0/servicePrincipals/$principalId/appRoleAssignments --body $body --headers Content-Type=application/json }
 ```
 
-<!-- 
+<!--
 
  ### braindump
 
 1. create a resource group either in UI or with CLI
 2. app registration
-3. deploy 
+3. deploy
     * commondataservice hard coded/displayname
     * authenticate
 
-still to do: 
+still to do:
 
 1. authenticate the dataverse connection with the service principal
 2. running a script for managed identity permissions (Team.Create, Group.ReadWrite.All, Directory.ReadWrite.All, Group.Create, Sites.Manage.All, Sites.ReadWrite.All)

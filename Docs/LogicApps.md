@@ -1,6 +1,6 @@
 # Azure Logic Apps
 
-![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
+![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/Genie_Header.png)
 
 ProvisionGenie 💜 Microsoft Graph! Our entire provision process leverages the power of Microsoft Graph API and we plan to continue with this in future versions with extended use cases. Learn more about [Microsoft Graph](https://docs.microsoft.com/graph/overview).
 
@@ -10,10 +10,10 @@ ProvisionGenie 💜 Microsoft Graph! Our entire provision process leverages the 
 
 In our first proof of concept, we still used Power Automate to provision a custom Teams team, but Power Automate is intended to be used to improve personal productivity and to serve non mission-critical scenarios. The more a solution scales, the less likely it is a good fit for Power Automate:
 
-* Power Automate flows run in the context of a user, while Azure Logic Apps flow run in the context of an application
-* Power Automate has only limited options for monitoring
-* our developer experience in Azure Logic Apps was better, as we could easily manipulate the code and have a visual experience side-by-side
-* Power Automate would have required a Premium license as we need HTTP actions
+- Power Automate flows run in the context of a user, while Azure Logic Apps flow run in the context of an application
+- Power Automate has only limited options for monitoring
+- our developer experience in Azure Logic Apps was better, as we could easily manipulate the code and have a visual experience side-by-side
+- Power Automate would have required a Premium license as we need HTTP actions
 
 ## Solution Overview
 
@@ -29,38 +29,38 @@ To understand the Logic Apps, it's a good idea to understand the data model:
 
 1. We log all requests in the **Teams Request** table, these are the most important columns:
 
-* TeamName
-* TeamDescription
-* TeamOwner
-* includeTaskList
-* includeWelcomePackage
+- TeamName
+- TeamDescription
+- TeamOwner
+- includeTaskList
+- includeWelcomePackage
 
-2. Each Team can have multiple channels, which we log in the **TeamsChannel** table,  these are the most important columns:
+2. Each Team can have multiple channels, which we log in the **TeamsChannel** table, these are the most important columns:
 
-* Channelname
-* ChannelDescription
-* Teamsrequest (to link to the correct Team)
+- Channelname
+- ChannelDescription
+- Teamsrequest (to link to the correct Team)
 
-3. Each Team can also have a list and a library, we log  them in the **SharePointLibrary** and **SharePointLIst** tables, these are the most important columns:
+3. Each Team can also have a list and a library, we log them in the **SharePointLibrary** and **SharePointLIst** tables, these are the most important columns:
 
-* LibraryName / ListName
-* Teamsrequest (to link to the correct Team)
+- LibraryName / ListName
+- Teamsrequest (to link to the correct Team)
 
 4. Each List/Library can contain columns, we log them in the **ListColumns** table, these are the most important columns:
 
-* ColumnName
-* ColumnType
-* ColumnValues (for ColumnType `Choice`)
+- ColumnName
+- ColumnType
+- ColumnValues (for ColumnType `Choice`)
 
 ## Flows
 
 Our flows pick up the values logged in the Dataverse tables to provision what the user requested:
 
-* [1. Main flow](LogicApps.md#1-main-flow)
-* [2. Create team](LogicApps.md#2-create-team)
-* [3. Create List/Library](LogicApps.md#3-create-listlibrary)
-* [4. Create Task List](LogicApps.md#4-create-task-list)
-* [5. Welcome Package](LogicApps.md#5-welcome-package)
+- [1. Main flow](LogicApps.md#1-main-flow)
+- [2. Create team](LogicApps.md#2-create-team)
+- [3. Create List/Library](LogicApps.md#3-create-listlibrary)
+- [4. Create Task List](LogicApps.md#4-create-task-list)
+- [5. Welcome Package](LogicApps.md#5-welcome-package)
 
 ### 1. Main flow
 
@@ -135,11 +135,11 @@ In the Create team flow, the requested team is created with the specified channe
 
 9. The headers of the team creation request are parsed to extract the information for use later in the Logic Apps flow
 10. The following actions are done in a loop because teamification of the group can take some time
-    1.  An HTTP request is sent to determine the creation status of the team for the group
-    2.  The response is parsed
-    3.  `TeamsCreationStatus` is updated with the status of the HTTP request
-    4.  If team creation has not succeeded, a 10 second delay is added
-    5.  The loop will stop when team creation has succeeded
+    1. An HTTP request is sent to determine the creation status of the team for the group
+    2. The response is parsed
+    3. `TeamsCreationStatus` is updated with the status of the HTTP request
+    4. If team creation has not succeeded, a 10 second delay is added
+    5. The loop will stop when team creation has succeeded
 
 ![Teamify completed loop](media/LogicApps-CreateTeam-LoopTeamifyCompleted.png)
 

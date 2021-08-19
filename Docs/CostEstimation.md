@@ -1,6 +1,6 @@
 # Cost Estimation
 
-![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
+![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/Genie_Header.png)
 
 We provide ProvisionGenie free of charge, but that doesn't mean, that you don't need to pay licensing fees to Microsoft.
 
@@ -14,8 +14,8 @@ While testing, we ended with less than 0.01$ per run and in the meanwhile, Azure
 
 To use this solution, every person using this solution will need:
 
-* a Microsoft 365 license (for example Microsoft 365 E3, Microsoft 365 E5, Microsoft 365 Business Basic, Microsoft 365 Business Standard, Microsoft 365 Business Premium)
-* a Power Apps per app plan OR Power Apps per user plan
+- a Microsoft 365 license (for example Microsoft 365 E3, Microsoft 365 E5, Microsoft 365 Business Basic, Microsoft 365 Business Standard, Microsoft 365 Business Premium)
+- a Power Apps per app plan OR Power Apps per user plan
 
 Effectively October 1, 2021, both plans are now priced at 50% of the previous rate. More information can be found in [Microsoft's announcement](https://www.microsoft.com/licensing/news/pricing_and_licensing_updates_coming_to_power_apps)
 

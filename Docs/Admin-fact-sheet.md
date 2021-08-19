@@ -1,9 +1,8 @@
 # Admin Fact Sheet
 
-🚨 still under construction
 ![Genie Header](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
 
-This Fact sheet shall give an administrator an overview about
+This Fact sheet shall give you as an administrator an overview about
 
 * [added value for users](#end-user-value-of-provisiongenie)
 * [costs](#cost-to-run-provisiongenie)
@@ -80,13 +79,12 @@ We designed and built ProvisionGenie to be an enterprise-grade solution.
 ## Deploy and maintain ProvisionGenie
 
 * To get a better understanding of the architecture of ProvisionGenie we recommend to familiarize yourself first with our [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview).
-* Additionally we provide you with a pictured step by step [Deployment Guide](DeploymentGuide.md) that walks you through the entire deployment.
-* If something doesn't work you can always [raise an issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose) and we will help. We don't believe that you will experience major difficulties, as we of course tested the deployment before.
+* Additionally we provide you with a pictured step by step [Deployment Guide](DeploymentGuide.md) that walks you through the entire deployment process.
+* If something doesn't work you can always [raise an issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose) and we will help.
 
 ## Update schedule
 
 This is an open-source project and we welcome [contributions](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTINGt.md).
-
 We will use [semantic versioning](https://semver.org/):
 
 * We will merge PRs about fixing defects or optimizing existing code fortnightly and release a patch which you can then use

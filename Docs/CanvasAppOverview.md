@@ -35,7 +35,7 @@ As a result of the provisioning process, we have
   * date and time
   * person
   * choice (with as many choices as requested)
- * 1 SharePoint list with as many as requested columns of type
+* 1 SharePoint list with as many as requested columns of type
   * single line of text
   * multiple lines of text
   * number
@@ -43,9 +43,9 @@ As a result of the provisioning process, we have
   * date and time
   * person
   * choice (with as many choices as requested)
- * optional: Welcome package
-   * contains a link to additional learning resources pinned to channel `General`
- * optional: additional SharePoint list for task management containing columns
+* optional: Welcome package
+   * contains a link to additional learning resources pinned to channel `General` - URL can be defined during deployment process
+* optional: additional SharePoint list for task management containing columns
    * Title (single line of text)
    * Description (multiple lines of text)
    * start date (date)
@@ -57,9 +57,9 @@ For more context on how this canvas app fits into our solution, please head over
 
 ## How do I get the app?
 
-* To get the entire solution as-is, please head over to our [Deployment Guide](DeploymentGuide.md)
+* To get the entire solution as-is, head over to our [Deployment Guide](DeploymentGuide.md)
 * To contribute to it, please see our [Contribution Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTING.md)
-* If you like to reverse-engineer it, please take see our [How to build the canvas app](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/HowToBuildTheCanvasApp.md) as a first start.
+* If you like to reverse-engineer it, please see our [How to build the canvas app](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/HowToBuildTheCanvasApp.md) guide as a start.
 * You can also download the `.msapp` file from here and import this app into your environment - please note that this won't give you the full experience, as the entire process of provisioning does not run in this canvas app but in Azure Logic Apps flows which get triggered by new rows in different tables in Dataverse.
 
 ## What if something doesn't work?

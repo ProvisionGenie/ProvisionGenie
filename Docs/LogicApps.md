@@ -4,6 +4,8 @@
 
 ProvisionGenie 💜 Microsoft Graph!
 
+![ProvisionGenie loves Microsoft Graph](Docs/media/GenieLovesGraph.png)
+
 Our entire provision process leverages the power of Microsoft Graph API and we plan to continue with this in future versions.
 
 ## Why we chose Azure Logic Apps over Power Automate

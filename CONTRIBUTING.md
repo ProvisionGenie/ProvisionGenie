@@ -1,10 +1,10 @@
 # Contributing Guidance
 
-If you'd like to contribute to ProvisionGenie, please read the following guidelines. We want to make sure that everyone gets the most out of their efforts.
+If you'd like to contribute to ProvisionGenie, read the following guidelines. We want to make sure that everyone gets the most out of their efforts.
 
 ## Code of Conduct
 
-This project has adopted the [Contributor Covenant Code of Conduct](https://github.com/LuiseFreese/TheBaby/blob/main/CODE_OF_CONDUCT.md).
+This project has adopted the [Contributor Covenant Code of Conduct](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CODE_OF_CONDUCT.md).
 For more information, see the [Contributor Covenant](https://www.contributor-covenant.org/).
 
 ## Question or Problem?

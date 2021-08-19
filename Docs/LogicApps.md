@@ -4,7 +4,7 @@
 
 ProvisionGenie 💜 Microsoft Graph!
 
-![ProvisionGenie loves Microsoft Graph](/Docs/media/GenieLovesGraph.png)
+![ProvisionGenie loves Microsoft Graph](/Docs/media/ProvisionGenieLovesGraph.png)
 
 Our entire provision process leverages the power of Microsoft Graph API and we plan to continue with this in future versions.
 

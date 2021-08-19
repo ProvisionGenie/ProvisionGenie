@@ -2,7 +2,7 @@
 
 ![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
 
-Purpose of this app is to foster teamwork by letting owners-to-be of Microsoft Teams teams make smarter decisions on how a team can work in Teams. Usually, a business consultant would talk a team through assets that are available in Teams and Microsoft 365 and answer all question with 'it depends'. They would explain that people usually
+Purpose of ProvisionGenie is to foster teamwork by letting owners-to-be of Microsoft Teams teams make smarter decisions on how a team can work in Teams. Usually, a business consultant would talk a team through assets that are available in Teams and Microsoft 365 and answer all question with 'it depends'. They would explain that people usually
 
 * confuse chat with task assignment "could you please"
 * confuse email with status reports "per my last email"
@@ -23,11 +23,11 @@ This is, what ProvisionGenie does:
   * if Owner additionally wants a SharePoint list for task management (see also [why we don't provision Planner in ProvisionGenie](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/KnownLimitations.md#no-planner-integration-in-provisiongenie)) or a "Welcome package"
 * Patch 5 Dataverse tables with the information we got by user
 
-As a result of the provisioning process, we have 
+As a result of the provisioning process, we have
 
-* 1 Teams team (with a corresponding SharePoint team site that includes the default document library [but without the Teams Wiki](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/KnownLimitations.md#no-wiki). 
+* 1 Teams team (with a corresponding SharePoint team site that includes the default document library [but without the Teams Wiki](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/KnownLimitations.md#no-wiki).
 * as many channels as requested
-* 1 additional library with as many as requested columns of type 
+* 1 additional library with as many as requested columns of type
   * single line of text
   * multiple lines of text
   * number
@@ -51,7 +51,7 @@ As a result of the provisioning process, we have
    * start date (date)
    * due date (date)
    * assigned person (person)
-   * priority (choice [urgent, high, medium, low]) 
+   * priority (choice [urgent, high, medium, low])
  
 For more context on how this canvas app fits into our solution, please head over to [Solution Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview)
 

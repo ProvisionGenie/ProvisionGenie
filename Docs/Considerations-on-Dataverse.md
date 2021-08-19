@@ -1,7 +1,5 @@
 # Considerations on where to store data - or why we do it in Dataverse
 
-🚨 still under construction 🚨
-
 ![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
 
 ProvisionGenie uses Dataverse to store all data about the provisioned teams in 5 different tables (for more information on this, see [Solution Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview)). As this is the only reason why we need a Power Apps per app plan or a Power Apps per user Plan, here are some thoughts on why we chose Dataverse over
@@ -15,8 +13,8 @@ As much as we love SharePoint for content & collaboration within Microsoft 365, 
 
 ### Issues with Developer Experience
 
-* Delegation: In Canvas Apps, heavy processing of data is delegated to the data connection. Common formulas in Power Apps are not delegatable to SharePoint: This means that it's difficult to return more than 500 (default) to 2000 (max) records at a time in SharePint. Although this is not our core use case in ProvisionGenie, we want the entire solution to be future-proof
-* Filter for data from SharePoint lists have absurd limits, like yes/no fields are not filterable
+* Delegation: In Canvas Apps, heavy processing of data is delegated to the data connection. Common formulas in Power Apps are not delegatable to SharePoint: This means that it's difficult to return more than 500 (default) to 2000 (max) records at a time in SharePoint. Although this is not our core use case in ProvisionGenie, we want the entire solution to be future-proof
+* Filter for data from SharePoint lists have some hard to overcome limits, like yes/no fields are not filterable
 * All SharePoint lists are independent from each other. And although lists can have lookup columns that could refer to other lists, a SharePoint list is by no means a relational database. Lookup columns are not only causing a challenging developer experience but also lead to massive performance issues
 
 ### Performance issues

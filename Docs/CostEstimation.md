@@ -2,7 +2,7 @@
 
 ![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/media/Genie_Header.png)
 
-We provide ProvisionGenie free of charge, but that doesn't mean, that you don't need to pay licensing fees.
+We provide ProvisionGenie free of charge, but that doesn't mean, that you don't need to pay licensing fees to Microsoft.
 
 ## Azure
 

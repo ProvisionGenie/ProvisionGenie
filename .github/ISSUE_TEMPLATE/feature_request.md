@@ -10,9 +10,9 @@ assignees: ''
 Thank you ❤ for your feature request!
 
 - All ideas are welcome - let's build something cool together!
-- This repo is maintained by volunteers, please be courteous and patient. 🙂
+- This repo is maintained in our free time, please be courteous and patient. We do our best! 🙂
 - Include sufficient details and context - we really want to help you.
-- If you have multiple suggestions please submit them separately so we can track resolution.
+- If you have multiple suggestions, submit them separately so we can track resolution.
 - Screenshots are always helpful (just paste any images right here)
 - please reach out if you have any questions!
 

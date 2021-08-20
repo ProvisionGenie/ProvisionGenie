@@ -134,11 +134,15 @@ You will need to create an application user and assign the security role to it.
 
 Important to know: a Dataverse for Teams environment is not enough - for reference read our [Considerations on dataverse](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Considerations-on-Dataverse.md)
 
-// TODO: explain don't deploy the demo apps 2. Import our solution with
-_ Dataverse tables to log the requests
-_ ProvisionGenie canvas app as the UI \* Security role "Provision Genie user"
+// TODO: explain don't deploy the demo apps
 
-    from here:
+2. Import our solution with
+
+- Dataverse tables to log the requests
+- ProvisionGenie canvas app as the UI
+- Security role "Provision Genie user"
+
+ from here:
 
 // TODO insert github link to .zip file
 

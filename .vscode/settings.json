@@ -35,19 +35,24 @@
         "ysewijn's"
     ],
     "cSpell.ignoreWords": [
+        "adapp",
         "adappid",
         "appregistrations",
         "apps",
         "azurecli",
+        "channelname",
         "commondataservice",
         "displayname",
         "listlibrary",
         "ltext",
         "oakdale",
         "provisiongenie",
+        "resourcegroup",
         "resourcegroupname",
         "shellcreate",
+        "teamsrequest",
         "vable",
+        "validationpassed",
         "yourtext"
     ],
     "terminal.integrated.commandsToSkipShell": [

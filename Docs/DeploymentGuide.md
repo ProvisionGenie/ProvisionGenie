@@ -142,11 +142,24 @@ Important to know: a Dataverse for Teams environment is not enough - for referen
 - ProvisionGenie canvas app as the UI
 - Security role "Provision Genie user"
 
- from here: [ProvisionGenie_1_0](https://github.com/ProvisionGenie/ProvisionGenie/tree/main/Deployment/Power-Platform-solution)
+ from here: [ProvisionGenie Solution](https://github.com/ProvisionGenie/ProvisionGenie/tree/main/Deployment/Solution)
 
 In case this is the first time you import a solution, follow the steps described here: [Import a Power Platform solution](https://docs.microsoft.com/powerapps/maker/data-platform/import-update-export-solutions) 
 
 3. Create an application user and the assign security role "Provision Genie user" as part of the creation process as described here: [Create an application user](https://docs.microsoft.com/power-platform/admin/manage-application-users#create-an-application-user)
+
+4. Assign the security role "Provision Genie user" to all users that will be able to use ProvisionGenie for team creation.
+- You can assign the role to individual people using the steps explained [here](https://docs.microsoft.com/en-us/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database)
+- Alternatively, you can bulk assign roles to people by following the next steps:
+  - Go to the Power Platform admin center and select your environment (step 1 and 2 in the guide above)
+  - In the Access pane, select "See all" under Users.
+  ![Users - see all](Media/EnvironmentSettingsUsersSeeAll.png)
+  - Select "Manage users in Dynamics 365" in the action bar at the top
+  ![Manage users in Dynamics 365](Media/EnvironmentUsersManageInD365.png)
+  - Select the users you want to assign the security role to, and afterwards select "Manage roles" in the action bar
+  ![Manage roles](Media:EnvironmentUsersManageRoles.png)
+  - In the list with security roles, select "Provision Genie user" and then "OK"
+  ![Select roles](Media/EnvironmentUsersSelectRoles.png)
 
 ### 3. Create new Azure resource groups
 

@@ -153,13 +153,17 @@ In case this is the first time you import a solution, follow the steps described
 - Alternatively, you can bulk assign roles to people by following the next steps:
   - Go to the Power Platform admin center and select your environment (step 1 and 2 in the guide above)
   - In the Access pane, select "See all" under Users.
-  ![Users - see all](Media/EnvironmentSettingsUsersSeeAll.png)
+
+  ![Users - see all](media/EnvironmentSettingsUsersSeeAll.png)
   - Select "Manage users in Dynamics 365" in the action bar at the top
-  ![Manage users in Dynamics 365](Media/EnvironmentUsersManageInD365.png)
+
+  ![Manage users in Dynamics 365](media/EnvironmentUsersManageInD365.png)
   - Select the users you want to assign the security role to, and afterwards select "Manage roles" in the action bar
-  ![Manage roles](Media:EnvironmentUsersManageRoles.png)
+
+  ![Manage roles](media/EnvironmentUsersManageRoles.png)
   - In the list with security roles, select "Provision Genie user" and then "OK"
-  ![Select roles](Media/EnvironmentUsersSelectRoles.png)
+
+  ![Select roles](media/EnvironmentUsersSelectRoles.png)
 
 ### 3. Create new Azure resource groups
 

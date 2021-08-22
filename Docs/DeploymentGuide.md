@@ -128,13 +128,9 @@ In Dataverse, we can setup [security roles](https://docs.microsoft.com/power-pla
 
 You will need to create an application user and assign the security role to it.
 
-// TODO: screenshots by Carmen
-
 1. in case you don't have already an environment that you want to use for ProvisionGenie, follow these steps to [create a new environment with a database](https://docs.microsoft.com/power-platform/admin/create-environment#create-an-environment-with-a-database)
 
 Important to know: a Dataverse for Teams environment is not enough - for reference read our [Considerations on dataverse](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Considerations-on-Dataverse.md)
-
-// TODO: explain don't deploy the demo apps
 
 2. Import our solution with
 

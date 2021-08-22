@@ -142,11 +142,11 @@ Important to know: a Dataverse for Teams environment is not enough - for referen
 - ProvisionGenie canvas app as the UI
 - Security role "Provision Genie user"
 
- from here:
+ from here: [ProvisionGenie_1_0](https://github.com/ProvisionGenie/ProvisionGenie/tree/main/Deployment/Power-Platform-solution)
 
-// TODO insert github link to .zip file
+In case this is the first time you import a solution, follow the steps described here: [Import a Power Platform solution](https://docs.microsoft.com/powerapps/maker/data-platform/import-update-export-solutions) 
 
-In case this is the first time you import a solution, follow the steps described here: [Import a Power Platform solution](https://docs.microsoft.com/powerapps/maker/data-platform/import-update-export-solutions) 3. Create an application user and the assign security role "Provision Genie user" as part of the creation process as described here: [Create an application user](https://docs.microsoft.com/power-platform/admin/manage-application-users#create-an-application-user)
+3. Create an application user and the assign security role "Provision Genie user" as part of the creation process as described here: [Create an application user](https://docs.microsoft.com/power-platform/admin/manage-application-users#create-an-application-user)
 
 ### 3. Create new Azure resource groups
 

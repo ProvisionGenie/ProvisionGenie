@@ -65,7 +65,7 @@ In our first proof of concept, we still used Power Automate to provision a custo
 - our developer experience in Azure Logic Apps was better, as we could easily manipulate the code and have a visual experience side-by-side
 - Power Automate would have required a Premium license as we need HTTP actions
 
-## Consequences of choosing Azure Logic Apps
+### Consequences of choosing Azure Logic Apps
 
 - requires an Azure subscription
 - invoicing happens consumption-based

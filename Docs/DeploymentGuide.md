@@ -10,7 +10,7 @@ This guide shall walk you through the minimal path to awesome. It lists all step
 
 - Azure Subscription - if you don't have one, [get it here free](https://azure.microsoft.com//free) - also see [Cost estimation](CostEstimation.md)
 - Microsoft 365 license
-- [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, also see [Considerations about where to store data](Docs/Considerations-on-Dataverse.md))
+- [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, also see [Architecture Decisions](/Docs/ArchitectureDecisions.md))
 - Environment with [Dataverse database](https://docs.microsoft.com/power-platform/admin/create-database) - you can create one during the deployment process
 - Admin role Azure: [Contributor](https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#contributor)
 - Power Platform role: [System Administrator](https://docs.microsoft.com/power-platform/admin/database-security)
@@ -122,7 +122,7 @@ That's it!
 
 ### 2. Dataverse solution
 
-We built ProvisionGenie by using Dataverse mostly for security reasons. We do not want to give users a way to bypass the canvas app and access data they shouldn't have access to. This concern was one of our main reasons to not use SharePoint lists to log requests as you would need to share the list with every user. That means that they could create new items, manipulate and even delete data. For more information, head over to [Considerations-on-Dataverse](Docs\Considerations-on-Dataverse.md).
+We built ProvisionGenie by using Dataverse mostly for security reasons. We do not want to give users a way to bypass the canvas app and access data they shouldn't have access to. This concern was one of our main reasons to not use SharePoint lists to log requests as you would need to share the list with every user. That means that they could create new items, manipulate and even delete data. For more information, head over to [Architecture Decisions](/Docs/ArchitectureDecisions.md).
 
 In Dataverse, we can setup [security roles](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database) to prevent this and we made a security role "ProvisionGenie user" part of the solution that you will import in the next steps.
 
@@ -130,7 +130,7 @@ You will need to create an application user and assign the security role to it.
 
 1. in case you don't have already an environment that you want to use for ProvisionGenie, follow these steps to [create a new environment with a database](https://docs.microsoft.com/power-platform/admin/create-environment#create-an-environment-with-a-database)
 
-Important to know: a Dataverse for Teams environment is not enough - for reference read our [Considerations on dataverse](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Considerations-on-Dataverse.md)
+Important to know: a Dataverse for Teams environment is not enough - for reference read our [Architecture Decisions](/Docs/ArchitectureDecisions.md)
 
 2. Import our solution with
 

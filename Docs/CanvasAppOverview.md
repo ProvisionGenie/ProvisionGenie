@@ -25,7 +25,7 @@ This is, what ProvisionGenie does:
 
 As a result of the provisioning process, we have
 
-- 1 Teams team (with a corresponding SharePoint team site that includes the default document library [but without the Teams Wiki](/Docs/ArchitectureDecisions.md#no-wiki).
+- 1 Teams team (with a corresponding SharePoint team site that includes the default document library [but without the Teams Wiki](/Docs/ArchitectureDecisions.md#teams-wiki).
 - as many channels as requested
 - 1 additional library with as many as requested columns of type
   - single line of text

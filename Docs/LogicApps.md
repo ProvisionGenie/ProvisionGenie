@@ -6,15 +6,6 @@ ProvisionGenie 💜 Microsoft Graph! Our entire provision process leverages the 
 
 ![ProvisionGenie loves Microsoft Graph](/Docs/media/ProvisionGenieLovesGraph.png)
 
-## Why we chose Azure Logic Apps over Power Automate
-
-In our first proof of concept, we still used Power Automate to provision a custom Teams team, but Power Automate is intended to be used to improve personal productivity and to serve non mission-critical scenarios. The more a solution scales, the less likely it is a good fit for Power Automate:
-
-- Power Automate flows run in the context of a user, while Azure Logic Apps flow run in the context of an application
-- Power Automate has only limited options for monitoring
-- our developer experience in Azure Logic Apps was better, as we could easily manipulate the code and have a visual experience side-by-side
-- Power Automate would have required a Premium license as we need HTTP actions
-
 ## Solution Overview
 
 Based on user input in the canvas app, ProvisionGenie logs team requests. Each new row in the **Teams Request** table will trigger the **Main flow** in Azure Logic Apps, which will then handle all other child flows:

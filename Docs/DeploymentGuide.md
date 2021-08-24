@@ -4,13 +4,13 @@
 
 ![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/Genie_Header.png)
 
-This guide shall walk you through the minimal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant. If you haven't done this by now, familiarize yourself with our [solution overview](/Docs/LogicApps.md#solution-overview) and understand our [ArchitectureDecisions](Docs/ArchitectureDecisions.md)
+This guide shall walk you through the minimal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant. If you haven't done this by now, familiarize yourself with our [solution overview](/Docs/LogicApps.md#solution-overview)
 
 ## Prerequisites
 
 - Azure Subscription - if you don't have one, [get it here free](https://azure.microsoft.com//free) - also see [Cost estimation](CostEstimation.md)
 - Microsoft 365 license
-- [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, also see [Architecture Decisions](/Docs/ArchitectureDecisions.md))
+- [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, also see [Considerations about where to store data](Docs/Considerations-on-Dataverse.md))
 - Environment with [Dataverse database](https://docs.microsoft.com/power-platform/admin/create-database) - you can create one during the deployment process
 - Admin role Azure: [Contributor](https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#contributor)
 - Power Platform role: [System Administrator](https://docs.microsoft.com/power-platform/admin/database-security)
@@ -19,16 +19,16 @@ This guide shall walk you through the minimal path to awesome. It lists all step
 
 In order to successfully deploy ProvisionGenie, you will need to perform the following steps
 
-- [1. App registration for deployment of Dataverse tables](DeploymentGuide.md#1-App-registration-for-deployment-of-Dataverse-tables)
+- [1. App registration to access Dataverse tables](DeploymentGuide.md#1-App-registration-to-access-Dataverse-tables)
 - [2. Dataverse solution](DeploymentGuide.md#2-dataverse-solution)
 - [3. Create new Azure resource groups](DeploymentGuide.md#3-create-new-azure-resource-groups)
 - [4. Deployment of Azure Logic Apps](DeploymentGuide.md#4-deployment-of-azure-logic-apps)
 
-### 1. App registration for deployment of Dataverse tables
+### 1. App registration to access of Dataverse tables
 
-You will need to register an app in Azure AD in order to deploy the dataverse tables to your tenant. You can register the app either using the [Azure portal](#app-registration-for-deployment-of-dataverse-tables-using-azure-portal) or by using [Azure CLI](#app-registration-for-deployment-of-dataverse-tables-using-azure-cli)
+You will need to register an app in Azure AD in order to access the dataverse tables in the Logic Apps. You can register the app either using the [Azure portal](#app-registration-to-access-dataverse-tables-using-azure-portal) or by using [Azure CLI](#app-registration-to-access-dataverse-tables-using-azure-cli)
 
-#### App registration for deployment of Dataverse tables using Azure portal
+#### App registration to access Dataverse tables using Azure portal
 
 - Go to [portal.azure.com](https://portal.azure.com)
 - Log in
@@ -58,6 +58,11 @@ You will need to register an app in Azure AD in order to deploy the dataverse ta
 
 ![User Impersonation](media/AzurePortalADAppregistrationsAddPermissionDynCRMUserImpersonationSteps-cut.png)
 
+- (1) Grant admin consent
+- (2) Confirm with **Yes**
+
+TODO: screenshot
+
 - (1) Select **Certificates & secrets**
 - (2) Select **New client secret**
 - (3) Enter a description like `PG-secret`
@@ -78,7 +83,7 @@ You will need to register an app in Azure AD in order to deploy the dataverse ta
 
 That's it!
 
-#### App registration for deployment of Dataverse tables using Azure CLI
+#### App registration to access Dataverse tables using Azure CLI
 
 The alternative for the steps above using the Azure portal is using Azure CLI. Follow these steps:
 
@@ -104,8 +109,6 @@ Save these values somewhere.
 
 ```azurecli
 
-#Create a service principal with
-az ad sp create --id $adappid
 #Set API permissions for user impersonation in Dynamics CRM
 az ad app permission add --id $adappid --api 00000007-0000-0000-c000-000000000000 --api-permissions 78ce3f0f-a1ce-49c2-8cde-64b5c0896db4=Role
 ```
@@ -122,7 +125,7 @@ That's it!
 
 ### 2. Dataverse solution
 
-We built ProvisionGenie by using Dataverse mostly for security reasons. We do not want to give users a way to bypass the canvas app and access data they shouldn't have access to. This concern was one of our main reasons to not use SharePoint lists to log requests as you would need to share the list with every user. That means that they could create new items, manipulate and even delete data. For more information, head over to [Architecture Decisions](/Docs/ArchitectureDecisions.md).
+We built ProvisionGenie by using Dataverse mostly for security reasons. We do not want to give users a way to bypass the canvas app and access data they shouldn't have access to. This concern was one of our main reasons to not use SharePoint lists to log requests as you would need to share the list with every user. That means that they could create new items, manipulate and even delete data. For more information, head over to [Considerations-on-Dataverse](Docs\Considerations-on-Dataverse.md).
 
 In Dataverse, we can setup [security roles](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database) to prevent this and we made a security role "ProvisionGenie user" part of the solution that you will import in the next steps.
 
@@ -130,7 +133,7 @@ You will need to create an application user and assign the security role to it.
 
 1. in case you don't have already an environment that you want to use for ProvisionGenie, follow these steps to [create a new environment with a database](https://docs.microsoft.com/power-platform/admin/create-environment#create-an-environment-with-a-database)
 
-Important to know: a Dataverse for Teams environment is not enough - for reference read our [Architecture Decisions](/Docs/ArchitectureDecisions.md)
+Important to know: a Dataverse for Teams environment is not enough - for reference read our [Considerations on dataverse](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Considerations-on-Dataverse.md)
 
 2. Import our solution with
 
@@ -138,31 +141,26 @@ Important to know: a Dataverse for Teams environment is not enough - for referen
 - ProvisionGenie canvas app as the UI
 - Security role "Provision Genie user"
 
-from here: [ProvisionGenie Solution](https://github.com/ProvisionGenie/ProvisionGenie/tree/main/Deployment/Solution)
+ from here: [ProvisionGenie Solution](https://github.com/ProvisionGenie/ProvisionGenie/tree/main/Deployment/Solution)
 
-In case this is the first time you import a solution, follow the steps described here: [Import a Power Platform solution](https://docs.microsoft.com/powerapps/maker/data-platform/import-update-export-solutions)
+In case this is the first time you import a solution, follow the steps described here: [Import a Power Platform solution](https://docs.microsoft.com/powerapps/maker/data-platform/import-update-export-solutions) 
 
-3. Create an application user and the assign security role **Provision Genie user** as part of the creation process as described here: [Create an application user](https://docs.microsoft.com/power-platform/admin/manage-application-users#create-an-application-user)
+3. Create an application user and the assign security role "Provision Genie user" as part of the creation process as described here: [Create an application user](https://docs.microsoft.com/power-platform/admin/manage-application-users#create-an-application-user)
 
-4. Assign the security role **Provision Genie user** to all users that will be able to use ProvisionGenie for team creation.
-
-- You can assign the role to individual people using the steps explained [here](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database)
+4. Assign the security role "Provision Genie user" to all users that will be able to use ProvisionGenie for team creation.
+- You can assign the role to individual people using the steps explained [here](https://docs.microsoft.com/en-us/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database)
 - Alternatively, you can bulk assign roles to people by following the next steps:
-
   - Go to the Power Platform admin center and select your environment (step 1 and 2 in the guide above)
-  - In the Access pane, select **See all** under Users.
+  - In the Access pane, select "See all" under Users.
 
   ![Users - see all](media/EnvironmentSettingsUsersSeeAll.png)
-
-  - Select **Manage users in Dynamics 365** in the action bar at the top
+  - Select "Manage users in Dynamics 365" in the action bar at the top
 
   ![Manage users in Dynamics 365](media/EnvironmentUsersManageInD365.png)
-
-  - Select the users you want to assign the security role to, and afterwards select **Manage roles** in the action bar
+  - Select the users you want to assign the security role to, and afterwards select "Manage roles" in the action bar
 
   ![Manage roles](media/EnvironmentUsersManageRoles.png)
-
-  - In the list with security roles, select **Provision Genie user** and then **OK**
+  - In the list with security roles, select "Provision Genie user" and then "OK"
 
   ![Select roles](media/EnvironmentUsersSelectRoles.png)
 

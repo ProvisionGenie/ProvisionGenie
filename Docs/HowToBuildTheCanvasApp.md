@@ -382,7 +382,7 @@ We get the information by a form which is connected to a DataVerse table **Teams
 A few notes:
 
 - We modified the styling of the DataCards of the Form to match the criteria of Teams Toolkit.
-- For the yes/no question about the SharePoint list as a task management tool, we build another PopUp to explain this. For info on why we don't provision see Known limitations
+- For the yes/no question about the SharePoint list as a task management tool, we build another PopUp to explain this. For info on why we don't provision see [Architecture Decisions](/Docs/ArchitectureDecisions.md#no-microsoft-planner-provisioning)
 - We changed the default dropdown fields to toggles. To connect those again to your data source, a little extra work is required:
 
 #### Modify the form with toggles instead of dropdown

@@ -20,6 +20,7 @@ ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/microso
 
 - Read our [Fact sheet for Admins](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Admin-fact-sheet.md) to understand the impact of ProvisionGenie
 - Familiarize yourself with the [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview)
+- Understand our [Architecture Decisions](/Docs/ArchitectureDecisions.md)
 - Use our [Deployment Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/DeploymentGuide.md) to deploy ProvisionGenie
 
 ## What does it cost?

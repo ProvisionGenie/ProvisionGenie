@@ -6,6 +6,8 @@ ProvisionGenie 💜 Microsoft Graph! Our entire provision process leverages the 
 
 ![ProvisionGenie loves Microsoft Graph](/Docs/media/ProvisionGenieLovesGraph.png)
 
+To understand why we chose Azure Logic Apps head over to [Architecture Decisions](Docs/ArchitectureDecisions.md)
+
 ## Solution Overview
 
 Based on user input in the canvas app, ProvisionGenie logs team requests. Each new row in the **Teams Request** table will trigger the **Main flow** in Azure Logic Apps, which will then handle all other child flows:

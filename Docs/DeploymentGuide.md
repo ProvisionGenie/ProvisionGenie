@@ -24,7 +24,7 @@ In order to successfully deploy ProvisionGenie, you will need to perform the fol
 - [3. Create new Azure resource groups](DeploymentGuide.md#3-create-new-azure-resource-groups)
 - [4. Deployment of Azure Logic Apps](DeploymentGuide.md#4-deployment-of-azure-logic-apps)
 
-### 1. App registration to access of Dataverse tables
+### 1. App registration to access Dataverse tables
 
 You will need to register an app in Azure AD in order to access the dataverse tables in the Logic Apps. You can register the app either using the [Azure portal](#app-registration-to-access-dataverse-tables-using-azure-portal) or by using [Azure CLI](#app-registration-to-access-dataverse-tables-using-azure-cli)
 

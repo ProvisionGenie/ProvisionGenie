@@ -9,7 +9,7 @@
             "value": "e6d558fac5d14df88a14d2d93083b567.crm4"
         },
         "resourceGroupName": {
-            "value": "ProvisionGenieDeploy2"
+            "value": "deployGenie"
         },
         "WelcomePackageUrl": {
             "value": "https://google.com"

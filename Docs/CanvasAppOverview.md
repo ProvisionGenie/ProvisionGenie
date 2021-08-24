@@ -20,7 +20,7 @@ This is, what ProvisionGenie does:
   - Channels
   - Name of SharePoint list & columns
   - Name of SharePoint library & columns
-  - if Owner additionally wants a SharePoint list for task management (see also [why we don't provision Planner in ProvisionGenie](/Docs/ArchitectureDecisions.md#-no-microsoft-planner-provisioning)) or a "Welcome package"
+  - if Owner additionally wants a SharePoint list for task management (see also why we don't provision Planner in ProvisionGenie in our [Architecture Decisions](Docs/ArchitectureDecisions.md#no-microsoft-planner-provisioning)) or a "Welcome package"
 - Patch 5 Dataverse tables with the information we got by user
 
 As a result of the provisioning process, we have

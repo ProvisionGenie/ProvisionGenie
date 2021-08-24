@@ -6,7 +6,7 @@ ProvisionGenie 💜 Microsoft Graph! Our entire provision process leverages the 
 
 ![ProvisionGenie loves Microsoft Graph](/Docs/media/ProvisionGenieLovesGraph.png)
 
-To understand why we chose Azure Logic Apps head over to [Architecture Decisions](Docs/ArchitectureDecisions.md)
+To understand why we chose Azure Logic Apps head over to [Architecture Decisions](/Docs/ArchitectureDecisions.md)
 
 ## Solution Overview
 

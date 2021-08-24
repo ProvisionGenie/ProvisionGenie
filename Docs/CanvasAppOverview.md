@@ -53,7 +53,7 @@ As a result of the provisioning process, we have
   - assigned person (person)
   - priority (choice [urgent, high, medium, low])
 
-For more context on how this canvas app fits into our solution, please head over to [Solution Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview) and [Architecture Decisions](Docs/ArchitectureDecisions.md)
+For more context on how this canvas app fits into our solution, please head over to [Solution Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview) and [Architecture Decisions](/Docs/ArchitectureDecisions.md)
 
 ## How do I get the app?
 

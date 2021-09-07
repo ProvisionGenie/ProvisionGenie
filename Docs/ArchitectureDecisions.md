@@ -11,7 +11,7 @@ we wanted to store the data somewhere.
 
 ### Decision - Microsoft Dataverse
 
-ProvisionGenie uses Microsoft Dataverse to store all data about the (to be) provisioned teams in 5 different tables (for more information on this, see [Solution Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview)).
+ProvisionGenie uses Microsoft Dataverse to store all data about the (to be) provisioned teams in 5 different tables (for more information on this, see [Solution Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/LogicApps.md#solution-overview)).
 
 ### Alternatives
 
@@ -87,7 +87,7 @@ Therefore, we decided to not provision it, as it would cause a lot of disadvanta
 
 We want to give ProvisionGenie users the best experience to work in Teams as from day 1. If they don't get a planner plan by our process, we needed to present them an alternative. This is why we chose to ask our users if they wanted to have a SharePoint list with columns that mimic Planner behavior provisioned for them. We introduce users as well to gallery view in lists so that they get a similar experience as in Planner. As we can create SharePoint lists and their columns with application permissions, this is as a secure alternative.
 
-![task list in SharePoint](/Docs/media/tasklist.png)
+![task list in SharePoint](/docs/media/tasklist.png)
 
 ## Teams Wiki
 

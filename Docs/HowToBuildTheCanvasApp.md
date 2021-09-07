@@ -1,6 +1,6 @@
 # How to build the canvas app
 
-![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/Genie_Header.png)
+![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/media/Genie_Header.png)
 
 Although we give you both `.msapp` and source code files of the canvas app, you can also follow these instructions if you want to rebuild it:
 
@@ -348,8 +348,8 @@ Navigation and side panel will be shown on every screen, only the HTMLtext in th
 
 We built
 
-- 1 Welcome [PopUps](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasApp.md#popup) that is triggered by AppStart and introduces users on three pages what this app is about
-- 4 different [PopUps](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasApp.md#popup) for the learning content
+- 1 Welcome [PopUps](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/CanvasApp.md#popup) that is triggered by AppStart and introduces users on three pages what this app is about
+- 4 different [PopUps](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/CanvasApp.md#popup) for the learning content
 - 4 respecting Cards that serve as a more beautiful trigger for these PopUps
 - 1 Button to navigate to the **Teams** screen and start the provisioning process
   - Set **OnSelect** of this Button to
@@ -377,12 +377,12 @@ Set(
   - whether our owner (= signed-in user) wants a 'WelcomePackage' or not
   - whether our owner wants a SharePoint list provisioned for task management
 
-We get the information by a form which is connected to a DataVerse table **Teams Requests** - see also [Solution Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview)
+We get the information by a form which is connected to a DataVerse table **Teams Requests** - see also [Solution Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/LogicApps.md#solution-overview)
 
 A few notes:
 
 - We modified the styling of the DataCards of the Form to match the criteria of Teams Toolkit.
-- For the yes/no question about the SharePoint list as a task management tool, we build another PopUp to explain this. For info on why we don't provision see [Architecture Decisions](/Docs/ArchitectureDecisions.md#no-microsoft-planner-provisioning)
+- For the yes/no question about the SharePoint list as a task management tool, we build another PopUp to explain this. For info on why we don't provision see [Architecture Decisions](/docs/ArchitectureDecisions.md#no-microsoft-planner-provisioning)
 - We changed the default dropdown fields to toggles. To connect those again to your data source, a little extra work is required:
 
 #### Modify the form with toggles instead of dropdown
@@ -636,7 +636,7 @@ This way, our **Add** button will only be selectable if column name and column v
 Our **Next** or **Save library** is supposed to do a few things:
 
 - Set a variable for the library name (remember, we did not submit the form to our data source)
-- Display a [PopUp](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasApp.md#popup) to indicate that the library was saved
+- Display a [PopUp](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/CanvasApp.md#popup) to indicate that the library was saved
 
 To achieve this,
 
@@ -766,7 +766,7 @@ isPageSummary = 6,
 
 ````Power Apps
 
-For **Text**, **Width** and **X** of your Next button refer to [PopUps](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasApp.md#popup)
+For **Text**, **Width** and **X** of your Next button refer to [PopUps](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/CanvasApp.md#popup)
 
 * Set **OnSelect** to
 

@@ -4,12 +4,15 @@
 
 This Fact sheet shall give you as an administrator an overview about
 
-- [added value for users](#end-user-value-of-provisiongenie)
-- [costs](#cost-to-run-provisiongenie)
-- [security](#security)
-- [privacy](#privacy)
-- [governance](#governance) and
-- what it takes to [deploy & maintain](#deploy-and-maintain-provisiongenie) the solution
+- [Admin Fact Sheet](#admin-fact-sheet)
+  - [End User value of ProvisionGenie](#end-user-value-of-provisiongenie)
+  - [Cost to run ProvisionGenie](#cost-to-run-provisiongenie)
+  - [Security](#security)
+  - [Privacy](#privacy)
+  - [Governance](#governance)
+  - [Deploy and maintain ProvisionGenie](#deploy-and-maintain-provisiongenie)
+  - [Update schedule](#update-schedule)
+  - [Any other questions?](#any-other-questions)
 
 ## End User value of ProvisionGenie
 

@@ -1,6 +1,6 @@
 # Admin Fact Sheet
 
-![Genie Header](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/media/Genie_Header.png)
+![Genie Header](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/Genie_Header.png)
 
 This Fact sheet shall give you as an administrator an overview about
 
@@ -34,7 +34,7 @@ Benefits:
 - Prevents "stockpiled" channels (and their SharePoint folder equivalents)
 - Enables better adoption of the correct usage of SharePoint lists & libraries
 
-For more information head over to [Canvas App Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/CanvasAppOverview.md#high-level-overview-on-what-the-canvas-app-does)
+For more information head over to [Canvas App Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasAppOverview.md#high-level-overview-on-what-the-canvas-app-does)
 
 ## Cost to run ProvisionGenie
 
@@ -78,7 +78,7 @@ We designed and built ProvisionGenie to be an enterprise-grade solution.
 
 ## Deploy and maintain ProvisionGenie
 
-- To get a better understanding of the architecture of ProvisionGenie we recommend to familiarize yourself first with our [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/LogicApps.md#solution-overview) and make sure you understand our [Architecture Decisions](Docs/ArchitectureDecisions.md)
+- To get a better understanding of the architecture of ProvisionGenie we recommend to familiarize yourself first with our [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview) and make sure you understand our [Architecture Decisions](Docs/ArchitectureDecisions.md)
 - Additionally we provide you with a pictured step by step [Deployment Guide](DeploymentGuide.md) that walks you through the entire deployment process.
 - If something doesn't work you can always [raise an issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose) and we will help.
 
@@ -91,7 +91,7 @@ We will use [semantic versioning](https://semver.org/):
 - New features without breaking changes will be released in minor versions
 - breaking changes will be released only in major versions
 
-You can familiarize yourself with our [Roadmap](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/Roadmap.md) to know what's coming when.
+You can familiarize yourself with our [Roadmap](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Roadmap.md) to know what's coming when.
 
 ## Any other questions?
 

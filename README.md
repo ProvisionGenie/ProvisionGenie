@@ -1,6 +1,6 @@
 # ProvisionGenie
 
-![Genie Header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/media/Genie_Header.png)
+![Genie Header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/Genie_Header.png)
 
 ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/microsoft-teams/group-chat-software) that lets you learn how your team can work best in Microsoft Teams. As Teams is a platform that can connect to a lot of services, we want to make your start even easier. We will
 
@@ -8,32 +8,32 @@ ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/microso
 - guide you through some questions regarding how your Team should look like and
 - let you request the 'Team of your dreams' as a result of that process, which will be provisioned automatically for you.
 
-![Walkthrough](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/media/walkthrough.gif)
+![Walkthrough](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/walkthrough.gif)
 
 ## Core components of this solution
 
-- [Power Apps Canvas App](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/CanvasAppOverview.md) which serves as our UI
-- [5 DataVerse tables](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/LogicApps.md#solution-overview) where we log all Teams requests
-- [5 Azure Logic Apps flows](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/LogicApps.md) which we use to provision the requested Teams
+- [Power Apps Canvas App](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasAppOverview.md) which serves as our UI
+- [5 DataVerse tables](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview) where we log all Teams requests
+- [5 Azure Logic Apps flows](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md) which we use to provision the requested Teams
 
 ## How to get started
 
-- Read our [Fact sheet for Admins](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/Admin-fact-sheet.md) to understand the impact of ProvisionGenie
-- Familiarize yourself with the [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/LogicApps.md#solution-overview)
-- Understand our [Architecture Decisions](/docs/ArchitectureDecisions.md)
-- Use our [Deployment Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/DeploymentGuide.md) to deploy ProvisionGenie
+- Read our [Fact sheet for Admins](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Admin-fact-sheet.md) to understand the impact of ProvisionGenie
+- Familiarize yourself with the [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview)
+- Understand our [Architecture Decisions](/Docs/ArchitectureDecisions.md)
+- Use our [Deployment Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/DeploymentGuide.md) to deploy ProvisionGenie
 
 ## What does it cost?
 
 - ProvisionGenie is an open-source project and we won't charge you for using, extending, or modifying it. For more information see our [license](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/LICENSE.md)
 - To make the app work, you will need all of the following
-  - an [Azure subscription](https://azure.microsoft.com/) -for more detail see [Cost estimation](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/CostEstimation.md)
+  - an [Azure subscription](https://azure.microsoft.com/) -for more detail see [Cost estimation](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CostEstimation.md)
   - a [Power Apps per app](https://powerapps.microsoft.com/pricing/) or a [Power Apps per user](https://powerapps.microsoft.com/pricing/) plan as we use [Microsoft Dataverse](https://powerplatform.microsoft.com/dataverse/) to store data
   - a [Microsoft 365 license](https://www.microsoft.com/microsoft-365/business/compare-all-microsoft-365-business-products) for every user who uses the app.
 
 ## Roadmap
 
-This is our very first Version 1.0.0. - it is our minimal l♥vable product and we are excited about this first release! For more info in versioning, head over to [Release Notes](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/Release-Notes.md).
+This is our very first Version 1.0.0. - it is our minimal l♥vable product and we are excited about this first release! For more info in versioning, head over to [Release Notes](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Release-Notes.md).
 
 You can also have a look into our [Roadmap](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/Roadmap.md) to see what's coming in the future.
 
@@ -52,7 +52,7 @@ We also listed [some features that we would like to add in the future](https://g
 
 ## Developers
 
-<img width="400" alt="Carmen and Luise" src="https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/media/Carmen_Luise.png">
+<img width="400" alt="Carmen and Luise" src="https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/Carmen_Luise.png">
 
 ProvisionGenie is a project by [Luise Freese](https://m365princess.com) and [Carmen Ysewijn](https://digipersonal.com/).
 

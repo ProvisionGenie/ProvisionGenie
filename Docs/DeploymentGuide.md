@@ -2,9 +2,9 @@
 
 🚨 still under construction 💡
 
-![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/media/Genie_Header.png)
+![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/Genie_Header.png)
 
-This guide shall walk you through the minimal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant. If you haven't done this by now, familiarize yourself with our [solution overview](/docs/LogicApps.md#solution-overview)
+This guide shall walk you through the minimal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant. If you haven't done this by now, familiarize yourself with our [solution overview](/Docs/LogicApps.md#solution-overview)
 
 ## Prerequisites
 
@@ -133,7 +133,7 @@ You will need to create an application user and assign the security role to it.
 
 1. in case you don't have already an environment that you want to use for ProvisionGenie, follow these steps to [create a new environment with a database](https://docs.microsoft.com/power-platform/admin/create-environment#create-an-environment-with-a-database)
 
-Important to know: a Dataverse for Teams environment is not enough - for reference read our [Considerations on dataverse](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/Considerations-on-Dataverse.md)
+Important to know: a Dataverse for Teams environment is not enough - for reference read our [Considerations on dataverse](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Considerations-on-Dataverse.md)
 
 2. Import our solution with
 
@@ -141,30 +141,25 @@ Important to know: a Dataverse for Teams environment is not enough - for referen
 - ProvisionGenie canvas app as the UI
 - Security role "Provision Genie user"
 
-from here: [ProvisionGenie Solution](https://github.com/ProvisionGenie/ProvisionGenie/tree/main/Deployment/Solution)
+ from here: [ProvisionGenie Solution](https://github.com/ProvisionGenie/ProvisionGenie/tree/main/Deployment/Solution)
 
-In case this is the first time you import a solution, follow the steps described here: [Import a Power Platform solution](https://docs.microsoft.com/powerapps/maker/data-platform/import-update-export-solutions)
+In case this is the first time you import a solution, follow the steps described here: [Import a Power Platform solution](https://docs.microsoft.com/powerapps/maker/data-platform/import-update-export-solutions) 
 
 3. Create an application user and the assign security role "Provision Genie user" as part of the creation process as described here: [Create an application user](https://docs.microsoft.com/power-platform/admin/manage-application-users#create-an-application-user)
 
 4. Assign the security role "Provision Genie user" to all users that will be able to use ProvisionGenie for team creation.
-
 - You can assign the role to individual people using the steps explained [here](https://docs.microsoft.com/en-us/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database)
 - Alternatively, you can bulk assign roles to people by following the next steps:
-
   - Go to the Power Platform admin center and select your environment (step 1 and 2 in the guide above)
   - In the Access pane, select "See all" under Users.
 
   ![Users - see all](media/EnvironmentSettingsUsersSeeAll.png)
-
   - Select "Manage users in Dynamics 365" in the action bar at the top
 
   ![Manage users in Dynamics 365](media/EnvironmentUsersManageInD365.png)
-
   - Select the users you want to assign the security role to, and afterwards select "Manage roles" in the action bar
 
   ![Manage roles](media/EnvironmentUsersManageRoles.png)
-
   - In the list with security roles, select "Provision Genie user" and then "OK"
 
   ![Select roles](media/EnvironmentUsersSelectRoles.png)
@@ -275,12 +270,12 @@ Inside of storage account, create a new container named `templates` and upload t
 - Select **Create**
 - Fil out the form as shown:
 
-![Create storage account](/docs/media/AzurePortalCreateStorage.png)
+![Create storage account](/Docs/media/AzurePortalCreateStorage.png)
 
 - Select **Review + Create**
 - Review if everything looks ok - note that you see a **Validation passed** banner
 
-![validation passed](/docs/media/AzurePortalValidationpassed.png)
+![validation passed](/Docs/media/AzurePortalValidationpassed.png)
 
 - Select **Create**
 
@@ -293,7 +288,7 @@ in your new Storage account,
 - type in `templates` in the form as a Name
 - Select **Create**
 
-![create container](/docs/media/AzurePortalCreateContainer.png)
+![create container](/Docs/media/AzurePortalCreateContainer.png)
 
 ```Azure CLI
 $principalId = 'HERE GOES YOUR MANAGED IDENTITY OBJECT ID'

@@ -9,7 +9,7 @@ This Fact sheet shall give you as an administrator an overview about
 - [security](#security)
 - [privacy](#privacy)
 - [governance](#governance) and
-- what it takes to [deploy & maintain](#deploy-and-maintain-provisiongenie) the solution.
+- what it takes to [deploy & maintain](#deploy-and-maintain-provisiongenie) the solution
 
 ## End User value of ProvisionGenie
 

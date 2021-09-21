@@ -289,6 +289,18 @@ in your new Storage account,
 - Select **Create**
 
 ![create container](/Docs/media/AzurePortalCreateContainer.png)
+ 
+  
+TODO: expand below points
+ - Upload template files to the Container (recommend forking of the repo to facilitate downloading of entire folder through a local copy - not possible to download folder from the UI)
+ - Create Shared Access Token in Container
+ - Copy Blob SAS Token
+ - Use deploy.ps1 script in Docs/scripts - change QueryString to copied token and complete other parameters
+ - Execute deploy script in Azure cloud shell
+    - provide parameters that are necessary
+    - for the environment id, take the resource ID from session details in the right environment, remove the dashes and add .crm4 at the end
+ 
+ 
 
 ```Azure CLI
 $principalId = 'HERE GOES YOUR MANAGED IDENTITY OBJECT ID'

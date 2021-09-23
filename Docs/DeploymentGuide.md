@@ -76,7 +76,7 @@ Let's now create a secret:
 
 ![Certificates & secrets](media/AzurePortalADAppregistrationssecretSteps.png)
 
-- Copy the secret's **Value** and save it somewhere
+- Copy the secret's **Value** and save it somewhere, you can do this here: [copied values](../Deployment/CopiedValues.md) -This way you have everything handy when you need it. Please take care that you don't commit this file in case you want to contribute to ProvisionGenie.
 
 ![Copy secret's value](media/AzurePortalADAppregistrationsNewSecretCopyValue.png)
 
@@ -154,7 +154,7 @@ a. Create an application user and the assign security role "Provision Genie user
 
 b. Assign the security roles "Basic user" and "Provision Genie user" to all users that will be able to use ProvisionGenie for team creation.
 
-- You can assign the role to individual people using the steps explained [here](https://docs.microsoft.com/en-us/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database)
+- You can assign the role to individual people using the steps explained [here](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database)
 - Alternatively, you can bulk assign roles to people by following the next steps:
 
   - Go to the Power Platform admin center and select your environment (step 1 and 2 in the guide above)
@@ -353,18 +353,8 @@ foreach ($appRoleId in $appRoleIds) { $body = "{'principalId':'$principalId','re
 - Select **ProvisionGenie-ManagedIdentity**
 - Select **Permissions**
 
-It should looks like this!
+It should look like this:
 
 ![Azure AD Managed identity permissions](media/AzureADMIPermissions.png)
 
-Congrats!
-
-<!-- - resource ID from session details in the right environment, remove the dashes and add .crm4 at the end
-
-1. deploy
-    * commondataservice hard coded/displayname
-    * authenticate
-
-still to do:
-
-1. authenticate the dataverse connection with the service principal -->
+Congrats! 🧞 - You made it- We hope you enjoy ProvisionGenie

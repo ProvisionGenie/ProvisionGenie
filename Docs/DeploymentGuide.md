@@ -208,7 +208,7 @@ As an alternative to use Azure CLI to create a new resource group, you can also 
 
 - (1) Select **Create**
 - (2) Select a subscription
-- (3) Enter the name of the Resource Group you wish to create, like `PG-Demo`
+- (3) Enter the name of the Resource Group you wish to create, like `ProvisionGenie`
 - (4) Select the region
 - (5) Select **Review & create**
 
@@ -233,7 +233,7 @@ In the `ProvisionGenie-deploy`, create a new storage account via Azure portal to
 
 - Open [portal.azure.com](https://portal.azure.com)
 - Select **Resource groups**
-- Select the `ProvisionGenie-Deployment-resourcegroup`
+- Select the `ProvisionGenie-deploy`
 - Select **Create**
 - Search for `storage account`
 - Select **Storage account**
@@ -356,5 +356,7 @@ foreach ($appRoleId in $appRoleIds) { $body = "{'principalId':'$principalId','re
 It should look like this:
 
 ![Azure AD Managed identity permissions](media/AzureADMIPermissions.png)
+
+If you wish, you can now delete storage account in `provisiongenie-deploy` resource group - In case you want/need to redeploy, you would need to recreate it to sucessfully run the deploy script.
 
 Congrats! 🧞 - You made it- We hope you enjoy ProvisionGenie

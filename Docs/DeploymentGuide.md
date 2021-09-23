@@ -174,7 +174,7 @@ b. Assign the security roles "Basic user" and "Provision Genie user" to all user
 
   ![Select roles](media/EnvironmentUsersSelectRoles.png)
 
-### 3. Create new Azure resource groups
+### 3. Create new Azure resource group
 
 The yet-to-deploy Azure Logic Apps will need a resource group to be deployed in. We recommend creating a new resource group `ProvisionGenie`.
 
@@ -227,7 +227,7 @@ That's it!
 
 ### 4. Deployment of Azure Logic Apps
 
-In the `ProvisionGenie-deploy`, create a new storage account via Azure portal to store the template files
+In the `ProvisionGenie-deploy` resource group, create a new storage account via Azure portal to store the template files
 
 #### Create Storage account in Azure portal
 
@@ -281,7 +281,7 @@ We will now create a Shared Access Token in the Container:
   - $originResourceGroupName value to your resource group name
   - $storageAccountName value to your storage account name
   - $location value to your preferred location
-  - the $QueryString value to the SAS token you just copied
+  - $QueryString value to the SAS token you just copied
 
 ```powershell
 # Set values
@@ -307,15 +307,15 @@ New-AzResourceGroupDeployment `
 
 - Execute the deploy script in Azure cloud shell at [shell.azure.com](https://shell.azure.com)
 - the script will run and prompt you to provide some parameters - please have those handy:
-  - your subscription Id - you can find it in your resource group
-  - the environment id, take the **Instance URL** from [make.powerapps.com](https://make.powerapps.com)
+  - your Subscription Id - you can find it in your resource group
+  - the Environment id, take the **Instance URL** from [make.powerapps.com](https://make.powerapps.com)
 
 ![Power Apps session details](media/PAStudioSessionDetails.png)
 
 - the URL for learning material (if you don't know that for now, you can put `https://microsoft.com` or any other URL into it)
-- the app Id from your Azure AD app registration
-- the app secret from your Azure AD app registration
-- the tenant Id from you Azure AD app registration
+- the App Id from your Azure AD app registration
+- the App secret from your Azure AD app registration
+- the Tenant Id from you Azure AD app registration
 
 ##### Assign the correct permission scope for the Managed Identity
 
@@ -359,4 +359,4 @@ It should look like this:
 
 If you wish, you can now delete storage account in `provisiongenie-deploy` resource group - In case you want/need to redeploy, you would need to recreate it to sucessfully run the deploy script.
 
-Congrats! 🧞 - You made it- We hope you enjoy ProvisionGenie
+Congrats! 🧞 - You made it- We hope you enjoy ProvisionGenie!

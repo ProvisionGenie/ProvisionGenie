@@ -81,8 +81,8 @@ Let's now create a secret:
 ![Copy secret's value](media/AzurePortalADAppregistrationsNewSecretCopyValue.png)
 
 - (1) Select **Overview**
-- (2) Copy the **Application (client) ID** value, save it somewhere
-- (3) Copy the **Directory (tenant) ID** value, save it somewhere
+- (2) Copy the **Application (client)ID** value, save it here: [copied values](../Deployment/CopiedValues.md)
+- (3) Copy the **Directory (tenant)ID** value, save it here: [copied values](../Deployment/CopiedValues.md)
 
 ![Copy values](media/AzurePortalADAppregistrationscopyvalues.png)
 
@@ -108,9 +108,9 @@ In the output, you will get four values for
 - **AppId**,
 - **name** (equals **AppId**),
 - **password** (this is your App secret) and
-- **tenant** (this is your Tenant ID).
+- **tenant** (this is your TenantID).
 
-Save these values somewhere.
+Save these values somewhere, you can do this here: [copied values](../Deployment/CopiedValues.md) -This way you have everything handy when you need it. Please take care that you don't commit this file in case you want to contribute to ProvisionGenie.
 
 ```azurecli
 
@@ -132,7 +132,7 @@ That's it!
 
 We built ProvisionGenie by using Dataverse mostly for security reasons. We do not want to give users a way to bypass the canvas app and access data they shouldn't have access to. This concern was one of our main reasons to not use SharePoint lists to log requests as you would need to share the list with every user. That means that they could create new items, manipulate and even delete data. For more information, head over to [Architecture Decisions](/Docs/ArchitectureDecisions.md#database).
 
-In Dataverse, we can setup [security roles](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database) to prevent this and we made a security role "ProvisionGenie user" part of the solution that you will import in the next steps.
+In Dataverse, we can setup [security roles](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database) to prevent this and we made a security role `ProvisionGenie user` part of the solution that you will import in the next steps.
 
 You will need to create an application user and assign the security role to it.
 
@@ -144,35 +144,44 @@ Important to know: a Dataverse for Teams environment is not enough - for referen
 
 - Dataverse tables to log the requests
 - ProvisionGenie canvas app as the UI
-- Security role "Provision Genie user"
+- Security role `Provision Genie user`
 
 from here: [ProvisionGenie Solution](/Deployment/Solution)
 
 In case this is the first time you import a solution, follow the steps described here: [Import a Power Platform solution](https://docs.microsoft.com/powerapps/maker/data-platform/import-update-export-solutions)
 
-a. Create an application user and the assign security role "Provision Genie user" and the role "Basic user" as part of the creation process as described here: [Create an application user](https://docs.microsoft.com/power-platform/admin/manage-application-users#create-an-application-user)
+a. Create an application user and the assign security role `Provision Genie user` and the role `Basic user` as part of the creation process as described here: [Create an application user](https://docs.microsoft.com/power-platform/admin/manage-application-users#create-an-application-user)
 
-b. Assign the security roles "Basic user" and "Provision Genie user" to all users that will be able to use ProvisionGenie for team creation.
+b. Assign the security roles `Basic user` and `Provision Genie user` to all users that will be able to use ProvisionGenie for team creation.
 
 - You can assign the role to individual people using the steps explained [here](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database)
 - Alternatively, you can bulk assign roles to people by following the next steps:
 
   - Go to the Power Platform admin center and select your environment (step 1 and 2 in the guide above)
-  - In the Access pane, select "See all" under Users.
+  - In the Access pane, select **See all** under **Users**.
 
   ![Users - see all](media/EnvironmentSettingsUsersSeeAll.png)
 
-  - Select "Manage users in Dynamics 365" in the action bar at the top
+  - Select **Manage users in Dynamics 365** in the action bar at the top
 
   ![Manage users in Dynamics 365](media/EnvironmentUsersManageInD365.png)
 
-  - Select the users you want to assign the security role to, and afterwards select "Manage roles" in the action bar
+  - Select the users you want to assign the security role to, and afterwards select **Manage roles** in the action bar
 
   ![Manage roles](media/EnvironmentUsersManageRoles.png)
 
-  - In the list with security roles, select "Provision Genie user" and then "OK"
+  - In the list with security roles, select **Provision Genie user** and then **OK**
 
   ![Select roles](media/EnvironmentUsersSelectRoles.png)
+
+4. You need to obtain the Environment ID for a later step:
+
+- Open [make.powerapps.com](https://make.powerapps.com)
+- Select the **Settings** gear
+- Select **Session details**
+- Copy the **Instance URL** from [make.powerapps.com](https://make.powerapps.com), save it here: [copied values](../Deployment/CopiedValues.md)
+
+![Power Apps session details](media/PAStudioSessionDetails.png)
 
 ### 3. Create new Azure resource group
 
@@ -223,6 +232,11 @@ On success, your new resource group will show up in the overview:
 
 ![Resource Group Overview](media/AzureResourceGroupOverview.png)
 
+As a last step in this section, obtain your subscriptionID:
+
+- Select the resource group you just created
+- Copy the value of the **SubscriptionID**, save it here: [copied values](../Deployment/CopiedValues.md)
+
 That's it!
 
 ### 4. Deployment of Azure Logic Apps
@@ -270,7 +284,7 @@ We will now create a Shared Access Token in the Container:
 
 - Select **Shared access tokens**
 - Select **Generate SAS token and URL**
-- Copy the **Blob SAS token** value, save it somewhere
+- Copy the **Blob SAS token** value, save it here: [copied values](../Deployment/CopiedValues.md)
 
 ![shared access token](Docs/media/../../media/AzurePortalSAS.png)
 
@@ -282,6 +296,16 @@ We will now create a Shared Access Token in the Container:
   - $storageAccountName value to your storage account name
   - $location value to your preferred location
   - $QueryString value to the SAS token you just copied
+
+- Execute the script in Azure cloud shell at [shell.azure.com](https://shell.azure.com)
+- the script will run and prompt you to provide some parameters - please have those handy:
+
+  - your Subscription ID
+  - the Environment ID
+  - the URL for learning material (if you don't know that for now, you can put `https://microsoft.com` or any other URL into it)
+  - the App ID from your Azure AD app registration
+  - the App secret from your Azure AD app registration
+  - the Tenant ID from you Azure AD app registration
 
 ```powershell
 # Set values
@@ -305,19 +329,7 @@ New-AzResourceGroupDeployment `
   -verbose
 ```
 
-- Execute the deploy script in Azure cloud shell at [shell.azure.com](https://shell.azure.com)
-- the script will run and prompt you to provide some parameters - please have those handy:
-  - your Subscription Id - you can find it in your resource group
-  - the Environment id, take the **Instance URL** from [make.powerapps.com](https://make.powerapps.com)
-
-![Power Apps session details](media/PAStudioSessionDetails.png)
-
-- the URL for learning material (if you don't know that for now, you can put `https://microsoft.com` or any other URL into it)
-- the App Id from your Azure AD app registration
-- the App secret from your Azure AD app registration
-- the Tenant Id from you Azure AD app registration
-
-##### Assign the correct permission scope for the Managed Identity
+##### Assign the correct permission scope for the ManagedIDentity
 
 After successful deployment, head over to the [Azure portal](https://portal.azure.com). Then complete the following steps:
 
@@ -327,14 +339,14 @@ After successful deployment, head over to the [Azure portal](https://portal.azur
 ![Provisiongenie Resource Group](media/AzurePortalResources.png)
 
 - Select `ProvisionGenie-ManagedIdentity`
-- Copy the **Object Id**, save it somewhere
+- Copy the **ObjectID**, save it here: [copied values](../Deployment/CopiedValues.md)
 
-![Managed Identity](media/AzurePortaMI.png)
+![ManagedIDentity](media/AzurePortaMI.png)
 
-- In the following script, paste this Object Id as value of $principalId and run the script in Azure cloud shell.
+- In the following script, paste this Object ID as value of $principalId and run the script in Azure cloud shell.
 
 ```Azure CLI
-$principalId = '<YOUR MANAGED IDENTITY OBJECT ID GOES HERE>'
+$principalId = '<YOUR MANAGEDIDENTITY OBJECTID GOES HERE>'
 $graphResourceId = $(az ad sp list --display-name "Microsoft Graph" --query [0].objectId --out tsv)
 #Get appRoleIds for Team.Create, Group.ReadWrite.All, Directory.ReadWrite.All, Group.Create, Sites.Manage.All, Sites.ReadWrite.All
 $graphId = az ad sp list --query "[?appDisplayName=='Microsoft Graph'].appId | [0]" --all
@@ -346,17 +358,17 @@ foreach ($appRoleId in $appRoleIds) { $body = "{'principalId':'$principalId','re
 - Check in Azure AD if permissions were set correctly:
   - Open [Azure Active Directory](https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview)
   - Select **Enterprise Applications**
-  - Select **Managed Identities** from the **Application type** dropdown menu
+  - Select **ManagedIDentities** from the **Application type** dropdown menu
 
-![Azure AD Managed Identities](media/AzureADMIpng.png)
+![Azure AD ManagedIDentities](media/AzureADMIpng.png)
 
 - Select **ProvisionGenie-ManagedIdentity**
 - Select **Permissions**
 
 It should look like this:
 
-![Azure AD Managed identity permissions](media/AzureADMIPermissions.png)
+![Azure AD ManagedIDentity permissions](media/AzureADMIPermissions.png)
 
-If you wish, you can now delete storage account in `provisiongenie-deploy` resource group - In case you want/need to redeploy, you would need to recreate it to sucessfully run the deploy script.
+If you wish, you can now delete storage account in `provisiongenie-deploy` resource group - In case you want/need to redeploy, you would need to recreate it to successfully run the deploy script.
 
 Congrats! 🧞 - You made it- We hope you enjoy ProvisionGenie!

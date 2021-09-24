@@ -265,7 +265,7 @@
             "name": "MainDeployment",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-10-01",
-            "dependsOn": ["managedIdentityDeployment","createListDeployment","createTaskListDeployment","createTeamDeployment","createLibraryDeployment","welcomePackageDeployment"],
+            "dependsOn": ["connectionsDeployment","managedIdentityDeployment","createListDeployment","createTaskListDeployment","createTeamDeployment","createLibraryDeployment","welcomePackageDeployment"],
             "properties" : {
                 "mode": "Incremental",
                 "templateLink": {

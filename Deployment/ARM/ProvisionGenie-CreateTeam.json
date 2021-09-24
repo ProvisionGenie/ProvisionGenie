@@ -89,6 +89,18 @@
             }
           },
           "actions": {
+            "Delay": {
+              "runAfter": {
+                "HTTP_create_group": ["Succeeded"]
+              },
+              "type": "Wait",
+              "inputs": {
+                "interval": {
+                  "count": 5,
+                  "unit": "Minute"
+                }
+              }
+            },
             "Description": {
               "runAfter": {
                 "DisplayName": ["Succeeded"]

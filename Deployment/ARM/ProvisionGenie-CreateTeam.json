@@ -724,7 +724,7 @@
                       "type": "ManagedServiceIdentity"
                     },
                     "method": "GET",
-                    "uri": "https://graph.microsoft.com/v1.0/@{body('Parse_team_creation_headers')?['Location']}"
+                    "uri": "https://graph.microsoft.com/v1.0@{body('Parse_team_creation_headers')?['Location']}"
                   }
                 },
                 "Parse_team_creation_status_body": {

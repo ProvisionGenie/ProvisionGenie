@@ -652,7 +652,7 @@
                     "body": {
                       "channels": "@triggerBody()?['Channels']",
                       "group@odata.bind": "https://graph.microsoft.com/v1.0/groups('@{variables('NewTeamId')}')",
-                      "template@odata.bind": "https://graph.microsoft.com/v1.0/teamsTemplates/('standard')"
+                      "template@odata.bind": "https://graph.microsoft.com/v1.0/teamsTemplates('standard')"
                     },
                     "headers": {
                       "content-type": "application/json"

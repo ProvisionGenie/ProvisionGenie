@@ -24,6 +24,8 @@ In order to successfully deploy ProvisionGenie, you will need to perform the fol
 - [2. Import Dataverse solution](DeploymentGuide.md#2-import-dataverse-solution)
 - [3. Create new Azure resource groups](DeploymentGuide.md#3-create-new-azure-resource-groups)
 - [4. Deployment of Azure Logic Apps](DeploymentGuide.md#4-deployment-of-azure-logic-apps)
+- [5. Add ProvisionGenie to Teams](DeploymentGuide.md#5-add-provisiongenie-to-teams)
+- [6. Post Deployment clean-up](DeploymentGuide.md#6-post-deploymentclean-up)
 
 ### 0. Fork and clone this repository
 
@@ -334,8 +336,26 @@ It should look like this:
 
 ![Azure AD ManagedIDentity permissions](media/AzureADMIPermissions.png)
 
-If you wish, you can now delete storage account in `provisiongenie-deploy` resource group - In case you want/need to redeploy, you would need to recreate it to successfully run the deploy script.
+### 5. Add ProvisionGenie to Teams
+
+You may now want to add ProvisionGenie to Teams:
+
+- Open [teams.microsoft.com](https://teams.microsoft.com)
+- Select **Apps**
+- Select **Built for your org**
+- Select the ProvisionGenie app
+- Select **Add**
+
+![Add to Teams](media/AddToTeams.png)
+
+The result should look like this:
+
+![Teams Result](media/TeansResult.png)
+
+Congrats! 🧞 - You made it- We hope you enjoy ProvisionGenie!
+
+### Post Deployment clean-up
 
 Now make sure that you exclude [copied values](../Deployment/CopiedValues.md) from any future commits to this repository- we don't want you to accidentally leak secrets.
 
-Congrats! 🧞 - You made it- We hope you enjoy ProvisionGenie!
+If you wish, you can now delete storage account in the `provisiongenie-deploy` resource group or even this entire resource group- In case you want/need to redeploy, you would need to recreate it to successfully run the deploy script.

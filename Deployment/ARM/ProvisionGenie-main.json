@@ -88,20 +88,6 @@
             }
           },
           "actions": {
-            "Buckets": {
-              "runAfter": {
-                "ListColumns": ["Succeeded"]
-              },
-              "type": "InitializeVariable",
-              "inputs": {
-                "variables": [
-                  {
-                    "name": "Buckets",
-                    "type": "array"
-                  }
-                ]
-              }
-            },
             "Channels": {
               "runAfter": {
                 "Complete_Technical_Name_in_Teams_request": ["Succeeded"]
@@ -690,7 +676,7 @@
             },
             "Wait_1_minute_to_add_channels": {
               "runAfter": {
-                "Buckets": ["Succeeded"]
+                "ListColumns": ["Succeeded"]
               },
               "type": "Wait",
               "inputs": {

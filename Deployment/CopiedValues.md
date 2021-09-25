@@ -5,7 +5,9 @@ During the deployment process, you will need some values and we recommend to sav
 - AZ AD App registration secret:
 - AZ AD App registration app ID:
 - Tenant ID:
-- Blob SAS token:
 - Power Apps Instance URL:
 - Azure Subscription ID:
+- Storage account name:
+- Blob SAS token:
 - Managed Identity Object ID:
+- Azure region:

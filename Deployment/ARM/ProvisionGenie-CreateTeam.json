@@ -90,611 +90,569 @@
           },
           "actions": {
             "Configure_Channels": {
-                "actions": {
-                    "For_each_channel": {
-                        "actions": {
-                            "For_each_wiki_tab": {
-                                "actions": {
-                                    "HTTP_delete_wiki_tab": {
-                                        "inputs": {
-                                            "authentication": {
-                                              "audience": "https://graph.microsoft.com",
-                                              "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
-                                              "type": "ManagedServiceIdentity"
-                                            },
-                                            "method": "DELETE",
-                                            "uri": "https://graph.microsoft.com/v1.0/teams/@{variables('TeamGroupId')}/channels/@{items('For_each_channel')?['id']}/tabs/@{items('For_each_wiki_tab')?['id']}"
-                                        },
-                                        "runAfter": {},
-                                        "runtimeConfiguration": {
-                                            "staticResult": {
-                                                "name": "HTTP_delete_wiki_tab0",
-                                                "staticResultOptions": "Disabled"
-                                            }
-                                        },
-                                        "type": "Http"
-                                    }
-                                },
-                                "foreach": "@body('Parse_wiki_tab_info')?['value']",
-                                "runAfter": {
-                                    "Parse_wiki_tab_info": [
-                                        "Succeeded"
-                                    ]
-                                },
-                                "type": "Foreach"
-                            },
-                            "HTTP_get_file_folder": {
-                                "inputs": {
-                                    "authentication": {
-                                      "audience": "https://graph.microsoft.com",
-                                      "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
-                                      "type": "ManagedServiceIdentity"
-                                    },
-                                    "method": "GET",
-                                    "uri": "https://graph.microsoft.com/v1.0/teams/@{variables('TeamGroupId')}/channels/@{items('For_each_channel')?['id']}/filesFolder"
-                                },
-                                "runAfter": {},
-                                "type": "Http"
-                            },
-                            "HTTP_get_wiki_tab": {
-                                "inputs": {
-                                    "authentication": {
-                                      "audience": "https://graph.microsoft.com",
-                                      "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
-                                      "type": "ManagedServiceIdentity"
-                                    },
-                                    "method": "GET",
-                                    "uri": "https://graph.microsoft.com/beta/teams/@{variables('TeamGroupId')}/channels/@{items('For_each_channel')?['id']}/tabs?$filter=displayName eq 'Wiki'"
-                                },
-                                "runAfter": {
-                                    "HTTP_get_file_folder": [
-                                        "Succeeded"
-                                    ]
-                                },
-                                "type": "Http"
-                            },
-                            "Parse_wiki_tab_info": {
-                                "inputs": {
-                                    "content": "@body('HTTP_get_wiki_tab')",
-                                    "schema": {
-                                        "properties": {
-                                            "@@odata.context": {
-                                                "type": "string"
-                                            },
-                                            "@@odata.count": {
-                                                "type": "integer"
-                                            },
-                                            "value": {
-                                                "items": {
-                                                    "properties": {
-                                                        "configuration": {
-                                                            "properties": {
-                                                                "contentUrl": {},
-                                                                "entityId": {},
-                                                                "hasContent": {
-                                                                    "type": "boolean"
-                                                                },
-                                                                "removeUrl": {},
-                                                                "websiteUrl": {},
-                                                                "wikiDefaultTab": {
-                                                                    "type": "boolean"
-                                                                },
-                                                                "wikiTabId": {
-                                                                    "type": "integer"
-                                                                }
-                                                            },
-                                                            "type": "object"
-                                                        },
-                                                        "displayName": {
-                                                            "type": "string"
-                                                        },
-                                                        "id": {
-                                                            "type": "string"
-                                                        },
-                                                        "messageId": {},
-                                                        "sortOrderIndex": {
-                                                            "type": "string"
-                                                        },
-                                                        "teamsAppId": {},
-                                                        "webUrl": {
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "required": [
-                                                        "id",
-                                                        "displayName",
-                                                        "teamsAppId",
-                                                        "sortOrderIndex",
-                                                        "messageId",
-                                                        "webUrl",
-                                                        "configuration"
-                                                    ],
-                                                    "type": "object"
-                                                },
-                                                "type": "array"
-                                            }
-                                        },
-                                        "type": "object"
-                                    }
-                                },
-                                "runAfter": {
-                                    "HTTP_get_wiki_tab": [
-                                        "Succeeded"
-                                    ]
-                                },
-                                "type": "ParseJson"
-                            }
-                        },
-                        "description": "Remove the wiki from each created channel",
-                        "foreach": "@body('Parse_channel_info')?['value']",
-                        "runAfter": {
-                            "Parse_channel_info": [
-                                "Succeeded"
-                            ]
-                        },
-                        "type": "Foreach"
-                    },
-                    "HTTP_get_channels": {
-                        "inputs": {
+              "actions": {
+                "For_each_channel": {
+                  "actions": {
+                    "For_each_wiki_tab": {
+                      "actions": {
+                        "HTTP_delete_wiki_tab": {
+                          "inputs": {
                             "authentication": {
                               "audience": "https://graph.microsoft.com",
                               "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
                               "type": "ManagedServiceIdentity"
                             },
-                            "method": "GET",
-                            "uri": "https://graph.microsoft.com/v1.0/teams/@{variables('TeamGroupId')}/channels"
-                        },
-                        "runAfter": {},
-                        "type": "Http"
-                    },
-                    "Parse_channel_info": {
-                        "inputs": {
-                            "content": "@body('HTTP_get_channels')",
-                            "schema": {
-                                "properties": {
-                                    "@@odata.context": {
-                                        "type": "string"
-                                    },
-                                    "@@odata.count": {
-                                        "type": "integer"
-                                    },
-                                    "value": {
-                                        "items": {
-                                            "properties": {
-                                                "description": {
-                                                    "type": [
-                                                        "string",
-                                                        "null"
-                                                    ]
-                                                },
-                                                "displayName": {
-                                                    "type": "string"
-                                                },
-                                                "email": {
-                                                    "type": "string"
-                                                },
-                                                "id": {
-                                                    "type": "string"
-                                                },
-                                                "isFavoriteByDefault": {},
-                                                "membershipType": {
-                                                    "type": "string"
-                                                },
-                                                "webUrl": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "id",
-                                                "displayName",
-                                                "description",
-                                                "isFavoriteByDefault",
-                                                "email",
-                                                "webUrl",
-                                                "membershipType"
-                                            ],
-                                            "type": "object"
-                                        },
-                                        "type": "array"
-                                    }
-                                },
-                                "type": "object"
+                            "method": "DELETE",
+                            "uri": "https://graph.microsoft.com/v1.0/teams/@{variables('TeamGroupId')}/channels/@{items('For_each_channel')?['id']}/tabs/@{items('For_each_wiki_tab')?['id']}"
+                          },
+                          "runAfter": {},
+                          "runtimeConfiguration": {
+                            "staticResult": {
+                              "name": "HTTP_delete_wiki_tab0",
+                              "staticResultOptions": "Disabled"
                             }
+                          },
+                          "type": "Http"
+                        }
+                      },
+                      "foreach": "@body('Parse_wiki_tab_info')?['value']",
+                      "runAfter": {
+                        "Parse_wiki_tab_info": ["Succeeded"]
+                      },
+                      "type": "Foreach"
+                    },
+                    "HTTP_get_file_folder": {
+                      "inputs": {
+                        "authentication": {
+                          "audience": "https://graph.microsoft.com",
+                          "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
+                          "type": "ManagedServiceIdentity"
                         },
-                        "runAfter": {
-                            "HTTP_get_channels": [
-                                "Succeeded"
-                            ]
+                        "method": "GET",
+                        "uri": "https://graph.microsoft.com/v1.0/teams/@{variables('TeamGroupId')}/channels/@{items('For_each_channel')?['id']}/filesFolder"
+                      },
+                      "runAfter": {},
+                      "type": "Http"
+                    },
+                    "HTTP_get_wiki_tab": {
+                      "inputs": {
+                        "authentication": {
+                          "audience": "https://graph.microsoft.com",
+                          "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
+                          "type": "ManagedServiceIdentity"
                         },
-                        "type": "ParseJson"
+                        "method": "GET",
+                        "uri": "https://graph.microsoft.com/beta/teams/@{variables('TeamGroupId')}/channels/@{items('For_each_channel')?['id']}/tabs?$filter=displayName eq 'Wiki'"
+                      },
+                      "runAfter": {
+                        "HTTP_get_file_folder": ["Succeeded"]
+                      },
+                      "type": "Http"
+                    },
+                    "Parse_wiki_tab_info": {
+                      "inputs": {
+                        "content": "@body('HTTP_get_wiki_tab')",
+                        "schema": {
+                          "properties": {
+                            "@@odata.context": {
+                              "type": "string"
+                            },
+                            "@@odata.count": {
+                              "type": "integer"
+                            },
+                            "value": {
+                              "items": {
+                                "properties": {
+                                  "configuration": {
+                                    "properties": {
+                                      "contentUrl": {},
+                                      "entityId": {},
+                                      "hasContent": {
+                                        "type": "boolean"
+                                      },
+                                      "removeUrl": {},
+                                      "websiteUrl": {},
+                                      "wikiDefaultTab": {
+                                        "type": "boolean"
+                                      },
+                                      "wikiTabId": {
+                                        "type": "integer"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "displayName": {
+                                    "type": "string"
+                                  },
+                                  "id": {
+                                    "type": "string"
+                                  },
+                                  "messageId": {},
+                                  "sortOrderIndex": {
+                                    "type": "string"
+                                  },
+                                  "teamsAppId": {},
+                                  "webUrl": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "id",
+                                  "displayName",
+                                  "teamsAppId",
+                                  "sortOrderIndex",
+                                  "messageId",
+                                  "webUrl",
+                                  "configuration"
+                                ],
+                                "type": "object"
+                              },
+                              "type": "array"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "runAfter": {
+                        "HTTP_get_wiki_tab": ["Succeeded"]
+                      },
+                      "type": "ParseJson"
                     }
+                  },
+                  "description": "Remove the wiki from each created channel",
+                  "foreach": "@body('Parse_channel_info')?['value']",
+                  "runAfter": {
+                    "Parse_channel_info": ["Succeeded"]
+                  },
+                  "type": "Foreach"
                 },
-                "runAfter": {
-                    "Ensure_Team_Exists": [
-                        "Succeeded"
-                    ]
+                "HTTP_get_channels": {
+                  "inputs": {
+                    "authentication": {
+                      "audience": "https://graph.microsoft.com",
+                      "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
+                      "type": "ManagedServiceIdentity"
+                    },
+                    "method": "GET",
+                    "uri": "https://graph.microsoft.com/v1.0/teams/@{variables('TeamGroupId')}/channels"
+                  },
+                  "runAfter": {},
+                  "type": "Http"
                 },
-                "type": "Scope"
+                "Parse_channel_info": {
+                  "inputs": {
+                    "content": "@body('HTTP_get_channels')",
+                    "schema": {
+                      "properties": {
+                        "@@odata.context": {
+                          "type": "string"
+                        },
+                        "@@odata.count": {
+                          "type": "integer"
+                        },
+                        "value": {
+                          "items": {
+                            "properties": {
+                              "description": {
+                                "type": ["string", "null"]
+                              },
+                              "displayName": {
+                                "type": "string"
+                              },
+                              "email": {
+                                "type": "string"
+                              },
+                              "id": {
+                                "type": "string"
+                              },
+                              "isFavoriteByDefault": {},
+                              "membershipType": {
+                                "type": "string"
+                              },
+                              "webUrl": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "displayName",
+                              "description",
+                              "isFavoriteByDefault",
+                              "email",
+                              "webUrl",
+                              "membershipType"
+                            ],
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "runAfter": {
+                    "HTTP_get_channels": ["Succeeded"]
+                  },
+                  "type": "ParseJson"
+                }
+              },
+              "runAfter": {
+                "Ensure_Team_Exists": ["Succeeded"]
+              },
+              "type": "Scope"
             },
             "Ensure_Group_Exists": {
-                "actions": {
-                    "Does_Group_exist": {
-                        "actions": {
-                            "Set_TeamGroupId_to_existing_value": {
-                                "inputs": {
-                                    "name": "TeamGroupId",
-                                    "value": "@{body('Get_Group_for_technical_name')['value'][0]['id']}"
-                                },
-                                "runAfter": {},
-                                "type": "SetVariable"
-                            }
-                        },
-                        "else": {
-                            "actions": {
-                                "HTTP_create_group": {
-                                    "inputs": {
-                                        "authentication": {
-                                          "audience": "https://graph.microsoft.com",
-                                          "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
-                                          "type": "ManagedServiceIdentity"
-                                        },
-                                        "body": {
-                                            "description": "@{triggerBody()?['Description']}",
-                                            "displayName": "@{triggerBody()?['Display Name']}",
-                                            "groupTypes": [
-                                                "Unified"
-                                            ],
-                                            "mailEnabled": true,
-                                            "mailNickname": "@{triggerBody()?['Technical Name']}",
-                                            "members@odata.bind": [
-                                                "https://graph.microsoft.com/v1.0/users/@{body('HTTP_get_owner_info')['id']}"
-                                            ],
-                                            "owners@odata.bind": [
-                                                "https://graph.microsoft.com/v1.0/users/@{body('HTTP_get_owner_info')['id']}"
-                                            ],
-                                            "resourceBehaviorOptions": [
-                                                "HideGroupInOutlook",
-                                                "SubscribeMembersToCalendarEventsDisabled",
-                                                "WelcomeEmailDisabled"
-                                            ],
-                                            "securityEnabled": false,
-                                            "visibility": "Private"
-                                        },
-                                        "headers": {
-                                            "Content-type": "application/json"
-                                        },
-                                        "method": "POST",
-                                        "uri": "https://graph.microsoft.com/v1.0/groups"
-                                    },
-                                    "runAfter": {
-                                        "HTTP_get_owner_info": [
-                                            "Succeeded"
-                                        ]
-                                    },
-                                    "type": "Http"
-                                },
-                                "HTTP_get_owner_info": {
-                                    "inputs": {
-                                        "authentication": {
-                                          "audience": "https://graph.microsoft.com",
-                                          "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
-                                          "type": "ManagedServiceIdentity"
-                                        },
-                                        "method": "GET",
-                                        "uri": "https://graph.microsoft.com/v1.0/users/@{triggerBody()?['Owner UPN']}"
-                                    },
-                                    "runAfter": {},
-                                    "type": "Http"
-                                },
-                                "Set_TeamGroupId_to_created_group_id": {
-                                    "inputs": {
-                                        "name": "TeamGroupId",
-                                        "value": "@{body('HTTP_create_group')['id']}"
-                                    },
-                                    "runAfter": {
-                                        "HTTP_create_group": [
-                                            "Succeeded"
-                                        ]
-                                    },
-                                    "type": "SetVariable"
-                                }
-                            }
-                        },
-                        "expression": {
-                            "and": [
-                                {
-                                    "not": {
-                                        "equals": [
-                                            "@length(body('Get_Group_for_technical_name')?['Value'])",
-                                            0
-                                        ]
-                                    }
-                                }
-                            ]
+              "actions": {
+                "Does_Group_exist": {
+                  "actions": {
+                    "Set_TeamGroupId_to_existing_value": {
+                      "inputs": {
+                        "name": "TeamGroupId",
+                        "value": "@{body('Get_Group_for_technical_name')['value'][0]['id']}"
+                      },
+                      "runAfter": {},
+                      "type": "SetVariable"
+                    }
+                  },
+                  "else": {
+                    "actions": {
+                      "HTTP_create_group": {
+                        "inputs": {
+                          "authentication": {
+                            "audience": "https://graph.microsoft.com",
+                            "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
+                            "type": "ManagedServiceIdentity"
+                          },
+                          "body": {
+                            "description": "@{triggerBody()?['Description']}",
+                            "displayName": "@{triggerBody()?['Display Name']}",
+                            "groupTypes": ["Unified"],
+                            "mailEnabled": true,
+                            "mailNickname": "@{triggerBody()?['Technical Name']}",
+                            "members@odata.bind": [
+                              "https://graph.microsoft.com/v1.0/users/@{body('HTTP_get_owner_info')['id']}"
+                            ],
+                            "owners@odata.bind": [
+                              "https://graph.microsoft.com/v1.0/users/@{body('HTTP_get_owner_info')['id']}"
+                            ],
+                            "resourceBehaviorOptions": [
+                              "HideGroupInOutlook",
+                              "SubscribeMembersToCalendarEventsDisabled",
+                              "WelcomeEmailDisabled"
+                            ],
+                            "securityEnabled": false,
+                            "visibility": "Private"
+                          },
+                          "headers": {
+                            "Content-type": "application/json"
+                          },
+                          "method": "POST",
+                          "uri": "https://graph.microsoft.com/v1.0/groups"
                         },
                         "runAfter": {
-                            "Get_Group_for_technical_name": [
-                                "Succeeded"
-                            ]
+                          "HTTP_get_owner_info": ["Succeeded"]
                         },
-                        "type": "If"
-                    },
-                    "Get_Group_for_technical_name": {
+                        "type": "Http"
+                      },
+                      "HTTP_get_owner_info": {
                         "inputs": {
-                            "authentication": {
-                              "audience": "https://graph.microsoft.com",
-                              "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
-                              "type": "ManagedServiceIdentity"
-                            },
-                            "method": "GET",
-                            "uri": "https://graph.microsoft.com/v1.0/groups?$filter=mailNickname eq '@{triggerBody()?['Technical Name']}'&$select=id,displayName,mailNickname&$count=true&$top=1"
+                          "authentication": {
+                            "audience": "https://graph.microsoft.com",
+                            "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
+                            "type": "ManagedServiceIdentity"
+                          },
+                          "method": "GET",
+                          "uri": "https://graph.microsoft.com/v1.0/users/@{triggerBody()?['Owner UPN']}"
                         },
                         "runAfter": {},
                         "type": "Http"
+                      },
+                      "Set_TeamGroupId_to_created_group_id": {
+                        "inputs": {
+                          "name": "TeamGroupId",
+                          "value": "@{body('HTTP_create_group')['id']}"
+                        },
+                        "runAfter": {
+                          "HTTP_create_group": ["Succeeded"]
+                        },
+                        "type": "SetVariable"
+                      }
                     }
-                },
-                "runAfter": {
-                    "Initialize_TeamGroupId": [
-                        "Succeeded"
+                  },
+                  "expression": {
+                    "and": [
+                      {
+                        "not": {
+                          "equals": [
+                            "@length(body('Get_Group_for_technical_name')?['Value'])",
+                            0
+                          ]
+                        }
+                      }
                     ]
+                  },
+                  "runAfter": {
+                    "Get_Group_for_technical_name": ["Succeeded"]
+                  },
+                  "type": "If"
                 },
-                "type": "Scope"
+                "Get_Group_for_technical_name": {
+                  "inputs": {
+                    "authentication": {
+                      "audience": "https://graph.microsoft.com",
+                      "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
+                      "type": "ManagedServiceIdentity"
+                    },
+                    "method": "GET",
+                    "uri": "https://graph.microsoft.com/v1.0/groups?$filter=mailNickname eq '@{triggerBody()?['Technical Name']}'&$select=id,displayName,mailNickname&$count=true&$top=1"
+                  },
+                  "runAfter": {},
+                  "type": "Http"
+                }
+              },
+              "runAfter": {
+                "Initialize_TeamGroupId": ["Succeeded"]
+              },
+              "type": "Scope"
             },
             "Ensure_Team_Exists": {
-                "actions": {
-                    "Does_Team_exist": {
-                        "actions": {},
-                        "else": {
-                            "actions": {
-                                "Until_Team_upgrade_accepted": {
-                                    "actions": {
-                                        "HTTP_update_group_to_team": {
-                                            "inputs": {
-                                                "authentication": {
-                                                  "audience": "https://graph.microsoft.com",
-                                                  "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
-                                                  "type": "ManagedServiceIdentity"
-                                                },
-                                                "body": {
-                                                    "channels": "@triggerBody()?['Channels']",
-                                                    "group@odata.bind": "https://graph.microsoft.com/v1.0/groups('@{variables('TeamGroupId')}')",
-                                                    "template@odata.bind": "https://graph.microsoft.com/v1.0/teamsTemplates('standard')"
-                                                },
-                                                "headers": {
-                                                    "content-type": "application/json"
-                                                },
-                                                "method": "POST",
-                                                "uri": "https://graph.microsoft.com/v1.0/teams"
-                                            },
-                                            "runAfter": {},
-                                            "type": "Http"
-                                        },
-                                        "Set_TeamCreationRequestCode_to_Status_code": {
-                                            "inputs": {
-                                                "name": "TeamCreationRequestCode",
-                                                "value": "@{outputs('HTTP_update_group_to_team')['statusCode']}"
-                                            },
-                                            "runAfter": {
-                                                "HTTP_update_group_to_team": [
-                                                    "Succeeded",
-                                                    "Failed"
-                                                ]
-                                            },
-                                            "type": "SetVariable"
-                                        },
-                                        "Validate_StatusCode": {
-                                            "actions": {
-                                                "Delay_10_seconds_for_404": {
-                                                    "inputs": {
-                                                        "interval": {
-                                                            "count": 10,
-                                                            "unit": "Second"
-                                                        }
-                                                    },
-                                                    "runAfter": {},
-                                                    "type": "Wait"
-                                                }
-                                            },
-                                            "expression": {
-                                                "and": [
-                                                    {
-                                                        "equals": [
-                                                            "@variables('TeamCreationRequestCode')",
-                                                            "@string(404)"
-                                                        ]
-                                                    }
-                                                ]
-                                            },
-                                            "runAfter": {
-                                                "Set_TeamCreationRequestCode_to_Status_code": [
-                                                    "Succeeded"
-                                                ]
-                                            },
-                                            "type": "If"
-                                        }
-                                    },
-                                    "expression": "@equals(variables('TeamCreationRequestCode'), string(202))",
-                                    "limit": {
-                                        "count": 60,
-                                        "timeout": "PT1H"
-                                    },
-                                    "runAfter": {},
-                                    "type": "Until"
-                                }
-                            }
-                        },
-                        "expression": {
-                            "and": [
-                                {
-                                    "equals": [
-                                        "@outputs('HTTP_Get_Team')['statusCode']",
-                                        200
-                                    ]
-                                }
-                            ]
-                        },
-                        "runAfter": {
-                            "HTTP_Get_Team": [
+              "actions": {
+                "Does_Team_exist": {
+                  "actions": {},
+                  "else": {
+                    "actions": {
+                      "Until_Team_upgrade_accepted": {
+                        "actions": {
+                          "HTTP_update_group_to_team": {
+                            "inputs": {
+                              "authentication": {
+                                "audience": "https://graph.microsoft.com",
+                                "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
+                                "type": "ManagedServiceIdentity"
+                              },
+                              "body": {
+                                "channels": "@triggerBody()?['Channels']",
+                                "group@odata.bind": "https://graph.microsoft.com/v1.0/groups('@{variables('TeamGroupId')}')",
+                                "template@odata.bind": "https://graph.microsoft.com/v1.0/teamsTemplates('standard')"
+                              },
+                              "headers": {
+                                "content-type": "application/json"
+                              },
+                              "method": "POST",
+                              "uri": "https://graph.microsoft.com/v1.0/teams"
+                            },
+                            "runAfter": {},
+                            "type": "Http"
+                          },
+                          "Set_TeamCreationRequestCode_to_Status_code": {
+                            "inputs": {
+                              "name": "TeamCreationRequestCode",
+                              "value": "@{outputs('HTTP_update_group_to_team')['statusCode']}"
+                            },
+                            "runAfter": {
+                              "HTTP_update_group_to_team": [
                                 "Succeeded",
                                 "Failed"
-                            ]
-                        },
-                        "type": "If"
-                    },
-                    "HTTP_Get_Team": {
-                        "inputs": {
-                            "authentication": {
-                              "audience": "https://graph.microsoft.com",
-                              "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
-                              "type": "ManagedServiceIdentity"
+                              ]
                             },
-                            "headers": {
-                                "Content-Type": "application/json"
-                            },
-                            "method": "GET",
-                            "uri": "https://graph.microsoft.com/v1.0/teams/@{variables('TeamGroupId')}"
-                        },
-                        "runAfter": {},
-                        "type": "Http"
-                    },
-                    "Until_Team_upgrade_succeeded": {
-                        "actions": {
-                            "Condition_TeamsCreationStatus_not_succeeded": {
-                                "actions": {
-                                    "Delay_10_seconds_for_team_upgrade": {
-                                        "inputs": {
-                                            "interval": {
-                                                "count": 10,
-                                                "unit": "Second"
-                                            }
-                                        },
-                                        "runAfter": {},
-                                        "type": "Wait"
-                                    }
-                                },
-                                "expression": {
-                                    "and": [
-                                        {
-                                            "not": {
-                                                "equals": [
-                                                    "@variables('TeamCreationStatus')",
-                                                    "succeeded"
-                                                ]
-                                            }
-                                        }
-                                    ]
-                                },
-                                "runAfter": {
-                                    "Set_TeamsCreationStatus": [
-                                        "Succeeded"
-                                    ]
-                                },
-                                "type": "If"
-                            },
-                            "HTTP_get_team_creation_status": {
+                            "type": "SetVariable"
+                          },
+                          "Validate_StatusCode": {
+                            "actions": {
+                              "Delay_10_seconds_for_404": {
                                 "inputs": {
-                                    "authentication": {
-                                      "audience": "https://graph.microsoft.com",
-                                      "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
-                                      "type": "ManagedServiceIdentity"
-                                    },
-                                    "method": "GET",
-                                    "uri": "https://graph.microsoft.com/v1.0@{outputs('HTTP_update_group_to_team')['headers']['Location']}"
+                                  "interval": {
+                                    "count": 10,
+                                    "unit": "Second"
+                                  }
                                 },
                                 "runAfter": {},
-                                "type": "Http"
+                                "type": "Wait"
+                              }
                             },
-                            "Set_TeamsCreationStatus": {
-                                "inputs": {
-                                    "name": "TeamCreationStatus",
-                                    "value": "@{body('HTTP_get_team_creation_status')['status']}"
-                                },
-                                "runAfter": {
-                                    "HTTP_get_team_creation_status": [
-                                        "Succeeded"
-                                    ]
-                                },
-                                "type": "SetVariable"
-                            }
-                        },
-                        "expression": "@equals(variables('TeamCreationStatus'), 'succeeded')",
-                        "limit": {
-                            "count": 60,
-                            "timeout": "PT1H"
-                        },
-                        "runAfter": {
-                            "Does_Team_exist": [
+                            "expression": {
+                              "and": [
+                                {
+                                  "equals": [
+                                    "@variables('TeamCreationRequestCode')",
+                                    "@string(404)"
+                                  ]
+                                }
+                              ]
+                            },
+                            "runAfter": {
+                              "Set_TeamCreationRequestCode_to_Status_code": [
                                 "Succeeded"
-                            ]
+                              ]
+                            },
+                            "type": "If"
+                          }
                         },
+                        "expression": "@equals(variables('TeamCreationRequestCode'), string(202))",
+                        "limit": {
+                          "count": 60,
+                          "timeout": "PT1H"
+                        },
+                        "runAfter": {},
                         "type": "Until"
+                      }
                     }
-                },
-                "runAfter": {
-                    "Ensure_Group_Exists": [
-                        "Succeeded"
+                  },
+                  "expression": {
+                    "and": [
+                      {
+                        "equals": [
+                          "@outputs('HTTP_Get_Team')['statusCode']",
+                          200
+                        ]
+                      }
                     ]
+                  },
+                  "runAfter": {
+                    "HTTP_Get_Team": ["Succeeded", "Failed"]
+                  },
+                  "type": "If"
                 },
-                "type": "Scope"
+                "HTTP_Get_Team": {
+                  "inputs": {
+                    "authentication": {
+                      "audience": "https://graph.microsoft.com",
+                      "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
+                      "type": "ManagedServiceIdentity"
+                    },
+                    "headers": {
+                      "Content-Type": "application/json"
+                    },
+                    "method": "GET",
+                    "uri": "https://graph.microsoft.com/v1.0/teams/@{variables('TeamGroupId')}"
+                  },
+                  "runAfter": {},
+                  "type": "Http"
+                },
+                "Until_Team_upgrade_succeeded": {
+                  "actions": {
+                    "Condition_TeamsCreationStatus_not_succeeded": {
+                      "actions": {
+                        "Delay_10_seconds_for_team_upgrade": {
+                          "inputs": {
+                            "interval": {
+                              "count": 10,
+                              "unit": "Second"
+                            }
+                          },
+                          "runAfter": {},
+                          "type": "Wait"
+                        }
+                      },
+                      "expression": {
+                        "and": [
+                          {
+                            "not": {
+                              "equals": [
+                                "@variables('TeamCreationStatus')",
+                                "succeeded"
+                              ]
+                            }
+                          }
+                        ]
+                      },
+                      "runAfter": {
+                        "Set_TeamsCreationStatus": ["Succeeded"]
+                      },
+                      "type": "If"
+                    },
+                    "HTTP_get_team_creation_status": {
+                      "inputs": {
+                        "authentication": {
+                          "audience": "https://graph.microsoft.com",
+                          "identity": "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]",
+                          "type": "ManagedServiceIdentity"
+                        },
+                        "method": "GET",
+                        "uri": "https://graph.microsoft.com/v1.0@{outputs('HTTP_update_group_to_team')['headers']['location']}"
+                      },
+                      "runAfter": {},
+                      "type": "Http"
+                    },
+                    "Set_TeamsCreationStatus": {
+                      "inputs": {
+                        "name": "TeamCreationStatus",
+                        "value": "@{body('HTTP_get_team_creation_status')['status']}"
+                      },
+                      "runAfter": {
+                        "HTTP_get_team_creation_status": ["Succeeded"]
+                      },
+                      "type": "SetVariable"
+                    }
+                  },
+                  "expression": "@equals(variables('TeamCreationStatus'), 'succeeded')",
+                  "limit": {
+                    "count": 60,
+                    "timeout": "PT1H"
+                  },
+                  "runAfter": {
+                    "Does_Team_exist": ["Succeeded"]
+                  },
+                  "type": "Until"
+                }
+              },
+              "runAfter": {
+                "Ensure_Group_Exists": ["Succeeded"]
+              },
+              "type": "Scope"
             },
             "Initialize_TeamCreationRequestCode": {
-                "inputs": {
-                    "variables": [
-                        {
-                            "name": "TeamCreationRequestCode",
-                            "type": "string"
-                        }
-                    ]
-                },
-                "runAfter": {},
-                "type": "InitializeVariable"
+              "inputs": {
+                "variables": [
+                  {
+                    "name": "TeamCreationRequestCode",
+                    "type": "string"
+                  }
+                ]
+              },
+              "runAfter": {},
+              "type": "InitializeVariable"
             },
             "Initialize_TeamCreationStatus": {
-                "inputs": {
-                    "variables": [
-                        {
-                            "name": "TeamCreationStatus",
-                            "type": "string"
-                        }
-                    ]
-                },
-                "runAfter": {
-                    "Initialize_TeamCreationRequestCode": [
-                        "Succeeded"
-                    ]
-                },
-                "type": "InitializeVariable"
+              "inputs": {
+                "variables": [
+                  {
+                    "name": "TeamCreationStatus",
+                    "type": "string"
+                  }
+                ]
+              },
+              "runAfter": {
+                "Initialize_TeamCreationRequestCode": ["Succeeded"]
+              },
+              "type": "InitializeVariable"
             },
             "Initialize_TeamGroupId": {
-                "inputs": {
-                    "variables": [
-                        {
-                            "name": "TeamGroupId",
-                            "type": "string"
-                        }
-                    ]
-                },
-                "runAfter": {
-                    "Initialize_TeamCreationStatus": [
-                        "Succeeded"
-                    ]
-                },
-                "type": "InitializeVariable"
+              "inputs": {
+                "variables": [
+                  {
+                    "name": "TeamGroupId",
+                    "type": "string"
+                  }
+                ]
+              },
+              "runAfter": {
+                "Initialize_TeamCreationStatus": ["Succeeded"]
+              },
+              "type": "InitializeVariable"
             },
             "Response": {
-                "inputs": {
-                    "body": {
-                        "TeamId": "@{variables('TeamGroupId')}"
-                    },
-                    "statusCode": 200
+              "inputs": {
+                "body": {
+                  "TeamId": "@{variables('TeamGroupId')}"
                 },
-                "kind": "Http",
-                "runAfter": {
-                    "Configure_Channels": [
-                        "Succeeded"
-                    ]
-                },
-                "type": "Response"
+                "statusCode": 200
+              },
+              "kind": "Http",
+              "runAfter": {
+                "Configure_Channels": ["Succeeded"]
+              },
+              "type": "Response"
             }
           },
           "outputs": {}

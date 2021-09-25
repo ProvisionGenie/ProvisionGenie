@@ -4,13 +4,13 @@
 
 ![header image](media/Genie_Header.png)
 
-This guide shall walk you through the minimal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant. If you haven't done this by now, familiarize yourself with our [solution overview](/Docs/LogicApps.md#solution-overview)
+This guide shall walk you through the minimal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant. If you haven't done this by now, familiarize yourself with our [solution overview](/Docs/LogicApps.md#solution-overview).
 
 ## Prerequisites
 
 - Azure Subscription - if you don't have one, [get it here free](https://azure.microsoft.com//free) - also see [Cost estimation](CostEstimation.md)
 - Microsoft 365 license
-- [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, also see [Architecture Decisions](/Docs/ArchitectureDecisions.md#database)
+- [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, also see [Architecture Decisions](/Docs/ArchitectureDecisions.md#database))
 - Environment with [Dataverse database](https://docs.microsoft.com/power-platform/admin/create-database) - you can create one during the deployment process
 - Admin role Azure: [Contributor](https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#contributor)
 - Power Platform role: [System Administrator](https://docs.microsoft.com/power-platform/admin/database-security)
@@ -21,7 +21,7 @@ In order to successfully deploy ProvisionGenie, you will need to perform the fol
 
 - [0. Fork and clone this repository](DeploymentGuide.md#0-Fork-and-clone-this-repository)
 - [1. App registration to access Dataverse tables](DeploymentGuide.md#1-App-registration-to-access-Dataverse-tables)
-- [2. Dataverse solution](DeploymentGuide.md#2-dataverse-solution)
+- [2. Import Dataverse solution](DeploymentGuide.md#2-import-dataverse-solution)
 - [3. Create new Azure resource groups](DeploymentGuide.md#3-create-new-azure-resource-groups)
 - [4. Deployment of Azure Logic Apps](DeploymentGuide.md#4-deployment-of-azure-logic-apps)
 
@@ -64,7 +64,7 @@ You will need to register an app in Azure AD in order to access the dataverse ta
 - (1) Grant admin consent
 - (2) Confirm with **Yes**
 
-![Grant Admin Consent](docs/media/AzureAdGrantAdminConsent.png)
+![Grant Admin Consent](media/AzureAdGrantAdminConsent.png)
 
 Let's now create a secret:
 
@@ -88,11 +88,11 @@ Let's now create a secret:
 
 That's it!
 
-### 2. Dataverse solution
+### 2. Import Dataverse solution
 
 We built ProvisionGenie by using Dataverse mostly for security reasons. We do not want to give users a way to bypass the canvas app and access data they shouldn't have access to. This concern was one of our main reasons to not use SharePoint lists to log requests as you would need to share the list with every user. That means that they could create new items, manipulate and even delete data. For more information, head over to [Architecture Decisions](/Docs/ArchitectureDecisions.md#database).
 
-In Dataverse, we can setup [security roles](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database) to prevent this and we created two security roles `ProvisionGenie admin` and `ProvisionGenie user` as part of the solution that you will import in the next steps.
+In Dataverse, we can setup [security roles](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database) to prevent this and we created two security roles `ProvisionGenie Admin` and `ProvisionGenie User` as part of the solution that you will import in the next steps.
 
 You will need to create an application user and assign the security role to it.
 
@@ -119,11 +119,11 @@ Once this step is completed, select the imported solution and check that it look
 
 ![Solution](media/PowerAppsSolution.png)
 
-- Create an application user and the assign security role `ProvisionGenie Admin` and the role `Basic user` as part of the creation process as described here: [Create an application user](https://docs.microsoft.com/power-platform/admin/manage-application-users#create-an-application-user)
+- Create an application user and the assign the security role `Basic user` and security role `ProvisionGenie Admin` as part of the creation process as described here: [Create an application user](https://docs.microsoft.com/power-platform/admin/manage-application-users#create-an-application-user)
 
 - Assign the security roles `Basic user` and `Provision Genie User` to all users that will be able to use ProvisionGenie for team creation.
 
-  - You can assign the role to individual people using the steps explained [here](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database)
+  - You can assign the roles to individual people using the steps explained [here](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database)
   - Alternatively, you can bulk assign roles to people by following the next steps:
 
     - Go to the [Power Platform admin center](https://admin.powerplatform.microsoft.com) and select your environment (step 1 and 2 in the guide above)
@@ -195,7 +195,7 @@ That's it!
 
 In the `ProvisionGenie-deploy` resource group, create a new storage account to store the template files
 
-#### Create Storage account in Azure portal
+#### Create Storage account
 
 - Open [portal.azure.com](https://portal.azure.com)
 - Select **Resource groups**
@@ -233,6 +233,8 @@ in your new Storage account,
 
 Now upload the template files you can find in [ARM folder](/Deployment/ARM) into the `templates` container you just created:
 
+Select the `templates` container, then
+
 - (1) Select **Upload**
 - (2) Select the template files
 - (3) Select **Upload**
@@ -253,9 +255,9 @@ We will now create a Shared Access Token in the Container:
 
 - In the following script, change the
 
-  - $originResourceGroupName value to your resource group name
+  - $originResourceGroupName value to `ProvisionGenie-deploy`
   - $storageAccountName value to your storage account name
-  - $location value to your preferred location
+  - $location value to your preferred location - in case you don't know the name (not: Displayname), you may obtain a list using Azure cloud shell with `az account list-locations`
   - $QueryString value to the SAS token you just copied
 
 - Execute the script in Azure cloud shell at [shell.azure.com](https://shell.azure.com)
@@ -291,7 +293,7 @@ New-AzResourceGroupDeployment `
   -verbose
 ```
 
-##### Assign the correct permission scope for the ManagedIDentity
+##### Assign the correct permission scope for the Managed Identity
 
 After successful deployment, head over to the [Azure portal](https://portal.azure.com). Then complete the following steps:
 
@@ -320,7 +322,8 @@ foreach ($appRoleId in $appRoleIds) { $body = "{'principalId':'$principalId','re
 - Check in Azure AD if permissions were set correctly:
   - Open [Azure Active Directory](https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview)
   - Select **Enterprise Applications**
-  - Select **ManagedIDentities** from the **Application type** dropdown menu
+  - Select **Managed Identities** from the **Application type** dropdown menu
+  - Select **Apply**
 
 ![Azure AD ManagedIDentities](media/AzureADMIpng.png)
 

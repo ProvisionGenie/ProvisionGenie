@@ -2,7 +2,7 @@
 
 ![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/Genie_Header.png)
 
-Although we give you both `.msapp` and source code files of the canvas app, you can also follow these instructions if you want to rebuild it:
+Although we give you the zipped files of the canvas app in our solution, you can also follow these instructions if you want to rebuild it. It will also make it easier to understand how everything works if you want to contribute to ProvisionGenie.
 
 ## Basic UI concepts
 

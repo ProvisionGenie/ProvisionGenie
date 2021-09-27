@@ -71,3 +71,9 @@ This project may contain trademarks or logos for projects, products, or services
 ## Disclaimer
 
 THIS CODE IS PROVIDED AS IS WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+
+[![Visitors](https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Fgithub.com%2Fprovisiongenie%2Fprovisiongenie&label=Genie-Fans&countColor=%236264a7&style=flat-square)](https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2Fprovisiongenie%2Fprovisiongenie) <a href="https://gitmoji.dev">
+  <img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square" alt="Gitmoji">
+</a>
+
+

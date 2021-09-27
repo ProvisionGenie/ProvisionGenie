@@ -1,7 +1,5 @@
 # Deployment Guide
 
-🚨 still under construction 💡
-
 ![header image](media/Genie_Header.png)
 
 This guide shall walk you through the minimal path to awesome. It lists all steps required to successfully deploy ProvisionGenie in your tenant. If you haven't done this by now, familiarize yourself with our [solution overview](/Docs/LogicApps.md#solution-overview).
@@ -23,9 +21,9 @@ In order to successfully deploy ProvisionGenie, you will need to perform the fol
 - [1. App registration to access Dataverse tables](DeploymentGuide.md#1-App-registration-to-access-Dataverse-tables)
 - [2. Import Dataverse solution](DeploymentGuide.md#2-import-dataverse-solution)
 - [3. Create new Azure resource groups](DeploymentGuide.md#3-create-new-azure-resource-groups)
-- [4. Deployment of Azure Logic Apps](DeploymentGuide.md#4-deployment-of-azure-logic-apps)
+- [4. Azure Logic Apps](DeploymentGuide.md#4-deployment-of-azure-logic-apps)
 - [5. Add ProvisionGenie to Teams](DeploymentGuide.md#5-add-provisiongenie-to-teams)
-- [6. Post Deployment clean-up](DeploymentGuide.md#6-post-deploymentclean-up)
+- [6. Post Deployment cleanup](DeploymentGuide.md#6-post-deployment-cleanup)
 
 ### 0. Fork and clone this repository
 
@@ -78,7 +76,7 @@ Let's now create a secret:
 
 ![Certificates & secrets](media/AzurePortalADAppregistrationssecretSteps.png)
 
-- Copy the secret's **Value** and save it somewhere, you can do this here: [copied values](../Deployment/CopiedValues.md) -This way you have everything handy when you need it. Please take care that you don't commit this file in case you want to contribute to ProvisionGenie.
+- Copy the secret's **Value** and save it somewhere, you can do this here: [copied values](../Deployment/CopiedValues.md) -This way you have everything handy when you need it. We will ask you during this deployment process to save a couple of values. Please take care that you don't commit this file in case you want to contribute to ProvisionGenie.
 
 ![Copy secret's value](media/AzurePortalADAppregistrationsNewSecretCopyValue.png)
 
@@ -96,9 +94,9 @@ We built ProvisionGenie by using Dataverse mostly for security reasons. We do no
 
 In Dataverse, we can setup [security roles](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database) to prevent this and we created two security roles `ProvisionGenie Admin` and `ProvisionGenie User` as part of the solution that you will import in the next steps.
 
-You will need to create an application user and assign the security role to it.
+You will need to create an application user and assign the security roles to it.
 
-1. In case you don't have already an environment that you want to use for ProvisionGenie, follow these steps to [create a new environment with a database](https://docs.microsoft.com/power-platform/admin/create-environment#create-an-environment-with-a-database)
+1. In case you don't already have an environment that you want to use for ProvisionGenie, follow these steps to [create a new environment with a database](https://docs.microsoft.com/power-platform/admin/create-environment#create-an-environment-with-a-database)
 
 Important to know: a **Dataverse for Teams** environment is not enough - for reference read our [Architecture Decisions](/Docs/ArchitectureDecisions.md)
 
@@ -155,7 +153,7 @@ Once this step is completed, select the imported solution and check that it look
 
 ![Power Apps session details](media/PAStudioSessionDetails.png)
 
-### 3. Create a new Azure resource group
+### 3. Create new Azure resource groups
 
 The yet-to-deploy Azure Logic Apps will need a resource group to be deployed in. We recommend creating a new resource group `ProvisionGenie`.
 
@@ -186,10 +184,10 @@ On success, your new resource group will show up in the overview:
 
 ![Resource Group Overview](media/AzureResourceGroupOverview.png)
 
-As a last step in this section, obtain your subscriptionID:
+As a last step in this section, obtain your Subscription ID:
 
 - Select the resource group you just created
-- Copy the value of the **SubscriptionID**, save it here: [copied values](../Deployment/CopiedValues.md)
+- Copy the value of the **Subscription ID**, save it here: [copied values](../Deployment/CopiedValues.md)
 
 That's it!
 
@@ -286,6 +284,7 @@ $context = New-AzStorageContext -StorageAccountName $storageAccountName -Storage
 
 $mainTemplateUri = $context.BlobEndPoint + "$containerName/ARM-template.json"
 $targetResourceGroupName="ProvisionGenie"
+
 # Deploy
 New-AzResourceGroupDeployment `
   -Name DeployLinkedTemplate `
@@ -312,7 +311,7 @@ After successful deployment, head over to the [Azure portal](https://portal.azur
 - In the following script, paste this Object ID as value of $principalId and run the script in Azure cloud shell.
 
 ```Azure CLI
-$principalId = '<your managed identity object ID goes here>'
+$principalId = '<your Managed Identity object ID goes here>'
 $graphResourceId = $(az ad sp list --display-name "Microsoft Graph" --query [0].objectId --out tsv)
 #Get appRoleIds for Team.Create, Group.ReadWrite.All, Directory.ReadWrite.All, Group.Create, Sites.Manage.All, Sites.ReadWrite.All
 $graphId = az ad sp list --query "[?appDisplayName=='Microsoft Graph'].appId | [0]" --all
@@ -354,8 +353,8 @@ The result should look like this:
 
 Congrats! 🧞 - You made it- We hope you enjoy ProvisionGenie!
 
-### Post Deployment clean-up
+### Post Deployment cleanup
 
-Now make sure that you exclude [copied values](../Deployment/CopiedValues.md) from any future commits to this repository- we don't want you to accidentally leak secrets.
+Make sure that you exclude [copied values](../Deployment/CopiedValues.md) from any future commits to this repository- we don't want you to accidentally leak secrets.
 
-If you wish, you can now delete storage account in the `provisiongenie-deploy` resource group or even this entire resource group- In case you want/need to redeploy, you would need to recreate it to successfully run the deploy script.
+If you wish, you can now delete storage account in the `provisiongenie-deploy` resource group or even the entire resource group. In case you want/need to redeploy, you would need to recreate it again to successfully run the deploy script.

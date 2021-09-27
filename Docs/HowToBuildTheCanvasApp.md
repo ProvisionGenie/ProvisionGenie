@@ -1,8 +1,10 @@
 # How to build the canvas app
 
-![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/Genie_Header.png)
+![header image](media/Genie_Header.png)
 
 Although we give you the zipped files of the canvas app in our solution, you can also follow these instructions if you want to rebuild it. It will also make it easier to understand how everything works if you want to contribute to ProvisionGenie.
+
+![ProvisionGenie](media/TeansResult.png)
 
 ## Basic UI concepts
 
@@ -493,7 +495,7 @@ which empties the collection and updates the variables that controls the **Reset
 
 - Set **Items** to `colChannels`
 - Set the **Text** of **Title** Textlabel in the gallery to `ThisItem.ChannelName`
-- Change the default **Nextarrow\* icon to a **Cancel** icon and set its **OnSelect\*\* to `RemoveIf(colChannels,ChannelName=ThisItem.ChannelName)`
+- Change the default **Nextarrow** icon to a **Cancel** icon and set its **OnSelect** to `RemoveIf(colChannels,ChannelName=ThisItem.ChannelName)`
 
 This way, our user can review the list of channels and even remove some of them again.
 

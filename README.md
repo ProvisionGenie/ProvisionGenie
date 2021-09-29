@@ -64,6 +64,13 @@ Also, buy us coffee ☕☕☕ - ProvisionGenie wouldn't be possible without it!
 
 [!["Buy Us A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/mG3ghJC)
 
+## BIG thanks to 
+
+- [Lee Ford](https://twitter.com/lee_ford) for sharing the best music 🎶 & never getting tired of my rants while debbugging (Luise)
+- [Michael Roth](https://twitter.com/MichaelRoth42) who created all visuals
+- [Yannick Reekmans](https://twitter.com/YannickReekmans) for debugging, guidance & emotional support 
+
+
 ## Trademarks
 
 This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft trademarks or logos is subject to and must follow [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/legal/intellectualproperty/trademarks). Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship. Any use of third-party trademarks or logos are subject to those third-party's policies.

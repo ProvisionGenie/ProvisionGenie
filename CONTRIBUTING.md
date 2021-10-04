@@ -15,6 +15,10 @@ If you have general questions about Power Apps, Azure Logic Apps, Microsoft iden
 
 * [Microsoft 365 PnP Community](https://techcommunity.microsoft.com/t5/microsoft-365-pnp-blog/bg-p/Microsoft365PnPBlog) at [techcommunity.microsoft.com](https://techcommunity.microsoft.com)
 
+## Hacktoberfest
+
+we want to celebrate [Hacktoberfest](https://hacktoberfest.digitalocean.com/) with you! This repository participates and subbmitting your PR counts! 
+
 ## Typos, Issues, Bugs and contributions
 
 Please follow these recommendations.

@@ -47,7 +47,7 @@ ProvisionGenie itself is free, but you will need
 - a Microsoft 365 license for every person who uses the app
 - a Power Apps per app or Power Apps per user plan for every person who uses ProvisionGenie
 
-For more detail, head over to [Cost estimation](LogicApps.m#CostEstimation.md)
+For more detail, head over to [Cost estimation](Docs/../CostEstimation.md)
 
 ## Security
 

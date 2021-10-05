@@ -60,6 +60,7 @@ We take security very serious and want you to make the informed decision, that P
   - Resource permissions for Power Apps
   - Dataverse security roles - Part of our solution is a special security role, so that that no one can bypass the canvas app. This way, data can't be over exposed.
 - Conditional Access Policy via Azure AD Premium can be applied for Power Apps as well
+- All Logic Apps handle authentication to Graph API with a Managed Identity, which means that there are no credentials, which could get exposed/leaked or need to be maintained.
 
 ## Privacy
 

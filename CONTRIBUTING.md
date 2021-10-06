@@ -13,19 +13,19 @@ Please use proper issues for bug reports, documentation fix, feature requests an
 
 If you have general questions about Power Apps, Azure Logic Apps, Microsoft identity platform, Microsoft Graph and more, feel also free to use following channels for having an open discussion with the community and engineering.
 
-* [Microsoft 365 PnP Community](https://techcommunity.microsoft.com/t5/microsoft-365-pnp-blog/bg-p/Microsoft365PnPBlog) at [techcommunity.microsoft.com](https://techcommunity.microsoft.com)
+- [Microsoft 365 PnP Community](https://techcommunity.microsoft.com/t5/microsoft-365-pnp-blog/bg-p/Microsoft365PnPBlog) at [techcommunity.microsoft.com](https://techcommunity.microsoft.com)
 
 ## Hacktoberfest
 
-we want to celebrate [Hacktoberfest](https://hacktoberfest.digitalocean.com/) with you! This repository participates and subbmitting your PR counts! 
+we want to celebrate [Hacktoberfest](https://hacktoberfest.digitalocean.com/) with you! This repository participates and submitting your PR counts!
 
 ## Typos, Issues, Bugs and contributions
 
 Please follow these recommendations.
 
-* Always fork repository to your own account for applying modifications
-* Do not combine multiple changes to one PR, please submit for example any samples and documentation updates using separate PRs
-* If you are submitting typo or documentation fix, you can combine modifications to single PR where suitable
+- Always fork repository to your own account for applying modifications
+- Do not combine multiple changes to one PR, please submit for example any samples and documentation updates using separate PRs
+- If you are submitting typo or documentation fix, you can combine modifications to single PR where suitable
 
 ## Submitting changes as pull requests
 

@@ -733,12 +733,11 @@ If(
         )
     )
 )
-
-``` Power Apps
+````
 
 * Set **Text** of the title Textlabel to
 
-````
+``` Power Apps
 
 If(
 isPageSummary = 1,
@@ -766,9 +765,10 @@ isPageSummary = 6,
 )
 )
 
-````Power Apps
+````
 
 For **Text**, **Width** and **X** of your Next button refer to [PopUps](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasApp.md#popup)
+
 
 * Set **OnSelect** to
 

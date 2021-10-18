@@ -19,6 +19,7 @@ here are some thoughts on why we chose Dataverse over
 
 - SharePoint
 - Dataverse for Teams
+- Azure SQL / Azure Table Storage
 
 #### Dataverse vs. SharePoint lists
 
@@ -48,9 +49,13 @@ A Power Apps Canvas app that writes data into a SharePoint list comes with some 
 
 We also took Dataverse's little sister, [Dataverse for Teams](https://docs.microsoft.com/powerapps/teams/data-platform-compare) into consideration but needed to it turn down, because we don't want security roles, [lifecycle](https://docs.microsoft.com/power-platform/admin/about-teams-environment#environment-lifecycle) and governance of our solution (and its environment) to be tied to a team in which [every user needs to be a member of](https://docs.microsoft.com/powerapps/teams/data-platform-compare) to use ProvisionGenie.
 
+#### Azure SQL / Azure Table Storage
+
+Trying to circumvent the premium license for Dataverse by choosing Azure SQL or Azure Table Storage as suggested in [issue #52](https://github.com/ProvisionGenie/ProvisionGenie/issues/52) won't work as well. Data needs to be written from the canvas app into the storage, and this requires for both Azure SQL and Azure Table Storage either a premium connector or a (premium) custom connector. This means that no matter which enterprise-grade storage we use, we need the premium license.
+
 ### Consequences of choosing Dataverse
 
-Using Dataverse results in licensing costs, as every user will need an Power Apps per app or a PowerApps per user plan.
+Using Dataverse results in licensing costs, as every user will need an Power Apps per app or a PowerApps per user plan. We are aware that this might come across as hurdle and that the desire to somehow bypass is hugh. But enterprise-grade solutions don't come for free.
 
 ## Integration
 

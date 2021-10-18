@@ -56,6 +56,20 @@ We also listed [some features that we would like to add in the future](https://g
 
 ProvisionGenie is a project by [Luise Freese](https://m365princess.com) and [Carmen Ysewijn](https://digipersonal.com/).
 
+## ProvisionGenie demo and talks
+
+We talk and demo ProvisionGenie here:
+
+- upcoming
+
+  - [Alex & Ragnar](https://www.youtube.com/watch?v=PPcmIAHA3kg) - join live on Youtube on Oct 21, 2021, 9pm CEST/12pm PDT/3 pm EDT
+  - [Microsoft 365 Development Community call](https://teams.microsoft.com/dl/launcher/launcher.html?url=%2F_%23%2Fl%2Fmeetup-join%2F19%3Ameeting_YzgzNTJiY2UtNDM5Yy00M2ZhLThiZjUtY2I4YzUzZWJhZDRj%40thread.v2%2F0%3Fcontext%3D%257b%2522Tid%2522%253a%252272f988bf-86f1-41af-91ab-2d7cd011db47%2522%252c%2522Oid%2522%253a%2522c020fb57-b23c-429c-b737-f11fd0105f30%2522%257d%26anon%3Dtrue&type=meetup-join&deeplinkId=02983e9b-e09b-496b-8615-1cd472acbe00&directDl=true&msLaunch=true&enableMobilePage=true&suppressPrompt=true) -join live in Teams on Nov 11, 2021, 7am PDT/4pm CEST
+  - [Microsoft Power Apps community call](https://teams.microsoft.com/dl/launcher/launcher.html?url=%2F_%23%2Fl%2Fmeetup-join%2F19%3Ameeting_ZGE5ZTY5MTktOWZlYy00ZjAyLWFiNDQtZTg3NzdlYjhhMTFj%40thread.v2%2F0%3Fcontext%3D%257b%2522Tid%2522%253a%252272f988bf-86f1-41af-91ab-2d7cd011db47%2522%252c%2522Oid%2522%253a%2522540c9970-5177-4f5d-b068-f68c512988fa%2522%257d%26anon%3Dtrue&type=meetup-join&deeplinkId=1438e6f8-adbb-4f81-8791-1152d57e72fa&directDl=true&msLaunch=true&enableMobilePage=true&suppressPrompt=true) - join live in Teams on Nov 17, 2021, 8am PDT/5pm CEST
+
+- past
+  - [PnP Weekly 138](https://www.youtube.com/watch?v=tFg1NJ_O7ag) - recorded on Oct 11, 2021
+  - [Microsoft 365 Developer podcast](https://www.m365devpodcast.com/e/building-a-solution-with-low-code-tools-with-carmen-ysewijn-and-luise-freese/) - recorded on Oct 6, 2021
+
 ## Support us
 
 💖 If you like this project, give it a ⭐ and share it with your friends 🙏!
@@ -64,12 +78,11 @@ Also, buy us coffee ☕☕☕ - ProvisionGenie wouldn't be possible without it!
 
 [!["Buy Us A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/mG3ghJC)
 
-## BIG thanks to 
+## BIG thanks to
 
 - [Lee Ford](https://twitter.com/lee_ford) for sharing the best music 🎶 & never getting tired of my rants while debbugging (Luise)
 - [Michael Roth](https://twitter.com/MichaelRoth42) who created all visuals
-- [Yannick Reekmans](https://twitter.com/YannickReekmans) for debugging, guidance & emotional support 
-
+- [Yannick Reekmans](https://twitter.com/YannickReekmans) for debugging, guidance & emotional support
 
 ## Trademarks
 
@@ -80,7 +93,5 @@ This project may contain trademarks or logos for projects, products, or services
 THIS CODE IS PROVIDED AS IS WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
 
 [![Visitors](https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Fgithub.com%2Fprovisiongenie%2Fprovisiongenie&label=Genie-Fans&countColor=%236264a7&style=flat-square)](https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2Fprovisiongenie%2Fprovisiongenie) <a href="https://gitmoji.dev">
-  <img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square" alt="Gitmoji">
+<img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square" alt="Gitmoji">
 </a>
-
-

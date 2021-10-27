@@ -52,7 +52,7 @@ We also listed [some features that we would like to add in the future](https://g
 
 ## Developers
 
-<img width="400" alt="Carmen and Luise" src="media/index/Carmen_Luise.png">
+![Carmen and Luise](media/index/Carmen_Luise.png){: style="width:400px"}
 
 ProvisionGenie is a project by [Luise Freese](https://m365princess.com) and [Carmen Ysewijn](https://digipersonal.com/).
 

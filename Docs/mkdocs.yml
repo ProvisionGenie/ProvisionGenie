@@ -24,6 +24,8 @@ nav:
   - About:
     - Release Notes: 'about/releasenotes.md'
     - Roadmap: 'about/roadmap.md'
+    - Sessions: 'about/sessions.md'
+    - Developers: 'about/developers.md'
 plugins:
     - search
 theme:

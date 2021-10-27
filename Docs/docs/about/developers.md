@@ -4,9 +4,7 @@
 
 ProvisionGenie is a project by [Luise Freese](https://m365princess.com) and [Carmen Ysewijn](https://digipersonal.com/).
 
-
-
-<img width="400" alt="Carmen and Luise" src="docs/../../media/index/Carmen_Luise.png">
+<img width="400" alt="Carmen and Luise" src="../media/index/Carmen_Luise.png">
 
 As this is an open-source initiative, we get some help by awesome friends:
 

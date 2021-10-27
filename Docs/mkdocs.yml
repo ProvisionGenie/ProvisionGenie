@@ -30,7 +30,6 @@ theme:
   name: material
   palette:
     scheme: default
-    primary: deep purple
   logo: media/site/logo.svg
   favicon: media/site/favicon.png
   features:

@@ -44,6 +44,28 @@ Here's a high level process for submitting new samples or updates to existing on
 
 > note. Delete the feature specific branch only AFTER your PR has been processed.
 
+## Documentation
+ProvisionGenie uses [MkDocs](https://www.mkdocs.org/]) to publish documentation pages. For simplicity, we recommend using the MkDocs Material Docker container which contains all dependencies installed.
+
+### Preview docs using the Docker container
+If you're using Visual Studio Code and have the [Docker extension](https://code.visualstudio.com/docs/containers/overview) installed, you can run preview the docs using the container either by executing the `Run docs container` task, or, if you have pulled the image previously, from the **Images** pane by running the MkDocs container interactively. This article explains [working with Docker containers using VSCode](https://blog.mastykarz.nl/docker-containers-visual-studio-code-extension/) in more detail.
+
+Alternatively, you can run the container in command-line:
+
+- on macOS / WSL2:
+  - run `cd ./docs` to change directory to where the docs are stored
+  - run `docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material:7.3.4` to start the local web server with MkDocs and view the documentation in the web browser
+- on Windows:
+  - run `docker run --rm -it -p 8000:8000 -v c:/projects/provisiongenie/docs:/docs squidfunk/mkdocs-material:7.3.4` to start the local web server with MkDocs and view the documentation in the web browser
+
+### Preview docs using MkDocs installed on your machine.
+If you want, you can also install MkDocs on your machine. See more information about installing MkDocs on your operating system at http://www.mkdocs.org/#installation. ProvisionGenie documentation uses the mkdocs-material theme. See more information about installing mkdocs-material on your operating system at https://squidfunk.github.io/mkdocs-material.
+
+Once you have MkDocs installed on your machine, in the command line:
+
+- run `cd ./docs` to change directory to where the docs are stored
+- run `mkdocs serve` to start the local web server with MkDocs and view the documentation in the web browser
+
 ## Step-by-step guidance to contribute to open source projects
 
 In case you find all of this confusing but still like to contribute, there is help! The [Sharing is Caring](https://pnp.github.io/sharing-is-caring/) initiative of [Microsoft 365 PnP Community](https://aka.ms/m365pnp) is offering hands-on guidance in free sessions. Feel free to check them out!

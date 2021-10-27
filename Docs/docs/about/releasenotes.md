@@ -1,6 +1,6 @@
 # Release notes
 
-![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/Genie_Header.png)
+![header image](../media/index/Genie_Header.png)
 
 ## v1.0.0
 Minimum l💖vable product release of ProvisionGenie 🧞.

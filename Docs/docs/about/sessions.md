@@ -1,5 +1,7 @@
 # Sessions
 
+![header image](../media/index/Genie_Header.png)
+
 We talk and demo ProvisionGenie here:
 
 - upcoming

@@ -1,0 +1,3 @@
+# 0. Fork and clone this repository
+
+You can successfully install and run ProvisionGenie without forking and cloning the repository, but it is highly recommended, to have all necessary files available locally. Also contributing to ProvisionGenie will be easier then. If you don't know how this works, read this article about [How to get started with GitHub and Git](https://www.m365princess.com/blogs/started-github-git/).

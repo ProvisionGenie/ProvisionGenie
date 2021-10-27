@@ -1,6 +1,6 @@
 # Admin Fact Sheet
 
-![Genie Header](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/Genie_Header.png)
+![Genie Header](media/index/Genie_Header.png)
 
 This Fact sheet shall give you as an administrator an overview about
 
@@ -37,7 +37,7 @@ Benefits:
 - Prevents "stockpiled" channels (and their SharePoint folder equivalents)
 - Enables better adoption of the correct usage of SharePoint lists & libraries
 
-For more information head over to [Canvas App Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasAppOverview.md#high-level-overview-on-what-the-canvas-app-does)
+For more information head over to [Canvas App Overview](corecomponents/canvasapp.md#high-level-overview-on-what-the-canvas-app-does)
 
 ## Cost to run ProvisionGenie
 
@@ -47,7 +47,7 @@ ProvisionGenie itself is free, but you will need
 - a Microsoft 365 license for every person who uses the app
 - a Power Apps per app or Power Apps per user plan for every person who uses ProvisionGenie
 
-For more detail, head over to [Cost estimation](Docs/../CostEstimation.md).
+For more detail, head over to [Cost estimation](costestimation.md).
 
 ## Security
 
@@ -82,8 +82,8 @@ We designed and built ProvisionGenie to be an enterprise-grade solution.
 
 ## Deploy and maintain ProvisionGenie
 
-- To get a better understanding of the architecture of ProvisionGenie we recommend to familiarize yourself first with our [Solution overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview) and make sure you understand our [Architecture Decisions](ArchitectureDecisions.md)
-- Additionally we provide you with a pictured step by step [Deployment Guide](DeploymentGuide.md) that walks you through the entire deployment process.
+- To get a better understanding of the architecture of ProvisionGenie we recommend to familiarize yourself first with our [Solution overview](corecomponents/logicapps.md#solution-overview) and make sure you understand our [Architecture Decisions](architecturedecisions.md)
+- Additionally we provide you with a pictured step by step [Deployment Guide](deploymentguide) that walks you through the entire deployment process.
 - If something doesn't work you can always [raise an issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose) and we will help.
 
 ## Update schedule
@@ -95,7 +95,7 @@ We will use [semantic versioning](https://semver.org/):
 - New features without breaking changes will be released in minor versions
 - breaking changes will be released only in major versions
 
-You can familiarize yourself with our [Roadmap](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/Roadmap.md) to know what's coming when.
+You can familiarize yourself with our [Roadmap](about/roadmap.md) to know what's coming when.
 
 ## Any other questions?
 

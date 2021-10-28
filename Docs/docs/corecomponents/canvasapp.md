@@ -57,7 +57,7 @@ For more context on how this canvas app fits into our solution, please head over
 
 ## How do I get the app?
 
-- To get the entire solution as-is, head over to our [Deployment Guide](/docs/docs/deploymentguide/0-forkclone.md)
+- To get the entire solution as-is, head over to our [Deployment Guide](../deploymentguide/0-forkclone.md)
 - To contribute to it, please see our [Contribution Guide](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/CONTRIBUTING.md)
 - If you like to reverse-engineer it, please see our [How to build the canvas app](howtobuildthecanvasapp.md) guide as a start.
 - You can also download the `.zip` file from here and import the solution into your environment - please note that this won't give you the full experience, as the entire process of provisioning does not run in this canvas app but in Azure Logic Apps flows which get triggered by new rows in different tables in Dataverse.

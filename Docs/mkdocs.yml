@@ -10,7 +10,8 @@ nav:
     - Canvas App: 
       - Overview: 'corecomponents/canvasapp.md'
       - How to build: 'corecomponents/howtobuildthecanvasapp.md'
-    - Dataverse: 'corecomponents/dataverse.md'
+    - Dataverse: 
+      - Overview: 'corecomponents/dataverse.md'
     - Logic Apps: 
       - Overview: 'corecomponents/logicapps.md'
   - Deployment guide:

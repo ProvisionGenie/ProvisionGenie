@@ -2,66 +2,26 @@
 
 ![header image](../media/index/Genie_Header.png)
 
-ProvisionGenie 💜 Microsoft Graph! Our entire provision process leverages the power of Microsoft Graph API and we plan to continue with this in future versions with extended use cases. Learn more about [Microsoft Graph](https://docs.microsoft.com/graph/overview).
-
-![ProvisionGenie loves Microsoft Graph](../media/corecomponents/ProvisionGenieLovesGraph.png)
-
-To understand why we chose Azure Logic Apps head over to [Architecture Decisions](../architecturedecisions.md)
-
-## Solution Overview
-
-Based on user input in the canvas app, ProvisionGenie logs team requests. Each new row in the **Teams Request** table will trigger the **Main flow** in Azure Logic Apps, which will then handle all other child flows:
-
-![solution overview](../media/corecomponents/PG-solution-overview.png),
-
-## Dataverse datamodel
-
-To understand the Logic Apps, it's a good idea to understand the data model:
-
-![Dataverse-datamodel](../media/corecomponents/dataverse-datamodel.png)
-
-1. We log all requests in the **Teams Request** table, these are the most important columns:
-
-- TeamName
-- TeamDescription
-- TeamOwner
-- includeTaskList
-- includeWelcomePackage
-
-2. Each Team can have multiple channels, which we log in the **TeamsChannel** table, these are the most important columns:
-
-- Channelname
-- ChannelDescription
-- Teamsrequest (to link to the correct Team)
-
-3. Each Team can also have a list and a library, we log them in the **SharePointLibrary** and **SharePointLIst** tables, these are the most important columns:
-
-- LibraryName / ListName
-- Teamsrequest (to link to the correct Team)
-
-4. Each List/Library can contain columns, we log them in the **ListColumns** table, these are the most important columns:
-
-- ColumnName
-- ColumnType
-- ColumnValues (for ColumnType `Choice`)
-
-## Flows
+We created 5 Azure Logic Apps to handle the provisioning of the Teams:
 
 Our flows pick up the values logged in the Dataverse tables to provision what the user requested:
 
-- [1. Main flow](#1-main-flow)
-- [2. Create team](#2-create-team)
-- [3. Create List/Library](#3-create-listlibrary)
-- [4. Create Task List](#4-create-task-list)
-- [5. Welcome Package](#5-welcome-package)
+ - [1. Main flow](#1-main-flow)
+ - [2. Create team](#2-create-team)
+- [Azure Logic Apps](#azure-logic-apps)
+    - [1. Main flow](#1-main-flow)
+    - [2. Create team](#2-create-team)
+    - [3. Create List/Library](#3-create-listlibrary)
+    - [4. Create Task List](#4-create-task-list)
+    - [5. Welcome Package](#5-welcome-package)
 
 ### 1. Main flow
 
-The main flow takes care of the logic of the flows: executing the different steps in the right order and providing the right input. An overview of the logic app is added below.
+The main flow takes care of the logic of the flows: executing the different steps in the right order and providing the right input. An overview of the Logic App is added below.
 
 ![Screenshot of the main flow](../media/corecomponents/LogicApps-Main.png)
 
-1. The main flow triggers when a new row is added into the _Teams Requests_ table in Dataverse.
+1. The main flow triggers when a new row is added into the **Teams Requests** table in Dataverse.
 2. The internal name of the to be created team is generated using the name provided by the team owner and a generated guid. This ensures that all team names are unique.
 3. The technical name is updated in the Teams Request row so that admins can easily find out which requests are linked to which Microsoft Teams teams.
 4. 5 variables are initialized that are used later on in the flow
@@ -75,7 +35,7 @@ The main flow takes care of the logic of the flows: executing the different step
    1. The related team channel rows are listed
    2. The channels are added into the `Channels` variable
    3. A child logic app is called with the team information and channels as input
-   4. The Team Id is extracted from the child logic app's response
+   4. The Team ID is extracted from the child logic app's response
    5. We wait until we get confirmation that the SharePoint site for the team has been created
    6. We wait until we get confirmation that the default files library for the team has been created
    7. The folder path for the default files library is composed based on the output of the previous actions
@@ -112,12 +72,12 @@ In the Create team flow, the requested team is created with the specified channe
    3. `Description`: the description of the team.
    4. `TeamCreationRequestCode`: variable to store the response the HTTP request to create the team to check whether the request was accepted.
    5. `TeamCreationStatus`: variable to store the response of an HTTP request to check whether the creation of the team has completed.
-   6. `NewTeamId`: the id of the new team.
+   6. `NewTeamId`: the ID of the new team.
 3. The information of the Team owner is requested to Azure AD using an HTTP request
 4. The owner information is parsed so its properties can be used later in the Logic Apps flow
 5. The group for the team is created as a private group
 6. The group creation request body is parsed to use the properties later in the Logic Apps flow
-7. The group id is stored in the `NewTeamId` variable
+7. The group ID is stored in the `NewTeamId` variable
 8. The following actions are done in a loop because this does not always succeed on the first try
    1. A request is sent to "teamify" the created group
    2. The status code is saved in the `TeamCreationStatus` variable
@@ -182,7 +142,7 @@ The welcome package adds a url with training material to the General channel of 
 1. The Logic Apps is triggered from a HTTP request, for example as a child logic app
 2. The request body is parsed to extract the required information
 3. 2 variables are initialized:
-   1. `TeamId`: the id of the team to which the welcome package should be added
+   1. `TeamId`: the ID of the team to which the welcome package should be added
    2. `Owner`: the owner of the team (UPN)
 4. A HTTP request lists the channels in the team
 5. The channel info is parsed

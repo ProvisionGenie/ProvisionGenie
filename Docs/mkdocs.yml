@@ -6,9 +6,11 @@ nav:
     - Cost estimation: 'costestimation.md'
     - Architecture decisions: 'architecturedecisions.md'
   - Core components:
+    - Solution Overview: 'corecomponents/solutionoverview.md'
     - Canvas App: 
       - Overview: 'corecomponents/canvasapp.md'
       - How to build: 'corecomponents/howtobuildthecanvasapp.md'
+    - Dataverse: 'corecomponents/dataverse.md'
     - Logic Apps: 
       - Overview: 'corecomponents/logicapps.md'
   - Deployment guide:

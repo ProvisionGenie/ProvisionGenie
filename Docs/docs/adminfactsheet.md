@@ -3,6 +3,7 @@
 ![Genie Header](media/index/Genie_Header.png)
 
 This Fact sheet shall give you as an administrator an overview about
+
 - [Admin Fact Sheet](#admin-fact-sheet)
   - [End User value of ProvisionGenie](#end-user-value-of-provisiongenie)
   - [Cost to run ProvisionGenie](#cost-to-run-provisiongenie)
@@ -98,4 +99,4 @@ You can familiarize yourself with our [Roadmap](about/roadmap.md) to know what's
 
 ## Any other questions?
 
-Please let us know, we love to help!
+Please let us know, we love to help! 🧞

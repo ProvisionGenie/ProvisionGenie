@@ -1,8 +1,5 @@
 [CmdletBinding()]
 param (
-    [Parameter(Mandatory = $false)]
-    [string]
-    $ResourceGroupName = "ProvisionGenie",
     [Parameter(Mandatory = $true)]
     [string]
     $Location,
@@ -12,13 +9,15 @@ param (
     [Parameter(Mandatory = $true)]
     [string]
     $DataverseEnvironmentId,
+    [Parameter(Mandatory = $true)]
+    [string]
+    $WelcomePackageUrl,
     [Parameter(Mandatory = $false)]
     [string]
-    $SubscriptionId = "",
-    [Parameter(Mandatory = $false)]
-    [string]
-    $WelcomePackageUrl = "https://m365princess.com"
+    $SubscriptionId = ""
 )
+
+$ResourceGroupName = "ProvisionGenie"
 
 if ($SubscriptionId -ne "") {
     az account set -s $SubscriptionId

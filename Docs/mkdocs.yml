@@ -1,4 +1,5 @@
 site_name: ProvisionGenie
+site_description: Read the full documentation for ProvisionGenie 🧞 to provision custom-tailored Microsoft Teams teams based on your user's needs
 nav:
   - ProvisionGenie: 
     - Home: 'index.md'
@@ -33,6 +34,7 @@ plugins:
     - search
 theme:
   name: material
+  custom_dir: custom_theme/
   palette:
     scheme: default
   logo: media/site/logo.svg

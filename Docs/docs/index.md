@@ -2,6 +2,8 @@
 
 ![Genie Header image](media/index/Genie_Header.png)
 
+tests verified commit without s
+
 ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/microsoft-teams/group-chat-software) that lets you learn how your team can work best in Microsoft Teams. As Teams is a platform that can connect to a lot of services, we want to make your start even easier. We will
 
 - skill you up and

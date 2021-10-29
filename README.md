@@ -17,3 +17,5 @@ ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/microso
 Also, buy us coffee ☕☕☕ - ProvisionGenie wouldn't be possible without it!
 
 [!["Buy Us A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/mG3ghJC)
+
+:-)

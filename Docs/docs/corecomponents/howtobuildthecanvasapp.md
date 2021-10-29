@@ -1,10 +1,10 @@
 # How to build the canvas app
 
-![header image](media/Genie_Header.png)
+![header image](../media/index/Genie_Header.png)
 
 Although we give you the zipped files of the canvas app in our solution, you can also follow these instructions if you want to rebuild it. It will also make it easier to understand how everything works if you want to contribute to ProvisionGenie.
 
-![ProvisionGenie](media/TeansResult.png)
+![ProvisionGenie](../media/corecomponents/TeamsResult.png)
 
 ## Basic UI concepts
 
@@ -27,7 +27,8 @@ This way, you can refer to these values - or change them, if needed, more easily
   - image (image)
     and create a `NavigationMenu` collection in **onStart**, wrap both in `Concurrent()`:
 
-```Concurrent(
+```
+Concurrent(
     Set(
         _selectedScreen,
         {
@@ -84,7 +85,7 @@ This way, you can refer to these values - or change them, if needed, more easily
 - Set **TemplateFill** to `If(ThisItem.Row = _selectedScreen.Row, RGBA(220, 220, 220, 1), RGBA(0,0,0,0))`
 - Set **OnSelect** to
 
-```PowerApps
+```
 Set(
     _selectedScreen,
     ThisItem
@@ -141,12 +142,8 @@ This is how it works:
 
 - Set **HTMLText** of HTML text control to
 
-```Power Apps
-
-"
+```
 <div style='margin: 0 0 0 20px; font-size: 11pt !important; font-weight: lighter; color: #252525; padding: 0 10px; width: 100%; overflow: hidden;'>
-
-
     <div style=""float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;"" >*</div>
     <div style=""float: left; width: 75%; "">
         Step 1 <br><br>
@@ -181,7 +178,6 @@ This is how it works:
     <div style=""float: left; width: 75%; "">
        Step 6<br>
     </div>
-"
 ```
 
 - Repeat with different text in the second HTML text control
@@ -265,8 +261,7 @@ To have a nice shadow around the PopUp
 - Set colors as stated in Teams UI Toolkit if you like this to be design consistent to Teams, otherwise choose your own colors (preferably set them as variables)
 - Set **OnSelect** to
 
-```Power Apps
-
+```
 If(
     isPage= 1,
     UpdateContext({isPage: 2}),
@@ -292,8 +287,7 @@ This way, users navigate to the next screen if they are on page 1 or 2 and close
 - Set colors as stated in Teams UI Toolkit if you like this to be design consistent to Teams, otherwise choose your own colors (preferably set them as variables)
 - Set **OnSelect** to
 
-```Power Apps
-
+```
 If(
     isPage = 1,
     UpdateContext({isPage: 3}),
@@ -350,14 +344,13 @@ Navigation and side panel will be shown on every screen, only the HTMLtext in th
 
 We built
 
-- 1 Welcome [PopUps](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasApp.md#popup) that is triggered by AppStart and introduces users on three pages what this app is about
-- 4 different [PopUps](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasApp.md#popup) for the learning content
+- 1 Welcome [PopUps](#popup) that is triggered by AppStart and introduces users on three pages what this app is about
+- 4 different [PopUps](#popup) for the learning content
 - 4 respecting Cards that serve as a more beautiful trigger for these PopUps
 - 1 Button to navigate to the **Teams** screen and start the provisioning process
   - Set **OnSelect** of this Button to
 
-```Power Apps
-
+```
 Navigate(
     'Teams Screen',
     ScreenTransition.Cover
@@ -379,12 +372,12 @@ Set(
   - whether our owner (= signed-in user) wants a 'WelcomePackage' or not
   - whether our owner wants a SharePoint list provisioned for task management
 
-We get the information by a form which is connected to a DataVerse table **Teams Requests** - see also [Solution Overview](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/LogicApps.md#solution-overview)
+We get the information by a form which is connected to a DataVerse table **Teams Requests** - see also [Solution Overview](logicapps.md#solution-overview)
 
 A few notes:
 
 - We modified the styling of the DataCards of the Form to match the criteria of Teams Toolkit.
-- For the yes/no question about the SharePoint list as a task management tool, we build another PopUp to explain this. For info on why we don't provision see [Architecture Decisions](/Docs/ArchitectureDecisions.md#no-microsoft-planner-provisioning)
+- For the yes/no question about the SharePoint list as a task management tool, we build another PopUp to explain this. For info on why we don't provision see [Architecture Decisions](../architecturedecisions.md#no-microsoft-planner-provisioning)
 - We changed the default dropdown fields to toggles. To connect those again to your data source, a little extra work is required:
 
 #### Modify the form with toggles instead of dropdown
@@ -394,7 +387,7 @@ A few notes:
 3. set **Default** of the Card to `If(Toggle1.Value,'Do you want the welcome package? (TeamsRequests)'.Yes,'Do you want the welcome package? (TeamsRequests)'.No)`
 4. Set **Update** of the toggle to
 
-```Power Apps
+```
 If(
     ThisItem.'Do you want the welcome package?' = 'Do you want the welcome package? (TeamsRequests)'.Yes,
     true,
@@ -407,7 +400,7 @@ This way, we match the toggle value with our Dataverse column.
 
 The **Next** button's **OnSelect** is set to
 
-```Power Apps
+```
 Navigate(
     'Channel Screen',
     ScreenTransition.Cover
@@ -453,8 +446,7 @@ On this screen, our owner-to-be can create the channels they want to be provisio
 
 - Set its **OnSelect** to
 
-```Power Apps
-
+```
   If(txtTagToAdd.Text in colChannels.ChannelName,
     Notify(
         "You already added this Channel. Please try again with a different name.",
@@ -482,8 +474,7 @@ In case our user wants to start all over again, we give them a button to do so.
 
 Set **OnSelect** to
 
-```Power Apps
-
+```
 Clear(colChannels);
 UpdateContext({locClearTextInput: true});
 UpdateContext({locClearTextInput: false})
@@ -505,7 +496,7 @@ This way, our user can review the list of channels and even remove some of them 
 
 With this button we want to set a variable that concatenates the Channels to a single string with, separated by `, ` , navigate to the next screen and set our navigation correctly. To achieve this, set **OnSelect** to
 
-```Power Apps
+```
 Set(
     varChannels,
     Concat(
@@ -562,8 +553,7 @@ In case user wants to add a choice column, we display another TextInput control,
 - Create an icon in that TextInput
 - Set **OnSelect** of the icon to
 
-```Power Apps
-
+```
 Collect(
     ColChoicesLibrary,
     {Choice: TxtInputLibraryChoices.Text}
@@ -587,8 +577,7 @@ This button shall add the values (column name, column type and column values of 
 - Create a button
 - Set its **OnSelect** to
 
-```Power Apps
-
+```
 Collect(
     colColumnsLibrary,
     {
@@ -609,8 +598,7 @@ This means, that we will add the name of the column and the type of the column b
 
 - Set **Displaymode** of the button to
 
-```Power Apps
-
+```
 If(
     IsBlank(<DataCardValueWhichHoldsTheName>) = true || IsBlank(DataCardValueWhichHoldsTheType>.Selected.Value),
     Disabled,
@@ -638,15 +626,14 @@ This way, our **Add** button will only be selectable if column name and column v
 Our **Next** or **Save library** is supposed to do a few things:
 
 - Set a variable for the library name (remember, we did not submit the form to our data source)
-- Display a [PopUp](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasApp.md#popup) to indicate that the library was saved
+- Display a [PopUp](#popup) to indicate that the library was saved
 
 To achieve this,
 
 - Create a button
 - Set its **OnSelect** to
 
-```Power Apps
-
+```
 Set(
     IsShowSavedLibraries,
     true
@@ -670,8 +657,7 @@ In the checkout screen, we want to display a PopUp in which the user may review 
 - Set **Visible** of the entire PopUpGroup to `isShowSummary`
 - Set **Text** of your main content Textlabel to
 
-````Power Apps
-
+```
 If(
     isPageSummary = 1,
     "please review your request before you submit it",
@@ -733,12 +719,11 @@ If(
         )
     )
 )
-````
+```
 
 * Set **Text** of the title Textlabel to
 
-``` Power Apps
-
+```
 If(
 isPageSummary = 1,
 "Let's make your teamwork wishes come true",
@@ -764,16 +749,14 @@ isPageSummary = 6,
 )
 )
 )
+```
 
-````
-
-For **Text**, **Width** and **X** of your Next button refer to [PopUps](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/CanvasApp.md#popup)
+For **Text**, **Width** and **X** of your Next button refer to [PopUps](#popup)
 
 
 * Set **OnSelect** to
 
-```  Power Apps
-
+```
 If(
     isPageSummary = 1,
     UpdateContext({isPageSummary: 2}),
@@ -857,8 +840,7 @@ UpdateContext({isPageSummary: 7}),
         )
     )
 );
-
-````
+```
 
 A little polish:
 We want a checkbox to be displayed before the very last step so that our user needs to confirm that they understood that this is the point of no return.

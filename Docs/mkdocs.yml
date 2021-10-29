@@ -1,0 +1,61 @@
+site_name: ProvisionGenie
+site_description: Read the full documentation for ProvisionGenie 🧞 to provision custom-tailored Microsoft Teams teams based on your user's needs
+site_url: https://provisiongenie.com/
+nav:
+  - ProvisionGenie: 
+    - Home: 'index.md'
+    - Admin fact sheet: 'adminfactsheet.md'
+    - Cost estimation: 'costestimation.md'
+    - Architecture decisions: 'architecturedecisions.md'
+  - Core components:
+    - Solution Overview: 'corecomponents/solutionoverview.md'
+    - Canvas App: 
+      - Overview: 'corecomponents/canvasapp.md'
+      - How to build: 'corecomponents/howtobuildthecanvasapp.md'
+    - Dataverse: 
+      - Overview: 'corecomponents/dataverse.md'
+    - Logic Apps: 
+      - Overview: 'corecomponents/logicapps.md'
+  - Deployment guide:
+    - Start: 'deploymentguide/index.md'
+    - Copied values: 'deploymentguide/copiedvalues.md'
+    - 0. Fork and clone this repository: 'deploymentguide/0-forkclone.md'
+    - 1. App registration to access Dataverse tables: 'deploymentguide/1-appreg.md'
+    - 2. Import Dataverse solution: 'deploymentguide/2-importsolution.md'
+    - 3. Create new Azure resource groups: 'deploymentguide/3-createresourcegroup.md'
+    - 4. Azure Logic Apps: 'deploymentguide/4-deploylogicapps.md'
+    - 5. Add ProvisionGenie to Teams: 'deploymentguide/5-addtoteams.md'
+    - 6. Post Deployment cleanup: 'deploymentguide/6-postdeploycleanup.md'
+  - About:
+    - Release Notes: 'about/releasenotes.md'
+    - Roadmap: 'about/roadmap.md'
+    - Sessions: 'about/sessions.md'
+    - Developers: 'about/developers.md'
+plugins:
+    - search
+theme:
+  name: material
+  custom_dir: custom_theme/
+  palette:
+    scheme: default
+  logo: media/site/logo.svg
+  favicon: media/site/favicon.png
+  features:
+    - navigation.tabs
+    - navigation.instant
+    - navigation.sections
+    - navigation.expand
+extra_css:
+  - 'css/styles.css'
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - toc:
+      permalink: true
+  - pymdownx.snippets
+  - def_list
+  - attr_list
+extra:
+  generator: false
+repo_url: https://github.com/ProvisionGenie/ProvisionGenie
+edit_uri: blob/main/docs/docs

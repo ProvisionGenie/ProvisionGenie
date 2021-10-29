@@ -1,6 +1,6 @@
 # Cost Estimation
 
-![header image](https://github.com/ProvisionGenie/ProvisionGenie/blob/main/Docs/media/Genie_Header.png)
+![header image](media/index/Genie_Header.png)
 
 We provide ProvisionGenie free of charge, but that doesn't mean, that you don't need to pay licensing fees to Microsoft.
 
@@ -22,4 +22,4 @@ Effectively October 1, 2021, both plans are now priced at 50% of the previous ra
 If you already have a Power Apps per user plan for all users who shall use this app, you are already set.
 If you already have a Power Apps per app plan (purchased before October 2021), you will need to look if you already exceeded the limit of two apps. If yes, we advise to consider upgrading to a Power Apps per user plan as of October 2021, as this unlocks not only this app but unlimited apps.
 
-We make use of Dataverse, which is the only reason why a Power Apps license is required. Please read our [Architecture Decisions](ArchitectureDecisions.md) to understand why working around the licensing fee for Power Apps by using for example SharePont or Dataverse for Teams is not a good idea.
+We make use of Dataverse, which is the only reason why a Power Apps license is required. Please read our [Architecture Decisions](architecturedecisions.md) to understand why working around the licensing fee for Power Apps by using for example SharePont or Dataverse for Teams is not a good idea.

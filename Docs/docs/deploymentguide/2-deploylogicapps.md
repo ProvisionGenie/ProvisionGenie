@@ -21,7 +21,11 @@ In the `ProvisionGenie-deploy` the script will create a new storage account, wit
     - the App secret from your Azure AD app registration
     - the Tenant ID from you Azure AD app registration
 
-## Assign the correct permission scope for the Managed Identity
+## Validate deployment
+
+To confirm successful deployment and familiarize yourself with the components that have been deployed you should take a look at the resources which have been created in Azure. 
+
+### Azure resources
 
 After successful deployment, head over to the [Azure portal](https://portal.azure.com). Then complete the following steps:
 
@@ -30,22 +34,7 @@ After successful deployment, head over to the [Azure portal](https://portal.azur
 
 ![Provisiongenie Resource Group](../media/deploymentguide/4-deploylogicapps/AzurePortalResources.png)
 
-- Select `ProvisionGenie-ManagedIdentity`
-- Copy the **ObjectID**, save it here: [copied values](copiedvalues.md)
-
-![ManagedIDentity](../media/deploymentguide/4-deploylogicapps/AzurePortaMI.png)
-
-- In the following script, paste this Object ID as value of $principalId and run the script in Azure cloud shell.
-
-```Azure CLI
-$principalId = '<your Managed Identity object ID goes here>'
-$graphResourceId = $(az ad sp list --display-name "Microsoft Graph" --query [0].objectId --out tsv)
-#Get appRoleIds for Team.Create, Group.ReadWrite.All, Directory.ReadWrite.All, Group.Create, Sites.Manage.All, Sites.ReadWrite.All
-$graphId = az ad sp list --query "[?appDisplayName=='Microsoft Graph'].appId | [0]" --all
-$appRoleIds = $(az ad sp show --id $graphId --query "appRoles[?value=='Team.Create'].id | [0]"), $(az ad sp show --id $graphId --query "appRoles[?value=='Group.ReadWrite.All'].id | [0]"), $(az ad sp show --id $graphId --query "appRoles[?value=='Directory.ReadWrite.All'].id | [0]"), $(az ad sp show --id $graphId --query "appRoles[?value=='Group.Create'].id | [0]"), $(az ad sp show --id $graphId --query "appRoles[?value=='Sites.Manage.All'].id | [0]"), $(az ad sp show --id $graphId --query "appRoles[?value=='Sites.ReadWrite.All'].id | [0]")
-#Loop over all appRoleIds
-foreach ($appRoleId in $appRoleIds) { $body = "{'principalId':'$principalId','resourceId':'$graphResourceId','appRoleId':'$appRoleId'}"; az rest --method post --uri https://graph.microsoft.com/v1.0/servicePrincipals/$principalId/appRoleAssignments --body $body --headers Content-Type=application/json }
-```
+### Managed Identity Permissions
 
 - Check in Azure AD if permissions were set correctly:
   - Open [Azure Active Directory](https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview)

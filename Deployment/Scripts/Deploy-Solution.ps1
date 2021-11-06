@@ -35,7 +35,12 @@ if ($ValidateLocation.Count -eq 0) {
     az account list-locations
     exit 1
 }
-
+Write-Host "Creating AzureAD application"
+$app = az ad app create --display-name ProvisionGenieApp --available-to-other-tenants false | ConvertFrom-Json
+$sp = az ad app credential reset --id $app.appId --append | ConvertFrom-Json
+az ad app permission add --id $app.appid --api 00000007-0000-0000-c000-000000000000 --api-permissions 78ce3f0f-a1ce-49c2-8cde-64b5c0896db4=Scope
+az ad sp create --id $app.appid
+az ad app permission grant --id $app.appid --api 00000007-0000-0000-c000-000000000000
 Write-Host "Creating Resource Groups"
 $MainResourceGroup = az group create `
     --name $ResourceGroupName `
@@ -95,4 +100,36 @@ az deployment group create `
                 DataverseEnvironmentId=$DataverseEnvironmentId `
                 resourceGroupName=$ResourceGroupName `
                 WelcomePackageUrl=$WelcomePackageUrl `
+                servicePrincipal_AppId=$sp.appId `
+                servicePrincipal_ClientSecret=$sp.clientSecret `
+                servicePrincipal_TenantId=$sp.tenantId `
   --verbose
+
+Write-Host "Azure Logic Apps deployed, granting permissions to ProvisionGenie-ManagedIdentity"
+
+# get the Managed Identity principal ID
+$ManagedIdentity = az identity show --name ProvisionGenie-ManagedIdentity --resource-group $ResourceGroupName | ConvertFrom-Json
+
+$principalId = $ManagedIdentity.principalId
+$graphResourceId = az ad sp list --display-name "Microsoft Graph" --query [0].objectId
+#Get appRoleIds for Team.Create, Group.ReadWrite.All, Directory.ReadWrite.All, Group.Create, Sites.Manage.All, Sites.ReadWrite.All
+$graphId = az ad sp list --query "[?appDisplayName=='Microsoft Graph'].appId | [0]" --all
+$teamCreate = az ad sp show --id $graphId --query "appRoles[?value=='Team.Create'].id | [0]"
+$readWriteAll = az ad sp show --id $graphId --query "appRoles[?value=='Group.ReadWrite.All'].id | [0]"
+$directoryReadWriteAll = az ad sp show --id $graphId --query "appRoles[?value=='Directory.ReadWrite.All'].id | [0]"
+$groupCreate = az ad sp show --id $graphId --query "appRoles[?value=='Group.Create'].id | [0]"
+$sitesManageAll = az ad sp show --id $graphId --query "appRoles[?value=='Sites.Manage.All'].id | [0]"
+$sitesReadWriteAll = az ad sp show --id $graphId --query "appRoles[?value=='Sites.ReadWrite.All'].id | [0]"
+$appRoleIds = $teamCreate, $readWriteAll, $directoryReadWriteAll, $groupCreate, $sitesManageAll, $sitesReadWriteAll
+#Loop over all appRoleIds
+foreach ($appRoleId in $appRoleIds) {
+    # Add the role assignment ot the principal
+    $body = "{'principalId':'$principalId','resourceId':'$graphResourceId','appRoleId':'$appRoleId'}";
+    az rest `
+        --method post `
+        --uri https://graph.microsoft.com/v1.0/servicePrincipals/$principalId/appRoleAssignments `
+        --body $body `
+        --headers Content-Type=application/json 
+}
+
+Write-Host "Done"

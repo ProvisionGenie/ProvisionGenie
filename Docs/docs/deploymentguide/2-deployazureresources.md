@@ -1,4 +1,4 @@
-# 2. Deploy Azure Resources
+# 2. Deploy Azure resources
 
 The scripted deployment will create two resource groups, by default these are `ProvisionGenie` and `ProvisionGenie-deploy`.
 

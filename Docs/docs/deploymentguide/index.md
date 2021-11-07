@@ -19,6 +19,6 @@ In order to successfully deploy ProvisionGenie, you will need to perform the fol
 
 - [0. Fork and clone this repository](0-forkclone.md)
 - [1. Import Dataverse solution](1-importsolution.md)
-- [2. Deploy Azure Logic Apps](2-deploylogicapps.md)
+- [2. Deploy Azure resources](2-deployazureresources.md)
 - [3. Add ProvisionGenie to Teams](3-addtoteams.md)
 - [4. Post Deployment cleanup](4-postdeploycleanup.md)

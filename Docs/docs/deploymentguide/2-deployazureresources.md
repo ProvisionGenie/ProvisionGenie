@@ -1,4 +1,4 @@
-# 3. Deploy Logic Apps
+# 2. Deploy Azure Resources
 
 The scripted deployment will create two resource groups, by default these are `ProvisionGenie` and `ProvisionGenie-deploy`.
 

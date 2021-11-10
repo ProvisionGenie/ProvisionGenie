@@ -105,13 +105,13 @@ Deploy-Solution.ps1`
 
 The Azure region that the resources are to be deployed in.
 
-`-StorageAccountName`
-
-The name of the storage account used to hold the ARM templates for deploying ProvisionGenie. This must be globally unique.
-
 `-DataverseEnvironmentId`
 
 The Id of the Dataverse environment hosting the database tables
+
+`WelcomePackageUrl`
+
+The url of the welcome package to be used e.g. `https://m365princess.com`
 
 ### Optional Parameters
 
@@ -124,6 +124,3 @@ The name of the Resource Group to be created to contain the ProvisionGenie Logic
 > Default value: The current default subscription for the Azure CLI environment
 
 The Id of the Azure Subscription to deploy into.
-
-`WelcomePackageUrl`
-> Default value: [https://m365princess.com](https://m365princess.com)

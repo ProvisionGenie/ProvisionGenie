@@ -75,6 +75,9 @@
             "parameters":{
                 "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
                     "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
+                },
+                "resourceLocation": {
+                    "value": "[parameters('resourceLocation')]"
                 }
             }
         }

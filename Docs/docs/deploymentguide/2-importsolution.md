@@ -16,13 +16,13 @@ You will need to create an application user and assign the security roles to it.
 
     from here: [ProvisionGenie Solution](https://github.com/ProvisionGenie/ProvisionGenie/tree/main/Deployment/Solution)
 
-In case this is the first time you import a solution, follow the steps described here: [Import a Power Platform solution](https://docs.microsoft.com/powerapps/maker/data-platform/import-update-export-solutions) - It can take a little while:
+    In case this is the first time you import a solution, follow the steps described here: [Import a Power Platform solution](https://docs.microsoft.com/powerapps/maker/data-platform/import-update-export-solutions) - It can take a little while:
 
-![importing solution](../media/deploymentguide/2-importsolution/PowerAppsSolutionImporting.png)
+    ![importing solution](../media/deploymentguide/2-importsolution/PowerAppsSolutionImporting.png)
 
-Once this step is completed, select the imported solution and check that it looks like this:
+    Once this step is completed, select the imported solution and check that it looks like this:
 
-![Solution](../media/deploymentguide/2-importsolution/PowerAppsSolution.png)
+    ![Solution](../media/deploymentguide/2-importsolution/PowerAppsSolution.png)
 
 3. Create an application user 
 
@@ -54,19 +54,19 @@ Once this step is completed, select the imported solution and check that it look
 
     - In the Access pane, select **See all** under **Users**
 
-  ![Users - see all](../media/deploymentguide/2-importsolution/EnvironmentSettingsUsersSeeAll.png)
+    ![Users - see all](../media/deploymentguide/2-importsolution/EnvironmentSettingsUsersSeeAll.png)
 
-  - Select **Manage users in Dynamics 365** in the action bar at the top
+    - Select **Manage users in Dynamics 365** in the action bar at the top
 
-  ![Manage users in Dynamics 365](../media/deploymentguide/2-importsolution/EnvironmentUsersManageInD365.png)
+    ![Manage users in Dynamics 365](../media/deploymentguide/2-importsolution/EnvironmentUsersManageInD365.png)
 
-  - Select the users you want to assign the security role to, and afterwards select **Manage roles** in the action bar
+    - Select the users you want to assign the security role to, and afterwards select **Manage roles** in the action bar
 
-  ![Manage roles](../media/deploymentguide/2-importsolution/EnvironmentUsersManageRoles.png)
+    ![Manage roles](../media/deploymentguide/2-importsolution/EnvironmentUsersManageRoles.png)
 
-  - In the list with security roles, select **Provision Genie user** and then **OK**
+    - In the list with security roles, select **Provision Genie user** and then **OK**
 
-  ![Select roles](../media/deploymentguide/2-importsolution/EnvironmentUsersSelectRoles.png)
+    ![Select roles](../media/deploymentguide/2-importsolution/EnvironmentUsersSelectRoles.png)
 
 6. You need to obtain the Environment ID for a later step:
 
@@ -75,4 +75,4 @@ Once this step is completed, select the imported solution and check that it look
     - Select **Session details**
     - The value we need here is the **Instance URL** from [make.powerapps.com](https://make.powerapps.com), save it here: [copied values](copiedvalues.md)
 
-![Power Apps session details](../media/deploymentguide/2-importsolution/PAStudioSessionDetails.png)
+    ![Power Apps session details](../media/deploymentguide/2-importsolution/PAStudioSessionDetails.png)

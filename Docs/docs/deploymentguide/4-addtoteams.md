@@ -1,4 +1,4 @@
-# 3. Add ProvisionGenie to Teams
+# 4. Add ProvisionGenie to Teams
 
 You may now want to add ProvisionGenie to Teams:
 

@@ -1,4 +1,4 @@
-# 1. Import Dataverse solution
+# 2. Import Dataverse solution
 
 We built ProvisionGenie by using Dataverse mostly for security reasons. We do not want to give users a way to bypass the canvas app and access data they shouldn't have access to. This concern was one of our main reasons to not use SharePoint lists to log requests as you would need to share the list with every user. That means that they could create new items, manipulate and even delete data. For more information, head over to [Architecture Decisions](../architecturedecisions.md#database).
 

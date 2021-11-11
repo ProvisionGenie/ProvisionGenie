@@ -11,11 +11,10 @@ You will need to create an application user and assign the security roles to it.
 Important to know: a **Dataverse for Teams** environment is not enough - for reference read our [Architecture Decisions](../architecturedecisions.md)
 
 2. Import our solution with
-
-- Dataverse tables to log the requests
-- ProvisionGenie canvas app as the UI
-- Security role `ProvisionGenie Admin`
-- Security role `Provision Genie User`
+    - Dataverse tables to log the requests
+    - ProvisionGenie canvas app as the UI
+    - Security role `ProvisionGenie Admin`
+    - Security role `Provision Genie User`
 
 from here: [ProvisionGenie Solution](https://github.com/ProvisionGenie/ProvisionGenie/tree/main/Deployment/Solution)
 
@@ -29,9 +28,9 @@ Once this step is completed, select the imported solution and check that it look
 
 ![Solution](../media/deploymentguide/2-importsolution/PowerAppsSolution.png)
 
-- Create an application user and the assign the security role `Basic user` and security role `ProvisionGenie Admin` as part of the creation process as described here: [Create an application user](https://docs.microsoft.com/power-platform/admin/manage-application-users#create-an-application-user)
+3.  Create an application user and the assign the security role `Basic user` and security role `ProvisionGenie Admin` as part of the creation process as described here: [Create an application user](https://docs.microsoft.com/power-platform/admin/manage-application-users#create-an-application-user)
 
-- Assign the security roles `Basic user` and `Provision Genie User` to all users that will be able to use ProvisionGenie for team creation.
+4.  Assign the security roles `Basic user` and `Provision Genie User` to all users that will be able to use ProvisionGenie for team creation.
 
   - You can assign the roles to individual people using the steps explained [here](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database)
   - Alternatively, you can bulk assign roles to people by following the next steps:
@@ -54,7 +53,7 @@ Once this step is completed, select the imported solution and check that it look
 
   ![Select roles](../media/deploymentguide/2-importsolution/EnvironmentUsersSelectRoles.png)
 
-4. You need to obtain the Environment ID for a later step:
+5. You need to obtain the Environment ID for a later step:
 
 - Open [make.powerapps.com](https://make.powerapps.com)
 - Select the **Settings** gear

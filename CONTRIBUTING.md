@@ -53,7 +53,7 @@ If you're using Visual Studio Code and have the [Docker extension](https://code.
 Alternatively, you can run the container in command-line:
 
 - on macOS / WSL2:
-  - run `cd ./docs` to change directory to where the docs are stored
+  - run `cd ./Docs` to change directory to where the docs are stored
   - run `docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material:7.3.4` to start the local web server with MkDocs and view the documentation in the web browser
 - on Windows:
   - run `docker run --rm -it -p 8000:8000 -v c:/projects/provisiongenie/docs:/docs squidfunk/mkdocs-material:7.3.4` to start the local web server with MkDocs and view the documentation in the web browser
@@ -63,7 +63,7 @@ If you want, you can also install MkDocs on your machine. See more information a
 
 Once you have MkDocs installed on your machine, in the command line:
 
-- run `cd ./docs` to change directory to where the docs are stored
+- run `cd ./Docs` to change directory to where the docs are stored
 - run `mkdocs serve` to start the local web server with MkDocs and view the documentation in the web browser
 
 ## Step-by-step guidance to contribute to open source projects

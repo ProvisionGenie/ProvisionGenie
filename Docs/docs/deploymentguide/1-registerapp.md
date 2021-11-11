@@ -1,4 +1,4 @@
-# Register application in Azure AD
+# 1. Register application in Azure AD
 
 To access the Dataverse tables that you will import in step 2, you will first need to register an application an Azure AD. 
 

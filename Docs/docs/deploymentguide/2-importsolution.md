@@ -6,9 +6,7 @@ In Dataverse, we can setup [security roles](https://docs.microsoft.com/power-pla
 
 You will need to create an application user and assign the security roles to it.
 
-1. In case you don't already have an environment that you want to use for ProvisionGenie, follow these steps to [create a new environment with a database](https://docs.microsoft.com/power-platform/admin/create-environment#create-an-environment-with-a-database)
-
-Important to know: a **Dataverse for Teams** environment is not enough - for reference read our [Architecture Decisions](../architecturedecisions.md)
+1. In case you don't already have an environment that you want to use for ProvisionGenie, follow these steps to [create a new environment with a database](https://docs.microsoft.com/power-platform/admin/create-environment#create-an-environment-with-a-database). Important to know: a **Dataverse for Teams** environment is not enough - for reference read our [Architecture Decisions](../architecturedecisions.md)
 
 2. Import our solution with
     - Dataverse tables to log the requests
@@ -16,11 +14,9 @@ Important to know: a **Dataverse for Teams** environment is not enough - for ref
     - Security role `ProvisionGenie Admin`
     - Security role `Provision Genie User`
 
-from here: [ProvisionGenie Solution](https://github.com/ProvisionGenie/ProvisionGenie/tree/main/Deployment/Solution)
+    from here: [ProvisionGenie Solution](https://github.com/ProvisionGenie/ProvisionGenie/tree/main/Deployment/Solution)
 
-In case this is the first time you import a solution, follow the steps described here: [Import a Power Platform solution](https://docs.microsoft.com/powerapps/maker/data-platform/import-update-export-solutions)
-
-It can take a little while:
+In case this is the first time you import a solution, follow the steps described here: [Import a Power Platform solution](https://docs.microsoft.com/powerapps/maker/data-platform/import-update-export-solutions) - It can take a little while:
 
 ![importing solution](../media/deploymentguide/2-importsolution/PowerAppsSolutionImporting.png)
 
@@ -28,16 +24,35 @@ Once this step is completed, select the imported solution and check that it look
 
 ![Solution](../media/deploymentguide/2-importsolution/PowerAppsSolution.png)
 
-3.  Create an application user and the assign the security role `Basic user` and security role `ProvisionGenie Admin` as part of the creation process as described here: [Create an application user](https://docs.microsoft.com/power-platform/admin/manage-application-users#create-an-application-user)
+3. Create an application user 
 
-4.  Assign the security roles `Basic user` and `Provision Genie User` to all users that will be able to use ProvisionGenie for team creation.
+    - Open the [Power Platform admin center](https://admin.powerplatform.microsoft.com/)
+    - Select  the environment that you want to use for ProvisionGenie
+    - Select **Settings**
+    - Select **Users + permissions**
+    - Select **application users**
+    - Select **New app user**
+    - Select **Add an app**
+    - Select the **ProvisionGenieApp** (it's the app that you registered with the script in the previous step)
+    - Select **Add**
 
-  - You can assign the roles to individual people using the steps explained [here](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database)
-  - Alternatively, you can bulk assign roles to people by following the next steps:
+
+4. Assign the security role `Basic user` and security role `ProvisionGenie Admin` 
+
+    - Select the **Business unit** dropdown menu
+    - Select the business unit of your choice
+    - Select the pen icon nect to **Security roles**
+    - Select `Basic user` and `ProvisionGenie Admin` 
+    - Select **Save**
+
+5.  Assign the security roles `Basic user` and `Provision Genie User` to all users that will be able to use ProvisionGenie for team creation.
+
+    - You can assign the roles to individual people using the steps explained [here](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database)
+    - Alternatively, you can bulk assign roles to people by following the next steps:
 
     - Go to the [Power Platform admin center](https://admin.powerplatform.microsoft.com) and select your environment (step 1 and 2 in the guide above)
 
-  - In the Access pane, select **See all** under **Users**
+    - In the Access pane, select **See all** under **Users**
 
   ![Users - see all](../media/deploymentguide/2-importsolution/EnvironmentSettingsUsersSeeAll.png)
 
@@ -53,11 +68,11 @@ Once this step is completed, select the imported solution and check that it look
 
   ![Select roles](../media/deploymentguide/2-importsolution/EnvironmentUsersSelectRoles.png)
 
-5. You need to obtain the Environment ID for a later step:
+6. You need to obtain the Environment ID for a later step:
 
-- Open [make.powerapps.com](https://make.powerapps.com)
-- Select the **Settings** gear
-- Select **Session details**
-- The value we need here is the **Instance URL** from [make.powerapps.com](https://make.powerapps.com), save it here: [copied values](copiedvalues.md)
+    - Open [make.powerapps.com](https://make.powerapps.com)
+    - Select the **Settings** gear
+    - Select **Session details**
+    - The value we need here is the **Instance URL** from [make.powerapps.com](https://make.powerapps.com), save it here: [copied values](copiedvalues.md)
 
 ![Power Apps session details](../media/deploymentguide/2-importsolution/PAStudioSessionDetails.png)

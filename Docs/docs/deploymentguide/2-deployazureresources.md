@@ -6,7 +6,7 @@ The script will create a new storage account, with the name that is supplied. A 
 
 ## Deploy using the script
 
-- Open Azure cloud shell at [shell.azure.com]
+- Open Azure cloud shell at [shell.azure.com](https://shell.azure.com)
 > This guide assumes the use of a PowerShell environment.
 - Clone the git repository to Azure Cloud Shell `git clone https://github.com/ProvisionGenie/ProvisionGenie.git`
 - Change the working directory to the `ProvisionGenie/Deployment/Scripts` folder

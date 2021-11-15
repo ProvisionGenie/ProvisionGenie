@@ -7,6 +7,7 @@ The script will create a new storage account, with the name that is supplied. A 
 ## Deploy using the script
 
 - Open Azure cloud shell at [shell.azure.com](https://shell.azure.com)
+> This guide assumes the use of a PowerShell environment.
 - Change the working directory to the `ProvisionGenie/Deployment/Scripts` folder
     - `cd ./ProvisionGenie/Deployment/Scripts`
 - Execute the script `./Deploy-Solution.ps1` and supply the following parameters:

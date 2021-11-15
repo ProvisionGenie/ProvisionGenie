@@ -128,9 +128,9 @@ az deployment group create `
                 DataverseEnvironmentId=$DataverseEnvironmentId `
                 resourceGroupName=$ResourceGroupName `
                 WelcomePackageUrl=$WelcomePackageUrl `
-                servicePrincipal_AppId=$sp.appId `
-                servicePrincipal_ClientSecret=$sp.password `
-                servicePrincipal_TenantId=$sp.tenant `
+                servicePrincipal_AppId=$($sp.appId) `
+                servicePrincipal_ClientSecret=$($sp.password) `
+                servicePrincipal_TenantId=$($sp.tenant) `
     --verbose
 
 if (!$?) { 

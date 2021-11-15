@@ -18,9 +18,8 @@ This guide shall walk you through the minimal path to awesome. It lists all step
 In order to successfully deploy ProvisionGenie, you will need to perform the following steps
 
 - [0. Fork and clone this repository](0-forkclone.md)
-- [1. App registration to access Dataverse tables](1-appreg.md)
+- [1. Register app in Azure AD](1-registerapp.md)
 - [2. Import Dataverse solution](2-importsolution.md)
-- [3. Create new Azure resource groups](3-createresourcegroup.md)
-- [4. Azure Logic Apps](4-deploylogicapps.md)
-- [5. Add ProvisionGenie to Teams](5-addtoteams.md)
-- [6. Post Deployment cleanup](6-postdeploycleanup.md)
+- [3. Deploy Azure resources](3-deployazureresources.md)
+- [4. Add ProvisionGenie to Teams](4-addtoteams.md)
+- [5. Post Deployment cleanup](5-postdeploycleanup.md)

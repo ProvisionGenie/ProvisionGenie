@@ -7,6 +7,10 @@
 az ad app create --display-name 78ce3f0f-a1ce-49c2-8cde-64b5c0896db4 --available-to-other-tenants false
 #save the appId
 $adappid =(az ad app list --display-name Luise3 --query [0].appId --out tsv --all)
+
+# create a service principal for the app
+az ad sp create --id $adappId
+
 # create an app secret, run
 az ad app credential reset --id $adappId --append
 ```

@@ -47,13 +47,8 @@ if ($ValidateLocation.Count -eq 0) {
 
 $appId = az ad app list --query "[?displayName=='$AadAppName'].appId | [0]"
 if ($null -eq $appId) {
-    Write-Host "Creating AzureAD application"
-    $app = az ad app create --display-name $AadAppName --available-to-other-tenants false | ConvertFrom-Json
-    $appId = $app.appId
-    Write-Host "Assigning AzureAD application permissions"
-    az ad app permission add --id $appid --api 00000007-0000-0000-c000-000000000000 --api-permissions 78ce3f0f-a1ce-49c2-8cde-64b5c0896db4=Scope
-    az ad sp create --id $appid
-    az ad app permission grant --id $appid --api 00000007-0000-0000-c000-000000000000
+    Write-Error "$AadAppName does not exist. Double check that you have run Create-AadAppRegistration.ps1 as documented before deploying the Dataverse tables and running this script."
+    exit 1
 } else {
     Write-Host "Removing old client secrets from $AadAppName"
     az ad app credential list --id $appId --query [].keyId | ConvertFrom-Json | ForEach-Object {

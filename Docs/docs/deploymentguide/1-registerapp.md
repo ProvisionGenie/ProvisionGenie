@@ -7,4 +7,5 @@ To access the Dataverse tables that you will import in step 2, you will first ne
 - Clone the git repository to Azure Cloud Shell `git clone https://github.com/ProvisionGenie/ProvisionGenie.git`
 - Change the working directory to the `ProvisionGenie/Deployment/Scripts` folder
     - `cd ./ProvisionGenie/Deployment/Scripts`
-- Run the script 
+- Run the script `./Create-AadAppRegistration.ps1`
+> Note that this will create the AAD App Registration in the  AAD tenant for current subscription with the name `ProvisionGenieApp`. If you wish to target another subscription or provide a custom name then optional parameters are available `./Create-AadAppRegistration.ps1  -SubscriptionId "00000000-0000-0000-0000-000000000000" -AadAppName MyCustomAadAppName`

@@ -129,8 +129,8 @@ az deployment group create `
                 resourceGroupName=$ResourceGroupName `
                 WelcomePackageUrl=$WelcomePackageUrl `
                 servicePrincipal_AppId=$sp.appId `
-                servicePrincipal_ClientSecret=$sp.clientSecret `
-                servicePrincipal_TenantId=$sp.tenantId `
+                servicePrincipal_ClientSecret=$sp.password `
+                servicePrincipal_TenantId=$sp.tenant `
     --verbose
 
 if (!$?) { 

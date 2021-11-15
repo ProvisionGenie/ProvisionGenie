@@ -2,8 +2,25 @@
 param (
     [Parameter(Mandatory = $false)]
     [string]
+    $SubscriptionId = "",
+    [Parameter(Mandatory = $false)]
+    [string]
     $AadAppName = "ProvisionGenieApp"
 )
+
+if ($SubscriptionId -ne "") {
+    az account set -s $SubscriptionId
+    if (!$?) { 
+        Write-Error "Unable to select $SubscriptionId as the active subscription."
+        exit 1
+    }
+    Write-Host "Active Subscription set to $SubscriptionId"
+} else {
+    $Subscription = az account show | ConvertFrom-Json
+    $SubscriptionId = $Subscription.id
+    $SubscriptionName = $Subscription.name
+    Write-Host "Active Subscription is $SubscriptionId ($SubscriptionName)"
+}
 
 $appId = az ad app list --query "[?displayName=='$AadAppName'].appId | [0]"
 if ($null -eq $appId) {
@@ -17,4 +34,3 @@ if ($null -eq $appId) {
 } else {
     Write-Host "$AadAppName already exists"
 }
-

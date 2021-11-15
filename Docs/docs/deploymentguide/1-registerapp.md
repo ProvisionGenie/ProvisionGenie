@@ -8,4 +8,4 @@ To access the Dataverse tables that you will import in step 2, you will first ne
 - Change the working directory to the `ProvisionGenie/Deployment/Scripts` folder
     - `cd ./ProvisionGenie/Deployment/Scripts`
 - Run the script `./Create-AadAppRegistration.ps1`
-> Note that this will create the AAD App Registration in the  AAD tenant with the name `ProvisionGenieApp`. If you wish to provide a custom name then optional parameters are available `./Create-AadAppRegistration.ps1 -AadAppName MyCustomAadAppName`
+> Note that this will create the AAD App Registration in the  AAD tenant for current subscription with the name `ProvisionGenieApp`. If you wish to target another subscription or provide a custom name then optional parameters are available `./Create-AadAppRegistration.ps1 -SubscriptionId "00000000-0000-0000-0000-000000000000" -AadAppName MyCustomAadAppName`

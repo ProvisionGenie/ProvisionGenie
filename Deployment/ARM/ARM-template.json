@@ -98,9 +98,6 @@
                     "resourceLocation": {
                         "value": "[parameters('resourceLocation')]"
                     },
-                    "subscriptionID": {
-                        "value": "[parameters('subscriptionId')]"
-                    },
                     "servicePrincipal_AppId": {
                         "value": "[parameters('servicePrincipal_AppId')]"
                     },
@@ -127,14 +124,8 @@
                     "resourceLocation": {
                         "value": "[parameters('resourceLocation')]"
                     },
-                    "subscriptionID": {
-                        "value": "[parameters('subscriptionId')]"
-                    },
                     "workflows_ProvisionGenie_CreateLibrary_name": {
                         "value": "[parameters('workflows_ProvisionGenie_CreateLibrary_name')]"
-                    },
-                    "resourceGroupName": {
-                        "value": "[parameters('resourceGroupName')]"
                     },
                     "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
                         "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
@@ -156,14 +147,8 @@
                     "resourceLocation": {
                         "value": "[parameters('resourceLocation')]"
                     },
-                    "subscriptionID": {
-                        "value": "[parameters('subscriptionId')]"
-                    },
                     "workflows_ProvisionGenie_CreateList_name": {
                         "value": "[parameters('workflows_ProvisionGenie_CreateList_name')]"
-                    },
-                    "resourceGroupName": {
-                        "value": "[parameters('resourceGroupName')]"
                     },
                     "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
                         "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
@@ -185,14 +170,8 @@
                     "resourceLocation": {
                         "value": "[parameters('resourceLocation')]"
                     },
-                    "subscriptionID": {
-                        "value": "[parameters('subscriptionId')]"
-                    },
                     "workflows_ProvisionGenie_CreateList_name": {
                         "value": "[parameters('workflows_ProvisionGenie_CreateList_name')]"
-                    },
-                    "resourceGroupName": {
-                        "value": "[parameters('resourceGroupName')]"
                     },
                     "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
                         "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
@@ -217,12 +196,6 @@
                     "resourceLocation": {
                         "value": "[parameters('resourceLocation')]"
                     },
-                    "subscriptionID": {
-                        "value": "[parameters('subscriptionId')]"
-                    },
-                    "resourceGroupName": {
-                        "value": "[parameters('resourceGroupName')]"
-                    },
                     "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
                         "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
                     },
@@ -245,12 +218,6 @@
                 "parameters":{
                     "resourceLocation": {
                         "value": "[parameters('resourceLocation')]"
-                    },
-                    "subscriptionID": {
-                        "value": "[parameters('subscriptionId')]"
-                    },
-                    "resourceGroupName": {
-                        "value": "[parameters('resourceGroupName')]"
                     },
                     "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
                         "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
@@ -277,12 +244,6 @@
                 "parameters":{
                     "resourceLocation": {
                         "value": "[parameters('resourceLocation')]"
-                    },
-                    "subscriptionID": {
-                        "value": "[parameters('subscriptionId')]"
-                    },
-                    "resourceGroupName": {
-                        "value": "[parameters('resourceGroupName')]"
                     },
                     "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
                         "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"

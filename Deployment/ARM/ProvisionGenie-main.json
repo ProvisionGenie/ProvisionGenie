@@ -29,12 +29,6 @@
     "resourceLocation": {
       "type": "string"
     },
-    "subscriptionId": {
-      "type": "string"
-    },
-    "resourceGroupName": {
-      "type": "string"
-    },
     "DataverseEnvironmentId": {
       "type": "string"
     }
@@ -696,7 +690,7 @@
               "commondataservice": {
                 "connectionId": "[resourceId('Microsoft.Web/connections', parameters('connections_commondataservice_name'))]",
                 "connectionName": "commondataservice",
-                "id": "[concat('/subscriptions/',parameters('subscriptionId'),'/providers/Microsoft.Web/locations/',parameters('resourceLocation'),'/managedApis/commondataservice')]"
+                "id": "[concat(subscription().id,'/providers/Microsoft.Web/locations/',parameters('resourceLocation'),'/managedApis/commondataservice')]"
               }
             }
           }

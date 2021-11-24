@@ -11,12 +11,6 @@
     "resourceLocation": {
       "type": "string"
     },
-    "subscriptionId": {
-      "type": "string"
-    },
-    "resourceGroupName": {
-      "type": "string"
-    },
     "WelcomePackageUrl": {
       "type": "string"
     }

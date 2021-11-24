@@ -61,9 +61,7 @@
             "type": "string"
         }
     },
-    "variables": {
-        "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": "[toLower(parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]"
-    },
+    "variables": {},
     "resources": [
     {
         "name": "managedIdentityDeployment",
@@ -76,7 +74,7 @@
             },
             "parameters":{
                 "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
-                    "value": "[variables('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
+                    "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
                 },
                 "resourceLocation": {
                     "value": "[parameters('resourceLocation')]"
@@ -139,7 +137,7 @@
                         "value": "[parameters('resourceGroupName')]"
                     },
                     "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
-                        "value": "[variables('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
+                        "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
                     }
                 }
             }
@@ -168,7 +166,7 @@
                         "value": "[parameters('resourceGroupName')]"
                     },
                     "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
-                        "value": "[variables('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
+                        "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
                     }
                 }
             }
@@ -197,7 +195,7 @@
                         "value": "[parameters('resourceGroupName')]"
                     },
                     "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
-                        "value": "[variables('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
+                        "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
                     },
                     "workflows_ProvisionGenie_CreateTaskList_name": {
                         "value": "[parameters('workflows_ProvisionGenie_CreateTaskList_name')]"
@@ -226,7 +224,7 @@
                         "value": "[parameters('resourceGroupName')]"
                     },
                     "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
-                        "value": "[variables('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
+                        "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
                     },
                     "workflows_ProvisionGenie_CreateTeam_name": {
                         "value": "[parameters('workflows_ProvisionGenie_CreateTeam_name')]"
@@ -255,7 +253,7 @@
                         "value": "[parameters('resourceGroupName')]"
                     },
                     "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
-                        "value": "[variables('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
+                        "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
                     },
                     "workflows_ProvisionGenie_Welcome_name": {
                         "value": "[parameters('workflows_ProvisionGenie_Welcome_name')]"
@@ -287,7 +285,7 @@
                         "value": "[parameters('resourceGroupName')]"
                     },
                     "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
-                        "value": "[variables('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
+                        "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
                     },
                     "workflows_ProvisionGenie_Welcome_name": {
                         "value": "[parameters('workflows_ProvisionGenie_Welcome_name')]"

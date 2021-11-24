@@ -10,12 +10,6 @@
         },
         "resourceLocation": {
             "type": "string"
-        },
-        "subscriptionId": {
-            "type": "string"
-        },
-        "resourceGroupName": {
-            "type": "string"
         }
     },
     "functions": [],
@@ -29,7 +23,7 @@
             "identity": {
                 "type": "UserAssigned",
                 "userAssignedIdentities": {
-                    "[concat('/subscriptions/',parameters('subscriptionId'),'/resourcegroups/',parameters('resourceGroupName'),'/providers/Microsoft.ManagedIdentity/userAssignedIdentities/',parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]": {}
+                    "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities/', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]": {}
                 }
             },
             "properties": {

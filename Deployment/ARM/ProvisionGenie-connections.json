@@ -8,9 +8,6 @@
         "resourceLocation": {
             "type": "string"
         },
-        "subscriptionID":{
-            "type": "string"
-        },
         "servicePrincipal_AppId":{
             "type": "string"
         },
@@ -38,7 +35,7 @@
                     "token:grantType": "client_credentials"
                 },
                 "api": {
-                    "id": "[concat('/subscriptions/',parameters('subscriptionID'),'/providers/Microsoft.Web/locations/',parameters('resourceLocation'),'/managedApis/commondataservice')]"
+                    "id": "[concat(subscription().id,'/providers/Microsoft.Web/locations/',parameters('resourceLocation'),'/managedApis/commondataservice')]"
                 }
             }
         }

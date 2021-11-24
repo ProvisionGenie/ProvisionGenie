@@ -29,12 +29,6 @@
     "resourceLocation": {
       "type": "string"
     },
-    "subscriptionId": {
-      "type": "string"
-    },
-    "resourceGroupName": {
-      "type": "string"
-    },
     "DataverseEnvironmentId": {
       "type": "string"
     }
@@ -50,7 +44,7 @@
       "identity": {
         "type": "UserAssigned",
         "userAssignedIdentities": {
-          "[concat('/subscriptions/',parameters('subscriptionId'),'/resourcegroups/',parameters('resourceGroupName'),'/providers/Microsoft.ManagedIdentity/userAssignedIdentities/',parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]": {}
+          "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities/', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]": {}
         }
       },
       "properties": {
@@ -696,7 +690,7 @@
               "commondataservice": {
                 "connectionId": "[resourceId('Microsoft.Web/connections', parameters('connections_commondataservice_name'))]",
                 "connectionName": "commondataservice",
-                "id": "[concat('/subscriptions/',parameters('subscriptionId'),'/providers/Microsoft.Web/locations/',parameters('resourceLocation'),'/managedApis/commondataservice')]"
+                "id": "[concat(subscription().id,'/providers/Microsoft.Web/locations/',parameters('resourceLocation'),'/managedApis/commondataservice')]"
               }
             }
           }

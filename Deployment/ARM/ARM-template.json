@@ -323,6 +323,7 @@
                     },
                     "workflows_ProvisionGenie_AddPeople_name": {
                         "value": "[parameters('workflows_ProvisionGenie_AddPeople_name')]"
+                    }
                 }
             }
         }

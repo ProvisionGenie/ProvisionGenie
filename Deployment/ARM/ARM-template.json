@@ -320,7 +320,9 @@
                     },
                     "workflows_ProvisionGenie_Main_name": {
                         "value": "[parameters('workflows_ProvisionGenie_Main_name')]"
-                    }
+                    },
+                    "workflows_ProvisionGenie_AddPeople_name": {
+                        "value": "[parameters('workflows_ProvisionGenie_AddPeople_name')]"
                 }
             }
         }

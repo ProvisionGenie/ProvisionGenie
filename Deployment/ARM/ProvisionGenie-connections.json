@@ -8,13 +8,13 @@
         "resourceLocation": {
             "type": "string"
         },
-        "servicePrincipal_AppId":{
+        "servicePrincipal_AppId": {
             "type": "string"
         },
-        "servicePrincipal_ClientSecret":{
+        "servicePrincipal_ClientSecret": {
             "type": "securestring"
         },
-        "servicePrincipal_TenantId":{
+        "servicePrincipal_TenantId": {
             "type": "string"
         }
     },
@@ -29,7 +29,7 @@
             "properties": {
                 "displayName": "[parameters('connections_commondataservice_name')]",
                 "parameterValues": {
-                    "token:clientId":"[parameters('servicePrincipal_AppId')]",
+                    "token:clientId": "[parameters('servicePrincipal_AppId')]",
                     "token:clientSecret": "[parameters('servicePrincipal_ClientSecret')]",
                     "token:TenantId": "[parameters('servicePrincipal_TenantId')]",
                     "token:grantType": "client_credentials"

@@ -12,7 +12,7 @@
     "functions": [],
     "variables": {},
     "resources": [
-         {
+        {
             "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
             "apiVersion": "2018-11-30",
             "name": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]",

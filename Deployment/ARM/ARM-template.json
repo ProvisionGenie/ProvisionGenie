@@ -2,37 +2,41 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "connections_commondataservice_name": {
+            "defaultValue": "commondataservice",
+            "type": "String"
+        },
         "workflows_ProvisionGenie_Main_name": {
             "defaultValue": "ProvisionGenie-Main",
-            "type": "string"
+            "type": "String"
         },
         "workflows_ProvisionGenie_Welcome_name": {
             "defaultValue": "ProvisionGenie-Welcome",
-            "type": "string"
+            "type": "String"
         },
-        "connections_commondataservice_name": {
-            "defaultValue": "commondataservice",
-            "type": "string"
+        "workflows_ProvisionGenie_AddPeople_name": {
+            "defaultValue": "ProvisionGenie-AddPeople",
+            "type": "String"
         },
         "workflows_ProvisionGenie_CreateList_name": {
             "defaultValue": "ProvisionGenie-CreateList",
-            "type": "string"
+            "type": "String"
         },
         "workflows_ProvisionGenie_CreateTeam_name": {
             "defaultValue": "ProvisionGenie-CreateTeam",
-            "type": "string"
+            "type": "String"
         },
         "workflows_ProvisionGenie_CreateLibrary_name": {
             "defaultValue": "ProvisionGenie-CreateLibrary",
-            "type": "string"
+            "type": "String"
         },
         "workflows_ProvisionGenie_CreateTaskList_name": {
             "defaultValue": "ProvisionGenie-CreateTaskList",
-            "type": "string"
+            "type": "String"
         },
         "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
             "defaultValue": "ProvisionGenie-ManagedIdentity",
-            "type": "string"
+            "type": "String"
         },
         "resourceLocation": {
             "defaultValue": "[resourceGroup().location]",
@@ -48,50 +52,50 @@
         "WelcomePackageUrl": {
             "type": "string"
         },
-        "DataverseEnvironmentId":{
+        "DataverseEnvironmentId": {
             "type": "string"
         },
-        "servicePrincipal_AppId":{
+        "servicePrincipal_AppId": {
             "type": "string"
         },
-        "servicePrincipal_ClientSecret":{
+        "servicePrincipal_ClientSecret": {
             "type": "securestring"
         },
-        "servicePrincipal_TenantId":{
+        "servicePrincipal_TenantId": {
             "type": "string"
         }
     },
     "variables": {},
     "resources": [
-    {
-        "name": "managedIdentityDeployment",
-        "type": "Microsoft.Resources/deployments",
-        "apiVersion": "2020-10-01",
-        "properties": {
-            "mode": "Incremental",
-            "templateLink": {
-                "relativePath": "ProvisionGenie-ManagedIdentity.json"
-            },
-            "parameters":{
-                "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
-                    "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
+        {
+            "name": "managedIdentityDeployment",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-10-01",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "relativePath": "ProvisionGenie-ManagedIdentity.json"
                 },
-                "resourceLocation": {
-                    "value": "[parameters('resourceLocation')]"
+                "parameters": {
+                    "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
+                        "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
+                    },
+                    "resourceLocation": {
+                        "value": "[parameters('resourceLocation')]"
+                    }
                 }
             }
-        }
-    },
+        },
         {
             "name": "connectionsDeployment",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-10-01",
-            "properties" : {
+            "properties": {
                 "mode": "Incremental",
                 "templateLink": {
                     "relativePath": "ProvisionGenie-connections.json"
                 },
-                "parameters":{
+                "parameters": {
                     "connections_commondataservice_name": {
                         "value": "[parameters('connections_commondataservice_name')]"
                     },
@@ -101,10 +105,10 @@
                     "servicePrincipal_AppId": {
                         "value": "[parameters('servicePrincipal_AppId')]"
                     },
-                    "servicePrincipal_ClientSecret":{
+                    "servicePrincipal_ClientSecret": {
                         "value": "[parameters('servicePrincipal_ClientSecret')]"
                     },
-                    "servicePrincipal_TenantId":{
+                    "servicePrincipal_TenantId": {
                         "value": "[parameters('servicePrincipal_TenantId')]"
                     }
                 }
@@ -114,13 +118,15 @@
             "name": "createLibraryDeployment",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-10-01",
-            "dependsOn": ["managedIdentityDeployment"],
-            "properties" : {
+            "dependsOn": [
+                "managedIdentityDeployment"
+            ],
+            "properties": {
                 "mode": "Incremental",
                 "templateLink": {
                     "relativePath": "ProvisionGenie-CreateLibrary.json"
                 },
-                "parameters":{
+                "parameters": {
                     "resourceLocation": {
                         "value": "[parameters('resourceLocation')]"
                     },
@@ -134,16 +140,43 @@
             }
         },
         {
+            "name": "addPeopleDeployment",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2020-10-01",
+            "dependsOn": [
+                "managedIdentityDeployment"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "relativePath": "ProvisionGenie-AddPeople.json"
+                },
+                "parameters": {
+                    "resourceLocation": {
+                        "value": "[parameters('resourceLocation')]"
+                    },
+                    "workflows_ProvisionGenie_AddPeople_name": {
+                        "value": "[parameters('workflows_ProvisionGenie_addPeople_name')]"
+                    },
+                    "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
+                        "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
+                    }
+                }
+            }
+        },
+        {
             "name": "createListDeployment",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-10-01",
-            "dependsOn": ["managedIdentityDeployment"],
-            "properties" : {
+            "dependsOn": [
+                "managedIdentityDeployment"
+            ],
+            "properties": {
                 "mode": "Incremental",
                 "templateLink": {
                     "relativePath": "ProvisionGenie-CreateList.json"
                 },
-                "parameters":{
+                "parameters": {
                     "resourceLocation": {
                         "value": "[parameters('resourceLocation')]"
                     },
@@ -160,13 +193,16 @@
             "name": "createTaskListDeployment",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-10-01",
-            "dependsOn": ["managedIdentityDeployment","createListDeployment"],
-            "properties" : {
+            "dependsOn": [
+                "managedIdentityDeployment",
+                "createListDeployment"
+            ],
+            "properties": {
                 "mode": "Incremental",
                 "templateLink": {
                     "relativePath": "ProvisionGenie-CreateTaskList.json"
                 },
-                "parameters":{
+                "parameters": {
                     "resourceLocation": {
                         "value": "[parameters('resourceLocation')]"
                     },
@@ -186,13 +222,15 @@
             "name": "createTeamDeployment",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-10-01",
-            "dependsOn": ["managedIdentityDeployment"],
-            "properties" : {
+            "dependsOn": [
+                "managedIdentityDeployment"
+            ],
+            "properties": {
                 "mode": "Incremental",
                 "templateLink": {
                     "relativePath": "ProvisionGenie-CreateTeam.json"
                 },
-                "parameters":{
+                "parameters": {
                     "resourceLocation": {
                         "value": "[parameters('resourceLocation')]"
                     },
@@ -209,13 +247,15 @@
             "name": "welcomePackageDeployment",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-10-01",
-            "dependsOn": ["managedIdentityDeployment"],
-            "properties" : {
+            "dependsOn": [
+                "managedIdentityDeployment"
+            ],
+            "properties": {
                 "mode": "Incremental",
                 "templateLink": {
                     "relativePath": "ProvisionGenie-WelcomePackage.json"
                 },
-                "parameters":{
+                "parameters": {
                     "resourceLocation": {
                         "value": "[parameters('resourceLocation')]"
                     },
@@ -235,13 +275,22 @@
             "name": "MainDeployment",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-10-01",
-            "dependsOn": ["connectionsDeployment","managedIdentityDeployment","createListDeployment","createTaskListDeployment","createTeamDeployment","createLibraryDeployment","welcomePackageDeployment"],
-            "properties" : {
+            "dependsOn": [
+                "connectionsDeployment",
+                "managedIdentityDeployment",
+                "createListDeployment",
+                "createTaskListDeployment",
+                "createTeamDeployment",
+                "createLibraryDeployment",
+                "welcomePackageDeployment",
+                "addPeopleDeployment"
+            ],
+            "properties": {
                 "mode": "Incremental",
                 "templateLink": {
                     "relativePath": "ProvisionGenie-main.json"
                 },
-                "parameters":{
+                "parameters": {
                     "resourceLocation": {
                         "value": "[parameters('resourceLocation')]"
                     },

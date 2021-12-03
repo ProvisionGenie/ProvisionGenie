@@ -90,9 +90,11 @@ Therefore, we decided to not provision it, as it would cause a lot of disadvanta
 
 ### Consequences of not provisioning Planner
 
-We want to give ProvisionGenie users the best experience to work in Teams as from day 1. If they don't get a planner plan by our process, we needed to present them an alternative. This is why we chose to ask our users if they wanted to have a SharePoint list with columns that mimic Planner behavior provisioned for them. We introduce users as well to gallery view in lists so that they get a similar experience as in Planner. As we can create SharePoint lists and their columns with application permissions, this is as a secure alternative.
+We want to give ProvisionGenie users the best experience to work in Teams as from day 1. If they don't get a planner plan by our process, we needed to present them an alternative. This is why we chose to ask our users if they wanted to have a SharePoint list with columns that mimic Planner behavior provisioned for them. We introduce users as well to gallery view in lists so that they get a similar experience as in Planner. As we can create SharePoint lists and their columns with application permissions, this is as a secure alternative. Also, SharePoint lists provide version history and a recycle bin.
 
 ![task list in SharePoint](media/architecturedecisions/tasklist.png)
+
+However, if you would like to help Microsoft to prioritize development of a fully functional API for Planner including application level permissions, you can upvote for this idea in the [Microsoft 365 Developer ideas forum](https://techcommunity.microsoft.com/t5/microsoft-365-developer-platform/application-permissions-for-planner-apis/idi-p/2266449).
 
 ## Teams Wiki
 

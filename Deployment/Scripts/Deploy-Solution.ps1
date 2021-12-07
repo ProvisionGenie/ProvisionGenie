@@ -124,9 +124,7 @@ az deployment group create `
     --resource-group $ResourceGroupName `
     --template-uri $MainTemplateUri `
     --query-string $SasToken `
-    --parameters subscriptionId=$SubscriptionId `
-                DataverseEnvironmentId=$DataverseEnvironmentId `
-                resourceGroupName=$ResourceGroupName `
+    --parameters DataverseEnvironmentId=$DataverseEnvironmentId `
                 WelcomePackageUrl=$WelcomePackageUrl `
                 servicePrincipal_AppId=$($sp.appId) `
                 servicePrincipal_ClientSecret=$($sp.password) `

@@ -2,19 +2,13 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "workflows_ProvisionGenie_Welcome_name": {
-            "type": "string"
-        },
         "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
             "type": "string"
         },
         "resourceLocation": {
             "type": "string"
         },
-        "WelcomePackageUrl": {
-            "type": "string"
-        },
-        "workflows_ProvisionGenie_AddPeople_name": {
+        "workflows_ProvisionGenie_CreateTeam_name": {
             "type": "string"
         }
     },
@@ -25,14 +19,11 @@
             "type": "Microsoft.Logic/workflows",
             "apiVersion": "2017-07-01",
             "name": "[parameters('workflows_ProvisionGenie_CreateTeam_name')]",
-            "location": "[resourceGroup().location]",
-            "dependsOn": [
-                "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]"
-            ],
+            "location": "[parameters('resourceLocation')]",
             "identity": {
                 "type": "UserAssigned",
                 "userAssignedIdentities": {
-                    "/subscriptions/[parameters('subscriptionId')]/resourcegroups/provisiongenie/providers/microsoft.managedidentity/userassignedidentities/parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')": {}
+                    "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities/', parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name'))]": {}
                 }
             },
             "properties": {

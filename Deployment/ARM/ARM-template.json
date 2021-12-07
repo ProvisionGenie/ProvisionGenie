@@ -42,13 +42,6 @@
             "defaultValue": "[resourceGroup().location]",
             "type": "string"
         },
-        "subscriptionId": {
-            "type": "string"
-        },
-        "resourceGroupName": {
-            "defaultValue": "ProvisionGenie",
-            "type": "string"
-        },
         "WelcomePackageUrl": {
             "type": "string"
         },
@@ -140,7 +133,7 @@
             }
         },
         {
-            "name": "AddPeopleDeployment",
+            "name": "addPeopleDeployment",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-10-01",
             "dependsOn": [
@@ -157,9 +150,6 @@
                     },
                     "workflows_ProvisionGenie_AddPeople_name": {
                         "value": "[parameters('workflows_ProvisionGenie_AddPeople_name')]"
-                    },
-                    "workflows_ProvisionGenie_CreateTeam_name": {
-                        "value": "[parameters('workflows_ProvisionGenie_CreateTeam_name')]"
                     },
                     "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
                         "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
@@ -290,7 +280,7 @@
                 "createTeamDeployment",
                 "createLibraryDeployment",
                 "welcomePackageDeployment",
-                "AddPeopleDeployment"
+                "addPeopleDeployment"
             ],
             "properties": {
                 "mode": "Incremental",

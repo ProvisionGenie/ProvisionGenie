@@ -262,7 +262,7 @@
                                                 "host": {
                                                     "triggerName": "manual",
                                                     "workflow": {
-                                                        "id": "[resourceId('Microsoft.Logic/workflows', parameters('workflows_ProvisionGenie-AddPeople_name'))]"
+                                                        "id": "[resourceId('Microsoft.Logic/workflows', parameters('workflows_ProvisionGenie_AddPeople_name'))]"
                                                     }
                                                 }
                                             },
@@ -698,7 +698,7 @@
                                         "host": {
                                             "triggerName": "manual",
                                             "workflow": {
-                                                "id": "/subscriptions/a9862570-4902-4688-a8b7-c417b2296dca/resourceGroups/ProvisionGenie/providers/Microsoft.Logic/workflows/ProvisionGenie-CreateTeam"
+                                                "id": "[resourceId('Microsoft.Logic/workflows', parameters('workflows_ProvisionGenie_CreateTeam_name'))]"
                                             }
                                         }
                                     },
@@ -924,7 +924,7 @@
                             "type": "Object"
                         },
                         "DataverseEnvironmentId": {
-                            "defaultValue": "https://org65aef29a.crm4.dynamics.com/",
+                            "defaultValue": "[parameters('DataverseEnvironmentId')]",
                             "type": "String"
                         }
                     },
@@ -945,17 +945,6 @@
                                 }
                             },
                             "type": "ApiConnectionWebhook"
-                        }
-                    }
-                },
-                "parameters": {
-                    "$connections": {
-                        "value": {
-                            "commondataservice": {
-                                "connectionId": "/subscriptions/a9862570-4902-4688-a8b7-c417b2296dca/resourceGroups/ProvisionGenie/providers/Microsoft.Web/connections/commondataservice",
-                                "connectionName": "commondataservice",
-                                "id": "/subscriptions/a9862570-4902-4688-a8b7-c417b2296dca/providers/Microsoft.Web/locations/westeurope/managedApis/commondataservice"
-                            }
                         }
                     }
                 },

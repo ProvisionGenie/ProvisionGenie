@@ -158,6 +158,9 @@
                     "workflows_ProvisionGenie_AddPeople_name": {
                         "value": "[parameters('workflows_ProvisionGenie_AddPeople_name')]"
                     },
+                    "workflows_ProvisionGenie_CreateTeam_name": {
+                        "value": "[parameters('workflows_ProvisionGenie_CreateTeam_name')]"
+                    },
                     "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
                         "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"
                     }

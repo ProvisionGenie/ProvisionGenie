@@ -156,7 +156,7 @@
                         "value": "[parameters('resourceLocation')]"
                     },
                     "workflows_ProvisionGenie_AddPeople_name": {
-                        "value": "[parameters('workflows_ProvisionGenie_addPeople_name')]"
+                        "value": "[parameters('workflows_ProvisionGenie_AddPeople_name')]"
                     },
                     "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
                         "value": "[parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')]"

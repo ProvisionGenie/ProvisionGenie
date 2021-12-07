@@ -5,7 +5,7 @@
         "workflows_ProvisionGenie_Main_name": {
             "type": "string"
         },
-        "workflows_ProvisionGenie_addPeople_name": {
+        "workflows_ProvisionGenie_AddPeople_name": {
             "type": "string"
         },
         "workflows_ProvisionGenie_Welcome_name": {

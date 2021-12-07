@@ -54,44 +54,8 @@
                 "state": "Enabled",
                 "definition": {
                     "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
-                    "contentVersion": "1.0.0.0",
-                    "parameters": {
-                        "$connections": {
-                            "defaultValue": {},
-                            "type": "Object"
-                        },
-                        "DataverseEnvironmentId": {
-                            "defaultValue": "[parameters('DataverseEnvironmentId')]",
-                            "type": "String"
-                        }
-                    },
-                    "triggers": {
-                        "When_a_record_is_created": {
-                            "type": "ApiConnectionWebhook",
-                            "inputs": {
-                                "body": {
-                                    "NotificationUrl": "@{listCallbackUrl()}"
-                                },
-                                "host": {
-                                    "connection": {
-                                        "name": "@parameters('$connections')['commondataservice']['connectionId']"
-                                    }
-                                },
-                                "path": "/datasets/@{encodeURIComponent(encodeURIComponent(parameters('DataverseEnvironmentId')))}/tables/@{encodeURIComponent(encodeURIComponent('cy_teamsrequests'))}/onnewitemswebhook",
-                                "queries": {
-                                    "scope": "Organization"
-                                }
-                            }
-                        }
-                    },
                     "actions": {
                         "Channels": {
-                            "runAfter": {
-                                "Complete_Technical_Name_in_Teams_request": [
-                                    "Succeeded"
-                                ]
-                            },
-                            "type": "InitializeVariable",
                             "inputs": {
                                 "variables": [
                                     {
@@ -99,15 +63,15 @@
                                         "type": "array"
                                     }
                                 ]
-                            }
-                        },
-                        "Complete_Technical_Name_in_Teams_request": {
+                            },
                             "runAfter": {
-                                "Generate_Team_internal_name": [
+                                "Complete_Technical_Name_in_Teams_request": [
                                     "Succeeded"
                                 ]
                             },
-                            "type": "ApiConnection",
+                            "type": "InitializeVariable"
+                        },
+                        "Complete_Technical_Name_in_Teams_request": {
                             "inputs": {
                                 "body": {
                                     "_ownerid_type": "",
@@ -120,13 +84,17 @@
                                 },
                                 "method": "patch",
                                 "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent(parameters('DataverseEnvironmentId')))}/tables/@{encodeURIComponent(encodeURIComponent('cy_teamsrequests'))}/items/@{encodeURIComponent(encodeURIComponent(triggerBody()?['cy_teamsrequestid']))}"
-                            }
+                            },
+                            "runAfter": {
+                                "Generate_Team_internal_name": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "ApiConnection"
                         },
                         "Condition_Include_welcome_package": {
                             "actions": {
                                 "ProvisionGenie-Welcome": {
-                                    "runAfter": {},
-                                    "type": "Workflow",
                                     "inputs": {
                                         "body": {
                                             "Owner": "@triggerBody()?['cy_teamowner']",
@@ -138,13 +106,10 @@
                                                 "id": "[resourceId('Microsoft.Logic/workflows', parameters('workflows_ProvisionGenie_Welcome_name'))]"
                                             }
                                         }
-                                    }
+                                    },
+                                    "runAfter": {},
+                                    "type": "Workflow"
                                 }
-                            },
-                            "runAfter": {
-                                "Condition_include_task_list": [
-                                    "Succeeded"
-                                ]
                             },
                             "expression": {
                                 "and": [
@@ -156,13 +121,16 @@
                                     }
                                 ]
                             },
+                            "runAfter": {
+                                "Condition_include_task_list": [
+                                    "Succeeded"
+                                ]
+                            },
                             "type": "If"
                         },
                         "Condition_include_task_list": {
                             "actions": {
                                 "ProvisionGenie-CreateTaskList": {
-                                    "runAfter": {},
-                                    "type": "Workflow",
                                     "inputs": {
                                         "body": {
                                             "siteId": "@{outputs('Compose_id')}"
@@ -173,13 +141,10 @@
                                                 "id": "[resourceId('Microsoft.Logic/workflows', parameters('workflows_ProvisionGenie_CreateTaskList_name'))]"
                                             }
                                         }
-                                    }
+                                    },
+                                    "runAfter": {},
+                                    "type": "Workflow"
                                 }
-                            },
-                            "runAfter": {
-                                "Scope_Create_Lists_and_Libraries": [
-                                    "Succeeded"
-                                ]
                             },
                             "expression": {
                                 "and": [
@@ -191,15 +156,14 @@
                                     }
                                 ]
                             },
-                            "type": "If"
-                        },
-                        "DriveExistsCode": {
                             "runAfter": {
-                                "Channels": [
+                                "Scope_Add_People": [
                                     "Succeeded"
                                 ]
                             },
-                            "type": "InitializeVariable",
+                            "type": "If"
+                        },
+                        "DriveExistsCode": {
                             "inputs": {
                                 "variables": [
                                     {
@@ -207,20 +171,20 @@
                                         "type": "integer"
                                     }
                                 ]
-                            }
-                        },
-                        "Generate_Team_internal_name": {
-                            "runAfter": {},
-                            "type": "Compose",
-                            "inputs": "@{replace(triggerBody()?['cy_teamname'],' ','')}_@{guid()}"
-                        },
-                        "LibraryColumns": {
+                            },
                             "runAfter": {
-                                "SiteExistsCode": [
+                                "Channels": [
                                     "Succeeded"
                                 ]
                             },
-                            "type": "InitializeVariable",
+                            "type": "InitializeVariable"
+                        },
+                        "Generate_Team_internal_name": {
+                            "inputs": "@{replace(triggerBody()?['cy_teamname'],' ','')}_@{guid()}",
+                            "runAfter": {},
+                            "type": "Compose"
+                        },
+                        "LibraryColumns": {
                             "inputs": {
                                 "variables": [
                                     {
@@ -228,15 +192,15 @@
                                         "type": "array"
                                     }
                                 ]
-                            }
-                        },
-                        "ListColumns": {
+                            },
                             "runAfter": {
-                                "LibraryColumns": [
+                                "SiteExistsCode": [
                                     "Succeeded"
                                 ]
                             },
-                            "type": "InitializeVariable",
+                            "type": "InitializeVariable"
+                        },
+                        "ListColumns": {
                             "inputs": {
                                 "variables": [
                                     {
@@ -244,19 +208,214 @@
                                         "type": "array"
                                     }
                                 ]
-                            }
+                            },
+                            "runAfter": {
+                                "LibraryColumns": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable"
+                        },
+                        "Members": {
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "Members",
+                                        "type": "string"
+                                    }
+                                ]
+                            },
+                            "runAfter": {
+                                "ListColumns": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable"
+                        },
+                        "Owners": {
+                            "inputs": {
+                                "variables": [
+                                    {
+                                        "name": "Owners",
+                                        "type": "string"
+                                    }
+                                ]
+                            },
+                            "runAfter": {
+                                "Members": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "InitializeVariable"
+                        },
+                        "Scope_Add_People": {
+                            "actions": {
+                                "Condition": {
+                                    "actions": {
+                                        "ProvisionGenie-AddPeople": {
+                                            "inputs": {
+                                                "body": {
+                                                    "members": "@{substring(variables('Members'),0,sub(length(variables('Members')),1))}",
+                                                    "owners": "@{substring(variables('Owners'),0,sub(length(variables('Owners')),1))}",
+                                                    "teamId": "@body('Parse_HTTP_body_for_Team_Id')?['TeamId']"
+                                                },
+                                                "host": {
+                                                    "triggerName": "manual",
+                                                    "workflow": {
+                                                        "id": "[resourceId('Microsoft.Logic/workflows', parameters('workflows_ProvisionGenie-AddPeople_name'))]"
+                                                    }
+                                                }
+                                            },
+                                            "runAfter": {},
+                                            "type": "Workflow"
+                                        }
+                                    },
+                                    "expression": {
+                                        "or": [
+                                            {
+                                                "greater": [
+                                                    "@length(variables('Members'))",
+                                                    0
+                                                ]
+                                            },
+                                            {
+                                                "greater": [
+                                                    "@length(variables('Owners'))",
+                                                    0
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "runAfter": {
+                                        "For_each_owner": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "If"
+                                },
+                                "For_each_member": {
+                                    "actions": {
+                                        "Append_to_string_variable": {
+                                            "inputs": {
+                                                "name": "Members",
+                                                "value": "@{body('Get_row')?['pg_name']};"
+                                            },
+                                            "runAfter": {
+                                                "Get_row": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "AppendToStringVariable"
+                                        },
+                                        "Get_row": {
+                                            "inputs": {
+                                                "host": {
+                                                    "connection": {
+                                                        "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                                    }
+                                                },
+                                                "method": "get",
+                                                "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent(parameters('DataverseEnvironmentId')))}/tables/@{encodeURIComponent(encodeURIComponent('pg_teamsusers'))}/items/@{encodeURIComponent(encodeURIComponent(items('For_each_member')?['pg_teamsuserid']))}"
+                                            },
+                                            "runAfter": {},
+                                            "type": "ApiConnection"
+                                        }
+                                    },
+                                    "foreach": "@body('List_rows_for_members')?['value']",
+                                    "runAfter": {
+                                        "List_rows_for_members": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "Foreach"
+                                },
+                                "For_each_owner": {
+                                    "actions": {
+                                        "Append_to_string_variable_2": {
+                                            "inputs": {
+                                                "name": "Owners",
+                                                "value": "@{body('Get_row_2')?['pg_name']};"
+                                            },
+                                            "runAfter": {
+                                                "Get_row_2": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "AppendToStringVariable"
+                                        },
+                                        "Get_row_2": {
+                                            "inputs": {
+                                                "host": {
+                                                    "connection": {
+                                                        "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                                    }
+                                                },
+                                                "method": "get",
+                                                "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent(parameters('DataverseEnvironmentId')))}/tables/@{encodeURIComponent(encodeURIComponent('pg_teamsusers'))}/items/@{encodeURIComponent(encodeURIComponent(items('For_each_owner')?['pg_teamsuserid']))}"
+                                            },
+                                            "runAfter": {},
+                                            "type": "ApiConnection"
+                                        }
+                                    },
+                                    "foreach": "@body('List_rows_owner')?['value']",
+                                    "runAfter": {
+                                        "List_rows_owner": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "Foreach"
+                                },
+                                "List_rows_for_members": {
+                                    "inputs": {
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                            }
+                                        },
+                                        "method": "get",
+                                        "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent(parameters('DataverseEnvironmentId')))}/tables/@{encodeURIComponent(encodeURIComponent('pg_teamsuser_teamsrequest_membersset'))}/items",
+                                        "queries": {
+                                            "$filter": "cy_teamsrequestid eq '@{triggerBody()?['cy_teamsrequestid']}'"
+                                        }
+                                    },
+                                    "runAfter": {},
+                                    "type": "ApiConnection"
+                                },
+                                "List_rows_owner": {
+                                    "inputs": {
+                                        "host": {
+                                            "connection": {
+                                                "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                            }
+                                        },
+                                        "method": "get",
+                                        "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent(parameters('DataverseEnvironmentId')))}/tables/@{encodeURIComponent(encodeURIComponent('pg_teamsuser_teamsrequest_ownersset'))}/items",
+                                        "queries": {
+                                            "$filter": "cy_teamsrequestid eq '@{triggerBody()?['cy_teamsrequestid']}'"
+                                        }
+                                    },
+                                    "runAfter": {
+                                        "For_each_member": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "ApiConnection"
+                                }
+                            },
+                            "runAfter": {
+                                "Scope_Create_Lists_and_Libraries": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "Scope"
                         },
                         "Scope_Create_Lists_and_Libraries": {
                             "actions": {
                                 "For_each_SharePoint_Library_record": {
-                                    "foreach": "@body('List_related_SharePoint_Library_records')?['value']",
                                     "actions": {
                                         "For_each_Library_Column_record": {
-                                            "foreach": "@body('List_related_Library_Column_records')?['value']",
                                             "actions": {
                                                 "Append_column_definition_to_LibraryColumns": {
-                                                    "runAfter": {},
-                                                    "type": "AppendToArrayVariable",
                                                     "inputs": {
                                                         "name": "LibraryColumns",
                                                         "value": {
@@ -264,20 +423,22 @@
                                                             "columnType": "@{items('For_each_Library_Column_record')?['_cy_columntype_label']}",
                                                             "columnvalues": "@if(equals(items('For_each_Library_Column_record')?['_cy_columntype_label'],'Choice'),array(split(items('For_each_Library_Column_record')?['cy_columnvalues'],',')),null)"
                                                         }
-                                                    }
+                                                    },
+                                                    "runAfter": {},
+                                                    "type": "AppendToArrayVariable"
                                                 }
                                             },
+                                            "description": "Append column information to LibraryColumns variable",
+                                            "foreach": "@body('List_related_Library_Column_records')?['value']",
                                             "runAfter": {
                                                 "List_related_Library_Column_records": [
                                                     "Succeeded"
                                                 ]
                                             },
-                                            "type": "Foreach",
-                                            "description": "Append column information to LibraryColumns variable"
+                                            "type": "Foreach"
                                         },
                                         "List_related_Library_Column_records": {
-                                            "runAfter": {},
-                                            "type": "ApiConnection",
+                                            "description": "Get the columns related to this library record",
                                             "inputs": {
                                                 "host": {
                                                     "connection": {
@@ -290,15 +451,10 @@
                                                     "$filter": "_cy_sharepointlibrary_value eq '@{items('For_each_SharePoint_Library_record')?['cy_sharepointlibraryid']}'"
                                                 }
                                             },
-                                            "description": "Get the columns related to this library record"
+                                            "runAfter": {},
+                                            "type": "ApiConnection"
                                         },
                                         "ProvisionGenie-CreateLibrary": {
-                                            "runAfter": {
-                                                "For_each_Library_Column_record": [
-                                                    "Succeeded"
-                                                ]
-                                            },
-                                            "type": "Workflow",
                                             "inputs": {
                                                 "body": {
                                                     "libraryColumns": "@variables('LibraryColumns')",
@@ -311,31 +467,34 @@
                                                         "id": "[resourceId('Microsoft.Logic/workflows', parameters('workflows_ProvisionGenie_CreateLibrary_name'))]"
                                                     }
                                                 }
-                                            }
+                                            },
+                                            "runAfter": {
+                                                "For_each_Library_Column_record": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "Workflow"
                                         }
                                     },
+                                    "description": "Get column information and call child logic app to create the library",
+                                    "foreach": "@body('List_related_SharePoint_Library_records')?['value']",
                                     "runAfter": {
                                         "List_related_SharePoint_Library_records": [
                                             "Succeeded"
                                         ]
                                     },
-                                    "type": "Foreach",
-                                    "description": "Get column information and call child logic app to create the library",
                                     "runtimeConfiguration": {
                                         "concurrency": {
                                             "repetitions": 1
                                         }
-                                    }
+                                    },
+                                    "type": "Foreach"
                                 },
                                 "For_each_SharePoint_List_record": {
-                                    "foreach": "@body('List_related_SharePoint_List_records')?['value']",
                                     "actions": {
                                         "For_each_List_Column_record": {
-                                            "foreach": "@body('List_related_List_Column_records')?['value']",
                                             "actions": {
                                                 "Append_column_definition_to_ListColumns": {
-                                                    "runAfter": {},
-                                                    "type": "AppendToArrayVariable",
                                                     "inputs": {
                                                         "name": "ListColumns",
                                                         "value": {
@@ -343,20 +502,22 @@
                                                             "columnType": "@{items('For_each_List_Column_record')?['_cy_columntype_label']}",
                                                             "columnvalues": "@if(equals(items('For_each_List_Column_record')?['_cy_columntype_label'],'Choice'),array(split(items('For_each_List_Column_record')?['cy_columnvalues'],',')),null)"
                                                         }
-                                                    }
+                                                    },
+                                                    "runAfter": {},
+                                                    "type": "AppendToArrayVariable"
                                                 }
                                             },
+                                            "description": "Append column information to ListColumn variable",
+                                            "foreach": "@body('List_related_List_Column_records')?['value']",
                                             "runAfter": {
                                                 "List_related_List_Column_records": [
                                                     "Succeeded"
                                                 ]
                                             },
-                                            "type": "Foreach",
-                                            "description": "Append column information to ListColumn variable"
+                                            "type": "Foreach"
                                         },
                                         "List_related_List_Column_records": {
-                                            "runAfter": {},
-                                            "type": "ApiConnection",
+                                            "description": "Get the columns in this list record",
                                             "inputs": {
                                                 "host": {
                                                     "connection": {
@@ -369,15 +530,10 @@
                                                     "$filter": "_cy_sharepointlist_value eq '@{items('For_each_SharePoint_List_record')?['cy_sharepointlistid']}'"
                                                 }
                                             },
-                                            "description": "Get the columns in this list record"
+                                            "runAfter": {},
+                                            "type": "ApiConnection"
                                         },
                                         "ProvisionGenie-CreateList": {
-                                            "runAfter": {
-                                                "For_each_List_Column_record": [
-                                                    "Succeeded"
-                                                ]
-                                            },
-                                            "type": "Workflow",
                                             "inputs": {
                                                 "body": {
                                                     "listColumns": "@variables('ListColumns')",
@@ -390,29 +546,31 @@
                                                         "id": "[resourceId('Microsoft.Logic/workflows', parameters('workflows_ProvisionGenie_CreateList_name'))]"
                                                     }
                                                 }
-                                            }
+                                            },
+                                            "runAfter": {
+                                                "For_each_List_Column_record": [
+                                                    "Succeeded"
+                                                ]
+                                            },
+                                            "type": "Workflow"
                                         }
                                     },
+                                    "description": "Get column information and call child logic app to create the list",
+                                    "foreach": "@body('List_related_SharePoint_List_records')?['value']",
                                     "runAfter": {
                                         "List_related_SharePoint_List_records": [
                                             "Succeeded"
                                         ]
                                     },
-                                    "type": "Foreach",
-                                    "description": "Get column information and call child logic app to create the list",
                                     "runtimeConfiguration": {
                                         "concurrency": {
                                             "repetitions": 1
                                         }
-                                    }
+                                    },
+                                    "type": "Foreach"
                                 },
                                 "List_related_SharePoint_Library_records": {
-                                    "runAfter": {
-                                        "For_each_SharePoint_List_record": [
-                                            "Succeeded"
-                                        ]
-                                    },
-                                    "type": "ApiConnection",
+                                    "description": "Get SharePoint Library records related to the Teams request",
                                     "inputs": {
                                         "host": {
                                             "connection": {
@@ -425,11 +583,15 @@
                                             "$filter": "_cy_teamsrequest_value eq '@{triggerBody()?['cy_teamsrequestid']}'"
                                         }
                                     },
-                                    "description": "Get SharePoint Library records related to the Teams request"
+                                    "runAfter": {
+                                        "For_each_SharePoint_List_record": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "ApiConnection"
                                 },
                                 "List_related_SharePoint_List_records": {
-                                    "runAfter": {},
-                                    "type": "ApiConnection",
+                                    "description": "Get SharePoint List records related to the Teams request",
                                     "inputs": {
                                         "host": {
                                             "connection": {
@@ -442,7 +604,8 @@
                                             "$filter": "_cy_teamsrequest_value eq '@{triggerBody()?['cy_teamsrequestid']}'"
                                         }
                                     },
-                                    "description": "Get SharePoint List records related to the Teams request"
+                                    "runAfter": {},
+                                    "type": "ApiConnection"
                                 }
                             },
                             "runAfter": {
@@ -455,20 +618,17 @@
                         "Scope_Create_Team": {
                             "actions": {
                                 "Compose_files_folder_path": {
+                                    "inputs": "@replace(body('HTTP_to_check_if_root_drive_exists')['webUrl'],body('Get_Team_root_site')['webUrl'],'')",
                                     "runAfter": {
                                         "Until_drive_exists": [
                                             "Succeeded"
                                         ]
                                     },
-                                    "type": "Compose",
-                                    "inputs": "@replace(body('HTTP_to_check_if_root_drive_exists')['webUrl'],body('Get_Team_root_site')['webUrl'],'')"
+                                    "type": "Compose"
                                 },
                                 "For_each_related_Channel": {
-                                    "foreach": "@body('List_related_Team_Channel_records')?['value']",
                                     "actions": {
                                         "Append_to_Channels": {
-                                            "runAfter": {},
-                                            "type": "AppendToArrayVariable",
                                             "inputs": {
                                                 "name": "Channels",
                                                 "value": {
@@ -476,20 +636,22 @@
                                                     "displayName": "@{items('For_each_related_Channel')?['cy_channelname']}",
                                                     "isFavoriteByDefault": "@items('For_each_related_Channel')?['cy_autofavorite']"
                                                 }
-                                            }
+                                            },
+                                            "runAfter": {},
+                                            "type": "AppendToArrayVariable"
                                         }
                                     },
+                                    "description": "Append channel information to Channels variable",
+                                    "foreach": "@body('List_related_Team_Channel_records')?['value']",
                                     "runAfter": {
                                         "List_related_Team_Channel_records": [
                                             "Succeeded"
                                         ]
                                     },
-                                    "type": "Foreach",
-                                    "description": "Append channel information to Channels variable"
+                                    "type": "Foreach"
                                 },
                                 "List_related_Team_Channel_records": {
-                                    "runAfter": {},
-                                    "type": "ApiConnection",
+                                    "description": "Get the channels related to the trigger's Teams request",
                                     "inputs": {
                                         "host": {
                                             "connection": {
@@ -502,15 +664,10 @@
                                             "$filter": "_cy_teamsrequest_value eq '@{triggerBody()?['cy_teamsrequestid']}'"
                                         }
                                     },
-                                    "description": "Get the channels related to the trigger's Teams request"
+                                    "runAfter": {},
+                                    "type": "ApiConnection"
                                 },
                                 "Parse_HTTP_body_for_Team_Id": {
-                                    "runAfter": {
-                                        "ProvisionGenie-CreateTeam": [
-                                            "Succeeded"
-                                        ]
-                                    },
-                                    "type": "ParseJson",
                                     "inputs": {
                                         "content": "@body('ProvisionGenie-CreateTeam')",
                                         "schema": {
@@ -521,15 +678,15 @@
                                             },
                                             "type": "object"
                                         }
-                                    }
-                                },
-                                "ProvisionGenie-CreateTeam": {
+                                    },
                                     "runAfter": {
-                                        "For_each_related_Channel": [
+                                        "ProvisionGenie-CreateTeam": [
                                             "Succeeded"
                                         ]
                                     },
-                                    "type": "Workflow",
+                                    "type": "ParseJson"
+                                },
+                                "ProvisionGenie-CreateTeam": {
                                     "inputs": {
                                         "body": {
                                             "Channels": "@variables('Channels')",
@@ -541,31 +698,32 @@
                                         "host": {
                                             "triggerName": "manual",
                                             "workflow": {
-                                                "id": "[resourceId('Microsoft.Logic/workflows', parameters('workflows_ProvisionGenie_CreateTeam_name'))]"
+                                                "id": "/subscriptions/a9862570-4902-4688-a8b7-c417b2296dca/resourceGroups/ProvisionGenie/providers/Microsoft.Logic/workflows/ProvisionGenie-CreateTeam"
                                             }
                                         }
-                                    }
+                                    },
+                                    "runAfter": {
+                                        "For_each_related_Channel": [
+                                            "Succeeded"
+                                        ]
+                                    },
+                                    "type": "Workflow"
                                 },
                                 "Until_drive_exists": {
                                     "actions": {
                                         "Condition_DriveExistsCode_200": {
                                             "actions": {},
-                                            "runAfter": {
-                                                "Update_DriveExistsCode": [
-                                                    "Succeeded"
-                                                ]
-                                            },
                                             "else": {
                                                 "actions": {
                                                     "Delay_2": {
-                                                        "runAfter": {},
-                                                        "type": "Wait",
                                                         "inputs": {
                                                             "interval": {
                                                                 "count": 30,
                                                                 "unit": "Second"
                                                             }
-                                                        }
+                                                        },
+                                                        "runAfter": {},
+                                                        "type": "Wait"
                                                     }
                                                 }
                                             },
@@ -579,11 +737,14 @@
                                                     }
                                                 ]
                                             },
+                                            "runAfter": {
+                                                "Update_DriveExistsCode": [
+                                                    "Succeeded"
+                                                ]
+                                            },
                                             "type": "If"
                                         },
                                         "HTTP_to_check_if_root_drive_exists": {
-                                            "runAfter": {},
-                                            "type": "Http",
                                             "inputs": {
                                                 "authentication": {
                                                     "audience": "https://graph.microsoft.com",
@@ -592,72 +753,69 @@
                                                 },
                                                 "method": "GET",
                                                 "uri": "https://graph.microsoft.com/v1.0/groups/@{body('Parse_HTTP_body_for_Team_Id')?['TeamId']}/drive/root"
-                                            }
+                                            },
+                                            "runAfter": {},
+                                            "type": "Http"
                                         },
                                         "Update_DriveExistsCode": {
+                                            "inputs": {
+                                                "name": "DriveExistsCode",
+                                                "value": "@outputs('HTTP_to_check_if_root_drive_exists')['statusCode']"
+                                            },
                                             "runAfter": {
                                                 "HTTP_to_check_if_root_drive_exists": [
                                                     "Succeeded"
                                                 ]
                                             },
-                                            "type": "SetVariable",
-                                            "inputs": {
-                                                "name": "DriveExistsCode",
-                                                "value": "@outputs('HTTP_to_check_if_root_drive_exists')['statusCode']"
-                                            }
+                                            "type": "SetVariable"
                                         }
+                                    },
+                                    "description": "Wait until the folder is created - otherwise following actions will fail",
+                                    "expression": "@equals(variables('DriveExistsCode'), 200)",
+                                    "limit": {
+                                        "count": 1000,
+                                        "timeout": "PT1H"
                                     },
                                     "runAfter": {
                                         "Until_root_site_exists": [
                                             "Succeeded"
                                         ]
                                     },
-                                    "expression": "@equals(variables('DriveExistsCode'), 200)",
-                                    "limit": {
-                                        "count": 1000,
-                                        "timeout": "PT1H"
-                                    },
-                                    "type": "Until",
-                                    "description": "Wait until the folder is created - otherwise following actions will fail"
+                                    "type": "Until"
                                 },
                                 "Until_root_site_exists": {
                                     "actions": {
                                         "Compose_id": {
+                                            "inputs": "@outputs('Get_Team_root_site')?['body']['id']",
                                             "runAfter": {
                                                 "Compose_webUrl": [
                                                     "Succeeded"
                                                 ]
                                             },
-                                            "type": "Compose",
-                                            "inputs": "@outputs('Get_Team_root_site')?['body']['id']"
+                                            "type": "Compose"
                                         },
                                         "Compose_webUrl": {
+                                            "inputs": "@outputs('Get_Team_root_site')?['body']['webUrl']",
                                             "runAfter": {
                                                 "Get_Team_root_site": [
                                                     "Succeeded"
                                                 ]
                                             },
-                                            "type": "Compose",
-                                            "inputs": "@outputs('Get_Team_root_site')?['body']['webUrl']"
+                                            "type": "Compose"
                                         },
                                         "Condition_SiteExistsCode_200": {
                                             "actions": {},
-                                            "runAfter": {
-                                                "Update_SiteExistsCode": [
-                                                    "Succeeded"
-                                                ]
-                                            },
                                             "else": {
                                                 "actions": {
                                                     "Delay": {
-                                                        "runAfter": {},
-                                                        "type": "Wait",
                                                         "inputs": {
                                                             "interval": {
                                                                 "count": 30,
                                                                 "unit": "Second"
                                                             }
-                                                        }
+                                                        },
+                                                        "runAfter": {},
+                                                        "type": "Wait"
                                                     }
                                                 }
                                             },
@@ -671,11 +829,14 @@
                                                     }
                                                 ]
                                             },
+                                            "runAfter": {
+                                                "Update_SiteExistsCode": [
+                                                    "Succeeded"
+                                                ]
+                                            },
                                             "type": "If"
                                         },
                                         "Get_Team_root_site": {
-                                            "runAfter": {},
-                                            "type": "Http",
                                             "inputs": {
                                                 "authentication": {
                                                     "audience": "https://graph.microsoft.com",
@@ -684,50 +845,46 @@
                                                 },
                                                 "method": "GET",
                                                 "uri": "https://graph.microsoft.com/v1.0/groups/@{body('Parse_HTTP_body_for_Team_Id')?['TeamId']}/sites/root"
-                                            }
+                                            },
+                                            "runAfter": {},
+                                            "type": "Http"
                                         },
                                         "Update_SiteExistsCode": {
+                                            "inputs": {
+                                                "name": "SiteExistsCode",
+                                                "value": "@outputs('Get_Team_root_site')['statusCode']"
+                                            },
                                             "runAfter": {
                                                 "Compose_id": [
                                                     "Succeeded"
                                                 ]
                                             },
-                                            "type": "SetVariable",
-                                            "inputs": {
-                                                "name": "SiteExistsCode",
-                                                "value": "@outputs('Get_Team_root_site')['statusCode']"
-                                            }
+                                            "type": "SetVariable"
                                         }
+                                    },
+                                    "description": "Wait until the root site exists - otherwise following actions will fail",
+                                    "expression": "@equals(variables('SiteExistsCode'), 200)",
+                                    "limit": {
+                                        "count": 1000,
+                                        "timeout": "PT1H"
                                     },
                                     "runAfter": {
                                         "Parse_HTTP_body_for_Team_Id": [
                                             "Succeeded"
                                         ]
                                     },
-                                    "expression": "@equals(variables('SiteExistsCode'), 200)",
-                                    "limit": {
-                                        "count": 1000,
-                                        "timeout": "PT1H"
-                                    },
-                                    "type": "Until",
-                                    "description": "Wait until the root site exists - otherwise following actions will fail"
+                                    "type": "Until"
                                 }
                             },
+                            "description": "Get channel information, create team and wait for team creation to complete",
                             "runAfter": {
                                 "Wait_1_minute_to_add_channels": [
                                     "Succeeded"
                                 ]
                             },
-                            "type": "Scope",
-                            "description": "Get channel information, create team and wait for team creation to complete"
+                            "type": "Scope"
                         },
                         "SiteExistsCode": {
-                            "runAfter": {
-                                "DriveExistsCode": [
-                                    "Succeeded"
-                                ]
-                            },
-                            "type": "InitializeVariable",
                             "inputs": {
                                 "variables": [
                                     {
@@ -735,25 +892,72 @@
                                         "type": "integer"
                                     }
                                 ]
-                            }
-                        },
-                        "Wait_1_minute_to_add_channels": {
+                            },
                             "runAfter": {
-                                "ListColumns": [
+                                "DriveExistsCode": [
                                     "Succeeded"
                                 ]
                             },
-                            "type": "Wait",
+                            "type": "InitializeVariable"
+                        },
+                        "Wait_1_minute_to_add_channels": {
+                            "description": "Wait 1 minute to provide time for the channels to be linked to the team that has been created",
                             "inputs": {
                                 "interval": {
                                     "count": 1,
                                     "unit": "Minute"
                                 }
                             },
-                            "description": "Wait 1 minute to provide time for the channels to be linked to the team that has been created"
+                            "runAfter": {
+                                "Owners": [
+                                    "Succeeded"
+                                ]
+                            },
+                            "type": "Wait"
                         }
                     },
-                    "outputs": {}
+                    "contentVersion": "1.0.0.0",
+                    "outputs": {},
+                    "parameters": {
+                        "$connections": {
+                            "defaultValue": {},
+                            "type": "Object"
+                        },
+                        "DataverseEnvironmentId": {
+                            "defaultValue": "https://org65aef29a.crm4.dynamics.com/",
+                            "type": "String"
+                        }
+                    },
+                    "triggers": {
+                        "When_a_record_is_created": {
+                            "inputs": {
+                                "body": {
+                                    "NotificationUrl": "@{listCallbackUrl()}"
+                                },
+                                "host": {
+                                    "connection": {
+                                        "name": "@parameters('$connections')['commondataservice']['connectionId']"
+                                    }
+                                },
+                                "path": "/datasets/@{encodeURIComponent(encodeURIComponent(parameters('DataverseEnvironmentId')))}/tables/@{encodeURIComponent(encodeURIComponent('cy_teamsrequests'))}/onnewitemswebhook",
+                                "queries": {
+                                    "scope": "Organization"
+                                }
+                            },
+                            "type": "ApiConnectionWebhook"
+                        }
+                    }
+                },
+                "parameters": {
+                    "$connections": {
+                        "value": {
+                            "commondataservice": {
+                                "connectionId": "/subscriptions/a9862570-4902-4688-a8b7-c417b2296dca/resourceGroups/ProvisionGenie/providers/Microsoft.Web/connections/commondataservice",
+                                "connectionName": "commondataservice",
+                                "id": "/subscriptions/a9862570-4902-4688-a8b7-c417b2296dca/providers/Microsoft.Web/locations/westeurope/managedApis/commondataservice"
+                            }
+                        }
+                    }
                 },
                 "parameters": {
                     "$connections": {

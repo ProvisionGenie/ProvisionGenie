@@ -260,10 +260,6 @@
                     },
                     "WelcomePackageUrl": {
                         "value": "[parameters('WelcomePackageUrl')]"
-                    },
-                    "workflows_ProvisionGenie_CreateTeam_name": {
-                        "defaultValue": "ProvisionGenie-CreateTeam",
-                        "type": "String"
                     }
                 }
             }

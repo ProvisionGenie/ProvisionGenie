@@ -5,6 +5,9 @@
         "workflows_ProvisionGenie_AddPeople_name": {
             "type": "string"
         },
+        "workflows_ProvisionGenie_CreateTeam_name": {
+            "type": "string"
+        },
         "userAssignedIdentities_ProvisionGenie_ManagedIdentity_name": {
             "type": "string"
         },

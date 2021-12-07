@@ -140,7 +140,7 @@
             }
         },
         {
-            "name": "addPeopleDeployment",
+            "name": "AddPeopleDeployment",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2020-10-01",
             "dependsOn": [
@@ -283,7 +283,7 @@
                 "createTeamDeployment",
                 "createLibraryDeployment",
                 "welcomePackageDeployment",
-                "addPeopleDeployment"
+                "AddPeopleDeployment"
             ],
             "properties": {
                 "mode": "Incremental",

@@ -29,7 +29,7 @@
             "identity": {
                 "type": "UserAssigned",
                 "userAssignedIdentities": {
-                    "/subscriptions/[parameters('subscriptionId')]/resourcegroups/provisiongenie/providers/microsoft.managedidentity/userassignedidentities/provisiongenie-managedidentity": {}
+                    "/subscriptions/[parameters('subscriptionId')]/resourcegroups/provisiongenie/providers/microsoft.managedidentity/userassignedidentities/parameters('userAssignedIdentities_ProvisionGenie_ManagedIdentity_name')": {}
                 }
             },
             "properties": {

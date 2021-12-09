@@ -50,7 +50,7 @@ We also took Dataverse's little sister, [Dataverse for Teams](https://docs.micro
 
 ### Consequences of choosing Dataverse
 
-Using Dataverse results in licensing costs, as every user will need an Power Apps per app or a PowerApps per user plan.
+Using Dataverse results in licensing costs, as every user will need an Power Apps per app or a Power Apps per user plan.
 
 ## Integration
 

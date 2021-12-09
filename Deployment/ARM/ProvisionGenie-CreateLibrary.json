@@ -206,7 +206,7 @@
                                             }
                                         },
                                         "Case_Yes/No": {
-                                            "case": "Yes/No",
+                                            "case": "yes/no",
                                             "actions": {
                                                 "Append_boolean_column_definition_to_ListColumns": {
                                                     "runAfter": {},

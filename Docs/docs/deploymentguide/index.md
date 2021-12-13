@@ -6,7 +6,7 @@ This guide shall walk you through the minimal path to awesome. It lists all step
 
 ## Prerequisites
 
-- Azure Subscription - if you don't have one, [get it here free](https://azure.microsoft.com//free) - also see [Cost estimation](../costestimation.md)
+- Azure Subscription -if you don't have one, [get it here free](https://azure.microsoft.com//free) - also see [Cost estimation](../costestimation.md)
 - Microsoft 365 license
 - [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, also see [Architecture Decisions](../architecturedecisions.md#database)). You can also go with a [Pay-as-you-go-plan](https://docs.microsoft.com/en-us/power-platform/admin/pay-as-you-go-overview)
 - Environment with [Dataverse database](https://docs.microsoft.com/power-platform/admin/create-database) - you can create one during the deployment process

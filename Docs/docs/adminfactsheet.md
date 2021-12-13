@@ -4,15 +4,14 @@
 
 This Fact sheet shall give you as an administrator an overview about
 
-- [Admin Fact Sheet](#admin-fact-sheet)
-  - [End User value of ProvisionGenie](#end-user-value-of-provisiongenie)
-  - [Cost to run ProvisionGenie](#cost-to-run-provisiongenie)
-  - [Security](#security)
-  - [Privacy](#privacy)
-  - [Governance](#governance)
-  - [Deploy and maintain ProvisionGenie](#deploy-and-maintain-provisiongenie)
-  - [Update schedule](#update-schedule)
-  - [Any other questions?](#any-other-questions)
+- [End User value of ProvisionGenie](#end-user-value-of-provisiongenie)
+- [Cost to run ProvisionGenie](#cost-to-run-provisiongenie)
+- [Security](#security)
+- [Privacy](#privacy)
+- [Governance](#governance)
+- [Deploy and maintain ProvisionGenie](#deploy-and-maintain-provisiongenie)
+- [Update schedule](#update-schedule)
+- [Any other questions?](#any-other-questions)
 
 ## End User value of ProvisionGenie
 
@@ -26,12 +25,12 @@ The consultant would then show them what channels are made for, how a team can w
 
 This is, what ProvisionGenie does. ProvisionGenie is now that consultant and provides users with a blended experience of
 
-- learning about modern collaboration and assets that can be used in Teams and
-- reflecting on how they want to work in Teams.
+- Learning about modern collaboration and assets that can be used in Teams and
+- Reflecting on how they want to work in Teams.
 
 Benefits:
 
-- allows better understanding of how Teams works in general
+- Allows better understanding of how Teams works in general
 - Tailor-fitted teams have higher adoption rates
 - Mitigates Teams sprawl by preventing abandoned Teams
 - Prevents "stockpiled" channels (and their SharePoint folder equivalents)
@@ -56,15 +55,15 @@ We take security very serious and want you to make the informed decision, that P
 - You can't unintentionally overexpose data only by allowing Power Apps in your organization, as Power Apps does not provide users with access to any data assets that they don't already have access to
 - Power Platform leverages Azure Active Directory to control user authentication & access to data
 - In the Dataverse environment, access is controlled at three levels:
-  - Environment roles
-  - Resource permissions for Power Apps
-  - Dataverse security roles - Part of our solution is a special security role, so that that no one can bypass the canvas app. This way, data can't be over exposed.
+    - Environment roles
+    - Resource permissions for Power Apps
+    - Dataverse security roles - Part of our solution are two special security roles, so that that no one can bypass the canvas app. This way, data can't be over exposed.
 - Conditional Access Policy via Azure AD Premium can be applied for Power Apps as well
-- All Logic Apps handle authentication to Graph API with a Managed Identity, which means that there are no credentials, which could get exposed/leaked or need to be maintained.
+- All Logic Apps handle authentication to Microsoft Graph API with a Managed Identity, which means that there are no credentials, which could get exposed/leaked or need to be maintained.
 
 ## Privacy
 
-We do not collect any data about you or your users. We built ProvisionGenie for Microsoft Teams and all data stays in your tenant.
+We do not collect any data about you or your users. We built ProvisionGenie for Microsoft Teams and all data stays in your tenant. ProvisionGenie uses your Azure subscription.
 
 More helpful resources:
 
@@ -77,7 +76,7 @@ More helpful resources:
 
 We designed and built ProvisionGenie to be an enterprise-grade solution.
 
-- ProvisionGenie can be monitored like every other Power platform solution within the [Center of Excellence Starter Kit](https://docs.microsoft.com/power-platform/guidance/coe/starter-kit), which we highly recommend to use.
+- ProvisionGenie can be monitored like every other Power Platform solution within the [Center of Excellence Starter Kit](https://docs.microsoft.com/power-platform/guidance/coe/starter-kit), which we highly recommend to use.
 - Additionally, you can [monitor the Logic Apps in the Azure portal](https://docs.microsoft.com/azure/logic-apps/monitor-logic-apps).
 
 ## Deploy and maintain ProvisionGenie

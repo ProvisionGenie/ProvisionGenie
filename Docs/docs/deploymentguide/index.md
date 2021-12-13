@@ -8,14 +8,14 @@ This guide shall walk you through the minimal path to awesome. It lists all step
 
 - Azure Subscription - if you don't have one, [get it here free](https://azure.microsoft.com//free) - also see [Cost estimation](../costestimation.md)
 - Microsoft 365 license
-- [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, also see [Architecture Decisions](../architecturedecisions.md#database))
+- [Power Apps per app or Power Apps per user plan](https://powerapps.microsoft.com/pricing/) (for using Dataverse, also see [Architecture Decisions](../architecturedecisions.md#database)). You can also go with a [Pay-as-you-go-plan](https://docs.microsoft.com/en-us/power-platform/admin/pay-as-you-go-overview)
 - Environment with [Dataverse database](https://docs.microsoft.com/power-platform/admin/create-database) - you can create one during the deployment process
 - Admin role Azure: [Contributor](https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#contributor)
 - Power Platform role: [System Administrator](https://docs.microsoft.com/power-platform/admin/database-security)
 
 ## Deployment steps
 
-In order to successfully deploy ProvisionGenie, you will need to perform the following steps
+In order to successfully deploy ProvisionGenie from as a first deploy, you will need to perform the following steps
 
 - [0. Fork and clone this repository](0-forkclone.md)
 - [1. Register app in Azure AD](1-registerapp.md)
@@ -23,3 +23,13 @@ In order to successfully deploy ProvisionGenie, you will need to perform the fol
 - [3. Deploy Azure resources](3-deployazureresources.md)
 - [4. Add ProvisionGenie to Teams](4-addtoteams.md)
 - [5. Post Deployment cleanup](5-postdeploycleanup.md)
+
+### Upgrade
+
+In case you already deployed v1.0.0 and now want to upgrade, please: 
+
+- If you attempt to change the Azure region that you want to deploy the resources in, you need to first move the resources and then run the deployment script. Otherwise, the script will prompt you with an error: 
+
+![Script throwing error when changing Azure regions](../media/deploymentguide/upgrade/Deployment-Error-region.png)
+
+- in the Power Apps solution, select the Choice `Column Types` and delete the first two items `Multiple Lines of Text` and `Person`. This is a bug fix.

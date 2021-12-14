@@ -79,18 +79,18 @@ In our first proof of concept, we still used Power Automate to provision a custo
 
 We use [Microsoft Graph API](https://docs.microsoft.com/graph/overview) to provision all assets that were requested by users using the Power Apps Canvas app with Azure Logic Apps.
 
-Using Microsoft Planner for day-to-day task management within a team is considered to be a best practice. Unfortunately, the Planner API lacks of having application level permissions.
+Using Microsoft Planner for day-to-day task management within a team is considered to be a good practice. Unfortunately, the Planner API lacks of having application level permissions. Without application level permissions, we can't provision Planner plans with a Managed Identity. 
 
 ### Decision
 
 Therefore, we decided to not provision it, as it would cause a lot of disadvantages like
 
-- need of a service account
+- need of a service account (fake user)
 - which couldn't be MFA-enabled
 
 ### Consequences of not provisioning Planner
 
-We want to give ProvisionGenie users the best experience to work in Teams as from day 1. If they don't get a planner plan by our process, we needed to present them an alternative. This is why we chose to ask our users if they wanted to have a SharePoint list with columns that mimic Planner behavior provisioned for them. We introduce users as well to gallery view in lists so that they get a similar experience as in Planner. As we can create SharePoint lists and their columns with application permissions, this is as a secure alternative. Also, SharePoint lists provide version history and a recycle bin.
+We want to give ProvisionGenie users the best experience to work in Teams as from day 1. If they don't get a Planner plan by our process, we needed to present them an alternative. This is why we chose to ask our users if they wanted to have a SharePoint list with columns that mimic Planner behavior provisioned for them. We introduce users as well to gallery view in lists so that they get a similar experience as in Planner. As we can create SharePoint lists and their columns with application permissions using a Managed Identity, this is as a secure alternative. Also, SharePoint lists provide version history and a recycle bin.
 
 ![task list in SharePoint](media/architecturedecisions/tasklist.png)
 

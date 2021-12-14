@@ -13,7 +13,7 @@ This guide shall walk you through the minimal path to awesome. It lists all step
 - Admin role Azure: [Contributor](https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#contributor)
 - Power Platform role: [System Administrator](https://docs.microsoft.com/power-platform/admin/database-security)
 
-## Deployment steps
+## Deployment steps clean install
 
 In order to successfully deploy ProvisionGenie from as a first deploy, you will need to perform the following steps
 
@@ -23,13 +23,3 @@ In order to successfully deploy ProvisionGenie from as a first deploy, you will 
 - [3. Deploy Azure resources](3-deployazureresources.md)
 - [4. Add ProvisionGenie to Teams](4-addtoteams.md)
 - [5. Post Deployment cleanup](5-postdeploycleanup.md)
-
-### Upgrade
-
-In case you already deployed v1.0.0 and now want to upgrade, please: 
-
-- If you attempt to change the Azure region that you want to deploy the resources in, you need to first move the resources and then run the deployment script. Otherwise, the script will prompt you with an error: 
-
-![Script throwing error when changing Azure regions](../media/deploymentguide/upgrade/Deployment-Error-region.png)
-
-- in the Power Apps solution, select the Choice `Column Types` and delete the first two items `Multiple Lines of Text` and `Person`. This is a bug fix.

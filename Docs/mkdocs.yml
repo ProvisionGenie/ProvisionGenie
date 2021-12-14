@@ -16,15 +16,21 @@ nav:
       - Overview: 'corecomponents/dataverse.md'
     - Logic Apps: 
       - Overview: 'corecomponents/logicapps.md'
+
+
+
   - Deployment guide:
-    - Start: 'deploymentguide/index.md'
-    - Copied values: 'deploymentguide/copiedvalues.md'
-    - 0. Fork and clone this repository: 'deploymentguide/0-forkclone.md'
-    - 1. Register application in Azure AD: 'deploymentguide/1-registerapp.md'
-    - 2. Import Dataverse solution: 'deploymentguide/2-importsolution.md'
-    - 3. Deploy Azure resources: 'deploymentguide/3-deployazureresources.md'
-    - 4. Add ProvisionGenie to Teams: 'deploymentguide/4-addtoteams.md'
-    - 5. Post Deployment cleanup: 'deploymentguide/5-postdeploycleanup.md'
+    - Clean install:
+      - Start: 'deploymentguide/index.md'
+      - Copied values: 'deploymentguide/copiedvalues.md'
+      - 0. Fork and clone this repository: 'deploymentguide/0-forkclone.md'
+      - 1. Register application in Azure AD: 'deploymentguide/1-registerapp.md'
+      - 2. Import Dataverse solution: 'deploymentguide/2-importsolution.md'
+      - 3. Deploy Azure resources: 'deploymentguide/3-deployazureresources.md'
+      - 4. Add ProvisionGenie to Teams: 'deploymentguide/4-addtoteams.md'
+      - 5. Post Deployment cleanup: 'deploymentguide/5-postdeploycleanup.md'
+    - Upgrade: 
+      - Upgrade v1.0.0 --> v2.0.0: 'deploymentguide/upgradev100v200.md'
   - About:
     - Release Notes: 'about/releasenotes.md'
     - Roadmap: 'about/roadmap.md'

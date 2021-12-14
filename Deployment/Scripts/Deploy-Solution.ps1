@@ -107,7 +107,7 @@ $SasToken = az storage container generate-sas `
     --account-key $Key
 
 # use Join-Path to build the path so that this works on both Linux and Windows
-$TemplatePath = Join-Path ".." "ARM"
+$TemplatePath = Join-Path ".." "bicep"
 Write-Host "Uploading templates at $TemplatePath to $DeployContainerName in $StorageAccountName"
 az storage blob upload-batch `
     --destination $DeployContainerName `
@@ -115,7 +115,7 @@ az storage blob upload-batch `
     --account-name $StorageAccountName `
     --sas-token $SasToken
 
-$MainTemplateUri = $StorageAccount.primaryEndpoints.blob + "$DeployContainerName/ARM-template.json"
+$MainTemplateUri = $StorageAccount.primaryEndpoints.blob + "$DeployContainerName/ProvisionGenie-root.bicep"
 
 $DeployTimestamp = (Get-Date).ToUniversalTime().ToString("yyyyMMdTHmZ")
 # Deploy

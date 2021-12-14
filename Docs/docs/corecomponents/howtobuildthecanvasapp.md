@@ -33,15 +33,7 @@ Concurrent(
         _selectedScreen,
         {
             Row: 1,
-            Title: "Welcome",
-            Image: ic_fluent_home_48_regular
-        }
-    ),
-    ClearCollect(
-        NavigationMenu,
-        {
-            Row: 1,
-            Title: "Welcome",
+                       Title: "Welcome",
             Image: ic_fluent_home_48_regular
         },
         {
@@ -51,32 +43,39 @@ Concurrent(
         },
         {
             Row: 3,
+            Title: "Members & Owners",
+            Image: AddFriend
+        },
+        {
+            Row: 4,
             Title: "Channels",
             Image: ic_fluent_text_bullet_list_square_24_regular
         },
         {
-            Row: 4,
+            Row: 5,
             Title: "Libraries",
             Image: ic_fluent_document_48_regular
         },
         {
-            Row: 5,
+            Row: 6,
             Title: "Lists",
             Image: ic_fluent_clipboard_bullet_list_ltr_20_regular
         },
         {
-            Row: 6,
+            Row: 7,
             Title: "Checkout",
             Image: ic_fluent_checkbox_checked_24_regular
         }
     )
+);
 ```
 
-(To make this work replace the name of the images with the images you uploaded 💡
+(To make this work replace the name of the images with the images you uploaded 💡)
 
 - Create a gallery
   with
 
+  - Button
   - Rectangle
   - Text label
   - Image
@@ -86,44 +85,21 @@ Concurrent(
 - Set **OnSelect** to
 
 ```
-Set(
-    _selectedScreen,
-    ThisItem
-);
+Set(_selectedScreen, ThisItem);
 If(
-    ThisItem.Row = 1,
-    Navigate(
-        'Welcome Screen',
-        None
-    ),
-    ThisItem.Row = 2,
-    Navigate(
-        'Teams Screen',
-        None
-    ),
-    ThisItem.Row = 3,
-    Navigate(
-        'Channel Screen',
-        None
-    ),
-    ThisItem.Row = 4,
-    Navigate(
-        'Libraries Screen',
-        None
-    ),
-    ThisItem.Row = 5,
-    Navigate(
-        'Lists Screen',
-        None
-    ),
-    ThisItem.Row = 6,
-    Navigate(
-        'Checkout Screen',
-        None
-    )
+    ThisItem.Row = 1, Navigate('Welcome Screen', None),
+    ThisItem.Row = 2, Navigate('Teams Screen', None),
+    ThisItem.Row = 3, Navigate('Members Screen', None),
+    ThisItem.Row = 4, Navigate('Channel Screen', None),
+    ThisItem.Row = 5, Navigate('Libraries Screen', None),
+    ThisItem.Row = 6, Navigate('Lists Screen', None),
+    ThisItem.Row = 7, Navigate('Checkout Screen', None)
 )
 ```
 
+- Set **Text** of the  Button to `""`
+- Set **Fill**, **HoverFill**, and **DisabledFill** to `Transparent`
+- Make sure that the Button sits above everything else in the Gallery
 - Set **Visible** of the rectangle to `ThisItem.Row = _selectedScreen.Row`
 - Set **Text** of the TextLabel to `ThisItem.Title`
 - Set **Image** of the Image to `ThisItem.Image`
@@ -408,7 +384,7 @@ Navigate(
 Set(
     _selectedScreen,
     {
-        Title: "Channels",
+        Title: "Members",
         Row: 3
     }
 );
@@ -431,7 +407,114 @@ Set(
 
 ```
 
-Which navigates to the next **Channels** screen, sets the Navigation correctly and saves the values in variables. Please note, that at this point we won't submit this form to the data source.
+Which navigates to the next **Members & Owners** screen, sets the Navigation correctly and saves the values in variables. Please note, that at this point we won't submit this form to the data source.
+
+### Members & Owners Screen
+
+Members and Owners can be selected from users via Office 365 Users Connector. 
+
+
+On this screen, our user add members and additional owners to their Team. We work with
+
+- 1 ComboBox to get a value for members
+- a Button to add this value into a members collection
+- a Button to clear the members collection
+- a gallery to display the members collection
+- 1 ComboBox to get a value for owners
+- a Button to add this value into a owners collection
+- a Button to clear the owners collection
+- a gallery to display the owners collection
+
+#### Add button members
+
+- Set its **OnSelect** to
+
+```
+If(
+    DataCardValue4_4.Selected.UserPrincipalName in colMembers.UPN,
+    Notify(
+        "You already added this member. Please try again with a different member.",
+        NotificationType.Error
+    ),
+    If(
+        DataCardValue4_4.Selected.UserPrincipalName in colOwners.UPN,
+        Notify(
+            "You already added this person as an owner. To add them as an member, first remove them from the owners",
+            NotificationType.Error
+        ),
+        Collect(
+            colMembers,
+            {
+                DisplayName: DataCardValue4_4.Selected.DisplayName,
+                UPN: DataCardValue4_4.Selected.UserPrincipalName,
+                FirstName: DataCardValue4_4.Selected.GivenName,
+                LastName: DataCardValue4_4.Selected.Surname
+            }
+        );
+        UpdateContext({locClearMemberInput: true});
+        UpdateContext({locClearMemberInput: false})
+    )
+);
+
+```
+#### Clear button members
+
+- Set its `onSelect` to
+
+```
+Clear(colMembers);
+UpdateContext({locClearMemberInput: true});
+UpdateContext({locClearMemberInput: false})
+```
+#### Combobox
+
+- Set its `Items` to `Office365Users.SearchUser({searchTerm:Self.SearchText,top:10})`
+
+#### Gallery members
+
+- Set **Items** to `colMembers`
+- Set the **Text** of **Title** Textlabel in the gallery to `ThisItem.DisplayName`
+- Change the default **Nextarrow** icon to a **Cancel** icon and set its **OnSelect** to `RemoveIf(colMembers,UPN=ThisItem.UPN)`
+
+This way, our user can review the list of members and even remove some of them again.
+
+> This neat solution is described in more detail on [Carmen Ysewijn's blog](https://digipersonal.com/2021/04/22/canvas-app-ui-element-tag-box-list/)
+
+
+> Do the same for owners: Create a Combobox, add button, clear button, gallery. 
+
+#### Save button
+
+- Set its `onSelect` to
+
+```
+Set(
+    varMembers,
+    Concat(
+        colMembers,
+        DisplayName & ", "
+    )
+);
+Set(
+    varOwners,
+    Concat(
+        colOwners,
+        DisplayName & ", "
+    )
+);
+Navigate(
+    'Channel Screen',
+    Cover
+);
+Set(
+    _selectedScreen,
+    {
+        Title: "Channels",
+        Row: 4
+    }
+)
+```
+
 
 ### Channels Screen
 
@@ -445,6 +528,7 @@ On this screen, our owner-to-be can create the channels they want to be provisio
 #### Add Button
 
 - Set its **OnSelect** to
+
 
 ```
   If(txtTagToAdd.Text in colChannels.ChannelName,
@@ -489,8 +573,6 @@ which empties the collection and updates the variables that controls the **Reset
 - Change the default **Nextarrow** icon to a **Cancel** icon and set its **OnSelect** to `RemoveIf(colChannels,ChannelName=ThisItem.ChannelName)`
 
 This way, our user can review the list of channels and even remove some of them again.
-
-> This neat solution is described in more detail on [Carmen Ysewijn's blog](https://digipersonal.com/2021/04/22/canvas-app-ui-element-tag-box-list/)
 
 #### The Next button
 
@@ -652,7 +734,7 @@ The Lists screen is following the same approach as the library screen, because w
 
 In the checkout screen, we want to display a PopUp in which the user may review all their responses - and return to a specific screen if they would want to correct something.
 
-- Create a PopUp, this time with 7 pages - this also means 7 different images, titles, contents and stepper dots
+- Create a PopUp, this time with 8 pages - this also means 8 different images, titles, contents and stepper dots
 - Set **OnVisible** to `UpdateContext({isShowSummary: true});UpdateContext({isPageSummary: 1})`
 - Set **Visible** of the entire PopUpGroup to `isShowSummary`
 - Set **Text** of your main content Textlabel to
@@ -674,44 +756,54 @@ If(
         ) & Char(13),
         If(
             isPageSummary = 3,
-            "We will create the following channels for you: " & Char(13) & Char(13) & Left(
-                varChannels,
-                Len(varChannels) - 2
+            "We will add the following members for you: " & Char(13) & Left(
+                varMembers,
+                Len(varMembers) - 2
+            ) & Char(13) & Char(13) & "We will add the following owners for you: " & Char(13) & Left(
+                varOwners,
+                Len(varOwners) - 2
             ),
             If(
                 isPageSummary = 4,
-                "We will create a library called '" & varLibrary1Name & "' for you with the following columns: " & Char(13) & Char(13) & Left(
-                    Concat(
-                        colColumnsLibrary1,
-                        Name & ", "
-                    ),
-                    Len(
-                        Concat(
-                            colColumnsLibrary1,
-                            Name & ", "
-                        )
-                    ) - 2
+                "We will create the following channels for you: " & Char(13) & Char(13) & Left(
+                    varChannels,
+                    Len(varChannels) - 2
                 ),
                 If(
                     isPageSummary = 5,
-                    "We will create a list called '" & varListName & "' for you with the following columns: " & Char(13) & Char(13) & Left(
+                    "We will create a library called '" & varLibrary1Name & "' for you with the following columns: " & Char(13) & Char(13) & Left(
                         Concat(
-                            colColumnsList,
+                            colColumnsLibrary1,
                             Name & ", "
                         ),
                         Len(
                             Concat(
-                                colColumnsList,
+                                colColumnsLibrary1,
                                 Name & ", "
                             )
                         ) - 2
                     ),
                     If(
                         isPageSummary = 6,
-                        "If everything looks ok, hit SUBMIT! " & Char(13) & Char(13) & "If you need to correct something, close this PopUp and navigate to the respecting screen. You can then return to this summary later",
+                        "We will create a list called '" & varListName & "' for you with the following columns: " & Char(13) & Char(13) & Left(
+                            Concat(
+                                colColumnsList,
+                                Name & ", "
+                            ),
+                            Len(
+                                Concat(
+                                    colColumnsList,
+                                    Name & ", "
+                                )
+                            ) - 2
+                        ),
                         If(
                             isPageSummary = 7,
-                            "you can close the app now - See you next time when you like to create a Team"
+                            "If everything looks ok, hit SUBMIT! " & Char(13) & Char(13) & "If you need to correct something, close this PopUp and navigate to the respecting screen. You can then return to this summary later",
+                            If(
+                                isPageSummary = 8,
+                                "you can close the app now - See you next time when you like to create a Team"
+                            )
                         )
                     )
                 )
@@ -725,29 +817,33 @@ If(
 
 ```
 If(
-isPageSummary = 1,
-"Let's make your teamwork wishes come true",
-If(
-isPageSummary = 2,
-"Basic info about your Team",
-If(
-isPageSummary = 3,
-"Channels",
-If(
-isPageSummary = 4,
-"Your Library",
-If(
-isPageSummary = 5,
-"Your List",
-If(
-isPageSummary = 6,
-"Looks good?",
-"You made it! "
-)
-)
-)
-)
-)
+    isPageSummary = 1,
+    "Let's make your teamwork wishes come true",
+    If(
+        isPageSummary = 2,
+        "Basic info about your Team",
+        If(
+            isPageSummary = 3,
+            "Members & Owners",
+            If(
+                isPageSummary = 4,
+                "Channels",
+                If(
+                    isPageSummary = 5,
+                    "Your Library",
+                    If(
+                        isPageSummary = 6,
+                        "Your List",
+                        If(
+                            isPageSummary = 7,
+                            "Looks good?",
+                            "You made it! "
+                        )
+                    )
+                )
+            )
+        )
+    )
 )
 ```
 

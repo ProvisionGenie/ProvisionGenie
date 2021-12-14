@@ -11,7 +11,7 @@ we wanted to store the data somewhere.
 
 ### Decision - Microsoft Dataverse
 
-ProvisionGenie uses Microsoft Dataverse to store all data about the (to be) provisioned teams in 5 different tables (for more information on this, see [Solution Overview](corecomponents/logicapps.md#solution-overview)).
+ProvisionGenie uses Microsoft Dataverse to store all data about the (to be) provisioned teams in 6 different tables (for more information on this, see [Solution Overview](corecomponents/logicapps.md#solution-overview)).
 
 ### Alternatives
 

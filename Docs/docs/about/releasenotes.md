@@ -16,6 +16,13 @@
 * lets users add members and additional owners to a Team
 * lets users skip creation of channels, library, or list
 
+**Improvements**
+
+* provides more in detail in app information on default columns in libraries and lists
+* provides more up-to-date external learning resources
+* enrichens user experience by better guidance and error handling
+
+
 **Deployment**
 
 * App registration and deployment of all resources in Azure are now done with an idempotent, automated script
@@ -28,6 +35,7 @@
 **Bug fixes**
 
 * solves an error message in Logic Apps regarding Managed Identity
+* solves an issue in Logic Apps that let the CreateTeam flow fail
 * several minor bug fixes in the Canvas App
 
 **Contributors**
@@ -40,7 +48,7 @@ This is an open-source initiative by [Luise Freese](https://twitter.com/LuiseFre
 * [Yannick Reekmans](https://twitter.com/YannickReekmans) - as our Chief debugging expert
 * [Michael Roth](https://twitter.com/MichaelRoth42) - designed the ProvisionGenie logo for the new documentation
 
-Note regarding versioning: Although we try to stick to [semantic versioning](https://semver.org/), we felt this update is **major** as it adds so much more capability which we wanted to reflect in the version number. 
+Note regarding versioning: Although we want to stick to [semantic versioning](https://semver.org/), we felt this update is **major** as it adds so much more capability which we wanted to reflect in the version number. 
 
 ## v1.0.0
 Minimum l💖vable product release of ProvisionGenie 🧞.

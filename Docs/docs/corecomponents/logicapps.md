@@ -6,14 +6,12 @@ We created 5 Azure Logic Apps to handle the provisioning of the Teams:
 
 Our flows pick up the values logged in the Dataverse tables to provision what the user requested:
 
- - [1. Main flow](#1-main-flow)
- - [2. Create team](#2-create-team)
-- [Azure Logic Apps](#azure-logic-apps)
-    - [1. Main flow](#1-main-flow)
-    - [2. Create team](#2-create-team)
-    - [3. Create List/Library](#3-create-listlibrary)
-    - [4. Create Task List](#4-create-task-list)
-    - [5. Welcome Package](#5-welcome-package)
+- [1. Main flow](#1-main-flow)
+- [2. Create team](#2-create-team)
+- [3. Add people](#3-add-people)
+- [4. Create List/Library](#4-create-listlibrary)
+- [5. Create Task List](#5-create-task-list)
+- [6. Welcome Package](#6-welcome-package)
 
 ### 1. Main flow
 
@@ -24,12 +22,14 @@ The main flow takes care of the logic of the flows: executing the different step
 1. The main flow triggers when a new row is added into the **Teams Requests** table in Dataverse.
 2. The internal name of the to be created team is generated using the name provided by the team owner and a generated guid. This ensures that all team names are unique.
 3. The technical name is updated in the Teams Request row so that admins can easily find out which requests are linked to which Microsoft Teams teams.
-4. 5 variables are initialized that are used later on in the flow
+4. 7 variables are initialized that are used later on in the flow
    1. `Channels`: contains the array representation of the channels that need to be created.
    2. `DriveExistsCode`: stores the response of an HTTP request to check whether the SharePoint library has already been created for the team.
    3. `SiteExistsCode`: stores the response of an HTTP request to check whether the SharePoint site for the team has already been created.
    4. `LibraryColumns`: array representation of the columns that need to be created in the library.
    5. `ListColumns`: array representation of the columns that need to be created in the list.
+   6. `Members`: contains members to be added to the Teams
+   7. `Owners`: contains owners to be added to the Teams
 5. A 1 minute delay is added to ensure that the channels and other related table rows are linked to the Teams request row in Dataverse, since these cannot be linked upon creation of the Teams request row.
 6. The team is created in the Create Team scope, which is expanded below
    1. The related team channel rows are listed
@@ -58,6 +58,17 @@ The main flow takes care of the logic of the flows: executing the different step
 
 8. The task list is added to the team if the owner has indicated they want this in their team
 9. The welcome package is added to the team if the owner has indicated they want this in their team
+
+![Scope Add People](../media/corecomponents/LogicApps-Main-AddPeople-member.png)
+![Scope Add People](../media/corecomponents/LogicApps-Main-AddPeople-owner.png)
+![Scope Add People](../media/corecomponents/LogicApps-Main-AddPeople-condition.png)
+
+
+10. The related rows of the intersection table `pg_teamsuser_teamsrequest_members` get listed
+11. For each member the `members` variable gets appended to then reflect the UPN
+12. The related rows of the intersection table `pg_teamsuser_teamsrequest_owners` get listed
+13. For each member the `owners` variable gets appended to then reflect the UPN
+14. In case members or owners are not empty, the `ProvisionGenie-AddPeople` flow gets called
 
 ### 2. Create team
 
@@ -107,7 +118,19 @@ In the Create team flow, the requested team is created with the specified channe
 
 1.  A response is provided to the caller of the logic app with the team id.
 
-### 3. Create List/Library
+### 3. Add people
+
+![AddPeople Logic App](../media/corecomponents/LogicApps-AddPeople.png)
+
+1. The logic app is triggered from a HTTP request as a child flow
+2. An array variable `People` is initialized
+3. The members get splitted by an `;`
+4. the `People` variable gets appended with the body that we need in the HTTP request to add members
+5. The owners get splitted by an `;`
+6. the `People` variable gets appended with the body that we need in the HTTP request to add owners
+7. HTTP request adds both members get added in a single call
+
+### 4. Create List/Library
 
 The Create List and Create Library logic apps are nearly identical, except for the template type that is provided in the creation request. Therefore, they are discussed as one.
 
@@ -122,7 +145,7 @@ The Create List and Create Library logic apps are nearly identical, except for t
 4. Create the list/library using a request. **This is where there is a difference between the Create List/Create Library Logic Apps flows.**
 5. Respond to the request caller
 
-### 4. Create Task List
+### 5. Create Task List
 
 The Create Task list logic app uses the Create List logic app to create a task list using a fixed definition of columns.
 
@@ -133,7 +156,7 @@ The Create Task list logic app uses the Create List logic app to create a task l
 3. The Create List Logic Apps flow is called with the task list fixed column definition to create the task list
 4. Respond to the request caller
 
-### 5. Welcome Package
+### 6. Welcome Package
 
 The welcome package adds a url with training material to the General channel of the new team
 

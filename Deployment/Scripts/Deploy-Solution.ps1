@@ -124,9 +124,7 @@ az deployment group create `
     --resource-group $ResourceGroupName `
     --template-uri $MainTemplateUri `
     --query-string $SasToken `
-    --parameters subscriptionId=$SubscriptionId `
-                DataverseEnvironmentId=$DataverseEnvironmentId `
-                resourceGroupName=$ResourceGroupName `
+    --parameters DataverseEnvironmentId=$DataverseEnvironmentId `
                 WelcomePackageUrl=$WelcomePackageUrl `
                 servicePrincipal_AppId=$($sp.appId) `
                 servicePrincipal_ClientSecret=$($sp.password) `
@@ -160,7 +158,8 @@ $directoryReadWriteAll = az ad sp show --id $graphId --query "appRoles[?value=='
 $groupCreate = az ad sp show --id $graphId --query "appRoles[?value=='Group.Create'].id | [0]" -o tsv
 $sitesManageAll = az ad sp show --id $graphId --query "appRoles[?value=='Sites.Manage.All'].id | [0]" -o tsv
 $sitesReadWriteAll = az ad sp show --id $graphId --query "appRoles[?value=='Sites.ReadWrite.All'].id | [0]" -o tsv
-$appRoleIds = $teamCreate, $readWriteAll, $directoryReadWriteAll, $groupCreate, $sitesManageAll, $sitesReadWriteAll
+$teamMemberReadWriteAll = az ad sp show --id $graphId --query "appRoles[?value=='TeamMember.ReadWrite.All'].id | [0]" -o tsv 
+$appRoleIds = $teamCreate, $readWriteAll, $directoryReadWriteAll, $groupCreate, $sitesManageAll, $sitesReadWriteAll, $teamMemberReadWriteAll
 #Loop over all appRoleIds
 foreach ($appRoleId in $appRoleIds) {
     $roleMatch = $currentRoles -match $appRoleId

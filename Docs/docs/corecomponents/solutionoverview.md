@@ -11,3 +11,5 @@ To understand why we chose this set of services, head over to [Architecture Deci
 Based on user input in the canvas app, ProvisionGenie logs team requests. Each new row in the **Teams Request** table will trigger the **Main flow** in Azure Logic Apps, which will then handle all other child flows:
 
 ![solution overview](../media/corecomponents/PG-solution-overview.png)
+
+To get a deeper understanding of the emtire data model of ProvisionGenie head over to [Dataverse Overview](dataverse.md)

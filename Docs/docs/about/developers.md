@@ -10,4 +10,6 @@ As this is an open-source initiative, we get some help by awesome friends:
 
 - Emotional support and debugging by [Yannick Reekmans](https://twitter.com/yannickreekmans),
 - ProvisionGenie Logo designed by [Michael Roth](https://twitter.com/MichaelRoth42)
-- Best music and support by[Lee Ford](https://twitter.com/lee_ford)
+- Best music and support by [Lee Ford](https://twitter.com/lee_ford)
+
+Additionally, we like to call out community contributors that helped with each release - take a look at our [release notes](releasenotes.md)

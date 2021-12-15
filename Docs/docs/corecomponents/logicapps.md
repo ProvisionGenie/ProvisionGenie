@@ -2,16 +2,17 @@
 
 ![header image](../media/index/Genie_Header.png)
 
-We created 5 Azure Logic Apps to handle the provisioning of the Teams:
+We created 6 Azure Logic Apps to handle the provisioning of the Teams:
 
 Our flows pick up the values logged in the Dataverse tables to provision what the user requested:
 
-- [1. Main flow](#1-main-flow)
-- [2. Create team](#2-create-team)
-- [3. Add people](#3-add-people)
-- [4. Create List/Library](#4-create-listlibrary)
-- [5. Create Task List](#5-create-task-list)
-- [6. Welcome Package](#6-welcome-package)
+- [Azure Logic Apps](#azure-logic-apps)
+    - [1. Main flow](#1-main-flow)
+    - [2. Create team](#2-create-team)
+    - [3. Add people](#3-add-people)
+    - [4. Create List/Library](#4-create-listlibrary)
+    - [5. Create Task List](#5-create-task-list)
+    - [6. Welcome Package](#6-welcome-package)
 
 ### 1. Main flow
 

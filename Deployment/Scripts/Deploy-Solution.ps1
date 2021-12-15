@@ -14,7 +14,7 @@ param (
     $SubscriptionId = "",
     [Parameter(Mandatory = $false)]
     [string]
-    $ResourceGroupName = "rg-ProvisionGenie",
+    $ResourceGroupName = "ProvisionGenie",
     [Parameter(Mandatory = $false)]
     [string]
     $AadAppName = "ProvisionGenieApp"

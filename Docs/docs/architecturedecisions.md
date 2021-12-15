@@ -55,7 +55,7 @@ Trying to circumvent the premium license for Dataverse by choosing Azure SQL or 
 
 ### Consequences of choosing Dataverse
 
-Using Dataverse results in licensing costs, as every user will need an Power Apps per app or a PowerApps per user plan. We are aware that this might come across as hurdle and that the desire to somehow bypass is hugh. But enterprise-grade solutions don't come for free.
+Using Dataverse results in licensing costs, as every user will need an Power Apps per app or a Power Apps per user plan. We are aware that this might come across as hurdle and that the desire to somehow bypass is hugh. But enterprise-grade solutions don't come for free.
 
 ## Integration
 

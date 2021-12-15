@@ -79,7 +79,7 @@ In our first proof of concept, we still used Power Automate to provision a custo
 
 We use [Microsoft Graph API](https://docs.microsoft.com/graph/overview) to provision all assets that were requested by users using the Power Apps Canvas app with Azure Logic Apps.
 
-Using Microsoft Planner for day-to-day task management within a team is considered to be a good practice. Unfortunately, the Planner API lacks of having application level permissions. Without application level permissions, we can't provision Planner plans with a Managed Identity. 
+Using Microsoft Planner for day-to-day task management within a team is considered to be a good practice. Unfortunately, the Planner API lacks of having application level permissions. Without application level permissions, we can't provision Planner plans with a Managed Identity.
 
 ### Decision
 

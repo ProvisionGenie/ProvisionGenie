@@ -1,8 +1,6 @@
 # 3. Deploy Azure resources
 
-The scripted deployment will create a new resource group, by default this is named `ProvisionGenie`.
-
-The script will create a new storage account, with the name that is supplied. A SAS Token with create, read, and write permissions is created and used to upload the ARM template files into a container within the storage account. Then the ARM template deployment is started.
+The scripted deployment will create a new resource group, by default this is named `ProvisionGenie` and will deploy all resources into it using the [bicep](https://docs.microsoft.com/azure/azure-resource-manager/bicep/overview) files.
 
 ## Deploy using the script
 
@@ -12,10 +10,9 @@ The script will create a new storage account, with the name that is supplied. A 
     - `cd ./ProvisionGenie/Deployment/Scripts`
 - Execute the script `./Deploy-Solution.ps1` and supply the following parameters:
 > If you want to supply a custom resource group name, AAD App Registration Name, or deploy to a different subscription you may provide those as parameters when running the script `./Deploy-Solution.ps1 -ResourceGroupName MyResourceGroup -SubscriptionId "00000000-0000-0000-0000-000000000000" -AadAppName MyCustomAadAppName`
-    - `Location` the Azure region to deploy into, e.g. westeurope
-    - `StorageAccountName` the name of the storage account to create, this must be globally unique
+    - `Location` the Azure region to deploy into, e.g. `westeurope`
     - `DataverseEnvironmentId` You obtained this from Dataverse as **Instance URL**
-    - `WelcomePackageUrl` the URL for learning material (if you don't know that for now, you can put `https://m365princess.com` or any other URL into it)
+    - `WelcomePackageUrl` the URL for learning material (if you don't know that for now, you can put `https://provisiongenie.com` or any other URL into it)
 - The script will run and deploy the Azure resources
 
 ## Validate deployment

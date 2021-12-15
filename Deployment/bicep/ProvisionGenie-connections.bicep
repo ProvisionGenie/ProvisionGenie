@@ -9,7 +9,7 @@ param servicePrincipal_TenantId string
 resource connections_commondataservice_name_resource 'Microsoft.Web/connections@2016-06-01' = {
   name: connections_commondataservice_name
   location: resourceLocation
-  kind: 'V1'
+  // kind: 'V1'
   properties: {
     displayName: connections_commondataservice_name
     parameterValues: {

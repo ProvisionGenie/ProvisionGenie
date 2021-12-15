@@ -5,9 +5,6 @@ param (
     $Location,
     [Parameter(Mandatory = $true)]
     [string]
-    $StorageAccountName,
-    [Parameter(Mandatory = $true)]
-    [string]
     $DataverseEnvironmentId,
     [Parameter(Mandatory = $true)]
     [string]
@@ -17,7 +14,7 @@ param (
     $SubscriptionId = "",
     [Parameter(Mandatory = $false)]
     [string]
-    $ResourceGroupName = "ProvisionGenie",
+    $ResourceGroupName = "rg-ProvisionGenie",
     [Parameter(Mandatory = $false)]
     [string]
     $AadAppName = "ProvisionGenieApp"
@@ -72,58 +69,13 @@ if ($roleAssignments.Count -eq 0) {
     az role assignment create --assignee $me.objectId --role contributor --resource-group $ResourceGroupName
 }
 
-Write-Host "Creating storage account $StorageAccountName"
-$StorageAccount = az storage account create `
-    --name $StorageAccountName `
-    --resource-group $ResourceGroupName `
-    --location $Location `
-    --sku Standard_LRS | ConvertFrom-Json
-if (!$?) { 
-    Write-Error "Unable to create storage account $StorageAccountName."
-    exit 1
-}
-Write-Host "Getting access key for storage account $StorageAccountName"
-$Key = az storage account keys list `
-    --account-name $StorageAccountName `
-    --resource-group $ResourceGroupName `
-    --query "[0].value"
-
-$DeployContainerName = "templates"
-Write-Host "Creating storage container $DeployContainerName in $StorageAccountName"
-$Container = az storage container create `
-    --name $DeployContainerName `
-    --account-name $StorageAccountName `
-    --auth-mode login
-
-# Set up an expriy for the SAS Token
-$Expiry = (Get-Date).AddHours(1).ToUniversalTime().ToString("yyyy-MM-dTH:mZ")
-Write-Host "Setting SAS Token for container expiring at $Expiry"
-$SasToken = az storage container generate-sas `
-    --name $DeployContainerName `
-    --account-name $StorageAccountName `
-    --https-only `
-    --permissions crw `
-    --expiry $Expiry `
-    --account-key $Key
-
-# use Join-Path to build the path so that this works on both Linux and Windows
-$TemplatePath = Join-Path ".." "bicep"
-Write-Host "Uploading templates at $TemplatePath to $DeployContainerName in $StorageAccountName"
-az storage blob upload-batch `
-    --destination $DeployContainerName `
-    --source $TemplatePath `
-    --account-name $StorageAccountName `
-    --sas-token $SasToken
-
-$MainTemplateUri = $StorageAccount.primaryEndpoints.blob + "$DeployContainerName/ProvisionGenie-root.bicep"
 
 $DeployTimestamp = (Get-Date).ToUniversalTime().ToString("yyyyMMdTHmZ")
 # Deploy
 az deployment group create `
     --name "DeployLinkedTemplate-$DeployTimestamp" `
     --resource-group $ResourceGroupName `
-    --template-uri $MainTemplateUri `
-    --query-string $SasToken `
+    --template-file ../bicep/ProvisionGenie-root.bicep `
     --parameters DataverseEnvironmentId=$DataverseEnvironmentId `
                 WelcomePackageUrl=$WelcomePackageUrl `
                 servicePrincipal_AppId=$($sp.appId) `

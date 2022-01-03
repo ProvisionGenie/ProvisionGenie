@@ -11,6 +11,7 @@ param resourceLocation string = resourceGroup().location
 param WelcomePackageUrl string
 param DataverseEnvironmentId string
 param servicePrincipal_AppId string
+param tenantUrl string
 
 @secure()
 param servicePrincipal_ClientSecret string
@@ -91,6 +92,7 @@ module createTeamDeployment 'ProvisionGenie-CreateTeam.bicep' = {
     resourceLocation: resourceLocation
     userAssignedIdentities_ProvisionGenie_ManagedIdentity_name: userAssignedIdentities_ProvisionGenie_ManagedIdentity_name
     workflows_ProvisionGenie_CreateTeam_name: workflows_ProvisionGenie_CreateTeam_name
+   
   }
   dependsOn: [
     managedIdentityDeployment
@@ -113,6 +115,7 @@ module welcomePackageDeployment 'ProvisionGenie-WelcomePackage.bicep' = {
 module MainDeployment ' ProvisionGenie-main.bicep' = {
   name: 'MainDeployment'
   params: {
+    tenantUrl:tenantUrl
     resourceLocation: resourceLocation
     userAssignedIdentities_ProvisionGenie_ManagedIdentity_name: userAssignedIdentities_ProvisionGenie_ManagedIdentity_name
     workflows_ProvisionGenie_Welcome_name: workflows_ProvisionGenie_Welcome_name

@@ -1,5 +1,6 @@
 param workflows_ProvisionGenie_Main_name string
 param workflows_ProvisionGenie_AddPeople_name string
+param workflows_ProvisionGenie_AddNotebook_name string
 param workflows_ProvisionGenie_Welcome_name string
 param workflows_ProvisionGenie_CreateTaskList_name string
 param workflows_ProvisionGenie_CreateLibrary_name string
@@ -9,7 +10,8 @@ param userAssignedIdentities_ProvisionGenie_ManagedIdentity_name string
 param connections_commondataservice_name string
 param resourceLocation string
 param DataverseEnvironmentId string
-param tenantUrl string
+
+
 
 resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@2019-05-01' = {
   name: workflows_ProvisionGenie_Main_name
@@ -62,6 +64,197 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
           }
           type: 'ApiConnection'
         }
+        Condition_Include_Notebook: {
+          actions: {
+            'HTTP_-_Get_channels': {
+              runAfter: {}
+              type: 'Http'
+              inputs: {
+                authentication: {
+                  audience: 'https://graph.microsoft.com'
+                  identity: userAssignedIdentities_ProvisionGenie_ManagedIdentity_name
+                  type: 'ManagedServiceIdentity'
+                }
+                method: 'GET'
+                uri: 'https://graph.microsoft.com/v1.0/teams/@{body(\'Parse_HTTP_body_for_Team_Id\')?[\'TeamId\']}/channels'
+              }
+            }
+            Parse_Channel_info: {
+              runAfter: {
+                'HTTP_-_Get_channels': [
+                  'Succeeded'
+                ]
+              }
+              type: 'ParseJson'
+              inputs: {
+                content: '@body(\'HTTP_-_Get_channels\')'
+                schema: {
+                  properties: {
+                    properties: {
+                      properties: {
+                        '@@odata.context': {
+                          properties: {
+                            type: {
+                              type: 'string'
+                            }
+                          }
+                          type: 'object'
+                        }
+                        '@@odata.count': {
+                          properties: {
+                            type: {
+                              type: 'string'
+                            }
+                          }
+                          type: 'object'
+                        }
+                        value: {
+                          properties: {
+                            items: {
+                              properties: {
+                                properties: {
+                                  properties: {
+                                    createdDateTime: {
+                                      properties: {
+                                        type: {
+                                          type: 'string'
+                                        }
+                                      }
+                                      type: 'object'
+                                    }
+                                    description: {
+                                      properties: {
+                                        type: {
+                                          type: 'string'
+                                        }
+                                      }
+                                      type: 'object'
+                                    }
+                                    displayName: {
+                                      properties: {
+                                        type: {
+                                          type: 'string'
+                                        }
+                                      }
+                                      type: 'object'
+                                    }
+                                    email: {
+                                      properties: {
+                                        type: {
+                                          type: 'string'
+                                        }
+                                      }
+                                      type: 'object'
+                                    }
+                                    id: {
+                                      properties: {
+                                        type: {
+                                          type: 'string'
+                                        }
+                                      }
+                                      type: 'object'
+                                    }
+                                    isFavoriteByDefault: {
+                                      properties: {}
+                                      type: 'object'
+                                    }
+                                    membershipType: {
+                                      properties: {
+                                        type: {
+                                          type: 'string'
+                                        }
+                                      }
+                                      type: 'object'
+                                    }
+                                    webUrl: {
+                                      properties: {
+                                        type: {
+                                          type: 'string'
+                                        }
+                                      }
+                                      type: 'object'
+                                    }
+                                  }
+                                  type: 'object'
+                                }
+                                required: {
+                                  items: {
+                                    type: 'string'
+                                  }
+                                  type: 'array'
+                                }
+                                type: {
+                                  type: 'string'
+                                }
+                              }
+                              type: 'object'
+                            }
+                            type: {
+                              type: 'string'
+                            }
+                          }
+                          type: 'object'
+                        }
+                      }
+                      type: 'object'
+                    }
+                    type: {
+                      type: 'string'
+                    }
+                  }
+                  type: 'object'
+                }
+              }
+            }
+            'ProvisionGenie-AddNotebook': {
+              runAfter: {
+                get_channel_General: [
+                  'Succeeded'
+                ]
+              }
+              type: 'Workflow'
+              inputs: {
+                body: {
+                  channelId: '@{outputs(\'get_channel_General\')?[\'id\']}'
+                  teamId: '@body(\'Parse_HTTP_body_for_Team_Id\')?[\'TeamId\']'
+                  teamName: '@triggerBody()?[\'cy_teamname\']'
+                  teamsTechnicalName: '@body(\'Complete_Technical_Name_in_Teams_request\')?[\'cy_teamtechnicalname\']'
+                }
+                host: {
+                  triggerName: 'manual'
+                  workflow: {
+                    id: resourceId('Microsoft.Logic/workflows', workflows_ProvisionGenie_AddNotebook_name)
+                  }
+                }
+              }
+            }
+            get_channel_General: {
+              runAfter: {
+                Parse_Channel_info: [
+                  'Succeeded'
+                ]
+              }
+              type: 'Compose'
+              inputs: '@first(body(\'Parse_Channel_info\')?[\'value\'])'
+            }
+          }
+          runAfter: {
+            Condition_Include_welcome_package: [
+              'Succeeded'
+            ]
+          }
+          expression: {
+            and: [
+              {
+                equals: [
+                  '@body(\'Complete_Technical_Name_in_Teams_request\')?[\'pg_includenotebook\']'
+                  '@true'
+                ]
+              }
+            ]
+          }
+          type: 'If'
+        }        
         Condition_Include_welcome_package: {
           actions: {
             'ProvisionGenie-Welcome': {

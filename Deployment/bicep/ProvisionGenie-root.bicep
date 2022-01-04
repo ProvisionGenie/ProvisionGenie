@@ -1,6 +1,7 @@
 param connections_commondataservice_name string = 'commondataservice'
 param workflows_ProvisionGenie_Main_name string = 'ProvisionGenie-Main'
 param workflows_ProvisionGenie_Welcome_name string = 'ProvisionGenie-Welcome'
+param workflows_ProvisionGenie_AddNotebook_name string = 'ProvisionGenie-AddNotebook'
 param workflows_ProvisionGenie_AddPeople_name string = 'ProvisionGenie-AddPeople'
 param workflows_ProvisionGenie_CreateList_name string = 'ProvisionGenie-CreateList'
 param workflows_ProvisionGenie_CreateTeam_name string = 'ProvisionGenie-CreateTeam'
@@ -11,7 +12,7 @@ param resourceLocation string = resourceGroup().location
 param WelcomePackageUrl string
 param DataverseEnvironmentId string
 param servicePrincipal_AppId string
-param tenantUrl string
+param tenantURL string = 'tenantURL'
 
 @secure()
 param servicePrincipal_ClientSecret string
@@ -112,10 +113,23 @@ module welcomePackageDeployment 'ProvisionGenie-WelcomePackage.bicep' = {
   ]
 }
 
-module MainDeployment ' ProvisionGenie-main.bicep' = {
+module addNotebookDeployment 'ProvisionGenie-AddNotebook.bicep' = {
+  name: 'addNotebookDeployment'
+  params: {
+    resourceLocation: resourceLocation
+    userAssignedIdentities_ProvisionGenie_ManagedIdentity_name: userAssignedIdentities_ProvisionGenie_ManagedIdentity_name
+    workflows_ProvisionGenie_AddNotebook_name: workflows_ProvisionGenie_AddNotebook_name
+    tenantURL:tenantURL
+   
+  }
+  dependsOn: [
+    managedIdentityDeployment
+  ]
+}
+
+module MainDeployment 'ProvisionGenie-main.bicep' = {
   name: 'MainDeployment'
   params: {
-    tenantUrl:tenantUrl
     resourceLocation: resourceLocation
     userAssignedIdentities_ProvisionGenie_ManagedIdentity_name: userAssignedIdentities_ProvisionGenie_ManagedIdentity_name
     workflows_ProvisionGenie_Welcome_name: workflows_ProvisionGenie_Welcome_name
@@ -127,6 +141,7 @@ module MainDeployment ' ProvisionGenie-main.bicep' = {
     workflows_ProvisionGenie_CreateTeam_name: workflows_ProvisionGenie_CreateTeam_name
     workflows_ProvisionGenie_Main_name: workflows_ProvisionGenie_Main_name
     workflows_ProvisionGenie_AddPeople_name: workflows_ProvisionGenie_AddPeople_name
+    workflows_ProvisionGenie_AddNotebook_name: workflows_ProvisionGenie_AddNotebook_name
   }
   dependsOn: [
     connectionsDeployment
@@ -137,5 +152,6 @@ module MainDeployment ' ProvisionGenie-main.bicep' = {
     createLibraryDeployment
     welcomePackageDeployment
     addPeopleDeployment
+    addNotebookDeployment
   ]
 }

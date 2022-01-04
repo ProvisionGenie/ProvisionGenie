@@ -5,7 +5,7 @@ param (
     $Location,
     [Parameter(Mandatory = $true)]
     [string]
-    $TenantUrl,
+    $TenantURL,
     [Parameter(Mandatory = $true)]
     [string]
     $DataverseEnvironmentId,
@@ -80,7 +80,7 @@ az deployment group create `
     --resource-group $ResourceGroupName `
     --template-file ../bicep/ProvisionGenie-root.bicep `
     --parameters DataverseEnvironmentId=$DataverseEnvironmentId `
-                tenantUrl=$tenantUrl `
+                tenantURL=$tenantURL `
                 WelcomePackageUrl=$WelcomePackageUrl `
                 servicePrincipal_AppId=$($sp.appId) `
                 servicePrincipal_ClientSecret=$($sp.password) `
@@ -134,8 +134,8 @@ foreach ($appRoleId in $appRoleIds) {
 #Get resourceId for SharePoint API    
 $spId = az ad sp list --query "[?appDisplayName=='Office 365 SharePoint Online'].appId | [0]" --all
 #Get appRoleIds
-$SitesFullControl = az ad sp show --id $spId --query "appRoles[?value=='Sites.FullControl.All'].id | [0]" -o tsv
-$sPappRoleIds = $SitesFullControl
+$sitesReadWriteAll = az ad sp show --id $spId --query "appRoles[?value=='Sites.ReadWrite.All'].id | [0]" -o tsv
+$sPappRoleIds = $sitesReadWriteAll
 #Loop over "all" sPappRoleIds
 foreach ($sPappRoleId in $sPappRoleIds) {
     $roleMatch = $currentRoles -match $sPappRoleId

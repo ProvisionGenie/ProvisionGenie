@@ -135,10 +135,8 @@ foreach ($appRoleId in $appRoleIds) {
 $sPResourceId = az ad sp list --display-name "Office 365 SharePoint Online" --query [0].objectId
 $spId = az ad sp list --query "[?appDisplayName=='Office 365 SharePoint Online'].appId | [0]" --all
 #Get appRoleIds
-$sitesReadWriteAll = az ad sp show --id $spId --query "appRoles[?value=='Sites.ReadWrite.All'].id | [0]" -o tsv
-$sitesManageAll = az ad sp show --id $spId --query "appRoles[?value=='Sites.Manage.All'].id | [0]" -o tsv
 $sitesFullControlAll = az ad sp show --id $spId --query "appRoles[?value=='Sites.FullControl.All'].id | [0]" -o tsv
-$sPappRoleIds = $sitesReadWriteAll, $sitesManageAll, $sitesFullControlAll
+$sPappRoleIds =  $sitesFullControlAll
 #Loop over "all" sPappRoleIds
 foreach ($sPappRoleId in $sPappRoleIds) {
    $roleMatch = $currentRoles -match $sPappRoleId

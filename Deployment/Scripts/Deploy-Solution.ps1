@@ -132,17 +132,18 @@ foreach ($appRoleId in $appRoleIds) {
     }
 }
 #Get resourceId for SharePoint API    
+$sPResourceId = az ad sp list --display-name "Office 365 SharePoint Online" --query [0].objectId
 $spId = az ad sp list --query "[?appDisplayName=='Office 365 SharePoint Online'].appId | [0]" --all
 #Get appRoleIds
 $sitesReadWriteAll = az ad sp show --id $spId --query "appRoles[?value=='Sites.ReadWrite.All'].id | [0]" -o tsv
 $sPappRoleIds = $sitesReadWriteAll
 #Loop over "all" sPappRoleIds
 foreach ($sPappRoleId in $sPappRoleIds) {
-    $roleMatch = $currentRoles -match $sPappRoleId
+   $roleMatch = $currentRoles -match $sPappRoleId
     if ($roleMatch.Length -eq 0) {
-# Add the role assignment to the principal
-$body = "{'principalId':'$principalId','resourceId':'$spId','appRoleId':'$SitesFullControl'}";
-az rest `
+        #Add the role assignment to the principal
+        $body = "{principalId:'$principalId','resourceId':'$sPResourceId','appRoleId':'$spAppRoleId'}";
+        az rest `
             --method post `
             --uri https://graph.microsoft.com/v1.0/servicePrincipals/$principalId/appRoleAssignments `
             --body $body `
@@ -151,3 +152,7 @@ az rest `
     }
 }
 Write-Host "Done"
+
+
+
+

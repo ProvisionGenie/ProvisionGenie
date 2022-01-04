@@ -2,7 +2,7 @@ param workflows_ProvisionGenie_AddNotebook_name string
 param resourceLocation string
 param tenantURL string
 param userAssignedIdentities_ProvisionGenie_ManagedIdentity_name string
-param userassignedidentities_provisiongenie_managedidentity_externalid string = '/subscriptions/fdf0235b-0756-409c-bc69-23d183fbff17/resourceGroups/provisiongenie/providers/microsoft.managedidentity/userassignedidentities/Provisiongenie-Managedidentity'
+param userassignedidentities_provisiongenie_managedidentity_externalid string = '/subscriptions/fdf0235b-0756-409c-bc69-23d183fbff17/resourceGroups/provisiongenie/providers/microsoft.managedidentity/userassignedidentities/Provisiongenie-ManagedIdentity'
 
 resource workflows_ProvisionGenie_AddNotebook_name_resource 'Microsoft.Logic/workflows@2019-05-01' = {
   name: workflows_ProvisionGenie_AddNotebook_name

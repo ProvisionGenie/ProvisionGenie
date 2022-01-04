@@ -2,7 +2,7 @@ param workflows_ProvisionGenie_AddNotebook_name string
 param resourceLocation string
 param tenantURL string
 param userAssignedIdentities_ProvisionGenie_ManagedIdentity_name string
-param userassignedidentities_provisiongenie_managedidentity_externalid string = '/subscriptions/fdf0235b-0756-409c-bc69-23d183fbff17/resourceGroups/provisiongenie/providers/microsoft.managedidentity/userassignedidentities/provisiongenie-managedidentity'
+param userassignedidentities_provisiongenie_managedidentity_externalid string = '/subscriptions/fdf0235b-0756-409c-bc69-23d183fbff17/resourceGroups/provisiongenie/providers/microsoft.managedidentity/userassignedidentities/Provisiongenie-Managedidentity'
 
 resource workflows_ProvisionGenie_AddNotebook_name_resource 'Microsoft.Logic/workflows@2019-05-01' = {
   name: workflows_ProvisionGenie_AddNotebook_name
@@ -86,7 +86,7 @@ resource workflows_ProvisionGenie_AddNotebook_name_resource 'Microsoft.Logic/wor
           type: 'Http'
           inputs: {
             authentication: {
-              audience: 'https://parameters(\'tenantURL\').sharepoint.com/'
+              audience: '@{parameters(\'TenantURL\')}'
               identity: userassignedidentities_provisiongenie_managedidentity_externalid
               type: 'ManagedServiceIdentity'
             }
@@ -94,7 +94,7 @@ resource workflows_ProvisionGenie_AddNotebook_name_resource 'Microsoft.Logic/wor
               Accept: 'application/json;odata=verbose'
             }
             method: 'POST'
-            uri: 'https://parameters(\'tenantURL\').sharepoint.com/sites/@{triggerBody()?[\'teamsTechnicalName\']}/_api/web/features/add(\'f151bb39-7c3b-414f-bb36-6bf18872052f\')'
+            uri: '@{parameters(\'TenantURL\')}/sites/@{triggerBody()?[\'teamsTechnicalName\']}/_api/web/features/add(\'f151bb39-7c3b-414f-bb36-6bf18872052f\')'
           }
         }
         'HTTP_-_get_Notebook': {
@@ -129,7 +129,7 @@ resource workflows_ProvisionGenie_AddNotebook_name_resource 'Microsoft.Logic/wor
               {
                 name: 'URL'
                 type: 'string'
-                value: 'https://parameters(\'tenantURL\').sharepoint.com/sites/@{triggerBody()?[\'teamsTechnicalName\']}/SiteAssets/@{triggerBody()?[\'teamName\']}%20Notebook'
+                value: '@{parameters(\'TenantURL\')}sites/@{triggerBody()?[\'teamsTechnicalName\']}/SiteAssets/@{triggerBody()?[\'teamName\']}%20Notebook'
               }
             ]
           }

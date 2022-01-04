@@ -72,7 +72,7 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
               inputs: {
                 authentication: {
                   audience: 'https://graph.microsoft.com'
-                  identity: userAssignedIdentities_ProvisionGenie_ManagedIdentity_name
+                  identity: resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', userAssignedIdentities_ProvisionGenie_ManagedIdentity_name)
                   type: 'ManagedServiceIdentity'
                 }
                 method: 'GET'

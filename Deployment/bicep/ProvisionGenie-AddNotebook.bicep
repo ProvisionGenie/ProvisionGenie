@@ -86,7 +86,7 @@ resource workflows_ProvisionGenie_AddNotebook_name_resource 'Microsoft.Logic/wor
           type: 'Http'
           inputs: {
             authentication: {
-              audience: '@{parameters(\'TenantURL\')}'
+              audience: '@{parameters(\'tenantURL\')}'
               identity: userassignedidentities_provisiongenie_managedidentity_externalid
               type: 'ManagedServiceIdentity'
             }
@@ -94,7 +94,7 @@ resource workflows_ProvisionGenie_AddNotebook_name_resource 'Microsoft.Logic/wor
               Accept: 'application/json;odata=verbose'
             }
             method: 'POST'
-            uri: '@{parameters(\'TenantURL\')}/sites/@{triggerBody()?[\'teamsTechnicalName\']}/_api/web/features/add(\'f151bb39-7c3b-414f-bb36-6bf18872052f\')'
+            uri: '@{parameters(\'tenantURL\')}sites/@{triggerBody()?[\'teamsTechnicalName\']}/_api/web/features/add(\'f151bb39-7c3b-414f-bb36-6bf18872052f\')'
           }
         }
         'HTTP_-_get_Notebook': {
@@ -129,7 +129,7 @@ resource workflows_ProvisionGenie_AddNotebook_name_resource 'Microsoft.Logic/wor
               {
                 name: 'URL'
                 type: 'string'
-                value: '@{parameters(\'TenantURL\')}sites/@{triggerBody()?[\'teamsTechnicalName\']}/SiteAssets/@{triggerBody()?[\'teamName\']}%20Notebook'
+                value: '@{parameters(\'tenantURL\')}sites/@{triggerBody()?[\'teamsTechnicalName\']}/SiteAssets/@{triggerBody()?[\'teamName\']}%20Notebook'
               }
             ]
           }

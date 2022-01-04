@@ -5,7 +5,7 @@ param (
     $Location,
     [Parameter(Mandatory = $true)]
     [string]
-    $TenantURL,
+    $tenantURL,
     [Parameter(Mandatory = $true)]
     [string]
     $DataverseEnvironmentId,
@@ -136,7 +136,8 @@ $sPResourceId = az ad sp list --display-name "Office 365 SharePoint Online" --qu
 $spId = az ad sp list --query "[?appDisplayName=='Office 365 SharePoint Online'].appId | [0]" --all
 #Get appRoleIds
 $sitesReadWriteAll = az ad sp show --id $spId --query "appRoles[?value=='Sites.ReadWrite.All'].id | [0]" -o tsv
-$sPappRoleIds = $sitesReadWriteAll
+$sitesManageAll = az ad sp show --id $spId --query "appRoles[?value=='Sites.Manage.All'].id | [0]" -o tsv
+$sPappRoleIds = $sitesReadWriteAll, $sitesManageAll
 #Loop over "all" sPappRoleIds
 foreach ($sPappRoleId in $sPappRoleIds) {
    $roleMatch = $currentRoles -match $sPappRoleId

@@ -96,29 +96,9 @@ resource workflows_ProvisionGenie_AddNotebook_name_resource 'Microsoft.Logic/wor
             uri: '@{parameters(\'tenantURL\')}sites/@{triggerBody()?[\'teamsTechnicalName\']}/_api/web/features/add(\'f151bb39-7c3b-414f-bb36-6bf18872052f\')'
           }
         }
-        'HTTP_-_get_Notebook': {
-          runAfter: {
-            'HTTP_-_Trigger_Notebook_Creation': [
-              'Succeeded'
-            ]
-          }
-          type: 'Http'
-          inputs: {
-            authentication: {
-              audience: 'https://graph.microsoft.com'
-              identity: resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', userAssignedIdentities_ProvisionGenie_ManagedIdentity_name)
-              type: 'ManagedServiceIdentity'
-            }
-            headers: {
-              'content-type': 'application/json'
-            }
-            method: 'GET'
-            uri: 'https://graph.microsoft.com/v1.0/groups/@{triggerBody()?[\'teamId\']}/onenote/notebooks'
-          }
-        }
         Initialize_variable_Notebook_URL: {
           runAfter: {
-            'HTTP_-_get_Notebook': [
+            'HTTP_-_Trigger_Notebook_Creation': [
               'Succeeded'
             ]
           }

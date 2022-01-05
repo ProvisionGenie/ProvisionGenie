@@ -155,7 +155,7 @@ resource workflows_ProvisionGenie_AddNotebook_name_resource 'Microsoft.Logic/wor
         }
         'HTTP_-_Trigger_Notebook_Creation': {
           runAfter: {
-            get_channel_General: [
+            'HTTP_-_Get_Channels': [
               'Succeeded'
             ]
           }

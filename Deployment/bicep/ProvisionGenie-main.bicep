@@ -84,15 +84,7 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
                 }
               }
             }
-            get_channel_General: {
-              runAfter: {
-                Parse_Channel_info: [
-                  'Succeeded'
-                ]
-              }
-              type: 'Compose'
-              inputs: '@first(body(\'Parse_Channel_info\')?[\'value\'])'
-            }
+
           }
           runAfter: {
             Condition_Include_welcome_package: [

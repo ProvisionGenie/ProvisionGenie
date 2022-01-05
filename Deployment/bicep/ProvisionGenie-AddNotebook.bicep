@@ -19,8 +19,7 @@ resource workflows_ProvisionGenie_AddNotebook_name_resource 'Microsoft.Logic/wor
       contentVersion: '1.0.0.0'
       parameters: {
         tenantURL: {
-          defaultvalue: tenantURL
-
+          defaultValue: tenantURL
           type: 'String'
         }
       }
@@ -31,9 +30,6 @@ resource workflows_ProvisionGenie_AddNotebook_name_resource 'Microsoft.Logic/wor
           inputs: {
             schema: {
               properties: {
-                channelId: {
-                  type: 'string'
-                }
                 teamId: {
                   type: 'string'
                 }
@@ -77,11 +73,28 @@ resource workflows_ProvisionGenie_AddNotebook_name_resource 'Microsoft.Logic/wor
               'Content-type': 'application/json'
             }
             method: 'POST'
-            uri: 'https://graph.microsoft.com/v1.0/teams/@{triggerBody()?[\'teamId\']}/channels/@{triggerBody()?[\'channelId\']}/tabs'
+            uri: 'https://graph.microsoft.com/v1.0/teams/@{triggerBody()?[\'teamId\']}/channels/@{outputs(\'get_channel_General\')?[\'id\']}/tabs'
+          }
+        }
+        'HTTP_-_Get_Channels': {
+          runAfter: {}
+          type: 'Http'
+          inputs: {
+            authentication: {
+              audience: 'https://graph.microsoft.com'
+              identity: resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', userAssignedIdentities_ProvisionGenie_ManagedIdentity_name)
+              type: 'ManagedServiceIdentity'
+            }
+            method: 'GET'
+            uri: 'https://graph.microsoft.com/v1.0/teams/@{triggerBody()?[\'teamId\']}/channels'
           }
         }
         'HTTP_-_Trigger_Notebook_Creation': {
-          runAfter: {}
+          runAfter: {
+            get_channel_General: [
+              'Succeeded'
+            ]
+          }
           type: 'Http'
           inputs: {
             authentication: {
@@ -113,6 +126,133 @@ resource workflows_ProvisionGenie_AddNotebook_name_resource 'Microsoft.Logic/wor
             ]
           }
         }
+        Parse_Channel_info: {
+          runAfter: {
+            'HTTP_-_Get_Channels': [
+              'Succeeded'
+            ]
+          }
+          type: 'ParseJson'
+          inputs: {
+            content: '@body(\'HTTP_-_Get_Channels\')'
+            schema: {
+              properties: {
+                properties: {
+                  properties: {
+                    '@@odata.context': {
+                      properties: {
+                        type: {
+                          type: 'string'
+                        }
+                      }
+                      type: 'object'
+                    }
+                    '@@odata.count': {
+                      properties: {
+                        type: {
+                          type: 'string'
+                        }
+                      }
+                      type: 'object'
+                    }
+                    value: {
+                      properties: {
+                        items: {
+                          properties: {
+                            properties: {
+                              properties: {
+                                createdDateTime: {
+                                  properties: {
+                                    type: {
+                                      type: 'string'
+                                    }
+                                  }
+                                  type: 'object'
+                                }
+                                description: {
+                                  properties: {
+                                    type: {
+                                      type: 'string'
+                                    }
+                                  }
+                                  type: 'object'
+                                }
+                                displayName: {
+                                  properties: {
+                                    type: {
+                                      type: 'string'
+                                    }
+                                  }
+                                  type: 'object'
+                                }
+                                email: {
+                                  properties: {
+                                    type: {
+                                      type: 'string'
+                                    }
+                                  }
+                                  type: 'object'
+                                }
+                                id: {
+                                  properties: {
+                                    type: {
+                                      type: 'string'
+                                    }
+                                  }
+                                  type: 'object'
+                                }
+                                isFavoriteByDefault: {
+                                  properties: {}
+                                  type: 'object'
+                                }
+                                membershipType: {
+                                  properties: {
+                                    type: {
+                                      type: 'string'
+                                    }
+                                  }
+                                  type: 'object'
+                                }
+                                webUrl: {
+                                  properties: {
+                                    type: {
+                                      type: 'string'
+                                    }
+                                  }
+                                  type: 'object'
+                                }
+                              }
+                              type: 'object'
+                            }
+                            required: {
+                              items: {
+                                type: 'string'
+                              }
+                              type: 'array'
+                            }
+                            type: {
+                              type: 'string'
+                            }
+                          }
+                          type: 'object'
+                        }
+                        type: {
+                          type: 'string'
+                        }
+                      }
+                      type: 'object'
+                    }
+                  }
+                  type: 'object'
+                }
+                type: {
+                  type: 'string'
+                }
+              }
+              type: 'object'
+            }
+          }
+        }
         Response: {
           runAfter: {
             'HTTP_-_Add_Notebook_to_channel_general': [
@@ -124,6 +264,15 @@ resource workflows_ProvisionGenie_AddNotebook_name_resource 'Microsoft.Logic/wor
           inputs: {
             statusCode: 200
           }
+        }
+        get_channel_General: {
+          runAfter: {
+            Parse_Channel_info: [
+              'Succeeded'
+            ]
+          }
+          type: 'Compose'
+          inputs: '@first(body(\'Parse_Channel_info\')?[\'value\'])'
         }
       }
       outputs: {}

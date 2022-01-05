@@ -170,7 +170,7 @@ resource workflows_ProvisionGenie_AddNotebook_name_resource 'Microsoft.Logic/wor
               Accept: 'application/json;odata=verbose'
             }
             method: 'POST'
-            uri: '@{parameters(\'tenantURL\')}sites/@{triggerBody()?[\'teamsTechnicalName\']}/_api/web/features/add(\'f151bb39-7c3b-414f-bb36-6bf18872052f\')'
+            uri: '@{parameters(\'tenantURL\')}/sites/@{triggerBody()?[\'teamsTechnicalName\']}/_api/web/features/add(\'f151bb39-7c3b-414f-bb36-6bf18872052f\')'
           }
         }
         Initialize_variable_Notebook_URL: {

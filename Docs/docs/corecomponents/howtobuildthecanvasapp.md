@@ -347,6 +347,7 @@ Set(
   - description
   - whether our owner (= signed-in user) wants a 'WelcomePackage' or not
   - whether our owner wants a SharePoint list provisioned for task management
+  - whether our owner wants the Notebook of the SharePoint site, that backs the team, be pinned as a tab to the channel **General**
 
 We get the information by a form which is connected to a DataVerse table **Teams Requests** - see also [Solution Overview](logicapps.md#solution-overview)
 
@@ -481,7 +482,7 @@ This way, our user can review the list of members and even remove some of them a
 > This neat solution is described in more detail on [Carmen Ysewijn's blog](https://digipersonal.com/2021/04/22/canvas-app-ui-element-tag-box-list/)
 
 
-> Do the same for owners: Create a Combobox, add button, clear button, gallery. 
+> Do the same for owners: Create a Combobox, add button, clear button, gallery.
 
 #### Save button
 

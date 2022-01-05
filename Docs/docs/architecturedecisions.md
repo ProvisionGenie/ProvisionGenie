@@ -108,4 +108,6 @@ Usually, a new Team also contains a Teams Wiki tab. The Wiki is a (hidden) Share
 
 As part of our provisioning process, we delete the Teams Wiki from all created channels. We believe, that the Wiki is not a good place to store any kind of knowledge in.
 
-Of course our decision to delete the Wikis from all initial channels does not prevent users from adding a Wiki tab to an existing or manually created channel, but at least it is not the default behavior in a new Team. In the future, we want to automatically add a OneNote notebook.
+Of course our decision to delete the Wikis from all initial channels does not prevent users from adding a Wiki tab to an existing or manually created channel, but at least it is not the default behavior in a new Team.
+
+Optionally, we add the Notebook of the SharePoint site that backs the team, as a tab to the Channel **General** and already add the first note there.

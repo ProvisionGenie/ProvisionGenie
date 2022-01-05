@@ -185,7 +185,7 @@ resource workflows_ProvisionGenie_AddNotebook_name_resource 'Microsoft.Logic/wor
               {
                 name: 'URL'
                 type: 'string'
-                value: '@{parameters(\'tenantURL\')}sites/@{triggerBody()?[\'teamsTechnicalName\']}/SiteAssets/@{triggerBody()?[\'teamName\']}%20Notebook'
+                value: '@{parameters(\'tenantURL\')}/sites/@{triggerBody()?[\'teamsTechnicalName\']}/SiteAssets/@{triggerBody()?[\'teamName\']}%20Notebook'
               }
             ]
           }

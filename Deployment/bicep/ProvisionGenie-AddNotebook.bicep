@@ -175,7 +175,7 @@ resource workflows_ProvisionGenie_AddNotebook_name_resource 'Microsoft.Logic/wor
         }
         Initialize_variable_Notebook_URL: {
           runAfter: {
-            'HTTP_-_Trigger_Notebook_Creation': [
+            'HTTP_-_Create_page': [
               'Succeeded'
             ]
           }

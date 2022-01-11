@@ -32,7 +32,7 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
           type: 'Object'
         }
         DataverseEnvironmentId: {
-          defaultValue: 'https://org1fcdb159.crm4.dynamics.com'
+          defaultValue: DataverseEnvironmentId
           type: 'String'
         }
       }

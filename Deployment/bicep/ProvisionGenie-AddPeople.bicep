@@ -30,23 +30,27 @@ resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workf
           kind: 'Http'
           inputs: {
             schema: {
+              members: {
+                type: 'string'
+              }
+              owners: {
+                type: 'string'
+              }
               properties: {
-                members: {
-                  type: 'string'
-                }
-                owners: {
-                  type: 'string'
-                }
-                teamId: {
-                  type: 'string'
-                }
+                guests: '{\r\n "Organization": {\r\n "type": "string"\r\n  },\r\n  "UPN": {\r\n  "type": "string"\r\n },\r\n  "firstName": {\r\n "type": "string"\r\n },\r\n "lastName": {\r\n  "type": "string"\r\n  }\r\n }'
+                type: 'string'
+              }
+              teamId: {
+                type: 'string'
+              }
+              teamName: {
+                type: 'string'
               }
               type: 'object'
             }
           }
-          }
         }
-    
+      }
       actions: {
         Initialize_variable_People: {
           runAfter: {}

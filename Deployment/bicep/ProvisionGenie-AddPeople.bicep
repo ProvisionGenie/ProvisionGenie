@@ -1,6 +1,7 @@
 param workflows_ProvisionGenie_AddPeople_name string
 param userAssignedIdentities_ProvisionGenie_ManagedIdentity_name string
 param resourceLocation string
+param primaryDomain string
 
 resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workflows@2019-05-01' = {
   name: workflows_ProvisionGenie_AddPeople_name
@@ -16,7 +17,12 @@ resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workf
     definition: {
       '$schema': 'https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#'
       contentVersion: '1.0.0.0'
-      parameters: {}
+      parameters: {
+        primaryDomain: {
+          defaultValue: primaryDomain
+          type: 'String'
+        }
+      }
       triggers: {
         manual: {
           type: 'Request'

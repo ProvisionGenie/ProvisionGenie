@@ -13,6 +13,8 @@ param WelcomePackageUrl string
 param DataverseEnvironmentId string
 param servicePrincipal_AppId string
 param tenantURL string = 'tenantURL'
+param primaryDomain string = 'primaryDomain'
+
 
 @secure()
 param servicePrincipal_ClientSecret string
@@ -55,6 +57,7 @@ module addPeopleDeployment 'ProvisionGenie-AddPeople.bicep' = {
     resourceLocation: resourceLocation
     workflows_ProvisionGenie_AddPeople_name: workflows_ProvisionGenie_AddPeople_name
     userAssignedIdentities_ProvisionGenie_ManagedIdentity_name: userAssignedIdentities_ProvisionGenie_ManagedIdentity_name
+    primaryDomain:primaryDomain
   }
   dependsOn: [
     managedIdentityDeployment

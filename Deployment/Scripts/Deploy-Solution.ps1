@@ -5,6 +5,9 @@ param (
     $Location,
     [Parameter(Mandatory = $true)]
     [string]
+    $PrimaryDomain,
+    [Parameter(Mandatory = $true)]
+    [string]
     $tenantURL,
     [Parameter(Mandatory = $true)]
     [string]
@@ -81,6 +84,7 @@ az deployment group create `
     --template-file ../bicep/ProvisionGenie-root.bicep `
     --parameters DataverseEnvironmentId=$DataverseEnvironmentId `
                 tenantURL=$tenantURL `
+                primaryDomain= $PrimaryDomain `
                 WelcomePackageUrl=$WelcomePackageUrl `
                 servicePrincipal_AppId=$($sp.appId) `
                 servicePrincipal_ClientSecret=$($sp.password) `
@@ -152,7 +156,3 @@ foreach ($sPappRoleId in $sPappRoleIds) {
     }
 }
 Write-Host "Done"
-
-
-
-

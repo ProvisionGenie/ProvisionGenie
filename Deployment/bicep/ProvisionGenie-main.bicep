@@ -1,5 +1,6 @@
 param workflows_ProvisionGenie_Main_name string
 param workflows_ProvisionGenie_AddPeople_name string
+param workflows_ProvisionGenie_AddNotebook_name string
 param workflows_ProvisionGenie_Welcome_name string
 param workflows_ProvisionGenie_CreateTaskList_name string
 param workflows_ProvisionGenie_CreateLibrary_name string
@@ -9,6 +10,7 @@ param userAssignedIdentities_ProvisionGenie_ManagedIdentity_name string
 param connections_commondataservice_name string
 param resourceLocation string
 param DataverseEnvironmentId string
+
 
 resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@2019-05-01' = {
   name: workflows_ProvisionGenie_Main_name
@@ -23,6 +25,7 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
     state: 'Enabled'
     definition: {
       '$schema': 'https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#'
+
       actions: {
         Channels: {
           inputs: {
@@ -61,6 +64,45 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
           }
           type: 'ApiConnection'
         }
+        Condition_Include_Notebook: {
+          actions: {
+            'ProvisionGenie-AddNotebook': {
+              runAfter: {}
+              type: 'Workflow'
+              inputs: {
+                body: {
+
+                  teamId: '@body(\'Parse_HTTP_body_for_Team_Id\')?[\'TeamId\']'
+                  teamName: '@triggerBody()?[\'cy_teamname\']'
+                  teamsTechnicalName: '@body(\'Complete_Technical_Name_in_Teams_request\')?[\'cy_teamtechnicalname\']'
+                }
+                host: {
+                  triggerName: 'manual'
+                  workflow: {
+                    id: resourceId('Microsoft.Logic/workflows', workflows_ProvisionGenie_AddNotebook_name)
+                  }
+                }
+              }
+            }
+
+          }
+          runAfter: {
+            Condition_Include_welcome_package: [
+              'Succeeded'
+            ]
+          }
+          expression: {
+            and: [
+              {
+                equals: [
+                  '@body(\'Complete_Technical_Name_in_Teams_request\')?[\'pg_includenotebook\']'
+                  '@true'
+                ]
+              }
+            ]
+          }
+          type: 'If'
+        }        
         Condition_Include_welcome_package: {
           actions: {
             'ProvisionGenie-Welcome': {

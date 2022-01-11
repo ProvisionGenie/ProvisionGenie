@@ -75,7 +75,6 @@ if ($roleAssignments.Count -eq 0) {
     az role assignment create --assignee $me.objectId --role contributor --resource-group $ResourceGroupName
 }
 
-
 $DeployTimestamp = (Get-Date).ToUniversalTime().ToString("yyyyMMdTHmZ")
 # Deploy
 az deployment group create `
@@ -84,7 +83,7 @@ az deployment group create `
     --template-file ../bicep/ProvisionGenie-root.bicep `
     --parameters DataverseEnvironmentId=$DataverseEnvironmentId `
                 tenantURL=$tenantURL `
-                primaryDomain= $primaryDomain `
+                primaryDomain =$primaryDomain
                 WelcomePackageUrl=$WelcomePackageUrl `
                 servicePrincipal_AppId=$($sp.appId) `
                 servicePrincipal_ClientSecret=$($sp.password) `

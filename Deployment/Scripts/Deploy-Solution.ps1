@@ -5,7 +5,7 @@ param (
     $Location,
     [Parameter(Mandatory = $true)]
     [string]
-    $PrimaryDomain,
+    $primaryDomain,
     [Parameter(Mandatory = $true)]
     [string]
     $tenantURL,
@@ -84,7 +84,7 @@ az deployment group create `
     --template-file ../bicep/ProvisionGenie-root.bicep `
     --parameters DataverseEnvironmentId=$DataverseEnvironmentId `
                 tenantURL=$tenantURL `
-                primaryDomain= $PrimaryDomain `
+                primaryDomain= $primaryDomain `
                 WelcomePackageUrl=$WelcomePackageUrl `
                 servicePrincipal_AppId=$($sp.appId) `
                 servicePrincipal_ClientSecret=$($sp.password) `

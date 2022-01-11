@@ -2,7 +2,7 @@
 
 ![header image](../media/index/Genie_Header.png)
 
-We created 6 Azure Logic Apps to handle the provisioning of the Teams:
+We created 7 Azure Logic Apps to handle the provisioning of the Teams:
 
 Our flows pick up the values logged in the Dataverse tables to provision what the user requested:
 
@@ -13,6 +13,7 @@ Our flows pick up the values logged in the Dataverse tables to provision what th
     - [4. Create List/Library](#4-create-listlibrary)
     - [5. Create Task List](#5-create-task-list)
     - [6. Welcome Package](#6-welcome-package)
+    - [7. Add Notebook](#7-add-notebook)
 
 ### 1. Main flow
 
@@ -171,5 +172,21 @@ The welcome package adds a url with training material to the General channel of 
 4. A HTTP request lists the channels in the team
 5. The channel info is parsed
 6. The General channel is always the first channel returned when the channels are listed, this is extracted from the channel info
-7. An HTTP request is sent to add the training material url as a website tab in the new team's general channel
+7. An HTTP request is sent to add the training material URLas a website tab in the new team's general channel
 8. Respond to the request caller
+
+### 7. Add Notebook
+
+This flow adds the notebook of the SharePoint sites, that backs the team, to the channel **General** and creates the first section and the first page.
+
+![Add Notebook Overview](../media/corecomponents/LogicApps-AddNotebook.png)
+
+1. The Logic Apps is triggered from a HTTP request, for example as a child logic app
+2. An HTTP request lists the channels in the team
+3. An HTTP request triggers the creation of the Notebook in the site that backs the Team.
+4. An HTTP request gets the notebook information
+5. An HTTP request creates a section in the notebook
+6. An HTTP request creates a page in the notebook
+7. A variable is initialized for the `Notebook URL`
+8. An HTTP request adds the Notebook to the Channel **General**
+9. Respond to the request caller

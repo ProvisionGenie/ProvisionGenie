@@ -10,6 +10,7 @@ We chose Dataverse as our storage for all requests and created five tables:
     - TeamOwner
     - includeTaskList
     - includeWelcomePackage
+    - includeNotebook
 
 2. Each Team can have multiple channels, which we log in the **TeamsChannel** table, these are the most important columns:
     - Channelname

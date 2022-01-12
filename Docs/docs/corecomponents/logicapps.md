@@ -131,6 +131,11 @@ In the Create team flow, the requested team is created with the specified channe
 5. The owners get splitted by an `;`
 6. the `People` variable gets appended with the body that we need in the HTTP request to add owners
 7. HTTP request adds both members get added in a single call
+8. for each guest, the UPN gets created
+9. **TRY** scope: we check if this user already exists in Azure Active Directory
+10. **CATCH** scope: we invite the user to the tenat and wait until they accepted the invitation and update the user information for `firstName`, `lastName` and `Company`
+11. we add the user to the group
+12. Respond to the request caller
 
 ### 4. Create List/Library
 

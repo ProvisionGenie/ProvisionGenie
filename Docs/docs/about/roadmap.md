@@ -11,5 +11,6 @@ We will start working on the following features soon:
 - consolidating Azure Logic Apps
 - let users link list and library to a channels to display them there as a tab
 - let users create more than one list and more than one library
+- let users add guests
 
 To manage expectations: We will take some xmas break to recharge batteries ⭐

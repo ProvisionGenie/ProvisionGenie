@@ -11,6 +11,7 @@ The scripted deployment will create a new resource group, by default this is nam
 - Execute the script `./Deploy-Solution.ps1` and supply the following parameters:
 > If you want to supply a custom resource group name, AAD App Registration Name, or deploy to a different subscription you may provide those as parameters when running the script `./Deploy-Solution.ps1 -ResourceGroupName MyResourceGroup -SubscriptionId "00000000-0000-0000-0000-000000000000" -AadAppName MyCustomAadAppName`
     - `Location` the Azure region to deploy into, e.g. `westeurope`
+    - `primaryDomain` the Azure primary Domain
     - `TenantURL` - you obtained this from the SharePoint app `https://<your-tenant-name-here>.sharepoint.com`
     - `DataverseEnvironmentId` You obtained this from Dataverse as **Instance URL**
     - `WelcomePackageUrl` the URL for learning material (if you don't know that for now, you can put `https://provisiongenie.com` or any other URL into it)

@@ -139,8 +139,8 @@ resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workf
                               type: 'Wait'
                               inputs: {
                                 interval: {
-                                  count: 1
-                                  unit: 'Minute'
+                                  count: 4
+                                  unit: 'Hour'
                                 }
                               }
                             }

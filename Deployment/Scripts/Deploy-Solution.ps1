@@ -76,7 +76,7 @@ if ($roleAssignments.Count -eq 0) {
     az role assignment create --assignee $me.objectId --role contributor --resource-group $ResourceGroupName
 }
 
-$DeployTimestamp = (Get-Date).ToUniversalTime().ToString("yyyyMMdTHmZ")
+$DeployTimestamp = (Get-Date).ToLocalTime().ToString("yyyyMMdTHmZ")
 # Deploy
 az deployment group create `
     --name "DeployLinkedTemplate-$DeployTimestamp" `

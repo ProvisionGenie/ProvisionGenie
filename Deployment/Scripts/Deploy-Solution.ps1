@@ -83,13 +83,12 @@ az deployment group create `
     --resource-group $ResourceGroupName `
     --template-file ../bicep/ProvisionGenie-root.bicep `
     --parameters DataverseEnvironmentId=$DataverseEnvironmentId `
+                WelcomePackageUrl=$WelcomePackageUrl `
                 tenantURL=$tenantURL `
                 tenantId=$tenantId `
-                WelcomePackageUrl=$WelcomePackageUrl `
                 servicePrincipal_AppId=$($sp.appId) `
                 servicePrincipal_ClientSecret=$($sp.password) `
                 servicePrincipal_TenantId=$($sp.tenant) `
-                
     --verbose
 
 if (!$?) { 

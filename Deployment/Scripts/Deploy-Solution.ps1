@@ -85,12 +85,11 @@ az deployment group create `
     --parameters DataverseEnvironmentId=$DataverseEnvironmentId `
                 tenantURL=$tenantURL `
                 tenantId=$tenantId `
-                WelcomePackageUrl=$WelcomePackageUrl ` 
+                WelcomePackageUrl=$WelcomePackageUrl `
                 servicePrincipal_AppId=$($sp.appId) `
                 servicePrincipal_ClientSecret=$($sp.password) `
                 servicePrincipal_TenantId=$($sp.tenant) `
                 
-
     --verbose
 
 if (!$?) { 

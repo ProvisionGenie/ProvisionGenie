@@ -1,7 +1,7 @@
 param workflows_ProvisionGenie_AddPeople_name string
 param userAssignedIdentities_ProvisionGenie_ManagedIdentity_name string
 param resourceLocation string
-param primaryDomain string
+param tenantId string
 
 
 resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workflows@2019-05-01' = {
@@ -19,8 +19,8 @@ resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workf
       '$schema': 'https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#'
       contentVersion: '1.0.0.0'
       parameters: {
-        primaryDomain: {
-          defaultValue: primaryDomain
+        tenantId: {
+          defaultValue: tenantId
           type: 'String'
         }
       }
@@ -81,35 +81,14 @@ resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workf
             For_each_guest: {
               foreach: '@split(triggerBody()?[\'guests\'],\'$\')'
               actions: {
-                'Catch_-_send_invitation_in_case_external_is_not_yet_added_to_tenant': {
+                Compose_UPN: {
+                  runAfter: {}
+                  type: 'Compose'
+                  inputs: '@json(items(\'For_each_guest\'))?[\'UPN\']'
+                }
+                Condition: {
                   actions: {
-                    'HTTP_-_Update_User': {
-                      runAfter: {
-                        Until_user_accepted_invite: [
-                          'Succeeded'
-                        ]
-                      }
-                      type: 'Http'
-                      inputs: {
-                        authentication: {
-                          audience: 'https://graph.microsoft.com'
-                          identity: resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', userAssignedIdentities_ProvisionGenie_ManagedIdentity_name)
-                          type: 'ManagedServiceIdentity'
-                        }
-                        body: {
-                          companyName: '@{json(triggerBody()?[\'guests\'])?[\'Organization\']}'
-                          displayName: '@{Concat(json(triggerBody()?[\'guests\'])?[\'firstName\'],\' \',json(triggerBody()?[\'guests\'])?[\'lastName\'])}'
-                          givenName: '@{json(triggerBody()?[\'guests\'])?[\'firstName\']}'
-                          surname: '@{json(triggerBody()?[\'guests\'])?[\'lastName\']}'
-                        }
-                        headers: {
-                          'Content-type': 'application/json'
-                        }
-                        method: 'PATCH'
-                        uri: 'https://graph.microsoft.com/v1.0/users/@{body(\'HTTP_-_post_invitation\')?[\'invitedUser\']?[\'id\']}'
-                      }
-                    }
-                    'HTTP_-_post_invitation': {
+                    'HTTP_-_add_user_to_this_group': {
                       runAfter: {}
                       type: 'Http'
                       inputs: {
@@ -119,96 +98,113 @@ resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workf
                           type: 'ManagedServiceIdentity'
                         }
                         body: {
-                          inviteRedirectUrl: ' https://account.activedirectory.windowsazure.com/?tenantid=5461222b-b9e8-4cac-a9bf-fd41569b3e52&login_hint=@{outputs(\'Compose_UPN\')}'
-                          invitedUserEmailAddress: '@{outputs(\'Compose_UPN\')}'
-                          sendInvitationMessage: true
+                          '@@odata.id': 'https://graph.microsoft.com/v1.0/directoryObjects/@{body(\'HTTP_-_get_user\')?[\'value\'][0]?[\'id\']}'
                         }
                         headers: {
-                          'content-type': 'application/json'
+                          '': 'application/json; odata=verbose'
+                          Accept: 'application/json; odata=verbose'
                         }
                         method: 'POST'
-                        uri: 'https://graph.microsoft.com/v1.0/invitations'
+                        uri: 'https://graph.microsoft.com/v1.0/groups/@{triggerBody()?[\'teamId\']}/members/$ref'
                       }
-                    }
-                    Until_user_accepted_invite: {
-                      actions: {
-                        Condition: {
-                          actions: {
-                            Delay_for_4_hours: {
-                              runAfter: {}
-                              type: 'Wait'
-                              inputs: {
-                                interval: {
-                                  count: 4
-                                  unit: 'Hour'
-                                }
-                              }
-                            }
-                          }
-                          runAfter: {
-                            'HTTP_-_get_externalUserState': [
-                              'Succeeded'
-                            ]
-                          }
-                          expression: {
-                            and: [
-                              {
-                                equals: [
-                                  '@body(\'HTTP_-_get_externalUserState\')?[\'externalUserState\']'
-                                  'PendingAcceptance'
-                                ]
-                              }
-                            ]
-                          }
-                          type: 'If'
-                        }
-                        'HTTP_-_get_externalUserState': {
-                          runAfter: {}
-                          type: 'Http'
-                          inputs: {
-                            authentication: {
-                              audience: 'https://graph.microsoft.com'
-                              identity: resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', userAssignedIdentities_ProvisionGenie_ManagedIdentity_name)
-                              type: 'ManagedServiceIdentity'
-                            }
-                            headers: {
-                              'Content-type': 'application/json'
-                            }
-                            method: 'GET'
-                            uri: 'https://graph.microsoft.com/v1.0/users/@{body(\'HTTP_-_post_invitation\')?[\'invitedUser\']?[\'id\']}?$select=displayName,id,externalUserState'
-                          }
-                        }
-                      }
-                      runAfter: {
-                        'HTTP_-_post_invitation': [
-                          'Succeeded'
-                        ]
-                      }
-                      expression: '@not(equals(body(\'HTTP_-_get_externalUserState\')?[\'externalUserState\'], \'PendingAcceptance\'))'
-                      limit: {
-                        count: 60
-                        timeout: 'PT1H'
-                      }
-                      type: 'Until'
                     }
                   }
                   runAfter: {
-                    'Try_-_check_if_user_is_already_added_to_tenant': [
-                      'Failed'
+                    'HTTP_-_get_user': [
+                      'Succeeded'
                     ]
                   }
-                  type: 'Scope'
+                  else: {
+                    actions: {
+                      'HTTP_-_Update_User': {
+                        runAfter: {
+                          'HTTP_-_post_invitation': [
+                            'Succeeded'
+                          ]
+                        }
+                        type: 'Http'
+                        inputs: {
+                          authentication: {
+                            audience: 'https://graph.microsoft.com'
+                            identity: resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', userAssignedIdentities_ProvisionGenie_ManagedIdentity_name)
+                            type: 'ManagedServiceIdentity'
+                          }
+                          body: {
+                            companyName: '@{json(triggerBody()?[\'guests\'])?[\'Organization\']}'
+                            displayName: '@{Concat(json(triggerBody()?[\'guests\'])?[\'firstName\'],\' \',json(triggerBody()?[\'guests\'])?[\'lastName\'])}'
+                            givenName: '@{json(triggerBody()?[\'guests\'])?[\'firstName\']}'
+                            surname: '@{json(triggerBody()?[\'guests\'])?[\'lastName\']}'
+                          }
+                          headers: {
+                            'Content-type': 'application/json'
+                          }
+                          method: 'PATCH'
+                          uri: 'https://graph.microsoft.com/v1.0/users/@{body(\'HTTP_-_post_invitation\')?[\'invitedUser\']?[\'id\']}'
+                        }
+                      }
+                      'HTTP_-_add_user_to_group': {
+                        runAfter: {
+                          'HTTP_-_Update_User': [
+                            'Succeeded'
+                          ]
+                        }
+                        type: 'Http'
+                        inputs: {
+                          authentication: {
+                            audience: 'https://graph.microsoft.com'
+                            identity: resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', userAssignedIdentities_ProvisionGenie_ManagedIdentity_name)
+                            type: 'ManagedServiceIdentity'
+                          }
+                          body: {
+                            '@@odata.id': 'https://graph.microsoft.com/v1.0/directoryObjects/@{body(\'HTTP_-_post_invitation\')?[\'inviteduser\']?[\'id\']}'
+                          }
+                          headers: {
+                            Accept: 'application/json; odata=verbose'
+                            'Content-type': 'application/json; odata=verbose'
+                          }
+                          method: 'POST'
+                          uri: 'https://graph.microsoft.com/v1.0/groups/@{triggerBody()?[\'teamId\']}/members/$ref'
+                        }
+                      }
+                      'HTTP_-_post_invitation': {
+                        runAfter: {}
+                        type: 'Http'
+                        inputs: {
+                          authentication: {
+                            audience: 'https://graph.microsoft.com'
+                            identity: resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', userAssignedIdentities_ProvisionGenie_ManagedIdentity_name)
+                            type: 'ManagedServiceIdentity'
+                          }
+                          body: {
+                            inviteRedirectUrl: 'https://account.activedirectory.windowsazure.com/?tenantid=@{parameters(\'tenantId\')}&login_hint=@{outputs(\'Compose_UPN\')}'
+                            invitedUserEmailAddress: '@{outputs(\'Compose_UPN\')}'
+                            sendInvitationMessage: true
+                          }
+                          headers: {
+                            'content-type': 'application/json'
+                          }
+                          method: 'POST'
+                          uri: 'https://graph.microsoft.com/v1.0/invitations'
+                        }
+                      }
+                    }
+                  }
+                  expression: {
+                    and: [
+                      {
+                        greater: [
+                          '@length(body(\'HTTP_-_get_user\')?[\'value\'])'
+                          0
+                        ]
+                      }
+                    ]
+                  }
+                  type: 'If'
                 }
-                Compose_UPN: {
-                  runAfter: {}
-                  type: 'Compose'
-                  inputs: '@json(items(\'For_each_guest\'))?[\'UPN\']'
-                }
-                'HTTP_-_add_user_to_group': {
+                'HTTP_-_get_user': {
                   runAfter: {
-                    'Catch_-_send_invitation_in_case_external_is_not_yet_added_to_tenant': [
+                    Compose_UPN: [
                       'Succeeded'
-                      'Failed'
                     ]
                   }
                   type: 'Http'
@@ -218,48 +214,12 @@ resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workf
                       identity: resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', userAssignedIdentities_ProvisionGenie_ManagedIdentity_name)
                       type: 'ManagedServiceIdentity'
                     }
-                    body: {
-                      '@@odata.id': 'https://graph.microsoft.com/v1.0/directoryObjects/@{body(\'HTTP_-_get_externalUserState\')?[\'id\']}'
-                    }
                     headers: {
-                      Accept: 'application/json; odata=verbose'
-                      'Content-type': 'application/json; odata=verbose'
+                      'Content-Type': 'application/json'
                     }
-                    method: 'POST'
-                    uri: 'https://graph.microsoft.com/v1.0/groups/@{triggerBody()?[\'teamId\']}/members/$ref'
+                    method: 'GET'
+                    uri: 'https://graph.microsoft.com/v1.0/users/?$filter=mail%20eq%20\'@{outputs(\'Compose_UPN\')}\''
                   }
-                }
-                'Try_-_check_if_user_is_already_added_to_tenant': {
-                  actions: {
-                    Compose_external_User_Email: {
-                      runAfter: {}
-                      type: 'Compose'
-                      inputs: '@Concat(Replace(string(json(items(\'For_each_guest\'))?[\'UPN\']),\'@\',\'_\'),\'%23EXT%23@\',parameters(\'primaryDomain\'))'
-                    }
-                    'HTTP_-_get_user': {
-                      runAfter: {
-                        Compose_external_User_Email: [
-                          'Succeeded'
-                        ]
-                      }
-                      type: 'Http'
-                      inputs: {
-                        authentication: {
-                          audience: 'https://graph.microsoft.com'
-                          identity: resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', userAssignedIdentities_ProvisionGenie_ManagedIdentity_name)
-                          type: 'ManagedServiceIdentity'
-                        }
-                        method: 'GET'
-                        uri: 'https://graph.microsoft.com/v1.0/users/@{outputs(\'Compose_external_User_Email\')}'
-                      }
-                    }
-                  }
-                  runAfter: {
-                    Compose_UPN: [
-                      'Succeeded'
-                    ]
-                  }
-                  type: 'Scope'
                 }
               }
               runAfter: {

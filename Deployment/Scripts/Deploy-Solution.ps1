@@ -5,7 +5,7 @@ param (
     $Location,
     [Parameter(Mandatory = $true)]
     [string]
-    $primaryDomain,
+    $tenantId,
     [Parameter(Mandatory = $true)]
     [string]
     $tenantURL,
@@ -59,6 +59,7 @@ if ($null -eq $appId) {
     }
 }
 Write-Host "Generating ClientSecret for AzureAD application"
+
 $sp = az ad app credential reset --id $appId --append | ConvertFrom-Json
 
 Write-Host "Creating Resource Group"
@@ -83,11 +84,13 @@ az deployment group create `
     --template-file ../bicep/ProvisionGenie-root.bicep `
     --parameters DataverseEnvironmentId=$DataverseEnvironmentId `
                 tenantURL=$tenantURL `
-                primaryDomain=$primaryDomain `
-                WelcomePackageUrl=$WelcomePackageUrl `
+                tenantId=$tenantId `
+                WelcomePackageUrl=$WelcomePackageUrl ` 
                 servicePrincipal_AppId=$($sp.appId) `
                 servicePrincipal_ClientSecret=$($sp.password) `
                 servicePrincipal_TenantId=$($sp.tenant) `
+                
+
     --verbose
 
 if (!$?) { 

@@ -1,6 +1,6 @@
 param workflows_ProvisionGenie_CreateTaskList_name string
 param userAssignedIdentities_ProvisionGenie_ManagedIdentity_name string
-param workflows_ProvisionGenie_CreateList_name string
+param workflows_ProvisionGenie_CreateListLibrary_name string
 param resourceLocation string
 
 resource workflows_ProvisionGenie_CreateTaskList_name_resource 'Microsoft.Logic/workflows@2019-05-01' = {
@@ -63,7 +63,7 @@ resource workflows_ProvisionGenie_CreateTaskList_name_resource 'Microsoft.Logic/
             host: {
               triggerName: 'manual'
               workflow: {
-                id: resourceId('Microsoft.Logic/workflows', workflows_ProvisionGenie_CreateList_name)
+                id: resourceId('Microsoft.Logic/workflows', workflows_ProvisionGenie_CreateListLibrary_name)
               }
             }
           }

@@ -1,9 +1,9 @@
-param workflows_ProvisionGenie_CreateList_name string
+param workflows_ProvisionGenie_CreateListLibrary_name string = 'ProvisionGenie-CreateListLibrary'
 param userAssignedIdentities_ProvisionGenie_ManagedIdentity_name string
 param resourceLocation string
 
-resource workflows_ProvisionGenie_CreateList_name_resource 'Microsoft.Logic/workflows@2019-05-01' = {
-  name: workflows_ProvisionGenie_CreateList_name
+resource workflows_ProvisionGenie_CreateListLibrary_name_resource 'Microsoft.Logic/workflows@2019-05-01' = {
+  name: workflows_ProvisionGenie_CreateListLibrary_name
   location: resourceLocation
   identity: {
     type: 'UserAssigned'
@@ -24,7 +24,7 @@ resource workflows_ProvisionGenie_CreateList_name_resource 'Microsoft.Logic/work
           inputs: {
             schema: {
               properties: {
-                listColumns: {
+                columns: {
                   items: {
                     properties: {
                       columnName: {
@@ -46,7 +46,10 @@ resource workflows_ProvisionGenie_CreateList_name_resource 'Microsoft.Logic/work
                   }
                   type: 'array'
                 }
-                listName: {
+                resourceName: {
+                  type: 'string'
+                }
+                resourceType: {
                   type: 'string'
                 }
                 siteId: {
@@ -59,8 +62,20 @@ resource workflows_ProvisionGenie_CreateList_name_resource 'Microsoft.Logic/work
         }
       }
       actions: {
-        For_each_listColumn: {
-          foreach: '@triggerBody()?[\'listColumns\']'
+        Columns: {
+          runAfter: {}
+          type: 'InitializeVariable'
+          inputs: {
+            variables: [
+              {
+                name: 'Columns'
+                type: 'array'
+              }
+            ]
+          }
+        }
+        For_each_Column: {
+          foreach: '@triggerBody()?[\'columns\']'
           actions: {
             Switch: {
               runAfter: {}
@@ -68,17 +83,17 @@ resource workflows_ProvisionGenie_CreateList_name_resource 'Microsoft.Logic/work
                 Case_Choice: {
                   case: 'Choice'
                   actions: {
-                    Append_choice_column_definition_to_ListColumns: {
+                    Append_choice_column_definition_to_Columns: {
                       runAfter: {}
                       type: 'AppendToArrayVariable'
                       inputs: {
-                        name: 'ListColumns'
+                        name: 'Columns'
                         value: {
                           choice: {
-                            choices: '@items(\'For_each_listColumn\')?[\'columnValues\']'
+                            choices: '@items(\'For_each_Column\')?[\'columnValues\']'
                             displayAs: 'dropDownMenu'
                           }
-                          name: '@{items(\'For_each_listColumn\')?[\'columnName\']}'
+                          name: '@{items(\'For_each_Column\')?[\'columnName\']}'
                         }
                       }
                     }
@@ -87,16 +102,16 @@ resource workflows_ProvisionGenie_CreateList_name_resource 'Microsoft.Logic/work
                 Case_Date: {
                   case: 'Date'
                   actions: {
-                    Append_dateOnly_column_definition_to_ListColumns: {
+                    Append_dateOnly_column_definition_to_Columns: {
                       runAfter: {}
                       type: 'AppendToArrayVariable'
                       inputs: {
-                        name: 'ListColumns'
+                        name: 'Columns'
                         value: {
                           dateTime: {
                             format: 'dateOnly'
                           }
-                          name: '@{items(\'For_each_listColumn\')?[\'columnName\']}'
+                          name: '@{items(\'For_each_Column\')?[\'columnName\']}'
                         }
                       }
                     }
@@ -105,16 +120,16 @@ resource workflows_ProvisionGenie_CreateList_name_resource 'Microsoft.Logic/work
                 Case_DateTime: {
                   case: 'DateTime'
                   actions: {
-                    Append_DateTime_column_definition_to_ListColumns: {
+                    Append_DateTime_column_definition_to_Columns: {
                       runAfter: {}
                       type: 'AppendToArrayVariable'
                       inputs: {
-                        name: 'ListColumns'
+                        name: 'Columns'
                         value: {
                           dateTime: {
                             format: 'dateTime'
                           }
-                          name: '@{items(\'For_each_listColumn\')?[\'columnName\']}'
+                          name: '@{items(\'For_each_Column\')?[\'columnName\']}'
                         }
                       }
                     }
@@ -123,13 +138,13 @@ resource workflows_ProvisionGenie_CreateList_name_resource 'Microsoft.Logic/work
                 Case_Multiple_lines_of_text: {
                   case: 'Multiple lines of text'
                   actions: {
-                    Append_multiline_text_column_definition_to_ListColumns: {
+                    Append_multiline_text_column_definition_to_Columns: {
                       runAfter: {}
                       type: 'AppendToArrayVariable'
                       inputs: {
-                        name: 'ListColumns'
+                        name: 'Columns'
                         value: {
-                          name: '@{items(\'For_each_listColumn\')?[\'columnName\']}'
+                          name: '@{items(\'For_each_Column\')?[\'columnName\']}'
                           text: {
                             allowMultipleLines: true
                             textType: 'plain'
@@ -142,13 +157,13 @@ resource workflows_ProvisionGenie_CreateList_name_resource 'Microsoft.Logic/work
                 Case_Number: {
                   case: 'Number'
                   actions: {
-                    Append_number_column_definition_to_ListColumns: {
+                    Append_number_column_definition_to_Columns: {
                       runAfter: {}
                       type: 'AppendToArrayVariable'
                       inputs: {
-                        name: 'ListColumns'
+                        name: 'Columns'
                         value: {
-                          name: '@{items(\'For_each_listColumn\')?[\'columnName\']}'
+                          name: '@{items(\'For_each_Column\')?[\'columnName\']}'
                           number: {}
                         }
                       }
@@ -158,13 +173,13 @@ resource workflows_ProvisionGenie_CreateList_name_resource 'Microsoft.Logic/work
                 Case_Person: {
                   case: 'Person'
                   actions: {
-                    Append_person_column_definition_to_ListColumns: {
+                    Append_Person_column_definition_to_Columns: {
                       runAfter: {}
                       type: 'AppendToArrayVariable'
                       inputs: {
-                        name: 'ListColumns'
+                        name: 'Columns'
                         value: {
-                          name: '@{items(\'For_each_listColumn\')?[\'columnName\']}'
+                          name: '@{items(\'For_each_Column\')?[\'columnName\']}'
                           personOrGroup: {
                             allowMultipleSelection: false
                             chooseFromType: 'peopleOnly'
@@ -177,13 +192,13 @@ resource workflows_ProvisionGenie_CreateList_name_resource 'Microsoft.Logic/work
                 Case_Text: {
                   case: 'Text'
                   actions: {
-                    Append_text_column_definition_to_ListColumns: {
+                    Append_text_column_definition_to_Columns: {
                       runAfter: {}
                       type: 'AppendToArrayVariable'
                       inputs: {
-                        name: 'ListColumns'
+                        name: 'Columns'
                         value: {
-                          name: '@{items(\'For_each_listColumn\')?[\'columnName\']}'
+                          name: '@{items(\'For_each_Column\')?[\'columnName\']}'
                           text: {}
                         }
                       }
@@ -193,14 +208,14 @@ resource workflows_ProvisionGenie_CreateList_name_resource 'Microsoft.Logic/work
                 'Case_Yes/No': {
                   case: 'yes/no'
                   actions: {
-                    Append_boolean_column_definition_to_ListColumns: {
+                    Append_boolean_column_definition_to_Columns: {
                       runAfter: {}
                       type: 'AppendToArrayVariable'
                       inputs: {
-                        name: 'ListColumns'
+                        name: 'Columns'
                         value: {
                           boolean: {}
-                          name: '@{items(\'For_each_listColumn\')?[\'columnName\']}'
+                          name: '@{items(\'For_each_Column\')?[\'columnName\']}'
                         }
                       }
                     }
@@ -210,12 +225,12 @@ resource workflows_ProvisionGenie_CreateList_name_resource 'Microsoft.Logic/work
               default: {
                 actions: {}
               }
-              expression: '@items(\'For_each_listColumn\')?[\'columnType\']'
+              expression: '@items(\'For_each_Column\')?[\'columnType\']'
               type: 'Switch'
             }
           }
           runAfter: {
-            ListColumns: [
+            ResourceType: [
               'Succeeded'
             ]
           }
@@ -226,9 +241,9 @@ resource workflows_ProvisionGenie_CreateList_name_resource 'Microsoft.Logic/work
             }
           }
         }
-        HTTP_create_list: {
+        HTTP_create_resource: {
           runAfter: {
-            For_each_listColumn: [
+            Switch_resourceType: [
               'Succeeded'
             ]
           }
@@ -240,10 +255,10 @@ resource workflows_ProvisionGenie_CreateList_name_resource 'Microsoft.Logic/work
               type: 'ManagedServiceIdentity'
             }
             body: {
-              columns: '@variables(\'ListColumns\')'
-              displayName: '@{triggerBody()?[\'listName\']}'
+              columns: '@variables(\'Columns\')'
+              displayName: '@{triggerBody()?[\'resourceName\']}'
               list: {
-                template: 'genericList'
+                template: '@{variables(\'ResourceType\')}'
               }
             }
             headers: {
@@ -253,21 +268,25 @@ resource workflows_ProvisionGenie_CreateList_name_resource 'Microsoft.Logic/work
             uri: 'https://graph.microsoft.com/v1.0/sites/@{triggerBody()?[\'siteId\']}/lists'
           }
         }
-        ListColumns: {
-          runAfter: {}
+        ResourceType: {
+          runAfter: {
+            Columns: [
+              'Succeeded'
+            ]
+          }
           type: 'InitializeVariable'
           inputs: {
             variables: [
               {
-                name: 'ListColumns'
-                type: 'array'
+                name: 'ResourceType'
+                type: 'string'
               }
             ]
           }
         }
         Response: {
           runAfter: {
-            HTTP_create_list: [
+            HTTP_create_resource: [
               'Succeeded'
             ]
           }
@@ -275,13 +294,54 @@ resource workflows_ProvisionGenie_CreateList_name_resource 'Microsoft.Logic/work
           kind: 'Http'
           inputs: {
             body: {
-              listId: '@{outputs(\'HTTP_create_list\')?[\'body\'][\'id\']}'
+              resourceId: '@{body(\'HTTP_create_resource\')[\'id\']}'
+              webUrl: '@{body(\'HTTP_create_resource\')[\'webUrl\']}'
             }
             headers: {
               'content-type': 'application/json'
             }
             statusCode: 200
           }
+        }
+        Switch_resourceType: {
+          runAfter: {
+            For_each_Column: [
+              'Succeeded'
+            ]
+          }
+          cases: {
+            Case_Library: {
+              case: 'Library'
+              actions: {
+                Set_ResourceType_to_Library: {
+                  runAfter: {}
+                  type: 'SetVariable'
+                  inputs: {
+                    name: 'ResourceType'
+                    value: 'documentLibrary'
+                  }
+                }
+              }
+            }
+            Case_List: {
+              case: 'List'
+              actions: {
+                Set_ResourceType_to_List: {
+                  runAfter: {}
+                  type: 'SetVariable'
+                  inputs: {
+                    name: 'ResourceType'
+                    value: 'genericList'
+                  }
+                }
+              }
+            }
+          }
+          default: {
+            actions: {}
+          }
+          expression: '@triggerBody()?[\'resourceType\']'
+          type: 'Switch'
         }
       }
       outputs: {}

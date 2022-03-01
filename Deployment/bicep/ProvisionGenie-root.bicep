@@ -3,11 +3,12 @@ param workflows_ProvisionGenie_Main_name string = 'ProvisionGenie-Main'
 param workflows_ProvisionGenie_Welcome_name string = 'ProvisionGenie-Welcome'
 param workflows_ProvisionGenie_AddNotebook_name string = 'ProvisionGenie-AddNotebook'
 param workflows_ProvisionGenie_AddPeople_name string = 'ProvisionGenie-AddPeople'
-param workflows_ProvisionGenie_CreateList_name string = 'ProvisionGenie-CreateList'
+param workflows_ProvisionGenie_CreateListLibrary_name string = 'ProvisionGenie-CreateListLibrary'
 param workflows_ProvisionGenie_CreateTeam_name string = 'ProvisionGenie-CreateTeam'
-param workflows_ProvisionGenie_CreateLibrary_name string = 'ProvisionGenie-CreateLibrary'
 param workflows_ProvisionGenie_CreateTaskList_name string = 'ProvisionGenie-CreateTaskList'
+param workflows_ProvisionGenie_PinTabToChannel_name string = 'ProvisionGenie-PinTabToChannel'
 param userAssignedIdentities_ProvisionGenie_ManagedIdentity_name string = 'ProvisionGenie-ManagedIdentity'
+
 param resourceLocation string = resourceGroup().location
 param WelcomePackageUrl string
 param DataverseEnvironmentId string
@@ -37,11 +38,11 @@ module connectionsDeployment 'ProvisionGenie-connections.bicep' = {
   }
 }
 
-module createLibraryDeployment ' ProvisionGenie-CreateLibrary.bicep' = {
-  name: 'createLibraryDeployment'
+module createListLibraryDeployment ' ProvisionGenie-CreateListLibrary.bicep' = {
+  name: 'createListLibraryDeployment'
   params: {
     resourceLocation: resourceLocation
-    workflows_ProvisionGenie_CreateLibrary_name: workflows_ProvisionGenie_CreateLibrary_name
+    workflows_ProvisionGenie_CreateListLibrary_name: workflows_ProvisionGenie_CreateListLibrary_name
     userAssignedIdentities_ProvisionGenie_ManagedIdentity_name: userAssignedIdentities_ProvisionGenie_ManagedIdentity_name
   }
   dependsOn: [
@@ -61,29 +62,18 @@ module addPeopleDeployment 'ProvisionGenie-AddPeople.bicep' = {
   ]
 }
 
-module createListDeployment 'ProvisionGenie-CreateList.bicep' = {
-  name: 'createListDeployment'
-  params: {
-    resourceLocation: resourceLocation
-    workflows_ProvisionGenie_CreateList_name: workflows_ProvisionGenie_CreateList_name
-    userAssignedIdentities_ProvisionGenie_ManagedIdentity_name: userAssignedIdentities_ProvisionGenie_ManagedIdentity_name
-  }
-  dependsOn: [
-    managedIdentityDeployment
-  ]
-}
 
 module createTaskListDeployment 'ProvisionGenie-CreateTaskList.bicep' = {
   name: 'createTaskListDeployment'
   params: {
     resourceLocation: resourceLocation
-    workflows_ProvisionGenie_CreateList_name: workflows_ProvisionGenie_CreateList_name
+    workflows_ProvisionGenie_CreateListLibrary_name: workflows_ProvisionGenie_CreateListLibrary_name
     userAssignedIdentities_ProvisionGenie_ManagedIdentity_name: userAssignedIdentities_ProvisionGenie_ManagedIdentity_name
     workflows_ProvisionGenie_CreateTaskList_name: workflows_ProvisionGenie_CreateTaskList_name
   }
   dependsOn: [
     managedIdentityDeployment
-    createListDeployment
+    createListLibraryDeployment
   ]
 }
 
@@ -135,21 +125,21 @@ module MainDeployment 'ProvisionGenie-main.bicep' = {
     workflows_ProvisionGenie_Welcome_name: workflows_ProvisionGenie_Welcome_name
     connections_commondataservice_name: connections_commondataservice_name
     DataverseEnvironmentId: DataverseEnvironmentId
-    workflows_ProvisionGenie_CreateLibrary_name: workflows_ProvisionGenie_CreateLibrary_name
-    workflows_ProvisionGenie_CreateList_name: workflows_ProvisionGenie_CreateList_name
+    workflows_ProvisionGenie_CreateListLibrary_name: workflows_ProvisionGenie_CreateListLibrary_name
     workflows_ProvisionGenie_CreateTaskList_name: workflows_ProvisionGenie_CreateTaskList_name
     workflows_ProvisionGenie_CreateTeam_name: workflows_ProvisionGenie_CreateTeam_name
     workflows_ProvisionGenie_Main_name: workflows_ProvisionGenie_Main_name
     workflows_ProvisionGenie_AddPeople_name: workflows_ProvisionGenie_AddPeople_name
     workflows_ProvisionGenie_AddNotebook_name: workflows_ProvisionGenie_AddNotebook_name
+    workflows_ProvisionGenie_PinTabToChannel_name: workflows_ProvisionGenie_PinTabToChannel_name
   }
+  
   dependsOn: [
     connectionsDeployment
     managedIdentityDeployment
-    createListDeployment
+    createListLibraryDeployment
     createTaskListDeployment
     createTeamDeployment
-    createLibraryDeployment
     welcomePackageDeployment
     addPeopleDeployment
     addNotebookDeployment

@@ -16,6 +16,8 @@ nav:
       - Overview: 'corecomponents/dataverse.md'
     - Logic Apps: 
       - Overview: 'corecomponents/logicapps.md'
+    - Language Packs:
+      - Overview: 'corecomponents/languagepacks.md'
 
 
 

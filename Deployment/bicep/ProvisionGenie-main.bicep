@@ -220,6 +220,22 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
           runAfter: {}
           type: 'Compose'
           inputs: '@{replace(triggerBody()?[\'cy_teamname\'],\' \',\'\')}_@{guid()}'
+        }        
+        Guests: {
+          runAfter: {
+            Owners: [
+              'Succeeded'
+            ]
+          }
+          type: 'InitializeVariable'
+          inputs: {
+            variables: [
+              {
+                name: 'Guests'
+                type: 'string'
+              }
+            ]
+          }
         }
         LibraryColumns: {
           runAfter: {
@@ -287,16 +303,18 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
         }
         Scope_Add_People: {
           actions: {
-            Condition_Members_or_Owners_present: {
+            Condition: {
               actions: {
                 'ProvisionGenie-AddPeople': {
                   runAfter: {}
                   type: 'Workflow'
                   inputs: {
                     body: {
-                      members: '@{substring(variables(\'Members\'),0,sub(length(variables(\'Members\')),1))}'
+                      guests: '@{substring(variables(\'Guests\'),0,sub(length(variables(\'Guests\')),1))}'
+                      members: '@substring(variables(\'Members\'),0,sub(length(variables(\'Members\')),1))'
                       owners: '@{substring(variables(\'Owners\'),0,sub(length(variables(\'Owners\')),1))}'
                       teamId: '@body(\'Parse_HTTP_body_for_Team_Id\')?[\'TeamId\']'
+                      teamName: '@body(\'Complete_Technical_Name_in_Teams_request\')?[\'cy_teamtechnicalname\']'
                     }
                     host: {
                       triggerName: 'manual'
@@ -326,9 +344,51 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
                       0
                     ]
                   }
+                  {
+                    greater: [
+                      '@length(variables(\'Guests\'))'
+                      0
+                    ]
+                  }
                 ]
               }
               type: 'If'
+            }
+            For_each_guest: {
+              foreach: '@body(\'List_rows_for_guests\')?[\'value\']'
+              actions: {
+                Append_to_string_variable_4: {
+                  runAfter: {
+                    Get_row_3: [
+                      'Succeeded'
+                    ]
+                  }
+                  type: 'AppendToStringVariable'
+                  inputs: {
+                    name: 'Guests'
+                    value: '{\n  "Organization": "@{body(\'Get_row_3\')?[\'pg_guestorganization\']}",\n  "UPN": "@{body(\'Get_row_3\')?[\'pg_name\']}",\n  "firstName": "@{body(\'Get_row_3\')?[\'pg_firstname\']}",\n  "lastName": "@{body(\'Get_row_3\')?[\'pg_lastname\']}"\n}$'
+                  }
+                }
+                Get_row_3: {
+                  runAfter: {}
+                  type: 'ApiConnection'
+                  inputs: {
+                    host: {
+                      connection: {
+                        name: '@parameters(\'$connections\')[\'commondataservice\'][\'connectionId\']'
+                      }
+                    }
+                    method: 'get'
+                    path: '/v2/datasets/@{encodeURIComponent(encodeURIComponent(parameters(\'DataverseEnvironmentId\')))}/tables/@{encodeURIComponent(encodeURIComponent(\'pg_teamsusers\'))}/items/@{encodeURIComponent(encodeURIComponent(items(\'For_each_guest\')?[\'pg_teamsuserid\']))}'
+                  }
+                }
+              }
+              runAfter: {
+                List_rows_for_guests: [
+                  'Succeeded'
+                ]
+              }
+              type: 'Foreach'
             }
             For_each_member: {
               foreach: '@body(\'List_rows_for_members\')?[\'value\']'
@@ -402,6 +462,26 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
               }
               type: 'Foreach'
             }
+            List_rows_for_guests: {
+              runAfter: {
+                For_each_member: [
+                  'Succeeded'
+                ]
+              }
+              type: 'ApiConnection'
+              inputs: {
+                host: {
+                  connection: {
+                    name: '@parameters(\'$connections\')[\'commondataservice\'][\'connectionId\']'
+                  }
+                }
+                method: 'get'
+                path: '/v2/datasets/@{encodeURIComponent(encodeURIComponent(parameters(\'DataverseEnvironmentId\')))}/tables/@{encodeURIComponent(encodeURIComponent(\'pg_teamsuser_teamsrequest_guestsset\'))}/items'
+                queries: {
+                  '$filter': 'cy_teamsrequestid eq \'@{triggerBody()?[\'cy_teamsrequestid\']}\' '
+                }
+              }
+            }
             List_rows_for_members: {
               runAfter: {}
               type: 'ApiConnection'
@@ -414,13 +494,13 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
                 method: 'get'
                 path: '/v2/datasets/@{encodeURIComponent(encodeURIComponent(parameters(\'DataverseEnvironmentId\')))}/tables/@{encodeURIComponent(encodeURIComponent(\'pg_teamsuser_teamsrequest_membersset\'))}/items'
                 queries: {
-                  '$filter': 'cy_teamsrequestid eq \'@{triggerBody()?[\'cy_teamsrequestid\']}\''
+                  '$filter': 'cy_teamsrequestid eq \'@{triggerBody()?[\'cy_teamsrequestid\']}\' '
                 }
               }
             }
             List_rows_owner: {
               runAfter: {
-                For_each_member: [
+                For_each_guest: [
                   'Succeeded'
                 ]
               }
@@ -1145,7 +1225,7 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
                 }
               }
               runAfter: {
-                For_each_created_Channel: [
+                Parse_HTTP_body_for_Team_Id: [
                   'Succeeded'
                 ]
               }
@@ -1184,7 +1264,7 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
         }
         Wait_1_minute_to_add_channels: {
           runAfter: {
-            Owners: [
+            Guests: [
               'Succeeded'
             ]
           }

@@ -1225,7 +1225,7 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
                 }
               }
               runAfter: {
-                Parse_HTTP_body_for_Team_Id: [
+                For_each_created_Channel: [
                   'Succeeded'
                 ]
               }

@@ -35,19 +35,7 @@ resource workflows_ProvisionGenie_CreateTaskList_name_resource 'Microsoft.Logic/
         }
       }
       actions: {
-        Response: {
-          runAfter: {
-            'ProvisionGenie-CreateList': [
-              'Succeeded'
-            ]
-          }
-          type: 'Response'
-          kind: 'Http'
-          inputs: {
-            statusCode: 200
-          }
-        }
-        'ProvisionGenie-CreateList': {
+        'ProvisionGenie-CreateListLibrary': {
           runAfter: {
             listColumns: [
               'Succeeded'
@@ -56,16 +44,29 @@ resource workflows_ProvisionGenie_CreateTaskList_name_resource 'Microsoft.Logic/
           type: 'Workflow'
           inputs: {
             body: {
-              listColumns: '@variables(\'listColumns\')'
-              listName: 'Task List'
+              columns: '@variables(\'listColumns\')'
+              resourceName: 'Task List'
+              resourceType: 'List'
               siteId: '@triggerBody()?[\'siteId\']'
             }
             host: {
               triggerName: 'manual'
               workflow: {
-                id: resourceId('Microsoft.Logic/workflows', workflows_ProvisionGenie_CreateListLibrary_name)
+                id: workflows_ProvisionGenie_CreateListLibrary_name
               }
             }
+          }
+        }
+        Response: {
+          runAfter: {
+            'ProvisionGenie-CreateListLibrary': [
+              'Succeeded'
+            ]
+          }
+          type: 'Response'
+          kind: 'Http'
+          inputs: {
+            statusCode: 200
           }
         }
         listColumns: {

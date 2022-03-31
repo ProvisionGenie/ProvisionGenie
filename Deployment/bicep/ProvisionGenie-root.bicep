@@ -119,6 +119,18 @@ module addNotebookDeployment 'ProvisionGenie-AddNotebook.bicep' = {
   ]
 }
 
+module pinTabToChannelDeployment 'ProvisionGenie-PinTabToChannel.bicep' = {
+  name: 'pinTabToChannelDeployment'
+  params: {
+    resourceLocation: resourceLocation
+    workflows_ProvisionGenie_PinTabToChannel_name: workflows_ProvisionGenie_PinTabToChannel_name
+    userAssignedIdentities_ProvisionGenie_ManagedIdentity_name: userAssignedIdentities_ProvisionGenie_ManagedIdentity_name
+  }
+  dependsOn: [
+    managedIdentityDeployment
+  ]
+}
+
 module MainDeployment 'ProvisionGenie-main.bicep' = {
   name: 'MainDeployment'
   params: {
@@ -145,5 +157,6 @@ module MainDeployment 'ProvisionGenie-main.bicep' = {
     welcomePackageDeployment
     addPeopleDeployment
     addNotebookDeployment
+
   ]
 }

@@ -82,7 +82,7 @@ We designed and built ProvisionGenie to be an enterprise-grade solution.
 ## Deploy and maintain ProvisionGenie
 
 - To get a better understanding of the architecture of ProvisionGenie we recommend to familiarize yourself first with our [Solution overview](corecomponents/logicapps.md#solution-overview) and make sure you understand our [Architecture Decisions](architecturedecisions.md)
-- Additionally we provide you with a pictured step by step [Deployment Guide](deploymentguide) that walks you through the entire deployment process.
+- Additionally we provide you with a pictured step by step [Deployment Guide](deploymentguide/index.md) that walks you through the entire deployment process.
 - If something doesn't work you can always [raise an issue](https://github.com/ProvisionGenie/ProvisionGenie/issues/new/choose) and we will help.
 
 ## Update schedule

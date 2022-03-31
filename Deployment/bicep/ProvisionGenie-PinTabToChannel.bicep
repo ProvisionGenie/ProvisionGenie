@@ -1,4 +1,4 @@
-param workflows_ProvisionGenie_PinTabToChannel_name string = 'ProvisionGenie-PinTabToChannel'
+param workflows_ProvisionGenie_PinTabToChannel_name string
 param userAssignedIdentities_ProvisionGenie_ManagedIdentity_name string
 param resourceLocation string
 

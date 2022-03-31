@@ -52,7 +52,7 @@ resource workflows_ProvisionGenie_CreateTaskList_name_resource 'Microsoft.Logic/
             host: {
               triggerName: 'manual'
               workflow: {
-                id: workflows_ProvisionGenie_CreateListLibrary_name
+                id: resourceId('Microsoft.Logic/workflows', workflows_ProvisionGenie_CreateListLibrary_name)
               }
             }
           }

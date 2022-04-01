@@ -1,8 +1,6 @@
 param workflows_ProvisionGenie_AddPeople_name string
 param userAssignedIdentities_ProvisionGenie_ManagedIdentity_name string
 param resourceLocation string
-param tenantId string
-
 
 resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workflows@2019-05-01' = {
   name: workflows_ProvisionGenie_AddPeople_name
@@ -20,7 +18,7 @@ resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workf
       contentVersion: '1.0.0.0'
       parameters: {
         tenantId: {
-          defaultValue: tenantId
+          defaultValue: '245e7db8-7365-468e-975d-91dfdfcd6ac6'
           type: 'String'
         }
       }
@@ -30,14 +28,45 @@ resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workf
           kind: 'Http'
           inputs: {
             schema: {
-              members: {
-                type: 'string'
-              }
-              owners: {
-                type: 'string'
-              }
               properties: {
-                guests: '{\r\n "Organization": {\r\n "type": "string"\r\n  },\r\n  "UPN": {\r\n  "type": "string"\r\n },\r\n  "firstName": {\r\n "type": "string"\r\n },\r\n "lastName": {\r\n  "type": "string"\r\n  }\r\n }'
+                guests: {
+                  items: {
+                    properties: {
+                      Organization: {
+                        type: 'string'
+                      }
+                      UPN: {
+                        type: 'string'
+                      }
+                      firstName: {
+                        type: 'string'
+                      }
+                      lastName: {
+                        type: 'string'
+                      }
+                    }
+                    required: [
+                      'UPN'
+                      'Organization'
+                      'firsName'
+                      'lastName'
+                    ]
+                    type: 'object'
+                  }
+                  type: 'array'
+                }
+                members: {
+                  items: {
+                    type: 'string'
+                  }
+                  type: 'array'
+                }
+                owners: {
+                  items: {
+                    type: 'string'
+                  }
+                  type: 'array'
+                }
                 type: 'string'
               }
               teamId: {
@@ -79,12 +108,12 @@ resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workf
         Scope_add_people: {
           actions: {
             For_each_guest: {
-              foreach: '@split(triggerBody()?[\'guests\'],\'$\')'
+              foreach: '@triggerBody()?[\'guests\']'
               actions: {
-                Compose_UPN: {
+                Compose: {
                   runAfter: {}
                   type: 'Compose'
-                  inputs: '@json(items(\'For_each_guest\'))?[\'UPN\']'
+                  inputs: '@item()?[\'UPN\']'
                 }
                 Condition: {
                   actions: {
@@ -101,8 +130,8 @@ resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workf
                           '@@odata.id': 'https://graph.microsoft.com/v1.0/directoryObjects/@{body(\'HTTP_-_get_user\')?[\'value\'][0]?[\'id\']}'
                         }
                         headers: {
-                          '': 'application/json; odata=verbose'
                           Accept: 'application/json; odata=verbose'
+                          'Content-type': 'application/json; odata=verbose'
                         }
                         method: 'POST'
                         uri: 'https://graph.microsoft.com/v1.0/groups/@{triggerBody()?[\'teamId\']}/members/$ref'
@@ -130,10 +159,10 @@ resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workf
                             type: 'ManagedServiceIdentity'
                           }
                           body: {
-                            companyName: '@{json(triggerBody()?[\'guests\'])?[\'Organization\']}'
-                            displayName: '@{Concat(json(triggerBody()?[\'guests\'])?[\'firstName\'],\' \',json(triggerBody()?[\'guests\'])?[\'lastName\'])}'
-                            givenName: '@{json(triggerBody()?[\'guests\'])?[\'firstName\']}'
-                            surname: '@{json(triggerBody()?[\'guests\'])?[\'lastName\']}'
+                            companyName: '@{items(\'For_each_guest\')[\'Organization\']}'
+                            displayName: '@{Concat(items(\'For_each_guest\')[\'Organization\'], \' \', items(\'For_each_guest\')[\'lastName\'])}'
+                            givenName: '@{items(\'For_each_guest\')[\'Organization\']}'
+                            surname: '@{items(\'For_each_guest\')[\'lastName\']}'
                           }
                           headers: {
                             'Content-type': 'application/json'
@@ -176,8 +205,8 @@ resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workf
                             type: 'ManagedServiceIdentity'
                           }
                           body: {
-                            inviteRedirectUrl: 'https://account.activedirectory.windowsazure.com/?tenantid=@{parameters(\'tenantId\')}&login_hint=@{outputs(\'Compose_UPN\')}'
-                            invitedUserEmailAddress: '@{outputs(\'Compose_UPN\')}'
+                            inviteRedirectUrl: 'https://account.activedirectory.windowsazure.com/?tenantid=@{parameters(\'tenantId\')}&login_hint=@{outputs(\'Compose\')}'
+                            invitedUserEmailAddress: '@{outputs(\'Compose\')}'
                             sendInvitationMessage: true
                           }
                           headers: {
@@ -203,7 +232,7 @@ resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workf
                 }
                 'HTTP_-_get_user': {
                   runAfter: {
-                    Compose_UPN: [
+                    Compose: [
                       'Succeeded'
                     ]
                   }
@@ -218,7 +247,7 @@ resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workf
                       'Content-Type': 'application/json'
                     }
                     method: 'GET'
-                    uri: 'https://graph.microsoft.com/v1.0/users/?$filter=mail%20eq%20\'@{outputs(\'Compose_UPN\')}\''
+                    uri: 'https://graph.microsoft.com/v1.0/users/?$filter=mail%20eq%20\'@{outputs(\'Compose\')}\''
                   }
                 }
               }
@@ -230,7 +259,7 @@ resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workf
               type: 'Foreach'
             }
             For_each_member: {
-              foreach: '@split(triggerBody()?[\'members\'],\';\')'
+              foreach: '@triggerBody()?[\'members\']'
               actions: {
                 Append_to_array_variable: {
                   runAfter: {}
@@ -249,7 +278,7 @@ resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workf
               type: 'Foreach'
             }
             For_each_owner: {
-              foreach: '@split(triggerBody()?[\'owners\'],\';\')'
+              foreach: '@triggerBody()?[\'owners\']'
               actions: {
                 Append_to_array_variable_2: {
                   runAfter: {}

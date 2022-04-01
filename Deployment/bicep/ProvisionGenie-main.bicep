@@ -220,7 +220,7 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
           runAfter: {}
           type: 'Compose'
           inputs: '@{replace(triggerBody()?[\'cy_teamname\'],\' \',\'\')}_@{guid()}'
-        }        
+        }
         Guests: {
           runAfter: {
             Owners: [
@@ -232,7 +232,7 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
             variables: [
               {
                 name: 'Guests'
-                type: 'string'
+                type: 'array'
               }
             ]
           }
@@ -280,7 +280,7 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
             variables: [
               {
                 name: 'Members'
-                type: 'string'
+                type: 'array'
               }
             ]
           }
@@ -296,7 +296,7 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
             variables: [
               {
                 name: 'Owners'
-                type: 'string'
+                type: 'array'
               }
             ]
           }
@@ -357,16 +357,21 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
             For_each_guest: {
               foreach: '@body(\'List_rows_for_guests\')?[\'value\']'
               actions: {
-                Append_to_string_variable_4: {
+                Append_to_array_variable_3: {
                   runAfter: {
                     Get_row_3: [
                       'Succeeded'
                     ]
                   }
-                  type: 'AppendToStringVariable'
+                  type: 'AppendToArrayVariable'
                   inputs: {
                     name: 'Guests'
-                    value: '{\n  "Organization": "@{body(\'Get_row_3\')?[\'pg_guestorganization\']}",\n  "UPN": "@{body(\'Get_row_3\')?[\'pg_name\']}",\n  "firstName": "@{body(\'Get_row_3\')?[\'pg_firstname\']}",\n  "lastName": "@{body(\'Get_row_3\')?[\'pg_lastname\']}"\n}$'
+                    value: {
+                      Organization: '@{body(\'Get_row_3\')?[\'pg_guestorganization\']}'
+                      UPN: '@{body(\'Get_row_3\')?[\'pg_name\']}'
+                      firstName: '@{body(\'Get_row_3\')?[\'pg_firstname\']}'
+                      lastName: '@{body(\'Get_row_3\')?[\'pg_lastname\']}'
+                    }
                   }
                 }
                 Get_row_3: {
@@ -393,16 +398,16 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
             For_each_member: {
               foreach: '@body(\'List_rows_for_members\')?[\'value\']'
               actions: {
-                Append_to_string_variable: {
+                Append_to_array_variable: {
                   runAfter: {
                     Get_row: [
                       'Succeeded'
                     ]
                   }
-                  type: 'AppendToStringVariable'
+                  type: 'AppendToArrayVariable'
                   inputs: {
                     name: 'Members'
-                    value: '@{body(\'Get_row\')?[\'pg_name\']};'
+                    value: '@body(\'Get_row\')?[\'pg_name\']'
                   }
                 }
                 Get_row: {
@@ -429,16 +434,16 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
             For_each_owner: {
               foreach: '@body(\'List_rows_owner\')?[\'value\']'
               actions: {
-                Append_to_string_variable_2: {
+                Append_to_array_variable_2: {
                   runAfter: {
                     Get_row_2: [
                       'Succeeded'
                     ]
                   }
-                  type: 'AppendToStringVariable'
+                  type: 'AppendToArrayVariable'
                   inputs: {
                     name: 'Owners'
-                    value: '@{body(\'Get_row_2\')?[\'pg_name\']};'
+                    value: '@body(\'Get_row_2\')?[\'pg_name\']'
                   }
                 }
                 Get_row_2: {
@@ -564,8 +569,8 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
                         host: {
                           triggerName: 'manual'
                           workflow: {
-                        id: resourceId('Microsoft.Logic/workflows', workflows_ProvisionGenie_PinTabToChannel_name)
-                      }
+                         id: resourceId('Microsoft.Logic/workflows', workflows_ProvisionGenie_PinTabToChannel_name)
+                          }
                         }
                       }
                     }
@@ -702,8 +707,8 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
                         host: {
                           triggerName: 'manual'
                           workflow: {
-                        id: resourceId('Microsoft.Logic/workflows', workflows_ProvisionGenie_PinTabToChannel_name)
-                      }
+                            id: resourceId('Microsoft.Logic/workflows', workflows_ProvisionGenie_PinTabToChannel_name)
+                          }
                         }
                       }
                     }
@@ -1109,7 +1114,7 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
                 HTTP_to_check_if_root_drive_exists: {
                   runAfter: {}
                   type: 'Http'
-                   inputs: {
+                  inputs: {
                     authentication: {
                       audience: 'https://graph.microsoft.com'
                       identity: resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', userAssignedIdentities_ProvisionGenie_ManagedIdentity_name)
@@ -1202,7 +1207,7 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
                   runAfter: {}
                   type: 'Http'
                   inputs: {
-                     authentication: {
+                    authentication: {
                       audience: 'https://graph.microsoft.com'
                       identity: resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', userAssignedIdentities_ProvisionGenie_ManagedIdentity_name)
                       type: 'ManagedServiceIdentity'
@@ -1280,7 +1285,7 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
       }
       outputs: {}
     }
-    parameters: {
+parameters: {
       '$connections': {
        value: {
           commondataservice: {

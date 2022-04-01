@@ -1,6 +1,7 @@
 param workflows_ProvisionGenie_AddPeople_name string
 param userAssignedIdentities_ProvisionGenie_ManagedIdentity_name string
 param resourceLocation string
+param tenantId string
 
 resource workflows_ProvisionGenie_AddPeople_name_resource 'Microsoft.Logic/workflows@2019-05-01' = {
   name: workflows_ProvisionGenie_AddPeople_name

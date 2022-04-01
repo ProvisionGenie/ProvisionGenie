@@ -310,9 +310,9 @@ resource workflows_ProvisionGenie_Main_name_resource 'Microsoft.Logic/workflows@
                   type: 'Workflow'
                   inputs: {
                     body: {
-                      guests: '@{substring(variables(\'Guests\'),0,sub(length(variables(\'Guests\')),1))}'
-                      members: '@substring(variables(\'Members\'),0,sub(length(variables(\'Members\')),1))'
-                      owners: '@{substring(variables(\'Owners\'),0,sub(length(variables(\'Owners\')),1))}'
+                      guests: '@variables(\'Guests\')'
+                      members: '@variables(\'Members\')'
+                      owners: '@variables(\'Owners\')'
                       teamId: '@body(\'Parse_HTTP_body_for_Team_Id\')?[\'TeamId\']'
                       teamName: '@body(\'Complete_Technical_Name_in_Teams_request\')?[\'cy_teamtechnicalname\']'
                     }

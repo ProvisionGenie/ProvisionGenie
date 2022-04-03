@@ -24,15 +24,15 @@ You will need to create an application user and assign the security roles to it.
 
     ![Solution](../media/deploymentguide/2-importsolution/PowerAppsSolution.png)
 
-3. Import the localization files to the **Localization** table
+3. Import the [localization files](Deployment\Solution\localization) to the **Localization** table
    - Browse to the solution
-   - Browse to the **Localizations** table
+   - Browse to the **Localization** table
    - Select the **Data** tab
    - Select **Get Data** --> **Get data from Excel**
    - Select **Upload**
-   - Select one of the Excel files provided here - you can upload as many languages as you want - either repeat the processs or consolidate the languages of your choice first to one file
+   - Select one of the [localization Excel files](Deployment\Solution\localization) - you can upload as many languages as you want - either repeat the processs or use the consolidated file `all-languages`.
    - Select **Map columns**
-   - Map 
+   - Map
        - **key** to `key`
        - **language** to `language`
        - **value** to `value`
@@ -40,19 +40,19 @@ You will need to create an application user and assign the security roles to it.
    - Select **Save changes**
    - Repeat with as many languages as you like
 
-4. Import the supported Languages file to the **Supported Languages** table
+4. Import [Supported Languages](Deployment\Solution\localization\SupportedLanguages.xlsx) to the **Supported Languages** table
 
   - Browse to the solution
   - Browse to the **Supported Languages** table
   - Select the **Data** tab
   - Select **Get Data** --> **Get data from Excel**
   - Select **Upload**
-  - Modify this Excel file to your needs - you can delete as many languages from this table as you like - those won't be selectable from within the app then anymore.
-  - Save your changes in the Excel file
-  - Select this file
+  - Optional: Modify the Excel file to your needs - you can delete as many languages from this table as you like - those won't be selectable from within the app then anymore. If you later add them again, they will be selectable again. Save your changes in the Excel file.
+  - Select [Supported Languages](Deployment\Solution\localization\SupportedLanguages.xlsx) to upload
   - Select **Save changes**
-  
 
+Without uploading the language packs the Canvas app won't show any texts.
+  
 5. Create an application user
 
     - Open the [Power Platform admin center](https://admin.powerplatform.microsoft.com/)
@@ -104,4 +104,3 @@ You will need to create an application user and assign the security roles to it.
     - The value we need here is the **Instance URL** from [make.powerapps.com](https://make.powerapps.com), save it here: [copied values](copiedvalues.md)
 
     ![Power Apps session details](../media/deploymentguide/2-importsolution/PAStudioSessionDetails.png)
-    

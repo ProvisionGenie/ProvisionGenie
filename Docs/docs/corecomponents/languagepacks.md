@@ -12,7 +12,6 @@ ProvisionGenie has a multi-language feature, which means that it can run in diff
 * Norwegian
 * Polish
 * Spanish
-* Swedish
 * Japanese
 
 Admins can decide, if they want to let users use all of these languages or limit this list of supported languages to what makes sense to them. Users will then only see the limited list of languages to choose from.

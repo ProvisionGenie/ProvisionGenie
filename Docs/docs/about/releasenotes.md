@@ -18,7 +18,7 @@
   * default
   * dark mode
   * highcontrast mode
-* localization support in 12 languages
+* localization support in 11 languages
   * Danish
   * Dutch
   * English
@@ -29,7 +29,6 @@
   * Norwegian
   * Polish
   * Spanish
-  * Swedish
   * Japanese
 * lets users pin libraries and lists to channels
 

@@ -131,25 +131,31 @@ In the Create team flow, the requested team is created with the specified channe
 5. The owners get splitted by an `;`
 6. the `People` variable gets appended with the body that we need in the HTTP request to add owners
 7. HTTP request adds both members get added in a single call
+8. for each guest, the UPN gets created
+9. **TRY** scope: we check if this user already exists in Azure Active Directory
+10. **CATCH** scope: we invite the user to the tenat and wait until they accepted the invitation and update the user information for `firstName`, `lastName` and `Organization`
+11. We add the user to the group
+12. Respond to the request caller
 
 ### 4. Create List/Library
 
-The Create List and Create Library logic apps are nearly identical, except for the template type that is provided in the creation request. Therefore, they are discussed as one.
+As the logic for creating a list and creating a library is very similar, we do this in one flow:
 
-⚠ In the future, these logic apps could be consolidated into one to simplify the solution.
-
-![Create List/Library logic app overview](../media/corecomponents/LogicApps-CreateList.png)
+![Create List/Library logic app overview](../media/corecomponents/LogicApps-CreateListLibrary.png)
 
 1. The logic app is triggered from a HTTP request, for example as a child logic app.
 2. A `ListColumns` variable is initialized to store the column definition
-3. For each of the columns that are specified in the trigger
+3. A `ResourceType` variable is initialized to store if it is a list or a library
+4. For each of the columns that are specified in the trigger
    1. Depending on the type of column, append the column definition to the `ListColumns` variable
-4. Create the list/library using a request. **This is where there is a difference between the Create List/Create Library Logic Apps flows.**
-5. Respond to the request caller
+5. Switch cases for the columnm types
+6. Switch cases for the resource types
+7. Create the list/library using a request using the resource type
+8. Respond to the request caller
 
 ### 5. Create Task List
 
-The Create Task list logic app uses the Create List logic app to create a task list using a fixed definition of columns.
+The Create Task list logic app uses the **CreateLibraryList** logic app to create a task list using a fixed definition of columns.
 
 ![Create Task List overview](../media/corecomponents/LogicApps-CreateTaskList.png)
 

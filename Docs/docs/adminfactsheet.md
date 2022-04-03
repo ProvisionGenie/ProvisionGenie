@@ -4,14 +4,16 @@
 
 This Fact sheet shall give you as an administrator an overview about
 
-- [End User value of ProvisionGenie](#end-user-value-of-provisiongenie)
-- [Cost to run ProvisionGenie](#cost-to-run-provisiongenie)
-- [Security](#security)
-- [Privacy](#privacy)
-- [Governance](#governance)
-- [Deploy and maintain ProvisionGenie](#deploy-and-maintain-provisiongenie)
-- [Update schedule](#update-schedule)
-- [Any other questions?](#any-other-questions)
+- [Admin Fact Sheet](#admin-fact-sheet)
+  - [End User value of ProvisionGenie](#end-user-value-of-provisiongenie)
+  - [Cost to run ProvisionGenie](#cost-to-run-provisiongenie)
+  - [Security](#security)
+  - [Privacy](#privacy)
+  - [Governance](#governance)
+  - [Accessibility](#accessibility)
+  - [Deploy and maintain ProvisionGenie](#deploy-and-maintain-provisiongenie)
+  - [Update schedule](#update-schedule)
+  - [Any other questions?](#any-other-questions)
 
 ## End User value of ProvisionGenie
 
@@ -79,6 +81,14 @@ We designed and built ProvisionGenie to be an enterprise-grade solution.
 - ProvisionGenie can be monitored like every other Power Platform solution within the [Center of Excellence Starter Kit](https://docs.microsoft.com/power-platform/guidance/coe/starter-kit), which we highly recommend to use.
 - Additionally, you can [monitor the Logic Apps in the Azure portal](https://docs.microsoft.com/azure/logic-apps/monitor-logic-apps).
 
+## Accessibility
+
+Making ProvisionGenie as accessible as possible is one of the things that is near and dear to our hearts. Therefore, as of v3.0.0, ProvisionGenie
+
+- provides accessible labels for all controls - localized in 12 languages
+- offers a high contrast theme that blends into the look and feel of Microsoft Teams
+- uses best practices to accomplish inclusive design
+
 ## Deploy and maintain ProvisionGenie
 
 - To get a better understanding of the architecture of ProvisionGenie we recommend to familiarize yourself first with our [Solution overview](corecomponents/logicapps.md#solution-overview) and make sure you understand our [Architecture Decisions](architecturedecisions.md)
@@ -93,6 +103,8 @@ We will use [semantic versioning](https://semver.org/):
 - We will merge PRs about fixing defects or optimizing existing code fortnightly and release a patch which you can then use
 - New features without breaking changes will be released in minor versions
 - breaking changes will be released only in major versions
+
+We committed to have planned releases in April and October.
 
 You can familiarize yourself with our [Roadmap](about/roadmap.md) to know what's coming when.
 

@@ -13,9 +13,9 @@ ProvisionGenie is an app for [Microsoft Teams](https://www.microsoft.com/microso
 ## Core components of this solution
 
 - [Power Apps Canvas App](corecomponents/canvasapp.md) which serves as our UI
-- [6 Dataverse tables](corecomponents/logicapps.md#solution-overview) where we log all Teams requests
-- [7 Azure Logic Apps flows](corecomponents/logicapps.md) which we use to provision the requested Teams
-- [Language Packs](corecomponents/languagepacks.md) to support more languages and let users select which language they want to use ProvisionGenie in
+- [8 Dataverse tables](corecomponents/logicapps.md#solution-overview) where we log all Teams requests
+- [8 Azure Logic Apps flows](corecomponents/logicapps.md) which we use to provision the requested Teams
+- [Language Packs](corecomponents/languagepacks.md) to support 12 languages
 
 ## How to get started
 

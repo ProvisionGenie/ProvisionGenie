@@ -15,4 +15,6 @@ Also you will need the URL of your Microsoft 365 tenant. You can obtain this val
 - Open [https://office.com](https://office.com)
 - Sign into the tenant you want to deploy ProvisionGenie in
 - Select the **SharePoint** icon
-- From the URL that should look like this `https://<your-tenant-name-here>.sharepoint.com/_layouts/15/sharepoint.aspx?` take this part: `https://<your-tenant-name-here>.sharepoint.com` and save it somewhere, you will need it later. 
+- From the URL that should look like this `https://<your-tenant-name-here>.sharepoint.com/_layouts/15/sharepoint.aspx?` take this part: `https://<your-tenant-name-here>.sharepoint.com` and save it somewhere, you will need it later.
+
+Next step is to obtain your Azure tenant id from  the [Azure portal](https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Properties) - save it somewhere, you will need it later.

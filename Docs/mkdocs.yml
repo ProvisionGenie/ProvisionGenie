@@ -7,6 +7,7 @@ nav:
     - Admin fact sheet: 'adminfactsheet.md'
     - Cost estimation: 'costestimation.md'
     - Architecture decisions: 'architecturedecisions.md'
+    - Accessibility guide: 'accessibilityguide.md'
   - Core components:
     - Solution Overview: 'corecomponents/solutionoverview.md'
     - Canvas App: 

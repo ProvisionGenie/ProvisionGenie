@@ -8,7 +8,7 @@ Accessibility is one of our core design principles, which is why we never choose
 
 We made some effort to
 
-* support a highcontrast theme that blends into the UI of Microsoft Teams
+* support a highcontrast theme that blends into the UI of Microsoft Teams. This theme meets the requirements of WCAG 2.1 standard in terms of contrast ratio of text, images and surrounding background as well as font size.
 * follow even more inclusive design good practices such as
 
     * using the  `AccessibleLabels` property for all controls

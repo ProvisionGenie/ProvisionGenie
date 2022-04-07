@@ -19,6 +19,6 @@ We made some effort to
 
 ## Language and images
 
-* All texts, including error messages and hint texts are localized in all 11 available languages.
+* All texts, including error messages and hint texts are localized in all 12 available languages.
 * We also aim to use inclusive language, which is why we don't use male generic language.
 * We use lots of pictures to illustrate and contextualize the learning content we provide. We made sure to choose illustrations that depict people with various skin colors and genders.

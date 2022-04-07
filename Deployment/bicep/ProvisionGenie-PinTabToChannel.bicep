@@ -106,7 +106,7 @@ resource workflows_ProvisionGenie_PinTabToChannel_name_resource 'Microsoft.Logic
                   type: 'SetVariable'
                   inputs: {
                     name: 'Configuration'
-                    value: '{\n  "configuration": {\n    "contentUrl": "@{triggerBody()?[\'tabUrl\']}",\n    "entityId": "",\n    "removeUrl": null,\n    "websiteUrl": null\n  },\n  "displayName": "@{triggerBody()?[\'tabName\']}",\n  "teamsApp@odata.bind": "https://graph.microsoft.com/v1.0/appCatalogs/teamsApps/com.microsoft.teamspace.tab.files.sharepoint"\n}'
+                    value: '{\n  "configuration": {\n    "contentUrl": "@{triggerBody()?[\'tabUrl\']}",\n    "entityId": "",\n    "removeUrl": null,\n    "websiteUrl": "@{triggerBody()?[\'tabUrl\']}",\n  },\n  "displayName": "@{triggerBody()?[\'tabName\']}",\n  "teamsApp@odata.bind": "https://graph.microsoft.com/v1.0/appCatalogs/teamsApps/com.microsoft.teamspace.tab.web"\n}'
                   }
                 }
               }

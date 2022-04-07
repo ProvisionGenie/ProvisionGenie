@@ -3,6 +3,7 @@
 ![header image](../media/index/Genie_Header.png)
 
 ## v3.0.0
+
 ### Contains
 
 * a Power Apps canvas app
@@ -12,8 +13,8 @@
 
 ### New features
 
-* Lets users add guests to Teams
-* Lets users add a OneNote notebook
+* Allows users add guests to Teams
+* Allows users add a OneNote notebook
 * Supports 3 themes for Teams
   * default
   * dark mode
@@ -30,7 +31,7 @@
   * Polish
   * Spanish
   * Japanese
-* lets users pin libraries and lists to channels
+* Allows users pin libraries and lists to channels
 
 ### Improvements
 
@@ -88,8 +89,8 @@
 
 ### New features
 
-* lets users add members and additional owners to a Team
-* lets users skip creation of channels, library, or list
+* Allows users add members and additional owners to a Team
+* Allows users skip creation of channels, library, or list
 
 ### Improvements
 
@@ -122,11 +123,12 @@ This is an open-source initiative by [Luise Freese](https://twitter.com/LuiseFre
 * [Yannick Reekmans](https://twitter.com/YannickReekmans) - as our Chief debugging expert
 * [Michael Roth](https://twitter.com/MichaelRoth42) - designed the ProvisionGenie logo for the new documentation
 
-Note regarding versioning: Although we want to stick to [semantic versioning](https://semver.org/), we felt this update is **major** as it adds so much more capability which we wanted to reflect in the version number. 
+Note regarding versioning: Although we want to stick to [semantic versioning](https://semver.org/), we felt this update is **major** as it adds so much more capability which we wanted to reflect in the version number.
 
 ## v1.0.0
 
 Minimum l💖vable product release of ProvisionGenie 🧞.
+
 ## Contains
 
 * a Power Apps canvas app
@@ -136,7 +138,7 @@ Minimum l💖vable product release of ProvisionGenie 🧞.
 
 ## Features
 
-* lets users create a custom Microsoft Teams team including
+* Allows users create a custom Microsoft Teams team including
   * channels
   * a library
   * a list

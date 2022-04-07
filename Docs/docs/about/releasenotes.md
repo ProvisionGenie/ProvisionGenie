@@ -19,7 +19,7 @@
   * default
   * dark mode
   * highcontrast mode
-* localization support in 11 languages
+* localization support in 12 languages
   * Danish
   * Dutch
   * English
@@ -29,6 +29,7 @@
   * Italian
   * Norwegian
   * Polish
+  * Portuguese
   * Spanish
   * Japanese
 * Allows users pin libraries and lists to channels
@@ -60,6 +61,7 @@
 * Fabio Franzini | [Fabio on GitHub](https://github.com/fabiofranzini) | [Fabio on twitter](https://twitter.com/franzinifabio)
 * Frank Boucher | [Frank on GitHub](https://github.com/FBoucher) | [Frank on twitter](https://twitter.com/fboucheros)
 * Hadrien-Nessim Socard | [Hadrien-Nessim on GitHub](https://github.com/hadness) | [Hadrien-Nessim on twitter](https://twitter.com/h4dn355)
+* João Mendes | [João on twitter](https://twitter.com/joaojmendes) | [João Mendes on GitHub](https://github.com/joaojmendes/)
 * Malin Martnes | [Malin on twitter](https://twitter.com/MalinMartnes)
 * Mattias Melkersen | [Mattias on GitHub](https://github.com/mmelkersen) | [Mattias on twitter](https://twitter.com/MMelkersen)
 * Michaël Maillot | [Michaël on GitHub](https://github.com/michaelmaillot) | [Michaël on twitter](https://twitter.com/michael_maillot)
@@ -76,7 +78,6 @@
 * Lee Ford | [Lee on GitHub](https://github.com/leeford) | [Lee on twitter](https://twitter.com/lee_ford)
 * Michael Roth | [Michael on GitHub](https://github.com/michaelroth42) | [Michael on twitter](https://twitter.com/MichaelRoth42)
 * Yannick Reekmans | [Yannick on GitHub](https://github.com/YannickRe) | [Yannick on twitter](https://twitter.com/YannickReekmans)
-
 
 ## v2.0.0
 

@@ -27,10 +27,9 @@ if ($null -eq $appId) {
     Write-Host "Creating AzureAD application"
     $app = az ad app create --display-name $AadAppName --available-to-other-tenants false | ConvertFrom-Json
     $appId = $app.appId
-    Write-Host "Assigning AzureAD application permissions"
-    az ad app permission add --id $appId --api 00000007-0000-0000-c000-000000000000 --api-permissions 78ce3f0f-a1ce-49c2-8cde-64b5c0896db4=Scope
+    Write-Host "Creating service principal"
     az ad sp create --id $appId
-    az ad app permission grant --id $appId --api 00000007-0000-0000-c000-000000000000
+
 } else {
     Write-Host "$AadAppName already exists"
 }

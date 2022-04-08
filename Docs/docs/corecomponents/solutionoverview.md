@@ -4,6 +4,8 @@
 
 ProvisionGenie 💜 Microsoft Graph! Our entire provision process leverages the power of Microsoft Graph API and we plan to continue with this in future versions with extended use cases. Learn more about [Microsoft Graph](https://docs.microsoft.com/graph/overview).
 
+The only exception to that is triggering the creation of the Notebook of the SharePoint site that backs the Team. Usually, this happens when a user selects the Notebook in SharePoint for the very first time - but we wanted to add this Notebook as a tab to the channel `General` without needing a user to interact. We use the SharePoint API to achieve this.
+
 ![ProvisionGenie loves Microsoft Graph](../media/corecomponents/ProvisionGenieLovesGraph.png)
 
 To understand why we chose this set of services, head over to [Architecture Decisions](../architecturedecisions.md)

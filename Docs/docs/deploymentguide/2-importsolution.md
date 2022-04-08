@@ -24,7 +24,41 @@ You will need to create an application user and assign the security roles to it.
 
     ![Solution](../media/deploymentguide/2-importsolution/PowerAppsSolution.png)
 
-3. Create an application user 
+3. Import the [localization files](Deployment\Solution\localization) to the **Localization** table
+   - Browse to the solution
+   - Browse to the **Localization** table
+   - Select the **Data** tab
+   - Select **Get Data** --> **Get data from Excel**
+   - Select **Upload**
+   - Select one of the [localization Excel files](Deployment\Solution\localization) - you can upload as many languages as you want - either repeat the processs or use the consolidated file `all-languages`.
+   - Select **Map columns**
+   - Map
+       - **key** to `key`
+       - **language** to `language`
+       - **value** to `value`
+       - **valuelongtext** to `valuelongtext`
+   - Select **Save changes**
+   - Repeat with as many languages as you like
+
+4. Add languages to the **Supported Languages** table, you may choose from
+
+* Dansk
+* Français
+* 日本語
+* Deutsch
+* English
+* Italiano
+* Español
+* Nederlands
+* Norsk
+* Polski
+* Suomea
+* Svenska
+* Portuguese
+
+This is then what users of the app can choose from.
+  
+1. Create an application user
 
     - Open the [Power Platform admin center](https://admin.powerplatform.microsoft.com/)
     - Select  the environment that you want to use for ProvisionGenie
@@ -36,8 +70,7 @@ You will need to create an application user and assign the security roles to it.
     - Select the **ProvisionGenieApp** (it's the app that you registered with the script in the previous step)
     - Select **Add**
 
-
-4. Assign the security role `Basic user` and security role `ProvisionGenie Admin` 
+2. Assign the security role `Basic user` and security role `ProvisionGenie Admin` 
 
     - Select the **Business unit** dropdown menu
     - Select the business unit of your choice
@@ -45,7 +78,7 @@ You will need to create an application user and assign the security roles to it.
     - Select `Basic user` and `ProvisionGenie Admin` 
     - Select **Save**
 
-5.  Assign the security roles `Basic user` and `Provision Genie User` to all users that will be able to use ProvisionGenie for team creation.
+3.  Assign the security roles `Basic user` and `Provision Genie User` to all users that will be able to use ProvisionGenie for team creation.
 
     - You can assign the roles to individual people using the steps explained [here](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database)
     - Alternatively, you can bulk assign roles to people by following the next steps:
@@ -68,7 +101,7 @@ You will need to create an application user and assign the security roles to it.
 
     ![Select roles](../media/deploymentguide/2-importsolution/EnvironmentUsersSelectRoles.png)
 
-6. You need to obtain the Environment ID for a later step:
+4. You need to obtain the Environment ID for a later step:
 
     - Open [make.powerapps.com](https://make.powerapps.com)
     - Select the **Settings** gear

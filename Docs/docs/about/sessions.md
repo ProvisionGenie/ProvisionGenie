@@ -6,7 +6,6 @@ We talk and demo ProvisionGenie here:
 
 - upcoming
 
-
 - past
    
     - [Hello World](https://aka.ms/helloworld) - join live Dec 16, 7pm CET / 10am PST

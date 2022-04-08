@@ -76,6 +76,21 @@ resource workflows_ProvisionGenie_CreateTeam_name_resource 'Microsoft.Logic/work
             For_each_channel: {
               foreach: '@body(\'Parse_channel_info\')?[\'value\']'
               actions: {
+                Append_to_array_variable: {
+                  runAfter: {
+                    For_each_wiki_tab: [
+                      'Succeeded'
+                    ]
+                  }
+                  type: 'AppendToArrayVariable'
+                  inputs: {
+                    name: 'ChannelInfo'
+                    value: {
+                      Id: '@{items(\'For_each_channel\')?[\'id\']}'
+                      Name: '@{items(\'For_each_channel\')?[\'displayName\']}'
+                    }
+                  }
+                }
                 For_each_wiki_tab: {
                   foreach: '@body(\'Parse_wiki_tab_info\')?[\'value\']'
                   actions: {
@@ -416,7 +431,7 @@ resource workflows_ProvisionGenie_CreateTeam_name_resource 'Microsoft.Logic/work
             }
           }
           runAfter: {
-            Initialize_TeamGroupId: [
+            Initialize_ChannelInfo: [
               'Succeeded'
             ]
           }
@@ -426,11 +441,19 @@ resource workflows_ProvisionGenie_CreateTeam_name_resource 'Microsoft.Logic/work
           actions: {
             Does_Team_exist: {
               actions: {}
+              runAfter: {
+                HTTP_Get_Team: [
+                  'Succeeded'
+                  'Failed'
+                ]
+              }
               else: {
                 actions: {
                   Until_Team_upgrade_accepted: {
                     actions: {
                       HTTP_update_group_to_team: {
+                        runAfter: {}
+                        type: 'Http'
                         inputs: {
                           authentication: {
                             audience: 'https://graph.microsoft.com'
@@ -448,14 +471,8 @@ resource workflows_ProvisionGenie_CreateTeam_name_resource 'Microsoft.Logic/work
                           method: 'POST'
                           uri: 'https://graph.microsoft.com/v1.0/teams'
                         }
-                        runAfter: {}
-                        type: 'Http'
                       }
                       Set_TeamCreationRequestCode_to_Status_code: {
-                        inputs: {
-                          name: 'TeamCreationRequestCode'
-                          value: '@{outputs(\'HTTP_update_group_to_team\')[\'statusCode\']}'
-                        }
                         runAfter: {
                           HTTP_update_group_to_team: [
                             'Succeeded'
@@ -463,19 +480,28 @@ resource workflows_ProvisionGenie_CreateTeam_name_resource 'Microsoft.Logic/work
                           ]
                         }
                         type: 'SetVariable'
+                        inputs: {
+                          name: 'TeamCreationRequestCode'
+                          value: '@{outputs(\'HTTP_update_group_to_team\')[\'statusCode\']}'
+                        }
                       }
                       Validate_StatusCode: {
                         actions: {
                           Delay_10_seconds_for_404: {
+                            runAfter: {}
+                            type: 'Wait'
                             inputs: {
                               interval: {
                                 count: 10
                                 unit: 'Second'
                               }
                             }
-                            runAfter: {}
-                            type: 'Wait'
                           }
+                        }
+                        runAfter: {
+                          Set_TeamCreationRequestCode_to_Status_code: [
+                            'Succeeded'
+                          ]
                         }
                         expression: {
                           and: [
@@ -487,20 +513,15 @@ resource workflows_ProvisionGenie_CreateTeam_name_resource 'Microsoft.Logic/work
                             }
                           ]
                         }
-                        runAfter: {
-                          Set_TeamCreationRequestCode_to_Status_code: [
-                            'Succeeded'
-                          ]
-                        }
                         type: 'If'
                       }
                     }
+                    runAfter: {}
                     expression: '@equals(variables(\'TeamCreationRequestCode\'), string(202))'
                     limit: {
                       count: 60
                       timeout: 'PT1H'
                     }
-                    runAfter: {}
                     type: 'Until'
                   }
                   Until_Team_upgrade_succeeded: {
@@ -508,15 +529,20 @@ resource workflows_ProvisionGenie_CreateTeam_name_resource 'Microsoft.Logic/work
                       Condition_TeamsCreationStatus_not_succeeded: {
                         actions: {
                           Delay_10_seconds_for_team_upgrade: {
+                            runAfter: {}
+                            type: 'Wait'
                             inputs: {
                               interval: {
                                 count: 10
                                 unit: 'Second'
                               }
                             }
-                            runAfter: {}
-                            type: 'Wait'
                           }
+                        }
+                        runAfter: {
+                          Set_TeamsCreationStatus: [
+                            'Succeeded'
+                          ]
                         }
                         expression: {
                           and: [
@@ -530,14 +556,11 @@ resource workflows_ProvisionGenie_CreateTeam_name_resource 'Microsoft.Logic/work
                             }
                           ]
                         }
-                        runAfter: {
-                          Set_TeamsCreationStatus: [
-                            'Succeeded'
-                          ]
-                        }
                         type: 'If'
                       }
                       HTTP_get_team_creation_status: {
+                        runAfter: {}
+                        type: 'Http'
                         inputs: {
                           authentication: {
                             audience: 'https://graph.microsoft.com'
@@ -547,31 +570,29 @@ resource workflows_ProvisionGenie_CreateTeam_name_resource 'Microsoft.Logic/work
                           method: 'GET'
                           uri: 'https://graph.microsoft.com/v1.0@{outputs(\'HTTP_update_group_to_team\')[\'headers\'][\'location\']}'
                         }
-                        runAfter: {}
-                        type: 'Http'
                       }
                       Set_TeamsCreationStatus: {
-                        inputs: {
-                          name: 'TeamCreationStatus'
-                          value: '@{body(\'HTTP_get_team_creation_status\')[\'status\']}'
-                        }
                         runAfter: {
                           HTTP_get_team_creation_status: [
                             'Succeeded'
                           ]
                         }
                         type: 'SetVariable'
+                        inputs: {
+                          name: 'TeamCreationStatus'
+                          value: '@{body(\'HTTP_get_team_creation_status\')[\'status\']}'
+                        }
                       }
-                    }
-                    expression: '@equals(variables(\'TeamCreationStatus\'), \'succeeded\')'
-                    limit: {
-                      count: 60
-                      timeout: 'PT1H'
                     }
                     runAfter: {
                       Until_Team_upgrade_accepted: [
                         'Succeeded'
                       ]
+                    }
+                    expression: '@equals(variables(\'TeamCreationStatus\'), \'succeeded\')'
+                    limit: {
+                      count: 60
+                      timeout: 'PT1H'
                     }
                     type: 'Until'
                   }
@@ -587,15 +608,11 @@ resource workflows_ProvisionGenie_CreateTeam_name_resource 'Microsoft.Logic/work
                   }
                 ]
               }
-              runAfter: {
-                HTTP_Get_Team: [
-                  'Succeeded'
-                  'Failed'
-                ]
-              }
               type: 'If'
             }
             HTTP_Get_Team: {
+              runAfter: {}
+              type: 'Http'
               inputs: {
                 authentication: {
                   audience: 'https://graph.microsoft.com'
@@ -608,8 +625,6 @@ resource workflows_ProvisionGenie_CreateTeam_name_resource 'Microsoft.Logic/work
                 method: 'GET'
                 uri: 'https://graph.microsoft.com/v1.0/teams/@{variables(\'TeamGroupId\')}'
               }
-              runAfter: {}
-              type: 'Http'
             }
           }
           runAfter: {
@@ -618,6 +633,22 @@ resource workflows_ProvisionGenie_CreateTeam_name_resource 'Microsoft.Logic/work
             ]
           }
           type: 'Scope'
+        }
+        Initialize_ChannelInfo: {
+          runAfter: {
+            Initialize_TeamGroupId: [
+              'Succeeded'
+            ]
+          }
+          type: 'InitializeVariable'
+          inputs: {
+            variables: [
+              {
+                name: 'ChannelInfo'
+                type: 'array'
+              }
+            ]
+          }
         }
         Initialize_TeamCreationRequestCode: {
           runAfter: {}
@@ -673,6 +704,7 @@ resource workflows_ProvisionGenie_CreateTeam_name_resource 'Microsoft.Logic/work
           kind: 'Http'
           inputs: {
             body: {
+              ChannelInfo: '@variables(\'ChannelInfo\')'
               TeamId: '@{variables(\'TeamGroupId\')}'
               TeamsDisplayName: '@{triggerBody()?[\'Display Name\']}'
             }

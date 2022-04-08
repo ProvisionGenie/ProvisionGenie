@@ -22,7 +22,7 @@ This is, what ProvisionGenie does:
     - Name of SharePoint library & columns
     - if Owner additionally wants a SharePoint list for task management (see also why we don't provision Planner in ProvisionGenie in our [Architecture Decisions](../architecturedecisions.md#no-microsoft-planner-provisioning))
     - if Owner additionally wants the "Welcome package"
-    - if Owner additionally wants the Notebook of the SharePoint site that backs the Team ne pinned to the channel **General** as a tab
+    - if Owner additionally wants the Notebook of the SharePoint site that backs the Team pinned to the channel **General** as a tab
 - Patch 6 Dataverse tables with the information we got by user
 
 As a result of the provisioning process, we have

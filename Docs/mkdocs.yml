@@ -33,6 +33,7 @@ nav:
       - 3. Deploy Azure resources: 'deploymentguide/3-deployazureresources.md'
       - 4. Add ProvisionGenie to Teams: 'deploymentguide/4-addtoteams.md'
       - 5. Post Deployment cleanup: 'deploymentguide/5-postdeploycleanup.md'
+      - 6. Known Issues: 'deploymentsguide/6-knownissues.md'
     - Upgrade: 
       - Upgrade v1.0.0 --> v2.0.0: 'deploymentguide/upgradev100v200.md'
   - About:

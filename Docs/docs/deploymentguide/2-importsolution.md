@@ -40,20 +40,25 @@ You will need to create an application user and assign the security roles to it.
    - Select **Save changes**
    - Repeat with as many languages as you like
 
-4. Import [Supported Languages](Deployment\Solution\localization\SupportedLanguages.xlsx) to the **Supported Languages** table
+4. Add languages to the **Supported Languages** table, you may choose from
 
-  - Browse to the solution
-  - Browse to the **Supported Languages** table
-  - Select the **Data** tab
-  - Select **Get Data** --> **Get data from Excel**
-  - Select **Upload**
-  - Optional: Modify the Excel file to your needs - you can delete as many languages from this table as you like - those won't be selectable from within the app then anymore. If you later add them again, they will be selectable again. Save your changes in the Excel file.
-  - Select [Supported Languages](Deployment\Solution\localization\SupportedLanguages.xlsx) to upload
-  - Select **Save changes**
+* Dansk
+* Français
+* 日本語
+* Deutsch
+* English
+* Italiano
+* Español
+* Nederlands
+* Norsk
+* Polski
+* Suomea
+* Svenska
+* Portuguese
 
-Without uploading the language packs the Canvas app won't show any texts.
+This is then what users of the app can choose from.
   
-5. Create an application user
+1. Create an application user
 
     - Open the [Power Platform admin center](https://admin.powerplatform.microsoft.com/)
     - Select  the environment that you want to use for ProvisionGenie
@@ -65,7 +70,7 @@ Without uploading the language packs the Canvas app won't show any texts.
     - Select the **ProvisionGenieApp** (it's the app that you registered with the script in the previous step)
     - Select **Add**
 
-6. Assign the security role `Basic user` and security role `ProvisionGenie Admin` 
+2. Assign the security role `Basic user` and security role `ProvisionGenie Admin` 
 
     - Select the **Business unit** dropdown menu
     - Select the business unit of your choice
@@ -73,7 +78,7 @@ Without uploading the language packs the Canvas app won't show any texts.
     - Select `Basic user` and `ProvisionGenie Admin` 
     - Select **Save**
 
-7.  Assign the security roles `Basic user` and `Provision Genie User` to all users that will be able to use ProvisionGenie for team creation.
+3.  Assign the security roles `Basic user` and `Provision Genie User` to all users that will be able to use ProvisionGenie for team creation.
 
     - You can assign the roles to individual people using the steps explained [here](https://docs.microsoft.com/power-platform/admin/database-security#assign-security-roles-to-users-in-an-environment-that-has-a-dataverse-database)
     - Alternatively, you can bulk assign roles to people by following the next steps:
@@ -96,7 +101,7 @@ Without uploading the language packs the Canvas app won't show any texts.
 
     ![Select roles](../media/deploymentguide/2-importsolution/EnvironmentUsersSelectRoles.png)
 
-8. You need to obtain the Environment ID for a later step:
+4. You need to obtain the Environment ID for a later step:
 
     - Open [make.powerapps.com](https://make.powerapps.com)
     - Select the **Settings** gear

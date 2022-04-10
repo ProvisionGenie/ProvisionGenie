@@ -1,0 +1,1573 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Read the full documentation for ProvisionGenie 🧞 to provision custom-tailored Microsoft Teams teams based on your user's needs">
+      
+      
+      
+      
+        <link rel="canonical" href="https://provisiongenie.com/architecturedecisions/">
+      
+      <link rel="icon" href="../media/site/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-7.3.4">
+    
+    
+      
+        <title>Architecture decisions - ProvisionGenie</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.db9e7362.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/styles.css">
+    
+    
+      
+
+
+    
+    
+    
+    
+    
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ProvisionGenie - Architecture decisions" />
+    <meta property="og:description" content="Read the full documentation for ProvisionGenie 🧞 to provision custom-tailored Microsoft Teams teams based on your user's needs" />
+    <meta property="og:url" content="https://provisiongenie.com/architecturedecisions/" />
+    <meta property="og:image" content="https://provisiongenie.com/media/site/socialcard.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1277" />
+    <meta property="og:image:height" content="640" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ProvisionGenie - Architecture decisions" />
+    <meta name="twitter:description" content="Read the full documentation for ProvisionGenie 🧞 to provision custom-tailored Microsoft Teams teams based on your user's needs" />
+    <meta name="twitter:image" content="https://provisiongenie.com/media/site/socialcard.png" />
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#architecture-decisions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ProvisionGenie" class="md-header__button md-logo" aria-label="ProvisionGenie" data-md-component="logo">
+      
+  <img src="../media/site/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ProvisionGenie
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture decisions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/ProvisionGenie/ProvisionGenie" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link md-tabs__link--active">
+        ProvisionGenie
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../corecomponents/solutionoverview/" class="md-tabs__link">
+        Core components
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../deploymentguide/" class="md-tabs__link">
+        Deployment guide
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../about/releasenotes/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ProvisionGenie" class="md-nav__button md-logo" aria-label="ProvisionGenie" data-md-component="logo">
+      
+  <img src="../media/site/logo.svg" alt="logo">
+
+    </a>
+    ProvisionGenie
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/ProvisionGenie/ProvisionGenie" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          ProvisionGenie
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="ProvisionGenie" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          ProvisionGenie
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adminfactsheet/" class="md-nav__link">
+        Admin fact sheet
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../costestimation/" class="md-nav__link">
+        Cost estimation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Architecture decisions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Architecture decisions
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    Database
+  </a>
+  
+    <nav class="md-nav" aria-label="Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decision-microsoft-dataverse" class="md-nav__link">
+    Decision - Microsoft Dataverse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternatives" class="md-nav__link">
+    Alternatives
+  </a>
+  
+    <nav class="md-nav" aria-label="Alternatives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataverse-vs-sharepoint-lists" class="md-nav__link">
+    Dataverse vs. SharePoint lists
+  </a>
+  
+    <nav class="md-nav" aria-label="Dataverse vs. SharePoint lists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issues-with-developer-experience" class="md-nav__link">
+    Issues with Developer Experience
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-issues" class="md-nav__link">
+    Performance issues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-issues" class="md-nav__link">
+    Security issues
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataverse-vs-dataverse-for-teams" class="md-nav__link">
+    Dataverse vs. Dataverse for Teams
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azure-sql-azure-table-storage" class="md-nav__link">
+    Azure SQL / Azure Table Storage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences-of-choosing-dataverse" class="md-nav__link">
+    Consequences of choosing Dataverse
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration" class="md-nav__link">
+    Integration
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decision-azure-logic-apps" class="md-nav__link">
+    Decision - Azure Logic Apps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences-of-choosing-azure-logic-apps" class="md-nav__link">
+    Consequences of choosing Azure Logic Apps
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no-microsoft-planner-provisioning" class="md-nav__link">
+    No Microsoft Planner provisioning
+  </a>
+  
+    <nav class="md-nav" aria-label="No Microsoft Planner provisioning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    Decision
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences-of-not-provisioning-planner" class="md-nav__link">
+    Consequences of not provisioning Planner
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#teams-wiki" class="md-nav__link">
+    Teams Wiki
+  </a>
+  
+    <nav class="md-nav" aria-label="Teams Wiki">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decision-to-delete-the-wikis" class="md-nav__link">
+    Decision to delete the Wikis
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../designguide/" class="md-nav__link">
+        Design Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../accessibilityguide/" class="md-nav__link">
+        Accessibility guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" data-md-state="indeterminate" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Core components
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Core components" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Core components
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../corecomponents/solutionoverview/" class="md-nav__link">
+        Solution Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" data-md-state="indeterminate" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Canvas App
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Canvas App" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Canvas App
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../corecomponents/canvasapp/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../corecomponents/howtobuildthecanvasapp/" class="md-nav__link">
+        How to build
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" data-md-state="indeterminate" type="checkbox" id="__nav_2_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          Dataverse
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Dataverse" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Dataverse
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../corecomponents/dataverse/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" data-md-state="indeterminate" type="checkbox" id="__nav_2_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_4">
+          Logic Apps
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Logic Apps" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Logic Apps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../corecomponents/logicapps/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5" data-md-state="indeterminate" type="checkbox" id="__nav_2_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5">
+          Language Packs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Language Packs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Language Packs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../corecomponents/languagepacks/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" data-md-state="indeterminate" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Deployment guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Deployment guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Deployment guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" data-md-state="indeterminate" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          Clean install
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Clean install" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Clean install
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploymentguide/" class="md-nav__link">
+        Start
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploymentguide/copiedvalues/" class="md-nav__link">
+        Copied values
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploymentguide/0-forkclone/" class="md-nav__link">
+        0. Fork and clone this repository
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploymentguide/1-registerapp/" class="md-nav__link">
+        1. Register application in Azure AD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploymentguide/2-importsolution/" class="md-nav__link">
+        2. Import Dataverse solution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploymentguide/3-deployazureresources/" class="md-nav__link">
+        3. Deploy Azure resources
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploymentguide/4-addtoteams/" class="md-nav__link">
+        4. Add ProvisionGenie to Teams
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploymentguide/5-postdeploycleanup/" class="md-nav__link">
+        5. Post Deployment cleanup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploymentsguide/6-knownissues.md" class="md-nav__link">
+        6. Known Issues
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" data-md-state="indeterminate" type="checkbox" id="__nav_3_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Upgrade
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Upgrade" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Upgrade
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deploymentguide/upgradev100v200/" class="md-nav__link">
+        Upgrade v1.0.0 --> v2.0.0
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" data-md-state="indeterminate" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/releasenotes/" class="md-nav__link">
+        Release Notes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/roadmap/" class="md-nav__link">
+        Roadmap
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/sessions/" class="md-nav__link">
+        Sessions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/developers/" class="md-nav__link">
+        Developers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#database" class="md-nav__link">
+    Database
+  </a>
+  
+    <nav class="md-nav" aria-label="Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decision-microsoft-dataverse" class="md-nav__link">
+    Decision - Microsoft Dataverse
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternatives" class="md-nav__link">
+    Alternatives
+  </a>
+  
+    <nav class="md-nav" aria-label="Alternatives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataverse-vs-sharepoint-lists" class="md-nav__link">
+    Dataverse vs. SharePoint lists
+  </a>
+  
+    <nav class="md-nav" aria-label="Dataverse vs. SharePoint lists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issues-with-developer-experience" class="md-nav__link">
+    Issues with Developer Experience
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-issues" class="md-nav__link">
+    Performance issues
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-issues" class="md-nav__link">
+    Security issues
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataverse-vs-dataverse-for-teams" class="md-nav__link">
+    Dataverse vs. Dataverse for Teams
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azure-sql-azure-table-storage" class="md-nav__link">
+    Azure SQL / Azure Table Storage
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences-of-choosing-dataverse" class="md-nav__link">
+    Consequences of choosing Dataverse
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration" class="md-nav__link">
+    Integration
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decision-azure-logic-apps" class="md-nav__link">
+    Decision - Azure Logic Apps
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences-of-choosing-azure-logic-apps" class="md-nav__link">
+    Consequences of choosing Azure Logic Apps
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no-microsoft-planner-provisioning" class="md-nav__link">
+    No Microsoft Planner provisioning
+  </a>
+  
+    <nav class="md-nav" aria-label="No Microsoft Planner provisioning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    Decision
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consequences-of-not-provisioning-planner" class="md-nav__link">
+    Consequences of not provisioning Planner
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#teams-wiki" class="md-nav__link">
+    Teams Wiki
+  </a>
+  
+    <nav class="md-nav" aria-label="Teams Wiki">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decision-to-delete-the-wikis" class="md-nav__link">
+    Decision to delete the Wikis
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/docs/architecturedecisions.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="architecture-decisions">Architecture Decisions<a class="headerlink" href="#architecture-decisions" title="Permanent link">&para;</a></h1>
+<h2 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h2>
+<p>As the Canvas App doesn't have its own database, we wanted to make a decision on where to log all requests to provision a Team. We could have handled the provisioning process without keeping the data, but in order for reasons of</p>
+<ul>
+<li>traceability</li>
+<li>future-readiness</li>
+</ul>
+<p>we wanted to store the data somewhere.</p>
+<h3 id="decision-microsoft-dataverse">Decision - Microsoft Dataverse<a class="headerlink" href="#decision-microsoft-dataverse" title="Permanent link">&para;</a></h3>
+<p>ProvisionGenie uses Microsoft Dataverse to store all data about the (to be) provisioned teams in 6 different tables (for more information on this, see <a href="../corecomponents/logicapps/#solution-overview">Solution Overview</a>).</p>
+<h3 id="alternatives">Alternatives<a class="headerlink" href="#alternatives" title="Permanent link">&para;</a></h3>
+<p>here are some thoughts on why we chose Dataverse over</p>
+<ul>
+<li>SharePoint</li>
+<li>Dataverse for Teams</li>
+<li>Azure SQL / Azure Table Storage</li>
+</ul>
+<h4 id="dataverse-vs-sharepoint-lists">Dataverse vs. SharePoint lists<a class="headerlink" href="#dataverse-vs-sharepoint-lists" title="Permanent link">&para;</a></h4>
+<p>As much as we love SharePoint for content &amp; collaboration within Microsoft 365, it is not an appropriate service to store data like we intend it with ProvisionGenie:</p>
+<h5 id="issues-with-developer-experience">Issues with Developer Experience<a class="headerlink" href="#issues-with-developer-experience" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Delegation: In Canvas Apps, heavy processing of data is delegated to the data connection. Common formulas in Power Apps are not delegatable to SharePoint: This means that it's difficult to return more than 500 (default) to 2000 (max) records at a time in SharePoint. Although this is not our core use case in ProvisionGenie, we want the entire solution to be future-proof</li>
+<li>Filter for data from SharePoint lists have some hard to overcome limits, like yes/no fields are not filterable</li>
+<li>All SharePoint lists are independent from each other. And although lists can have lookup columns that could refer to other lists, a SharePoint list is by no means a relational database. Lookup columns are not only causing a challenging developer experience but also lead to massive performance issues</li>
+</ul>
+<h5 id="performance-issues">Performance issues<a class="headerlink" href="#performance-issues" title="Permanent link">&para;</a></h5>
+<p>The (non-premium) SharePoint connector pipelines to SharePoint lists and we experience the following issues:</p>
+<ul>
+<li>A SharePoint list that contains many columns leads to slowness</li>
+<li>Too many dynamic lookup columns: especially lookup, person or calculated columns eat performance</li>
+<li>Huge lists cause extra overhead</li>
+</ul>
+<blockquote>
+<p>Rule of thumbs: The more items, columns and lookup columns your lists needs to contain, the more likely your user experience will be poor</p>
+</blockquote>
+<h5 id="security-issues">Security issues<a class="headerlink" href="#security-issues" title="Permanent link">&para;</a></h5>
+<p>A Power Apps Canvas app that writes data into a SharePoint list comes with some extra security issues. Our main concern is, that every user who wants to use the app needs to have permissions for this list. This means, that they could manipulate data in the list bypassing the app. Of course you could try to hide the list on the respecting SharePoint site, but that would just be obscurity, not security.</p>
+<h4 id="dataverse-vs-dataverse-for-teams">Dataverse vs. Dataverse for Teams<a class="headerlink" href="#dataverse-vs-dataverse-for-teams" title="Permanent link">&para;</a></h4>
+<p>We also took Dataverse's little sister, <a href="https://docs.microsoft.com/powerapps/teams/data-platform-compare">Dataverse for Teams</a> into consideration but needed to it turn down, because we don't want security roles, <a href="https://docs.microsoft.com/power-platform/admin/about-teams-environment#environment-lifecycle">lifecycle</a> and governance of our solution (and its environment) to be tied to a team in which <a href="https://docs.microsoft.com/powerapps/teams/data-platform-compare">every user needs to be a member of</a> to use ProvisionGenie.</p>
+<h4 id="azure-sql-azure-table-storage">Azure SQL / Azure Table Storage<a class="headerlink" href="#azure-sql-azure-table-storage" title="Permanent link">&para;</a></h4>
+<p>Trying to circumvent the premium license for Dataverse by choosing Azure SQL or Azure Table Storage as suggested in <a href="https://github.com/ProvisionGenie/ProvisionGenie/issues/52">issue #52</a> won't work as well. Data needs to be written from the canvas app into the storage, and this requires for both Azure SQL and Azure Table Storage either a premium connector or a (premium) custom connector. This means that no matter which enterprise-grade storage we use, we need the premium license.</p>
+<h3 id="consequences-of-choosing-dataverse">Consequences of choosing Dataverse<a class="headerlink" href="#consequences-of-choosing-dataverse" title="Permanent link">&para;</a></h3>
+<p>Using Dataverse results in licensing costs, as every user will need an Power Apps per app or a Power Apps per user plan. We are aware that this might come across as hurdle and that the desire to somehow bypass is hugh. But enterprise-grade solutions don't come for free.</p>
+<h2 id="integration">Integration<a class="headerlink" href="#integration" title="Permanent link">&para;</a></h2>
+<p>As we wanted to automate the provisioning process of a requested custom team, we needed to look for a service with which we could do that.</p>
+<h3 id="decision-azure-logic-apps">Decision - Azure Logic Apps<a class="headerlink" href="#decision-azure-logic-apps" title="Permanent link">&para;</a></h3>
+<p>In our first proof of concept, we still used Power Automate to provision a custom Teams team, but Power Automate is intended to be used to improve personal productivity and to serve non mission-critical scenarios. The more a solution scales, the less likely it is a good fit for Power Automate:</p>
+<ul>
+<li>Power Automate flows run in the context of a user, while Azure Logic Apps flow run in the context of an application</li>
+<li>Power Automate has only limited options for monitoring</li>
+<li>our developer experience in Azure Logic Apps was better, as we could easily manipulate the code and have a visual experience side-by-side</li>
+<li>Power Automate would have required a Premium license as we need HTTP actions</li>
+</ul>
+<h3 id="consequences-of-choosing-azure-logic-apps">Consequences of choosing Azure Logic Apps<a class="headerlink" href="#consequences-of-choosing-azure-logic-apps" title="Permanent link">&para;</a></h3>
+<ul>
+<li>requires an Azure subscription</li>
+<li>invoicing happens consumption-based</li>
+</ul>
+<h2 id="no-microsoft-planner-provisioning">No Microsoft Planner provisioning<a class="headerlink" href="#no-microsoft-planner-provisioning" title="Permanent link">&para;</a></h2>
+<p>We use <a href="https://docs.microsoft.com/graph/overview">Microsoft Graph API</a> to provision all assets that were requested by users using the Power Apps Canvas app with Azure Logic Apps.</p>
+<p>Using Microsoft Planner for day-to-day task management within a team is considered to be a good practice. Unfortunately, the Planner API lacks of having application level permissions. Without application level permissions, we can't provision Planner plans with a Managed Identity.</p>
+<h3 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h3>
+<p>Therefore, we decided to not provision it, as it would cause a lot of disadvantages like</p>
+<ul>
+<li>need of a service account (fake user)</li>
+<li>which couldn't be MFA-enabled</li>
+</ul>
+<h3 id="consequences-of-not-provisioning-planner">Consequences of not provisioning Planner<a class="headerlink" href="#consequences-of-not-provisioning-planner" title="Permanent link">&para;</a></h3>
+<p>We want to give ProvisionGenie users the best experience to work in Teams as from day 1. If they don't get a Planner plan by our process, we needed to present them an alternative. This is why we chose to ask our users if they wanted to have a SharePoint list with columns that mimic Planner behavior provisioned for them. We introduce users as well to gallery view in lists so that they get a similar experience as in Planner. As we can create SharePoint lists and their columns with application permissions using a Managed Identity, this is as a secure alternative. Also, SharePoint lists provide version history and a recycle bin.</p>
+<p><img alt="task list in SharePoint" src="../media/architecturedecisions/tasklist.png" /></p>
+<p>However, if you would like to help Microsoft to prioritize development of a fully functional API for Planner including application level permissions, you can upvote for this idea in the <a href="https://techcommunity.microsoft.com/t5/microsoft-365-developer-platform/application-permissions-for-planner-apis/idi-p/2266449">Microsoft 365 Developer ideas forum</a>.</p>
+<h2 id="teams-wiki">Teams Wiki<a class="headerlink" href="#teams-wiki" title="Permanent link">&para;</a></h2>
+<p>Usually, a new Team also contains a Teams Wiki tab. The Wiki is a (hidden) SharePoint library called <code>Teams Wiki Data</code> in the team site that backs the Team. You can find it here: <code>https://&lt;your-tenant-here&gt;.sharepoint.com/sites/&lt;your-team-site-here&gt;/Teams%20Wiki%20Data</code>. When a user removes Wiki tab from a channel, all content in that hidden library gets hard-deleted without any chance to be restored. There are even more reasons to not like the Wiki:</p>
+<ul>
+<li>Wiki is not searchable</li>
+<li>Wiki doesn't allow co-authoring</li>
+<li>Wiki can't be moved</li>
+</ul>
+<h3 id="decision-to-delete-the-wikis">Decision to delete the Wikis<a class="headerlink" href="#decision-to-delete-the-wikis" title="Permanent link">&para;</a></h3>
+<p>As part of our provisioning process, we delete the Teams Wiki from all created channels. We believe, that the Wiki is not a good place to store any kind of knowledge in.</p>
+<p>Of course our decision to delete the Wikis from all initial channels does not prevent users from adding a Wiki tab to an existing or manually created channel, but at least it is not the default behavior in a new Team.</p>
+<p>Optionally, we add the Notebook of the SharePoint site that backs the team, as a tab to the Channel <strong>General</strong> and already add the first note there.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../costestimation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Cost estimation" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Cost estimation
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../designguide/" class="md-footer__link md-footer__link--next" aria-label="Next: Design Guide" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Design Guide
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.instant", "navigation.sections", "navigation.expand"], "search": "../assets/javascripts/workers/search.8397ff9e.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.1e84347e.min.js"></script>
+      
+    
+  </body>
+</html>

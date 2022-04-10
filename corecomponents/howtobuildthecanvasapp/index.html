@@ -1,0 +1,2699 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Read the full documentation for ProvisionGenie 🧞 to provision custom-tailored Microsoft Teams teams based on your user's needs">
+      
+      
+      
+      
+        <link rel="canonical" href="https://provisiongenie.com/corecomponents/howtobuildthecanvasapp/">
+      
+      <link rel="icon" href="../../media/site/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-7.3.4">
+    
+    
+      
+        <title>How to build - ProvisionGenie</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.db9e7362.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/styles.css">
+    
+    
+      
+
+
+    
+    
+    
+    
+    
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ProvisionGenie - How to build" />
+    <meta property="og:description" content="Read the full documentation for ProvisionGenie 🧞 to provision custom-tailored Microsoft Teams teams based on your user's needs" />
+    <meta property="og:url" content="https://provisiongenie.com/corecomponents/howtobuildthecanvasapp/" />
+    <meta property="og:image" content="https://provisiongenie.com/media/site/socialcard.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1277" />
+    <meta property="og:image:height" content="640" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ProvisionGenie - How to build" />
+    <meta name="twitter:description" content="Read the full documentation for ProvisionGenie 🧞 to provision custom-tailored Microsoft Teams teams based on your user's needs" />
+    <meta name="twitter:image" content="https://provisiongenie.com/media/site/socialcard.png" />
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-to-build-the-canvas-app" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ProvisionGenie" class="md-header__button md-logo" aria-label="ProvisionGenie" data-md-component="logo">
+      
+  <img src="../../media/site/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ProvisionGenie
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              How to build
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/ProvisionGenie/ProvisionGenie" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        ProvisionGenie
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../solutionoverview/" class="md-tabs__link md-tabs__link--active">
+        Core components
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../deploymentguide/" class="md-tabs__link">
+        Deployment guide
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/releasenotes/" class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ProvisionGenie" class="md-nav__button md-logo" aria-label="ProvisionGenie" data-md-component="logo">
+      
+  <img src="../../media/site/logo.svg" alt="logo">
+
+    </a>
+    ProvisionGenie
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/ProvisionGenie/ProvisionGenie" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" data-md-state="indeterminate" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          ProvisionGenie
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="ProvisionGenie" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          ProvisionGenie
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adminfactsheet/" class="md-nav__link">
+        Admin fact sheet
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../costestimation/" class="md-nav__link">
+        Cost estimation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecturedecisions/" class="md-nav__link">
+        Architecture decisions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../designguide/" class="md-nav__link">
+        Design Guide
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../accessibilityguide/" class="md-nav__link">
+        Accessibility guide
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Core components
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Core components" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Core components
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solutionoverview/" class="md-nav__link">
+        Solution Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Canvas App
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Canvas App" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Canvas App
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../canvasapp/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          How to build
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        How to build
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-ui-concepts" class="md-nav__link">
+    Basic UI concepts
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic UI concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#colors" class="md-nav__link">
+    Colors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    Navigation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sidepanel" class="md-nav__link">
+    SidePanel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#popup" class="md-nav__link">
+    PopUp
+  </a>
+  
+    <nav class="md-nav" aria-label="PopUp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rectangle-as-dimmer" class="md-nav__link">
+    Rectangle as Dimmer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#button-that-serves-as-background" class="md-nav__link">
+    Button that serves as background
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#circles-that-serves-as-stepper-dots" class="md-nav__link">
+    Circles that serves as Stepper Dots
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cancel-icon-to-close-the-popup" class="md-nav__link">
+    Cancel icon to close the PopUp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#htmltext-to-create-a-shadow-around-the-popup" class="md-nav__link">
+    HTMLtext to create a shadow around the PopUp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#next-button" class="md-nav__link">
+    Next button
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#back-button" class="md-nav__link">
+    Back button
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image" class="md-nav__link">
+    Image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rectangle" class="md-nav__link">
+    Rectangle
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#label-for-the-title" class="md-nav__link">
+    Label for the Title
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#label-for-the-main-content" class="md-nav__link">
+    Label for the main content
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#screens" class="md-nav__link">
+    Screens
+  </a>
+  
+    <nav class="md-nav" aria-label="Screens">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#welcome-screen" class="md-nav__link">
+    Welcome Screen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#teams-screen" class="md-nav__link">
+    Teams Screen
+  </a>
+  
+    <nav class="md-nav" aria-label="Teams Screen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modify-the-form-with-toggles-instead-of-dropdown" class="md-nav__link">
+    Modify the form with toggles instead of dropdown
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#members-owners-screen" class="md-nav__link">
+    Members &amp; Owners Screen
+  </a>
+  
+    <nav class="md-nav" aria-label="Members &amp; Owners Screen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-button-members" class="md-nav__link">
+    Add button members
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clear-button-members" class="md-nav__link">
+    Clear button members
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combobox" class="md-nav__link">
+    Combobox
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gallery-members" class="md-nav__link">
+    Gallery members
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-button" class="md-nav__link">
+    Save button
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#channels-screen" class="md-nav__link">
+    Channels Screen
+  </a>
+  
+    <nav class="md-nav" aria-label="Channels Screen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-button" class="md-nav__link">
+    Add Button
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textinput" class="md-nav__link">
+    TextInput
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clear-button" class="md-nav__link">
+    Clear Button
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gallery" class="md-nav__link">
+    Gallery
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-next-button" class="md-nav__link">
+    The Next button
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libraries-screen" class="md-nav__link">
+    Libraries Screen
+  </a>
+  
+    <nav class="md-nav" aria-label="Libraries Screen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#form-for-library-name" class="md-nav__link">
+    Form for Library Name
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#form-for-column-name-and-column-type" class="md-nav__link">
+    Form for Column Name and Column Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-textinput" class="md-nav__link">
+    The TextInput
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gallery-to-display-the-column-values-for-choice-columns" class="md-nav__link">
+    Gallery to display the Column Values for Choice Columns
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-columns-button" class="md-nav__link">
+    Add columns Button
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gallery-to-display-column-names-and-column-types" class="md-nav__link">
+    Gallery to display Column Names and Column Types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#next-button_1" class="md-nav__link">
+    Next Button
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lists-screen" class="md-nav__link">
+    Lists Screen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checkout-screen" class="md-nav__link">
+    Checkout Screen
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" data-md-state="indeterminate" type="checkbox" id="__nav_2_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          Dataverse
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Dataverse" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Dataverse
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dataverse/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" data-md-state="indeterminate" type="checkbox" id="__nav_2_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_4">
+          Logic Apps
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Logic Apps" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Logic Apps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logicapps/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5" data-md-state="indeterminate" type="checkbox" id="__nav_2_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5">
+          Language Packs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Language Packs" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Language Packs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../languagepacks/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" data-md-state="indeterminate" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Deployment guide
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Deployment guide" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Deployment guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" data-md-state="indeterminate" type="checkbox" id="__nav_3_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          Clean install
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Clean install" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Clean install
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploymentguide/" class="md-nav__link">
+        Start
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploymentguide/copiedvalues/" class="md-nav__link">
+        Copied values
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploymentguide/0-forkclone/" class="md-nav__link">
+        0. Fork and clone this repository
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploymentguide/1-registerapp/" class="md-nav__link">
+        1. Register application in Azure AD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploymentguide/2-importsolution/" class="md-nav__link">
+        2. Import Dataverse solution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploymentguide/3-deployazureresources/" class="md-nav__link">
+        3. Deploy Azure resources
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploymentguide/4-addtoteams/" class="md-nav__link">
+        4. Add ProvisionGenie to Teams
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploymentguide/5-postdeploycleanup/" class="md-nav__link">
+        5. Post Deployment cleanup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploymentsguide/6-knownissues.md" class="md-nav__link">
+        6. Known Issues
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" data-md-state="indeterminate" type="checkbox" id="__nav_3_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Upgrade
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Upgrade" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Upgrade
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../deploymentguide/upgradev100v200/" class="md-nav__link">
+        Upgrade v1.0.0 --> v2.0.0
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" data-md-state="indeterminate" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          About
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/releasenotes/" class="md-nav__link">
+        Release Notes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/roadmap/" class="md-nav__link">
+        Roadmap
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/sessions/" class="md-nav__link">
+        Sessions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/developers/" class="md-nav__link">
+        Developers
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-ui-concepts" class="md-nav__link">
+    Basic UI concepts
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic UI concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#colors" class="md-nav__link">
+    Colors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    Navigation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sidepanel" class="md-nav__link">
+    SidePanel
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#popup" class="md-nav__link">
+    PopUp
+  </a>
+  
+    <nav class="md-nav" aria-label="PopUp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rectangle-as-dimmer" class="md-nav__link">
+    Rectangle as Dimmer
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#button-that-serves-as-background" class="md-nav__link">
+    Button that serves as background
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#circles-that-serves-as-stepper-dots" class="md-nav__link">
+    Circles that serves as Stepper Dots
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cancel-icon-to-close-the-popup" class="md-nav__link">
+    Cancel icon to close the PopUp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#htmltext-to-create-a-shadow-around-the-popup" class="md-nav__link">
+    HTMLtext to create a shadow around the PopUp
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#next-button" class="md-nav__link">
+    Next button
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#back-button" class="md-nav__link">
+    Back button
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#image" class="md-nav__link">
+    Image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rectangle" class="md-nav__link">
+    Rectangle
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#label-for-the-title" class="md-nav__link">
+    Label for the Title
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#label-for-the-main-content" class="md-nav__link">
+    Label for the main content
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#screens" class="md-nav__link">
+    Screens
+  </a>
+  
+    <nav class="md-nav" aria-label="Screens">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#welcome-screen" class="md-nav__link">
+    Welcome Screen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#teams-screen" class="md-nav__link">
+    Teams Screen
+  </a>
+  
+    <nav class="md-nav" aria-label="Teams Screen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modify-the-form-with-toggles-instead-of-dropdown" class="md-nav__link">
+    Modify the form with toggles instead of dropdown
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#members-owners-screen" class="md-nav__link">
+    Members &amp; Owners Screen
+  </a>
+  
+    <nav class="md-nav" aria-label="Members &amp; Owners Screen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-button-members" class="md-nav__link">
+    Add button members
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clear-button-members" class="md-nav__link">
+    Clear button members
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combobox" class="md-nav__link">
+    Combobox
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gallery-members" class="md-nav__link">
+    Gallery members
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-button" class="md-nav__link">
+    Save button
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#channels-screen" class="md-nav__link">
+    Channels Screen
+  </a>
+  
+    <nav class="md-nav" aria-label="Channels Screen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-button" class="md-nav__link">
+    Add Button
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textinput" class="md-nav__link">
+    TextInput
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clear-button" class="md-nav__link">
+    Clear Button
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gallery" class="md-nav__link">
+    Gallery
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-next-button" class="md-nav__link">
+    The Next button
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#libraries-screen" class="md-nav__link">
+    Libraries Screen
+  </a>
+  
+    <nav class="md-nav" aria-label="Libraries Screen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#form-for-library-name" class="md-nav__link">
+    Form for Library Name
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#form-for-column-name-and-column-type" class="md-nav__link">
+    Form for Column Name and Column Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-textinput" class="md-nav__link">
+    The TextInput
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gallery-to-display-the-column-values-for-choice-columns" class="md-nav__link">
+    Gallery to display the Column Values for Choice Columns
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-columns-button" class="md-nav__link">
+    Add columns Button
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gallery-to-display-column-names-and-column-types" class="md-nav__link">
+    Gallery to display Column Names and Column Types
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#next-button_1" class="md-nav__link">
+    Next Button
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lists-screen" class="md-nav__link">
+    Lists Screen
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checkout-screen" class="md-nav__link">
+    Checkout Screen
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/ProvisionGenie/ProvisionGenie/blob/main/docs/docs/corecomponents/howtobuildthecanvasapp.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="how-to-build-the-canvas-app">How to build the canvas app<a class="headerlink" href="#how-to-build-the-canvas-app" title="Permanent link">&para;</a></h1>
+<p><img alt="header image" src="../../media/index/Genie_Header.png" /></p>
+<p>Although we give you the zipped files of the canvas app in our solution, you can also follow these instructions if you want to rebuild it. It will also make it easier to understand how everything works if you want to contribute to ProvisionGenie.</p>
+<p><img alt="ProvisionGenie" src="../../media/corecomponents/TeamsResult.png" /></p>
+<h2 id="basic-ui-concepts">Basic UI concepts<a class="headerlink" href="#basic-ui-concepts" title="Permanent link">&para;</a></h2>
+<p>This app is designed to be a personal app in Microsoft Teams and we aimed to adopt the Teams look &amp; feel by following the guidance available in the <a href="https://docs.microsoft.com/microsoftteams/platform/concepts/design/design-teams-app-ui-templates?tabs=desktop">Microsoft Teams UI Toolkit</a>. This means, that we will not explain all basic UI components in this document but refer to the Toolkit.</p>
+<h3 id="colors">Colors<a class="headerlink" href="#colors" title="Permanent link">&para;</a></h3>
+<p>Set variables <strong>onStart</strong> for the colors you use the most- for example:</p>
+<p><code>Set(color_blurple,ColorValue("#6264A7"))</code> and
+<code>Set(color_bg,ColorValue("#F5F5F5"))</code></p>
+<p>This way, you can refer to these values - or change them, if needed, more easily.</p>
+<h3 id="navigation">Navigation<a class="headerlink" href="#navigation" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Create a <code>_selectedScreen</code> variable as a record containing</li>
+<li>row (number)</li>
+<li>title (text)</li>
+<li>image (image)
+    and create a <code>NavigationMenu</code> collection in <strong>onStart</strong>, wrap both in <code>Concurrent()</code>:</li>
+</ul>
+<div class="highlight"><pre><span></span>Concurrent(
+    Set(
+        _selectedScreen,
+        {
+            Row: 1,
+                       Title: &quot;Welcome&quot;,
+            Image: ic_fluent_home_48_regular
+        },
+        {
+            Row: 2,
+            Title: &quot;Teams&quot;,
+            Image: ic_fluent_people_32_regular
+        },
+        {
+            Row: 3,
+            Title: &quot;Members &amp; Owners&quot;,
+            Image: AddFriend
+        },
+        {
+            Row: 4,
+            Title: &quot;Channels&quot;,
+            Image: ic_fluent_text_bullet_list_square_24_regular
+        },
+        {
+            Row: 5,
+            Title: &quot;Libraries&quot;,
+            Image: ic_fluent_document_48_regular
+        },
+        {
+            Row: 6,
+            Title: &quot;Lists&quot;,
+            Image: ic_fluent_clipboard_bullet_list_ltr_20_regular
+        },
+        {
+            Row: 7,
+            Title: &quot;Checkout&quot;,
+            Image: ic_fluent_checkbox_checked_24_regular
+        }
+    )
+);
+</pre></div>
+<p>(To make this work replace the name of the images with the images you uploaded 💡)</p>
+<ul>
+<li>
+<p>Create a gallery
+  with</p>
+</li>
+<li>
+<p>Button</p>
+</li>
+<li>Rectangle</li>
+<li>Text label</li>
+<li>
+<p>Image</p>
+</li>
+<li>
+<p>Set <strong>Items</strong> of the gallery to <code>NavigationMenu</code></p>
+</li>
+<li>Set <strong>TemplateFill</strong> to <code>If(ThisItem.Row = _selectedScreen.Row, RGBA(220, 220, 220, 1), RGBA(0,0,0,0))</code></li>
+<li>Set <strong>OnSelect</strong> to</li>
+</ul>
+<div class="highlight"><pre><span></span>Set(_selectedScreen, ThisItem);
+If(
+    ThisItem.Row = 1, Navigate(&#39;Welcome Screen&#39;, None),
+    ThisItem.Row = 2, Navigate(&#39;Teams Screen&#39;, None),
+    ThisItem.Row = 3, Navigate(&#39;Members Screen&#39;, None),
+    ThisItem.Row = 4, Navigate(&#39;Channel Screen&#39;, None),
+    ThisItem.Row = 5, Navigate(&#39;Libraries Screen&#39;, None),
+    ThisItem.Row = 6, Navigate(&#39;Lists Screen&#39;, None),
+    ThisItem.Row = 7, Navigate(&#39;Checkout Screen&#39;, None)
+)
+</pre></div>
+<ul>
+<li>Set <strong>Text</strong> of the  Button to <code>""</code></li>
+<li>Set <strong>Fill</strong>, <strong>HoverFill</strong>, and <strong>DisabledFill</strong> to <code>Transparent</code></li>
+<li>Make sure that the Button sits above everything else in the Gallery</li>
+<li>Set <strong>Visible</strong> of the rectangle to <code>ThisItem.Row = _selectedScreen.Row</code></li>
+<li>Set <strong>Text</strong> of the TextLabel to <code>ThisItem.Title</code></li>
+<li>Set <strong>Image</strong> of the Image to <code>ThisItem.Image</code></li>
+</ul>
+<blockquote>
+<p>Keep in mind to always <code>Set(_selectedScreen,{Title: "your screenname", Row: &lt;rownumber&gt;})</code>in addition to <code>Navigate(your screenname)</code> if you want to let the user navigate to another screen not using the navigation gallery.</p>
+</blockquote>
+<h3 id="sidepanel">SidePanel<a class="headerlink" href="#sidepanel" title="Permanent link">&para;</a></h3>
+<p>The SidePanel consists of 2 tabs, <strong>Details</strong> and <strong>Resources</strong> and we use</p>
+<ul>
+<li>2 Textlabels for the tab names</li>
+<li>2 Rectangles as an underline for the tab names</li>
+<li>at least 2 <strong>HTMLText</strong> controls to display content depending on the tab</li>
+</ul>
+<p>This is how it works:</p>
+<ul>
+<li>Set <strong>HTMLText</strong> of HTML text control to</li>
+</ul>
+<div class="highlight"><pre><span></span>&lt;div style=&#39;margin: 0 0 0 20px; font-size: 11pt !important; font-weight: lighter; color: #252525; padding: 0 10px; width: 100%; overflow: hidden;&#39;&gt;
+    &lt;div style=&quot;&quot;float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;&quot;&quot; &gt;*&lt;/div&gt;
+    &lt;div style=&quot;&quot;float: left; width: 75%; &quot;&quot;&gt;
+        Step 1 &lt;br&gt;&lt;br&gt;
+    &lt;/div&gt;
+    &lt;div style=&quot;&quot;clear: both&quot;&quot;&gt;&lt;/div&gt;
+
+    &lt;div style=&quot;&quot;float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;&quot;&quot; &gt;*&lt;/div&gt;
+    &lt;div style=&quot;&quot;float: left; width: 75%; &quot;&quot;&gt;
+      Step 2&lt;br&gt;&lt;br&gt;
+    &lt;/div&gt;
+    &lt;div style=&quot;&quot;clear: both&quot;&quot;&gt;&lt;/div&gt;
+
+    &lt;div style=&quot;&quot;float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;&quot;&quot; &gt;*&lt;/div&gt;
+    &lt;div style=&quot;&quot;float: left; width: 75%; &quot;&quot;&gt;
+       Step 3&lt;br&gt;&lt;br&gt;
+    &lt;/div&gt;
+    &lt;div style=&quot;&quot;clear: both&quot;&quot;&gt;&lt;/div&gt;
+
+    &lt;div style=&quot;&quot;float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;&quot;&quot; &gt;*&lt;/div&gt;
+    &lt;div style=&quot;&quot;float: left; width: 75%; &quot;&quot;&gt;
+       Step 4&lt;br&gt;&lt;br&gt;
+    &lt;/div&gt;
+        &lt;div style=&quot;&quot;clear: both&quot;&quot;&gt;&lt;/div&gt;
+
+    &lt;div style=&quot;&quot;float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;&quot;&quot; &gt;*&lt;/div&gt;
+    &lt;div style=&quot;&quot;float: left; width: 75%; &quot;&quot;&gt;
+        Step 5&lt;br&gt;
+    &lt;/div&gt;
+      &lt;div style=&quot;&quot;clear: both&quot;&quot;&gt;&lt;/div&gt;
+
+    &lt;div style=&quot;&quot;float: left; width: 20px; text-align: right; margin: 0 20px 0 0; font-weight: bold;&quot;&quot; &gt;*&lt;/div&gt;
+    &lt;div style=&quot;&quot;float: left; width: 75%; &quot;&quot;&gt;
+       Step 6&lt;br&gt;
+    &lt;/div&gt;
+</pre></div>
+<ul>
+<li>Repeat with different text in the second HTML text control</li>
+<li>Set <strong>OnSelect</strong> of the <code>Details</code> Textlabel to <code>UpdateContext({IsShowResourcesTab: false})</code></li>
+<li>Set <strong>OnSelect</strong> of the <code>Resources</code> Textlabel to <code>UpdateContext({IsShowResourcesTab:true})</code></li>
+<li>Set <strong>Visible</strong> of the <code>Resources</code> HTMLText to <code>IsShowResourcesTab</code></li>
+<li>Set <strong>Visible</strong> of the <code>Resources</code> Rectangle to <code>IsShowResourcesTab</code></li>
+<li>Set <strong>Visible</strong> of the <code>Details</code> HTMLText to <code>!IsShowResourcesTab</code></li>
+<li>Set <strong>Visible</strong> of the <code>Details</code> Rectangle to <code>!IsShowResourcesTab</code></li>
+<li>Set <strong>FontWeight</strong> of <code>Details</code> textlabel to <code>If(!IsShowResourcesTab,FontWeight.Bold, FontWeight.Lighter)</code></li>
+<li>Set <strong>FontWeight</strong> of <code>Resources</code> textlabel to <code>If(IsShowResourcesTab,FontWeight.Bold, FontWeight.Lighter)</code></li>
+</ul>
+<p>This way, the content of <code>Resources</code> gets visible once the <code>Details</code> content is non-visible and vice versa. Also, user switches between the content by selecting the respecting text labels. Font-weight will switch from <code>lighter</code> to <code>bold</code> and Rectangle (that serves as an underline) will be visible once user selects a Textlabel</p>
+<h3 id="popup">PopUp<a class="headerlink" href="#popup" title="Permanent link">&para;</a></h3>
+<p>In the app, we make use of various PopUps, either to educate users about how to work in Microsoft Teams, or to explain something that users can request (like 'Welcome Package') or to indicate a success. Most PopUps contain 3 different pages, which means that we need 3 times different content for them as well</p>
+<p>Popups contain the following controls:</p>
+<ul>
+<li>Textlabel that serves as a Title for this PopUp</li>
+<li>TextLabel that serves as the main content for this PopUp</li>
+<li>Rectangle that serves as a Dimmer</li>
+<li>Button that serves as background for the PopUp</li>
+<li>Circles that serves as Stepper Dots so users can select them to navigate back and forth of the pages</li>
+<li>Cancel icon to close the PopUp</li>
+<li>HTMLtext to create a shadow around the PopUp</li>
+<li>2 Buttons for next/back</li>
+<li>Image</li>
+<li>Rectangle to prettify the PopUp</li>
+</ul>
+<h4 id="rectangle-as-dimmer">Rectangle as Dimmer<a class="headerlink" href="#rectangle-as-dimmer" title="Permanent link">&para;</a></h4>
+<p>Purpose here is do create a lightbox effect and to dim everything but the PopUp itself. Following the Teams UI Toolkit:</p>
+<ul>
+<li>Set <strong>Fill</strong> to <code>RGBA(37, 36, 35, 0.75)</code></li>
+<li>Set size to the entire screen</li>
+</ul>
+<h4 id="button-that-serves-as-background">Button that serves as background<a class="headerlink" href="#button-that-serves-as-background" title="Permanent link">&para;</a></h4>
+<p>As Rectangles in Power Apps don't support rounded corners (Border radius) we will use a Button instead.</p>
+<ul>
+<li>Set <strong>Width</strong> to <code>600</code></li>
+<li>Set <strong>Height</strong> to <code>480</code></li>
+<li>Set <strong>Color</strong> to <code>White</code></li>
+<li>Set <strong>Hover color</strong> to <code>White</code></li>
+<li>Set <strong>Pressed color</strong> to <code>White</code></li>
+<li>Set <strong>Border radius</strong> to <code>3</code></li>
+</ul>
+<h4 id="circles-that-serves-as-stepper-dots">Circles that serves as Stepper Dots<a class="headerlink" href="#circles-that-serves-as-stepper-dots" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Create 3 circles</li>
+<li>Set their <strong>Width</strong> to <code>8</code></li>
+<li>Set their <strong>Height</strong> to <code>8</code></li>
+<li>Align them horizontally</li>
+<li>Set <strong>OnSelect</strong> of Circle1 to <code>UpdateContext({isPage:1})</code></li>
+<li>Set <strong>OnSelect</strong> of Circle2 to <code>UpdateContext({isPage:2})</code></li>
+<li>Set <strong>OnSelect</strong> of Circle3 to <code>UpdateContext({isPage:3})</code></li>
+<li>Set <strong>Fill</strong> of Circle1 to <code>If(isPage=1,color_blurple,color_bg)</code></li>
+<li>Set <strong>Fill</strong> of Circle2 to <code>If(isPage=2,color_blurple,color_bg)</code></li>
+<li>Set <strong>Fill</strong> of Circle3 to <code>If(isPage=3,color_blurple,color_bg)</code></li>
+</ul>
+<p>This way, the circle is <code>color_blurple</code> on the correct page.</p>
+<h4 id="cancel-icon-to-close-the-popup">Cancel icon to close the PopUp<a class="headerlink" href="#cancel-icon-to-close-the-popup" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Place your Cancel icon at the upper right hand corner of the button</li>
+<li>Set <strong>OnSelect</strong> to <code>UpdateContext({isShowPopUp: false})</code></li>
+</ul>
+<h4 id="htmltext-to-create-a-shadow-around-the-popup">HTMLtext to create a shadow around the PopUp<a class="headerlink" href="#htmltext-to-create-a-shadow-around-the-popup" title="Permanent link">&para;</a></h4>
+<p>To have a nice shadow around the PopUp</p>
+<ul>
+<li>Create an HTMLtext control</li>
+<li>Set its <strong>HTMLtext</strong> to <code>"&lt;div style='margin:10px;width:600px;height:480px;background-color:#;box-shadow:0 3px 6px 1px #252525; border-radius:3px'&gt;&lt;/div&gt;"</code></li>
+<li>Rearrange controls so that the shadow is underneath the button</li>
+</ul>
+<h4 id="next-button">Next button<a class="headerlink" href="#next-button" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Create a button</li>
+<li>Set colors as stated in Teams UI Toolkit if you like this to be design consistent to Teams, otherwise choose your own colors (preferably set them as variables)</li>
+<li>Set <strong>OnSelect</strong> to</li>
+</ul>
+<div class="highlight"><pre><span></span>If(
+    isPage= 1,
+    UpdateContext({isPage: 2}),
+    If(
+        isPageTrack = 2,
+        UpdateContext({isPage: 3}),
+        UpdateContext({isShowPopUp: false})
+    )
+)
+</pre></div>
+<p>This way, users navigate to the next screen if they are on page 1 or 2 and close the PoPup if they are on page 3.</p>
+<ul>
+<li>Set <strong>Text</strong> to <code>If(isPage=1,"yourtext--&gt;2",If(isPage=2,"yourtext--&gt;3","Close"))</code> This way, we display different texts depending on the page our user is currently at</li>
+<li>Set <strong>Width</strong> to <code>If(isPage=1,&lt;value1&gt;,If(isPage=2, &lt;value2&gt;,&lt;value3&gt;)</code> This way, the width of the button adjusts</li>
+<li>Set <strong>X</strong> to <code>If(isPage=1,&lt;value1&gt;,If(isPage=2, &lt;value2&gt;,&lt;value3&gt;)</code> to adjust horizontal position of the button.</li>
+</ul>
+<blockquote>
+<p>To calculate this correctly, place the button by drag'n'drop where you want it. Now check the x-value, add the width to it. This is your target value. For the other pages, you will need to deduct the width of the button from that target value so you get the x-value of the button on that page. If you have more than 1 PopUp, it's worth to think about parameterizing this as well</p>
+</blockquote>
+<h4 id="back-button">Back button<a class="headerlink" href="#back-button" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Create a button</li>
+<li>Set colors as stated in Teams UI Toolkit if you like this to be design consistent to Teams, otherwise choose your own colors (preferably set them as variables)</li>
+<li>Set <strong>OnSelect</strong> to</li>
+</ul>
+<div class="highlight"><pre><span></span>If(
+    isPage = 1,
+    UpdateContext({isPage: 3}),
+    If(
+        isPage = 3,
+        UpdateContext({isPageConversations: 2}),
+        UpdateContext({isPageConversations:1})
+    )
+)
+</pre></div>
+<p>This way, users navigate to the previous screen.</p>
+<h4 id="image">Image<a class="headerlink" href="#image" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Insert an image</li>
+<li>Set <strong>Width</strong> to <code>600</code></li>
+<li>Set <strong>Height</strong> to <code>240</code></li>
+<li>Set <strong>Image</strong> to <code>If(isPage=1,&lt;image1&gt;,If(isPage=2,&lt;image2&gt;,&lt;image3&gt;))</code></li>
+</ul>
+<p>You will notice, that due to the Border radius of the background button, the edges of the image don't look like 90° corners. This is why we will insert a rectangle to cover this</p>
+<h4 id="rectangle">Rectangle<a class="headerlink" href="#rectangle" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Create a Rectangle</li>
+<li>Set its <strong>Fill</strong> to `White**</li>
+<li>Set <strong>Width</strong> to <code>600</code></li>
+<li>Set <strong>Height</strong> to <code>17</code></li>
+<li>Place it so it overlaps with the rounded corners</li>
+</ul>
+<h4 id="label-for-the-title">Label for the Title<a class="headerlink" href="#label-for-the-title" title="Permanent link">&para;</a></h4>
+<p>Each page should have a title.</p>
+<ul>
+<li>Create a Textlabel</li>
+<li>Set its <strong>Text</strong> to <code>If(isPage=1,&lt;yourTitle1&gt;,If(isPage=2,&lt;yourTitle2&gt;,&lt;yourTitle3&gt;))</code></li>
+</ul>
+<h4 id="label-for-the-main-content">Label for the main content<a class="headerlink" href="#label-for-the-main-content" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Create a Textlabel</li>
+<li>Set its <strong>Text</strong> to <code>If(isPage=1,&lt;yourContent1&gt;,If(isPage=2,&lt;yourContent2&gt;,&lt;yourContent&gt;))</code></li>
+</ul>
+<p>To display this PopUp you will need to do the following steps:</p>
+<ul>
+<li>group the controls</li>
+<li>Set <strong>Visible</strong> of the group to <code>isShowPopUp</code></li>
+<li>trigger this PopUp - this could be another button, which <strong>OnSelect</strong> needs to be set to <code>UpdateContext({isShowPopUp: true})</code></li>
+</ul>
+<h2 id="screens">Screens<a class="headerlink" href="#screens" title="Permanent link">&para;</a></h2>
+<p>Navigation and side panel will be shown on every screen, only the HTMLtext in the SidePanel changes to contextually display details (how to use this screen) and resources (learning content about Teams). In addition to that, we need the following controls:</p>
+<h3 id="welcome-screen">Welcome Screen<a class="headerlink" href="#welcome-screen" title="Permanent link">&para;</a></h3>
+<p>We built</p>
+<ul>
+<li>1 Welcome <a href="#popup">PopUps</a> that is triggered by AppStart and introduces users on three pages what this app is about</li>
+<li>4 different <a href="#popup">PopUps</a> for the learning content</li>
+<li>4 respecting Cards that serve as a more beautiful trigger for these PopUps</li>
+<li>1 Button to navigate to the <strong>Teams</strong> screen and start the provisioning process</li>
+<li>Set <strong>OnSelect</strong> of this Button to</li>
+</ul>
+<div class="highlight"><pre><span></span>Navigate(
+    &#39;Teams Screen&#39;,
+    ScreenTransition.Cover
+);
+Set(
+    _selectedScreen,
+    {
+        Title: &quot;Teams&quot;,
+        Row: 2
+    }
+)
+</pre></div>
+<h3 id="teams-screen">Teams Screen<a class="headerlink" href="#teams-screen" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Purpose if this screen is to get information about</li>
+<li>name</li>
+<li>description</li>
+<li>whether our owner (= signed-in user) wants a 'WelcomePackage' or not</li>
+<li>whether our owner wants a SharePoint list provisioned for task management</li>
+<li>whether our owner wants the Notebook of the SharePoint site, that backs the team, be pinned as a tab to the channel <strong>General</strong></li>
+</ul>
+<p>We get the information by a form which is connected to a DataVerse table <strong>Teams Requests</strong> - see also <a href="../logicapps/#solution-overview">Solution Overview</a></p>
+<p>A few notes:</p>
+<ul>
+<li>We modified the styling of the DataCards of the Form to match the criteria of Teams Toolkit.</li>
+<li>For the yes/no question about the SharePoint list as a task management tool, we build another PopUp to explain this. For info on why we don't provision see <a href="../../architecturedecisions/#no-microsoft-planner-provisioning">Architecture Decisions</a></li>
+<li>We changed the default dropdown fields to toggles. To connect those again to your data source, a little extra work is required:</li>
+</ul>
+<h4 id="modify-the-form-with-toggles-instead-of-dropdown">Modify the form with toggles instead of dropdown<a class="headerlink" href="#modify-the-form-with-toggles-instead-of-dropdown" title="Permanent link">&para;</a></h4>
+<ol>
+<li>in the form, delete the dropdown control</li>
+<li>insert into the datacard a toggle</li>
+<li>set <strong>Default</strong> of the Card to <code>If(Toggle1.Value,'Do you want the welcome package? (TeamsRequests)'.Yes,'Do you want the welcome package? (TeamsRequests)'.No)</code></li>
+<li>Set <strong>Update</strong> of the toggle to</li>
+</ol>
+<div class="highlight"><pre><span></span>If(
+    ThisItem.&#39;Do you want the welcome package?&#39; = &#39;Do you want the welcome package? (TeamsRequests)&#39;.Yes,
+    true,
+    ThisItem.&#39;Do you want the welcome package?&#39; =  &#39;Do you want the welcome package? (TeamsRequests)&#39;.No,
+    false
+)
+</pre></div>
+<p>This way, we match the toggle value with our Dataverse column.</p>
+<p>The <strong>Next</strong> button's <strong>OnSelect</strong> is set to</p>
+<div class="highlight"><pre><span></span>Navigate(
+    &#39;Channel Screen&#39;,
+    ScreenTransition.Cover
+);
+Set(
+    _selectedScreen,
+    {
+        Title: &quot;Members&quot;,
+        Row: 3
+    }
+);
+Set(
+    TeamName,
+    DataCardValue1_1.Text
+);
+Set(
+    TeamsDescription,
+    DataCardValue3_1.Text
+);
+Set(
+    isWelcomePackage,
+    Toggle1.Value
+);
+Set(
+    isSharePointListTasks,
+    Toggle1_1.Value
+)
+</pre></div>
+<p>Which navigates to the next <strong>Members &amp; Owners</strong> screen, sets the Navigation correctly and saves the values in variables. Please note, that at this point we won't submit this form to the data source.</p>
+<h3 id="members-owners-screen">Members &amp; Owners Screen<a class="headerlink" href="#members-owners-screen" title="Permanent link">&para;</a></h3>
+<p>Members and Owners can be selected from users via Office 365 Users Connector. </p>
+<p>On this screen, our user add members and additional owners to their Team. We work with</p>
+<ul>
+<li>1 ComboBox to get a value for members</li>
+<li>a Button to add this value into a members collection</li>
+<li>a Button to clear the members collection</li>
+<li>a gallery to display the members collection</li>
+<li>1 ComboBox to get a value for owners</li>
+<li>a Button to add this value into a owners collection</li>
+<li>a Button to clear the owners collection</li>
+<li>a gallery to display the owners collection</li>
+</ul>
+<h4 id="add-button-members">Add button members<a class="headerlink" href="#add-button-members" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Set its <strong>OnSelect</strong> to</li>
+</ul>
+<div class="highlight"><pre><span></span>If(
+    DataCardValue4_4.Selected.UserPrincipalName in colMembers.UPN,
+    Notify(
+        &quot;You already added this member. Please try again with a different member.&quot;,
+        NotificationType.Error
+    ),
+    If(
+        DataCardValue4_4.Selected.UserPrincipalName in colOwners.UPN,
+        Notify(
+            &quot;You already added this person as an owner. To add them as an member, first remove them from the owners&quot;,
+            NotificationType.Error
+        ),
+        Collect(
+            colMembers,
+            {
+                DisplayName: DataCardValue4_4.Selected.DisplayName,
+                UPN: DataCardValue4_4.Selected.UserPrincipalName,
+                FirstName: DataCardValue4_4.Selected.GivenName,
+                LastName: DataCardValue4_4.Selected.Surname
+            }
+        );
+        UpdateContext({locClearMemberInput: true});
+        UpdateContext({locClearMemberInput: false})
+    )
+);
+</pre></div>
+<h4 id="clear-button-members">Clear button members<a class="headerlink" href="#clear-button-members" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Set its <code>onSelect</code> to</li>
+</ul>
+<div class="highlight"><pre><span></span>Clear(colMembers);
+UpdateContext({locClearMemberInput: true});
+UpdateContext({locClearMemberInput: false})
+</pre></div>
+<h4 id="combobox">Combobox<a class="headerlink" href="#combobox" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Set its <code>Items</code> to <code>Office365Users.SearchUser({searchTerm:Self.SearchText,top:10})</code></li>
+</ul>
+<h4 id="gallery-members">Gallery members<a class="headerlink" href="#gallery-members" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Set <strong>Items</strong> to <code>colMembers</code></li>
+<li>Set the <strong>Text</strong> of <strong>Title</strong> Textlabel in the gallery to <code>ThisItem.DisplayName</code></li>
+<li>Change the default <strong>Nextarrow</strong> icon to a <strong>Cancel</strong> icon and set its <strong>OnSelect</strong> to <code>RemoveIf(colMembers,UPN=ThisItem.UPN)</code></li>
+</ul>
+<p>This way, our user can review the list of members and even remove some of them again.</p>
+<blockquote>
+<p>This neat solution is described in more detail on <a href="https://digipersonal.com/2021/04/22/canvas-app-ui-element-tag-box-list/">Carmen Ysewijn's blog</a></p>
+<p>Do the same for owners: Create a Combobox, add button, clear button, gallery.</p>
+</blockquote>
+<h4 id="save-button">Save button<a class="headerlink" href="#save-button" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Set its <code>onSelect</code> to</li>
+</ul>
+<div class="highlight"><pre><span></span>Set(
+    varMembers,
+    Concat(
+        colMembers,
+        DisplayName &amp; &quot;, &quot;
+    )
+);
+Set(
+    varOwners,
+    Concat(
+        colOwners,
+        DisplayName &amp; &quot;, &quot;
+    )
+);
+Navigate(
+    &#39;Channel Screen&#39;,
+    Cover
+);
+Set(
+    _selectedScreen,
+    {
+        Title: &quot;Channels&quot;,
+        Row: 4
+    }
+)
+</pre></div>
+<h3 id="channels-screen">Channels Screen<a class="headerlink" href="#channels-screen" title="Permanent link">&para;</a></h3>
+<p>On this screen, our owner-to-be can create the channels they want to be provisioned in their new Team. We work here with:</p>
+<ul>
+<li>1 TextInput to get a value</li>
+<li>a Button to add this value into a collection</li>
+<li>a Button to clear the collection</li>
+<li>a gallery to display the collection</li>
+</ul>
+<h4 id="add-button">Add Button<a class="headerlink" href="#add-button" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Set its <strong>OnSelect</strong> to</li>
+</ul>
+<div class="highlight"><pre><span></span>  If(txtTagToAdd.Text in colChannels.ChannelName,
+    Notify(
+        &quot;You already added this Channel. Please try again with a different name.&quot;,
+        NotificationType.Warning
+    ),
+    Collect(
+        colChannels,{ChannelName:
+        txtTagToAdd.Text
+        });
+
+    UpdateContext({locClearTextInput: true});
+    UpdateContext({locClearTextInput: false})
+);
+</pre></div>
+<p>This way, we use the <strong>Notify</strong> function to warn our user in case they add a Channel name that already exists in collection. If the channel name does not exist already in the collection, we add it.Then we update a variable that controls the <strong>Reset</strong> property of the TextInput, so that its always empty again after we added a channel name to the collection.</p>
+<h4 id="textinput">TextInput<a class="headerlink" href="#textinput" title="Permanent link">&para;</a></h4>
+<p>Set <strong>Reset</strong> to <code>locClearTextInput</code></p>
+<h4 id="clear-button">Clear Button<a class="headerlink" href="#clear-button" title="Permanent link">&para;</a></h4>
+<p>In case our user wants to start all over again, we give them a button to do so.</p>
+<p>Set <strong>OnSelect</strong> to</p>
+<div class="highlight"><pre><span></span>Clear(colChannels);
+UpdateContext({locClearTextInput: true});
+UpdateContext({locClearTextInput: false})
+</pre></div>
+<p>which empties the collection and updates the variables that controls the <strong>Reset</strong> property of TexInput again.</p>
+<h4 id="gallery">Gallery<a class="headerlink" href="#gallery" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Set <strong>Items</strong> to <code>colChannels</code></li>
+<li>Set the <strong>Text</strong> of <strong>Title</strong> Textlabel in the gallery to <code>ThisItem.ChannelName</code></li>
+<li>Change the default <strong>Nextarrow</strong> icon to a <strong>Cancel</strong> icon and set its <strong>OnSelect</strong> to <code>RemoveIf(colChannels,ChannelName=ThisItem.ChannelName)</code></li>
+</ul>
+<p>This way, our user can review the list of channels and even remove some of them again.</p>
+<h4 id="the-next-button">The Next button<a class="headerlink" href="#the-next-button" title="Permanent link">&para;</a></h4>
+<p>With this button we want to set a variable that concatenates the Channels to a single string with, separated by <code>,</code> , navigate to the next screen and set our navigation correctly. To achieve this, set <strong>OnSelect</strong> to</p>
+<div class="highlight"><pre><span></span>Set(
+    varChannels,
+    Concat(
+        colChannels,
+        ChannelName &amp; &quot;, &quot;
+    )
+);
+Navigate(&#39;Libraries Screen&#39;,Cover);
+Set(
+    _selectedScreen,
+    {
+        Title: &quot;Libraries&quot;,
+        Row: 4
+    }
+)
+</pre></div>
+<h3 id="libraries-screen">Libraries Screen<a class="headerlink" href="#libraries-screen" title="Permanent link">&para;</a></h3>
+<p>We want to give users a way to get an additional library - and in this screen we want to get information on</p>
+<ul>
+<li>library name</li>
+<li>columns to add</li>
+<li>column types for the columns to add</li>
+<li>column values for choice columns</li>
+</ul>
+<p>Like in the channel screen, we want users to review their inputs again</p>
+<p>We will need for that</p>
+<ul>
+<li>Form for the library name</li>
+<li>Form for Column Names and Column Types</li>
+<li>TextInput for Column Values of Choice Columns</li>
+<li>Gallery to display the Column Values for Choice Columns</li>
+<li>Gallery to display Column Names and Column Types</li>
+<li>Add Column Button</li>
+</ul>
+<h4 id="form-for-library-name">Form for Library Name<a class="headerlink" href="#form-for-library-name" title="Permanent link">&para;</a></h4>
+<p>This Form connects to <strong>SharePoint Libraries</strong> table in Dataverse, please also see Solution Overview.</p>
+<h4 id="form-for-column-name-and-column-type">Form for Column Name and Column Type<a class="headerlink" href="#form-for-column-name-and-column-type" title="Permanent link">&para;</a></h4>
+<p>This Form connects to our <strong>List Columns</strong> table in Dataverse, please also see Solution Overview.</p>
+<ul>
+<li>Set <strong>Items</strong> of the <strong>Column Type</strong> Dropdown to <code>Choices('Column Type')</code></li>
+</ul>
+<h4 id="the-textinput">The TextInput<a class="headerlink" href="#the-textinput" title="Permanent link">&para;</a></h4>
+<p>In case user wants to add a choice column, we display another TextInput control, which will then use the same approach as described in the Channels screen: User adds a value and confirms it by selecting an icon and we collect the values into a collection, then we display this collection in a gallery.</p>
+<ul>
+<li>Create a TexInput</li>
+<li>Create an icon in that TextInput</li>
+<li>Set <strong>OnSelect</strong> of the icon to</li>
+</ul>
+<div class="highlight"><pre><span></span>Collect(
+    ColChoicesLibrary,
+    {Choice: TxtInputLibraryChoices.Text}
+);
+Reset(TxtInputLibraryChoices)
+</pre></div>
+<h4 id="gallery-to-display-the-column-values-for-choice-columns">Gallery to display the Column Values for Choice Columns<a class="headerlink" href="#gallery-to-display-the-column-values-for-choice-columns" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Create a gallery</li>
+<li>Set <strong>Items</strong> to <code>ColChoicesLibrary</code></li>
+<li>Change the default <strong>NextArrow</strong> icon to a cancel icon</li>
+<li>Set its <strong>OnSelect</strong> to <code>RemoveIf(ColChoicesLibrary,Choice=ThisItem.Choice)</code></li>
+<li>Set its <strong>Visible</strong> to <code>isShowGalleryLibrary</code></li>
+<li>Set <strong>OnVisible</strong> of Libraries Screen to <code>UpdateContext({isShowGalleryLibrary: false});</code></li>
+</ul>
+<h4 id="add-columns-button">Add columns Button<a class="headerlink" href="#add-columns-button" title="Permanent link">&para;</a></h4>
+<p>This button shall add the values (column name, column type and column values of choice columns) to a collection.</p>
+<ul>
+<li>Create a button</li>
+<li>Set its <strong>OnSelect</strong> to</li>
+</ul>
+<div class="highlight"><pre><span></span>Collect(
+    colColumnsLibrary,
+    {
+        Name: &lt;DataCardValueWhichHoldsTheName&gt;.Text,
+        Type: &lt;DataCardValueWhichHoldsTheType&gt;.Selected,
+        ColumnValues: Concat(
+            ColChoicesLibrary,
+            Choice &amp; &quot;, &quot;
+        )
+    }
+);
+UpdateContext({isShowGalleryLibrary: true});
+Clear(ColChoicesLibrary1);
+ResetForm(&#39;Form ColumnName-ColumnType&#39;)
+</pre></div>
+<p>This means, that we will add the name of the column and the type of the column by getting the values from the respecting DataCards and use <code>Concat()</code> again to make a single string from the column choices values. Also, we show the gallery as we set a variable <code>isShowGalleryLibrary</code> and reset the the <strong>ColumnName-ColumnValue</strong> form.</p>
+<ul>
+<li>Set <strong>Displaymode</strong> of the button to</li>
+</ul>
+<div class="highlight"><pre><span></span>If(
+    IsBlank(&lt;DataCardValueWhichHoldsTheName&gt;) = true || IsBlank(DataCardValueWhichHoldsTheType&gt;.Selected.Value),
+    Disabled,
+    Edit
+)
+</pre></div>
+<p>This way, our <strong>Add</strong> button will only be selectable if column name and column value are not empty.</p>
+<h4 id="gallery-to-display-column-names-and-column-types">Gallery to display Column Names and Column Types<a class="headerlink" href="#gallery-to-display-column-names-and-column-types" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Create a gallery</li>
+<li>Select the <strong>Title, Subtitle and Body</strong> layout</li>
+<li>Set <strong>Items</strong> to <code>colColumnsLibrary</code></li>
+<li>Set <strong>Text</strong> of the Title field to <code>ThisItem.Name</code> - it refers to the name of the column</li>
+<li>Set <strong>Text</strong> of the subtitle field to <code>ThisItem.Type.Value</code> - it refers to the selected value of the column type</li>
+<li>Set <strong>Text</strong> of the body field to <code>Left(ThisItem.ColumnValues, Len(ThisItem.ColumnValues)-2)</code> - it refers to the column values for choice columns but gets rid of the last <code>,</code> at the end of the string using</li>
+<li><code>Left()</code> which returns a string with a certain amount of characters</li>
+<li><code>Len()</code> which returns the number of characters of a string</li>
+<li><code>-2</code> because <code>,</code> (comma space) is 2 characters and we want to shorten the string by these to characters</li>
+<li>Change the by default <strong>NextArrow</strong> icon to a Cancel icon and set its <strong>OnSelect</strong> to <code>RemoveIf(colColumnsLibrary1,Name=ThisItem.Name)</code> so that the user can remove this item if they want to.</li>
+</ul>
+<h4 id="next-button_1">Next Button<a class="headerlink" href="#next-button_1" title="Permanent link">&para;</a></h4>
+<p>Our <strong>Next</strong> or <strong>Save library</strong> is supposed to do a few things:</p>
+<ul>
+<li>Set a variable for the library name (remember, we did not submit the form to our data source)</li>
+<li>Display a <a href="#popup">PopUp</a> to indicate that the library was saved</li>
+</ul>
+<p>To achieve this,</p>
+<ul>
+<li>Create a button</li>
+<li>Set its <strong>OnSelect</strong> to</li>
+</ul>
+<div class="highlight"><pre><span></span>Set(
+    IsShowSavedLibraries,
+    true
+);
+Set(
+    varLibraryName,
+    &lt;DataCardValueWhichHoldsLibraryName&gt;.Text
+)
+</pre></div>
+<h3 id="lists-screen">Lists Screen<a class="headerlink" href="#lists-screen" title="Permanent link">&para;</a></h3>
+<p>The Lists screen is following the same approach as the library screen, because we need the very same information about an additional list as for an additional library. Of course we collect the values in different collections, but all controls and the entire logic stays the same.</p>
+<h3 id="checkout-screen">Checkout Screen<a class="headerlink" href="#checkout-screen" title="Permanent link">&para;</a></h3>
+<p>In the checkout screen, we want to display a PopUp in which the user may review all their responses - and return to a specific screen if they would want to correct something.</p>
+<ul>
+<li>Create a PopUp, this time with 8 pages - this also means 8 different images, titles, contents and stepper dots</li>
+<li>Set <strong>OnVisible</strong> to <code>UpdateContext({isShowSummary: true});UpdateContext({isPageSummary: 1})</code></li>
+<li>Set <strong>Visible</strong> of the entire PopUpGroup to <code>isShowSummary</code></li>
+<li>Set <strong>Text</strong> of your main content Textlabel to</li>
+</ul>
+<div class="highlight"><pre><span></span>If(
+    isPageSummary = 1,
+    &quot;please review your request before you submit it&quot;,
+    If(
+        isPageSummary = 2,
+        &quot;Teamname: &quot; &amp; TeamName &amp; Char(13) &amp; &quot;Description: &quot; &amp; TeamsDescription &amp; Char(13) &amp; &quot;Owner: &quot; &amp; User().Email &amp; Char(13) &amp; &quot;Welcome Package: &quot; &amp; If(
+            isWelcomePackage = true,
+            &quot;yes, please!&quot;,
+            &quot;no thank you&quot;
+        ) &amp; Char(13) &amp; &quot;Microsoft List for task management: &quot; &amp; If(
+            isSharePointListTasks = true,
+            &quot;yes, please&quot;,
+            &quot;no thank you&quot;
+        ) &amp; Char(13),
+        If(
+            isPageSummary = 3,
+            &quot;We will add the following members for you: &quot; &amp; Char(13) &amp; Left(
+                varMembers,
+                Len(varMembers) - 2
+            ) &amp; Char(13) &amp; Char(13) &amp; &quot;We will add the following owners for you: &quot; &amp; Char(13) &amp; Left(
+                varOwners,
+                Len(varOwners) - 2
+            ),
+            If(
+                isPageSummary = 4,
+                &quot;We will create the following channels for you: &quot; &amp; Char(13) &amp; Char(13) &amp; Left(
+                    varChannels,
+                    Len(varChannels) - 2
+                ),
+                If(
+                    isPageSummary = 5,
+                    &quot;We will create a library called &#39;&quot; &amp; varLibrary1Name &amp; &quot;&#39; for you with the following columns: &quot; &amp; Char(13) &amp; Char(13) &amp; Left(
+                        Concat(
+                            colColumnsLibrary1,
+                            Name &amp; &quot;, &quot;
+                        ),
+                        Len(
+                            Concat(
+                                colColumnsLibrary1,
+                                Name &amp; &quot;, &quot;
+                            )
+                        ) - 2
+                    ),
+                    If(
+                        isPageSummary = 6,
+                        &quot;We will create a list called &#39;&quot; &amp; varListName &amp; &quot;&#39; for you with the following columns: &quot; &amp; Char(13) &amp; Char(13) &amp; Left(
+                            Concat(
+                                colColumnsList,
+                                Name &amp; &quot;, &quot;
+                            ),
+                            Len(
+                                Concat(
+                                    colColumnsList,
+                                    Name &amp; &quot;, &quot;
+                                )
+                            ) - 2
+                        ),
+                        If(
+                            isPageSummary = 7,
+                            &quot;If everything looks ok, hit SUBMIT! &quot; &amp; Char(13) &amp; Char(13) &amp; &quot;If you need to correct something, close this PopUp and navigate to the respecting screen. You can then return to this summary later&quot;,
+                            If(
+                                isPageSummary = 8,
+                                &quot;you can close the app now - See you next time when you like to create a Team&quot;
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+)
+</pre></div>
+<ul>
+<li>Set <strong>Text</strong> of the title Textlabel to</li>
+</ul>
+<div class="highlight"><pre><span></span>If(
+    isPageSummary = 1,
+    &quot;Let&#39;s make your teamwork wishes come true&quot;,
+    If(
+        isPageSummary = 2,
+        &quot;Basic info about your Team&quot;,
+        If(
+            isPageSummary = 3,
+            &quot;Members &amp; Owners&quot;,
+            If(
+                isPageSummary = 4,
+                &quot;Channels&quot;,
+                If(
+                    isPageSummary = 5,
+                    &quot;Your Library&quot;,
+                    If(
+                        isPageSummary = 6,
+                        &quot;Your List&quot;,
+                        If(
+                            isPageSummary = 7,
+                            &quot;Looks good?&quot;,
+                            &quot;You made it! &quot;
+                        )
+                    )
+                )
+            )
+        )
+    )
+)
+</pre></div>
+<p>For <strong>Text</strong>, <strong>Width</strong> and <strong>X</strong> of your Next button refer to <a href="#popup">PopUps</a></p>
+<ul>
+<li>Set <strong>OnSelect</strong> to</li>
+</ul>
+<div class="highlight"><pre><span></span>If(
+    isPageSummary = 1,
+    UpdateContext({isPageSummary: 2}),
+    If(
+        isPageSummary = 2,
+        UpdateContext({isPageSummary: 3}),
+        If(
+            isPageSummary = 3,
+            UpdateContext({isPageSummary: 4}),
+            If(
+                isPageSummary = 4,
+                UpdateContext({isPageSummary: 5}),
+                If(
+                    isPageSummary = 5,
+                    UpdateContext({isPageSummary: 6}),
+                    If(
+                        isPageSummary = 6,
+                    //1. Teams - name, description, welcomepackage, SPListForTasks
+                        SubmitForm(FormTeamsRequest);
+                        Set(varTeam,FormTeamsRequest.LastSubmit);
+                    // 2. channels
+ForAll(
+                            colChannels,
+                            Patch(
+                                &#39;Team Channels&#39;,
+                                Defaults(&#39;Team Channels&#39;),
+                                {&#39;Channel Name&#39;: ChannelName,
+                                TeamsRequest: varTeam}
+                            )
+                        );
+                    //3. libraryname
+SubmitForm(FormLibraryName);
+UpdateContext({locLibrary:FormLibraryName.LastSubmit});
+Patch(&#39;SharePoint Libraries&#39;,LookUp(&#39;SharePoint Libraries&#39;,&#39;SharePoint Library&#39;=locLibrary.&#39;SharePoint Library&#39;),{TeamsRequest:varTeam});
+//Patch(&#39;SharePoint Libraries&#39;,LookUp(&#39;SharePoint Libraries&#39;,&#39;SharePoint Library&#39;=);
+                    //4. columnname and column types for library
+ForAll(
+                            colColumnsLibrary1,
+                            Patch(
+                                &#39;List Columns&#39;,
+                                Defaults(&#39;List Columns&#39;),
+                                {
+                                    &#39;Column Name&#39;: Name,
+                                    &#39;Column Type&#39;: Type.Value,
+                                    &#39;Column Values&#39;: Left(
+                                        ColumnValues,
+                                        Len(ColumnValues) - 2
+                                    ),
+                                    &#39;SharePoint Library&#39;: FormLibraryName.LastSubmit
+                                }
+                            )
+                        );
+                    //5. list name
+SubmitForm(FormListName);
+UpdateContext({locList:FormListName.LastSubmit});
+Patch(&#39;SharePoint Lists&#39;,LookUp(&#39;SharePoint Lists&#39;,&#39;SharePoint List&#39;=locList.&#39;SharePoint List&#39;),{TeamsRequest:varTeam});
+                    //6. columnname and column types for list
+ForAll(
+                            colColumnsList,
+                            Patch(
+                                &#39;List Columns&#39;,
+                                Defaults(&#39;List Columns&#39;),
+                                {
+                                    &#39;Column Name&#39;: Name,
+                                    &#39;Column Type&#39;: Type.Value,
+                                    &#39;Column Values&#39;: Left(
+                                        ColumnValues,
+                                        Len(ColumnValues) - 2
+                                    ),
+                                    &#39;SharePoint List&#39;: FormListName.LastSubmit
+                                }
+                            )
+                        );
+                    //7. nav to pageSummary 7
+UpdateContext({isPageSummary: 7}),
+                    //close app
+                        Exit()
+                    )
+                )
+            )
+        )
+    )
+);
+</pre></div>
+<p>A little polish:
+We want a checkbox to be displayed before the very last step so that our user needs to confirm that they understood that this is the point of no return.</p>
+<ul>
+<li>Create a Checkbox on the CheckOut Screen</li>
+<li>Set its <strong>Visible</strong> to <code>If(isShowSummary=true &amp;&amp;isPageSummary=6,true, false)</code> - which shows it only on the last page of the Summary PopUp</li>
+<li>Set its <strong>Text</strong> to <code>"Yes I understand that I can't change my request anymore after I selected the SUBMIT button"</code></li>
+<li>Set <strong>DisplayMode</strong> of the <strong>Next</strong> button to <code>If(isPageSummary=6 &amp;&amp; Checkbox1.Value=false, Disabled, Edit)</code> - this way, the button is only selectable, if user checked the checkbox.</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../canvasapp/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Overview
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../dataverse/" class="md-footer__link md-footer__link--next" aria-label="Next: Overview" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Overview
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.sections", "navigation.expand"], "search": "../../assets/javascripts/workers/search.8397ff9e.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.1e84347e.min.js"></script>
+      
+    
+  </body>
+</html>

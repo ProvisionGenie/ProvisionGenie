@@ -5,7 +5,7 @@ param (
     $Location,
     [Parameter(Mandatory = $true)]
     [string]
-    $StorageAccountName,
+    $tenantURL,
     [Parameter(Mandatory = $true)]
     [string]
     $DataverseEnvironmentId,
@@ -72,59 +72,15 @@ if ($roleAssignments.Count -eq 0) {
     az role assignment create --assignee $me.objectId --role contributor --resource-group $ResourceGroupName
 }
 
-Write-Host "Creating storage account $StorageAccountName"
-$StorageAccount = az storage account create `
-    --name $StorageAccountName `
-    --resource-group $ResourceGroupName `
-    --location $Location `
-    --sku Standard_LRS | ConvertFrom-Json
-if (!$?) { 
-    Write-Error "Unable to create storage account $StorageAccountName."
-    exit 1
-}
-Write-Host "Getting access key for storage account $StorageAccountName"
-$Key = az storage account keys list `
-    --account-name $StorageAccountName `
-    --resource-group $ResourceGroupName `
-    --query "[0].value"
-
-$DeployContainerName = "templates"
-Write-Host "Creating storage container $DeployContainerName in $StorageAccountName"
-$Container = az storage container create `
-    --name $DeployContainerName `
-    --account-name $StorageAccountName `
-    --auth-mode login
-
-# Set up an expriy for the SAS Token
-$Expiry = (Get-Date).AddHours(1).ToUniversalTime().ToString("yyyy-MM-dTH:mZ")
-Write-Host "Setting SAS Token for container expiring at $Expiry"
-$SasToken = az storage container generate-sas `
-    --name $DeployContainerName `
-    --account-name $StorageAccountName `
-    --https-only `
-    --permissions crw `
-    --expiry $Expiry `
-    --account-key $Key
-
-# use Join-Path to build the path so that this works on both Linux and Windows
-$TemplatePath = Join-Path ".." "ARM"
-Write-Host "Uploading templates at $TemplatePath to $DeployContainerName in $StorageAccountName"
-az storage blob upload-batch `
-    --destination $DeployContainerName `
-    --source $TemplatePath `
-    --account-name $StorageAccountName `
-    --sas-token $SasToken
-
-$MainTemplateUri = $StorageAccount.primaryEndpoints.blob + "$DeployContainerName/ARM-template.json"
 
 $DeployTimestamp = (Get-Date).ToUniversalTime().ToString("yyyyMMdTHmZ")
 # Deploy
 az deployment group create `
     --name "DeployLinkedTemplate-$DeployTimestamp" `
     --resource-group $ResourceGroupName `
-    --template-uri $MainTemplateUri `
-    --query-string $SasToken `
+    --template-file ../bicep/ProvisionGenie-root.bicep `
     --parameters DataverseEnvironmentId=$DataverseEnvironmentId `
+                tenantURL=$tenantURL `
                 WelcomePackageUrl=$WelcomePackageUrl `
                 servicePrincipal_AppId=$($sp.appId) `
                 servicePrincipal_ClientSecret=$($sp.password) `
@@ -149,8 +105,9 @@ $currentRoles = (az rest `
     | ConvertFrom-Json).value `
     | ForEach-Object { $_.appRoleId }
 
+#Get resourceId for Graph API    
 $graphResourceId = az ad sp list --display-name "Microsoft Graph" --query [0].objectId
-#Get appRoleIds for Team.Create, Group.ReadWrite.All, Directory.ReadWrite.All, Group.Create, Sites.Manage.All, Sites.ReadWrite.All
+#Get appRoleIds : Team.Create, Group.ReadWrite.All, Directory.ReadWrite.All, Group.Create, Sites.Manage.All, Sites.ReadWrite.All
 $graphId = az ad sp list --query "[?appDisplayName=='Microsoft Graph'].appId | [0]" --all
 $teamCreate = az ad sp show --id $graphId --query "appRoles[?value=='Team.Create'].id | [0]" -o tsv
 $readWriteAll = az ad sp show --id $graphId --query "appRoles[?value=='Group.ReadWrite.All'].id | [0]" -o tsv
@@ -159,8 +116,9 @@ $groupCreate = az ad sp show --id $graphId --query "appRoles[?value=='Group.Crea
 $sitesManageAll = az ad sp show --id $graphId --query "appRoles[?value=='Sites.Manage.All'].id | [0]" -o tsv
 $sitesReadWriteAll = az ad sp show --id $graphId --query "appRoles[?value=='Sites.ReadWrite.All'].id | [0]" -o tsv
 $teamMemberReadWriteAll = az ad sp show --id $graphId --query "appRoles[?value=='TeamMember.ReadWrite.All'].id | [0]" -o tsv 
-$appRoleIds = $teamCreate, $readWriteAll, $directoryReadWriteAll, $groupCreate, $sitesManageAll, $sitesReadWriteAll, $teamMemberReadWriteAll
-#Loop over all appRoleIds
+$addNotebook = az ad sp show --id $graphId --query "appRoles[?value=='Notes.ReadWrite.All'].id | [0]" -o tsv
+$appRoleIds = $teamCreate, $readWriteAll, $directoryReadWriteAll, $groupCreate, $sitesManageAll, $sitesReadWriteAll, $teamMemberReadWriteAll, $addNotebook
+#Loop over all appRoleIds for Graph API
 foreach ($appRoleId in $appRoleIds) {
     $roleMatch = $currentRoles -match $appRoleId
     if ($roleMatch.Length -eq 0) {
@@ -173,5 +131,28 @@ foreach ($appRoleId in $appRoleIds) {
             --headers Content-Type=application/json 
     }
 }
+#Get resourceId for SharePoint API    
+$sPResourceId = az ad sp list --display-name "Office 365 SharePoint Online" --query [0].objectId
+$spId = az ad sp list --query "[?appDisplayName=='Office 365 SharePoint Online'].appId | [0]" --all
+#Get appRoleIds
+$sitesFullControlAll = az ad sp show --id $spId --query "appRoles[?value=='Sites.FullControl.All'].id | [0]" -o tsv
+$sPappRoleIds =  $sitesFullControlAll
+#Loop over "all" sPappRoleIds
+foreach ($sPappRoleId in $sPappRoleIds) {
+   $roleMatch = $currentRoles -match $sPappRoleId
+    if ($roleMatch.Length -eq 0) {
+        #Add the role assignment to the principal
+        $body = "{principalId:'$principalId','resourceId':'$sPResourceId','appRoleId':'$spAppRoleId'}";
+        az rest `
+            --method post `
+            --uri https://graph.microsoft.com/v1.0/servicePrincipals/$principalId/appRoleAssignments `
+            --body $body `
+            --headers Content-Type=application/json 
 
+    }
+}
 Write-Host "Done"
+
+
+
+

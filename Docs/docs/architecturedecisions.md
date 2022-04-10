@@ -55,7 +55,7 @@ Trying to circumvent the premium license for Dataverse by choosing Azure SQL or 
 
 ### Consequences of choosing Dataverse
 
-Using Dataverse results in licensing costs, as every user will need an Power Apps per app or a PowerApps per user plan. We are aware that this might come across as hurdle and that the desire to somehow bypass is hugh. But enterprise-grade solutions don't come for free.
+Using Dataverse results in licensing costs, as every user will need an Power Apps per app or a Power Apps per user plan. We are aware that this might come across as hurdle and that the desire to somehow bypass is hugh. But enterprise-grade solutions don't come for free.
 
 ## Integration
 
@@ -79,7 +79,7 @@ In our first proof of concept, we still used Power Automate to provision a custo
 
 We use [Microsoft Graph API](https://docs.microsoft.com/graph/overview) to provision all assets that were requested by users using the Power Apps Canvas app with Azure Logic Apps.
 
-Using Microsoft Planner for day-to-day task management within a team is considered to be a good practice. Unfortunately, the Planner API lacks of having application level permissions. Without application level permissions, we can't provision Planner plans with a Managed Identity. 
+Using Microsoft Planner for day-to-day task management within a team is considered to be a good practice. Unfortunately, the Planner API lacks of having application level permissions. Without application level permissions, we can't provision Planner plans with a Managed Identity.
 
 ### Decision
 
@@ -108,4 +108,6 @@ Usually, a new Team also contains a Teams Wiki tab. The Wiki is a (hidden) Share
 
 As part of our provisioning process, we delete the Teams Wiki from all created channels. We believe, that the Wiki is not a good place to store any kind of knowledge in.
 
-Of course our decision to delete the Wikis from all initial channels does not prevent users from adding a Wiki tab to an existing or manually created channel, but at least it is not the default behavior in a new Team. In the future, we want to automatically add a OneNote notebook.
+Of course our decision to delete the Wikis from all initial channels does not prevent users from adding a Wiki tab to an existing or manually created channel, but at least it is not the default behavior in a new Team.
+
+Optionally, we add the Notebook of the SharePoint site that backs the team, as a tab to the Channel **General** and already add the first note there.

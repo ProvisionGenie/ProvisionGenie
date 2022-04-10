@@ -2,16 +2,18 @@
 
 ![header image](../media/index/Genie_Header.png)
 
-We created 5 Azure Logic Apps to handle the provisioning of the Teams:
+We created 7 Azure Logic Apps to handle the provisioning of the Teams:
 
 Our flows pick up the values logged in the Dataverse tables to provision what the user requested:
 
-- [1. Main flow](#1-main-flow)
-- [2. Create team](#2-create-team)
-- [3. Add people](#3-add-people)
-- [4. Create List/Library](#4-create-listlibrary)
-- [5. Create Task List](#5-create-task-list)
-- [6. Welcome Package](#6-welcome-package)
+- [Azure Logic Apps](#azure-logic-apps)
+    - [1. Main flow](#1-main-flow)
+    - [2. Create team](#2-create-team)
+    - [3. Add people](#3-add-people)
+    - [4. Create List/Library](#4-create-listlibrary)
+    - [5. Create Task List](#5-create-task-list)
+    - [6. Welcome Package](#6-welcome-package)
+    - [7. Add Notebook](#7-add-notebook)
 
 ### 1. Main flow
 
@@ -129,25 +131,31 @@ In the Create team flow, the requested team is created with the specified channe
 5. The owners get splitted by an `;`
 6. the `People` variable gets appended with the body that we need in the HTTP request to add owners
 7. HTTP request adds both members get added in a single call
+8. for each guest, the UPN gets created
+9. **TRY** scope: we check if this user already exists in Azure Active Directory
+10. **CATCH** scope: we invite the user to the tenat and wait until they accepted the invitation and update the user information for `firstName`, `lastName` and `Organization`
+11. We add the user to the group
+12. Respond to the request caller
 
 ### 4. Create List/Library
 
-The Create List and Create Library logic apps are nearly identical, except for the template type that is provided in the creation request. Therefore, they are discussed as one.
+As the logic for creating a list and creating a library is very similar, we do this in one flow:
 
-⚠ In the future, these logic apps could be consolidated into one to simplify the solution.
-
-![Create List/Library logic app overview](../media/corecomponents/LogicApps-CreateList.png)
+![Create List/Library logic app overview](../media/corecomponents/LogicApps-CreateListLibrary.png)
 
 1. The logic app is triggered from a HTTP request, for example as a child logic app.
 2. A `ListColumns` variable is initialized to store the column definition
-3. For each of the columns that are specified in the trigger
+3. A `ResourceType` variable is initialized to store if it is a list or a library
+4. For each of the columns that are specified in the trigger
    1. Depending on the type of column, append the column definition to the `ListColumns` variable
-4. Create the list/library using a request. **This is where there is a difference between the Create List/Create Library Logic Apps flows.**
-5. Respond to the request caller
+5. Switch cases for the columnm types
+6. Switch cases for the resource types
+7. Create the list/library using a request using the resource type
+8. Respond to the request caller
 
 ### 5. Create Task List
 
-The Create Task list logic app uses the Create List logic app to create a task list using a fixed definition of columns.
+The Create Task list logic app uses the **CreateLibraryList** logic app to create a task list using a fixed definition of columns.
 
 ![Create Task List overview](../media/corecomponents/LogicApps-CreateTaskList.png)
 
@@ -170,5 +178,21 @@ The welcome package adds a url with training material to the General channel of 
 4. A HTTP request lists the channels in the team
 5. The channel info is parsed
 6. The General channel is always the first channel returned when the channels are listed, this is extracted from the channel info
-7. An HTTP request is sent to add the training material url as a website tab in the new team's general channel
+7. An HTTP request is sent to add the training material URLas a website tab in the new team's general channel
 8. Respond to the request caller
+
+### 7. Add Notebook
+
+This flow adds the notebook of the SharePoint sites, that backs the team, to the channel **General** and creates the first section and the first page.
+
+![Add Notebook Overview](../media/corecomponents/LogicApps-AddNotebook.png)
+
+1. The Logic Apps is triggered from a HTTP request, for example as a child logic app
+2. An HTTP request lists the channels in the team
+3. An HTTP request triggers the creation of the Notebook in the site that backs the Team.
+4. An HTTP request gets the notebook information
+5. An HTTP request creates a section in the notebook
+6. An HTTP request creates a page in the notebook
+7. A variable is initialized for the `Notebook URL`
+8. An HTTP request adds the Notebook to the Channel **General**
+9. Respond to the request caller

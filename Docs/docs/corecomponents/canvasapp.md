@@ -20,8 +20,10 @@ This is, what ProvisionGenie does:
     - Channels
     - Name of SharePoint list & columns
     - Name of SharePoint library & columns
-    - if Owner additionally wants a SharePoint list for task management (see also why we don't provision Planner in ProvisionGenie in our [Architecture Decisions](../architecturedecisions.md#no-microsoft-planner-provisioning)) or a "Welcome package"
-- Patch 5 Dataverse tables with the information we got by user
+    - if Owner additionally wants a SharePoint list for task management (see also why we don't provision Planner in ProvisionGenie in our [Architecture Decisions](../architecturedecisions.md#no-microsoft-planner-provisioning))
+    - if Owner additionally wants the "Welcome package"
+    - if Owner additionally wants the Notebook of the SharePoint site that backs the Team pinned to the channel **General** as a tab
+- Patch 6 Dataverse tables with the information we got by user
 
 As a result of the provisioning process, we have
 
@@ -52,6 +54,7 @@ As a result of the provisioning process, we have
     - due date (date)
     - assigned person (person)
     - priority (choice [urgent, high, medium, low])
+- optional: Notebook tab in channel **General**
 
 For more context on how this canvas app fits into our solution, please head over to [Solution Overview](logicapps.md#solution-overview) and [Architecture Decisions](../architecturedecisions.md)
 

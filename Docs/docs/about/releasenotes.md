@@ -3,6 +3,7 @@
 ![header image](../media/index/Genie_Header.png)
 
 ## v3.0.0
+
 ### Contains
 
 * a Power Apps canvas app
@@ -123,11 +124,12 @@ This is an open-source initiative by [Luise Freese](https://twitter.com/LuiseFre
 * [Yannick Reekmans](https://twitter.com/YannickReekmans) - as our Chief debugging expert
 * [Michael Roth](https://twitter.com/MichaelRoth42) - designed the ProvisionGenie logo for the new documentation
 
-Note regarding versioning: Although we want to stick to [semantic versioning](https://semver.org/), we felt this update is **major** as it adds so much more capability which we wanted to reflect in the version number. 
+Note regarding versioning: Although we want to stick to [semantic versioning](https://semver.org/), we felt this update is **major** as it adds so much more capability which we wanted to reflect in the version number.
 
 ## v1.0.0
 
 Minimum l💖vable product release of ProvisionGenie 🧞.
+
 ## Contains
 
 * a Power Apps canvas app

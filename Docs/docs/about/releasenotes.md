@@ -15,22 +15,22 @@
 * Allows users add guests to Teams
 * Allows users add a OneNote notebook
 * Supports 3 themes for Teams
-  * default
-  * dark mode
-  * highcontrast mode
+    * default
+    * dark mode
+    * highcontrast mode
 * localization support in 12 languages
-  * Danish
-  * Dutch
-  * English
-  * French
-  * Finnish
-  * German
-  * Italian
-  * Norwegian
-  * Polish
-  * Portuguese
-  * Spanish
-  * Japanese
+    * Danish
+    * Dutch
+    * English
+    * French
+    * Finnish
+    * German
+    * Italian
+    * Norwegian
+    * Polish
+    * Portuguese
+    * Spanish
+    * Japanese
 * Allows users pin libraries and lists to channels
 
 ### Improvements

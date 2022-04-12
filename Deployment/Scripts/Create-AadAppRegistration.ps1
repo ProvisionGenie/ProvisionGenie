@@ -11,7 +11,7 @@ param (
 if ($SubscriptionId -ne "") {
     az account set -s $SubscriptionId
     if (!$?) { 
-        Write-Error "Unable to select $SubscriptionId as the active subscription."
+        Write-Error "Unable to select $SubscriptionId as the active ."
         exit 1
     }
     Write-Host "Active Subscription set to $SubscriptionId"
